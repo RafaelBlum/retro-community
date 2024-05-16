@@ -1,16 +1,19 @@
 <?php
+declare(strict_types=1);
 
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use App\Enums\PanelTypeEnum;
 use Filament\Models\Contracts\FilamentUser;
+use Filament\Models\Contracts\HasAvatar;
 use Filament\Panel;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
-class User extends Authenticatable implements FilamentUser
+class User extends Authenticatable implements HasAvatar, FilamentUser
 {
     use HasFactory, Notifiable;
 
@@ -41,6 +44,11 @@ class User extends Authenticatable implements FilamentUser
         'panel' => PanelTypeEnum::class,
     ];
 
+    public function posts(): HasMany
+    {
+        return $this->hasMany(Post::class);
+    }
+
     /**
      * Get the attributes that should be cast.
      *
@@ -53,6 +61,11 @@ class User extends Authenticatable implements FilamentUser
             'password' => 'hashed',
             'panel' => PanelTypeEnum::class,
         ];
+    }
+
+    public function getFilamentAvatarUrl(): ?string
+    {
+        return asset('storage/' . $this->avatar);
     }
 
     public function canAccessPanel(Panel $panel): bool
