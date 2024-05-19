@@ -4,7 +4,7 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>Retro Blog</title>
+        <title>{{env('app_name')}}</title>
 
         @vite(['resources/css/app.css', 'resources/js/app.js'])
     </head>
@@ -23,7 +23,7 @@
                 </div>
             </div>
             <div class="text-center">
-                <h1 class="test text-4xl font-bold tracking-tight sm:text-6xl">Orelha lascada</h1>
+                <h1 class="test text-4xl font-bold tracking-tight sm:text-6xl">{{env('app_name')}}</h1>
                 <h3 class="logo text-4xl font-bold tracking-tight ">Super Almir Santos World</h3>
 
                 <p class="mt-6 text-lg leading-8">
