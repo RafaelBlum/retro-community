@@ -10,12 +10,18 @@ class WebController extends Controller
 
     public function landing()
     {
-        return view('home');
+        return view('landing');
+        $campaign = false;
+
+        if($campaign){
+            return ($campaign == true ? view('landing'): to_route('app.home'));
+        }
     }
 
     public function home()
     {
         $posts = Post::all();
-        return view('index', compact('posts'));
+//        return view('home', compact('posts'));
+        return view('home', compact('posts'));
     }
 }
