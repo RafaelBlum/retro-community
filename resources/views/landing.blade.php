@@ -24,11 +24,12 @@
             </div>
             <div class="text-center">
                 <h1 class="test text-4xl font-bold tracking-tight sm:text-6xl">{{env('app_name')}}</h1>
-                <h3 class="logo text-4xl font-bold tracking-tight ">Games, informações, hacks</h3>
+                <h3 class="logo text-4xl font-bold tracking-tight ">Games e informações</h3>
 
                 <p class="mt-6 text-lg leading-8">
-                    A mais nova hack desenvolvida em cima do game de Super Mario World do SNES, será um game com intuito de impulcionar e potencializar mais
-                    os canais retro, fortalecendo de uma forma divertida, com um game sessacional!
+                    Com uma comunidade unida, você encontrará uma vasta coleção de <em class="text-blue-400 bold">informações sobre jogos clássicos</em>, <em class="text-blue-400 bold">lives da galera no YouTube</em>, análises detalhadas
+                    e até histórias curiosas e guias de gameplay. Além disso, o <em class="text-blue-400 bold">Retro Community</em> mantém você atualizado
+                    sobre campanhas, lançamentos, eventos e tendências.
                 </p>
                 <div class="mt-10 flex items-center justify-center gap-x-6">
                     <a href="{{route('app.home')}}" class="rounded-md bg-indigo-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">

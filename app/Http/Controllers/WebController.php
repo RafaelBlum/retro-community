@@ -10,11 +10,10 @@ class WebController extends Controller
 
     public function landing()
     {
-        return view('landing');
-        $campaign = false;
+        $campaign = true;
 
         if($campaign){
-            return ($campaign == true ? view('landing'): to_route('app.home'));
+            return ($campaign == true ? view('landing'): view('campaign'));
         }
     }
 
