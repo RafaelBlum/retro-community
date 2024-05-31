@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{env('app_name')}}</title>
+    <title>{{config('app.name')}}</title>
 
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
@@ -14,12 +14,12 @@
         <nav class="bg-white border-gray-200 py-2.5 dark:bg-gray-900">
             <div class="flex flex-wrap items-center justify-between max-w-screen-xl px-4 mx-auto">
                 <a href="{{route('app.landing')}}" class="flex items-center">
-                    <span class="self-center text-xl font-semibold whitespace-nowrap dark:text-white">{{env('app_name')}}</span>
+                    <span class="self-center text-xl font-semibold whitespace-nowrap dark:text-white">{{config('app.name')}}</span>
                 </a>
                 <div class="flex items-center lg:order-2">
 
 
-                    <a href="https://themesberg.com/product/tailwind-css/landing-page" class="text-white bg-purple-700 hover:bg-purple-800 focus:ring-4 focus:ring-purple-300 font-medium rounded-lg text-sm px-4 lg:px-5 py-2 lg:py-2.5 sm:mr-2 lg:mr-0 dark:bg-purple-600 dark:hover:bg-purple-700 focus:outline-none dark:focus:ring-purple-800">Login</a>
+                    <a href="{{route('filament.admin.pages.dashboard')}}" class="text-white bg-purple-700 hover:bg-purple-800 focus:ring-4 focus:ring-purple-300 font-medium rounded-lg text-sm px-4 lg:px-5 py-2 lg:py-2.5 sm:mr-2 lg:mr-0 dark:bg-purple-600 dark:hover:bg-purple-700 focus:outline-none dark:focus:ring-purple-800">Login</a>
                     <button data-collapse-toggle="mobile-menu-2" type="button" class="inline-flex items-center p-2 ml-1 text-sm text-gray-500 rounded-lg lg:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600" aria-controls="mobile-menu-2" aria-expanded="false">
                         <span class="sr-only">Open main menu</span>
                         <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 15a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z" clip-rule="evenodd"></path></svg>
@@ -68,7 +68,7 @@
     <section class="bg-white dark:bg-gray-900">
         <div class="grid max-w-screen-xl px-4 pt-20 pb-8 mx-auto lg:gap-8 xl:gap-0 lg:py-16 lg:grid-cols-12 lg:pt-28">
             <div class="mr-auto place-self-center lg:col-span-7">
-                <h1 class="max-w-2xl mb-4 text-4xl font-extrabold leading-none tracking-tight md:text-5xl xl:text-6xl dark:text-white">{{env('app_name')}}</h1>
+                <h1 class="max-w-2xl mb-4 text-4xl font-extrabold leading-none tracking-tight md:text-5xl xl:text-6xl dark:text-white">{{config('app.name')}}</h1>
                 <p class="max-w-2xl mb-6 font-light text-gray-500 lg:mb-8 md:text-lg lg:text-xl dark:text-gray-400">This free and open-source landing page template was built using the utility classes from <a href="https://tailwindcss.com" class="hover:underline">Tailwind CSS</a> and based on the components from the <a href="https://flowbite.com/docs/getting-started/introduction/" class="hover:underline">Flowbite Library</a> and the <a href="https://flowbite.com/blocks/" class="hover:underline">Blocks System</a>.</p>
                 <div class="space-y-4 sm:flex sm:space-y-0 sm:space-x-4">
                     <a href="https://github.com/themesberg/landwind" class="inline-flex items-center justify-center w-full px-5 py-3 text-sm font-medium text-center text-gray-900 border border-gray-200 rounded-lg sm:w-auto hover:bg-gray-100 focus:ring-4 focus:ring-gray-100 dark:text-white dark:border-gray-700 dark:hover:bg-gray-700 dark:focus:ring-gray-800">
@@ -483,7 +483,7 @@
         <div class="max-w-screen-xl p-4 py-6 mx-auto lg:py-16 md:p-8 lg:p-10">
             <div class="grid grid-cols-2 gap-8 md:grid-cols-3 lg:grid-cols-5">
                 <div>
-                    <h3 class="mb-6 text-sm font-semibold text-gray-900 uppercase dark:text-white">{{env('app_name')}}</h3>
+                    <h3 class="mb-6 text-sm font-semibold text-gray-900 uppercase dark:text-white">{{config('app.name')}}</h3>
                     <ul class="text-gray-500 dark:text-gray-400">
                         <li class="mb-4">
                             <a href="#" class=" hover:underline">About</a>
@@ -531,7 +531,7 @@
                     </ul>
                 </div>
                 <div>
-                    <h3 class="mb-6 text-sm font-semibold text-gray-900 uppercase dark:text-white">{{env('app_name')}}</h3>
+                    <h3 class="mb-6 text-sm font-semibold text-gray-900 uppercase dark:text-white">{{config('app.name')}}</h3>
                     <ul class="text-gray-500 dark:text-gray-400">
                         <li class="mb-4">
                             <a href="#" class=" hover:underline">About</a>
@@ -569,9 +569,9 @@
             <div class="text-center">
                 <a href="#" class="flex items-center justify-center mb-5 text-2xl font-semibold text-gray-900 dark:text-white">
                     <img src="./images/logo.svg" class="h-6 mr-3 sm:h-9" alt="" />
-                    {{env('app_name')}}
+                    {{config('app.name')}}
                 </a>
-                <span class="block text-sm text-center text-gray-500 dark:text-gray-400">© {{date('Y')}} {{env('app_name')}}. All Rights Reserved. Built with <a href="https://flowbite.com" class="text-purple-600 hover:underline dark:text-purple-500">Rafael Blum</a> and <a href="https://tailwindcss.com" class="text-purple-600 hover:underline dark:text-purple-500">Tailwind CSS</a>.
+                <span class="block text-sm text-center text-gray-500 dark:text-gray-400">© {{date('Y')}} {{config('app.name')}}. All Rights Reserved. Built with <a href="https://flowbite.com" class="text-purple-600 hover:underline dark:text-purple-500">Rafael Blum</a> and <a href="https://tailwindcss.com" class="text-purple-600 hover:underline dark:text-purple-500">Tailwind CSS</a>.
                 </span>
                 <ul class="flex justify-center mt-5 space-x-5">
                     <li>

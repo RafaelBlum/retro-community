@@ -4,7 +4,7 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>{{env('app_name')}}</title>
+        <title>{{config('app.name')}}</title>
 
         @vite(['resources/css/app.css', 'resources/js/app.js'])
     </head>
@@ -23,7 +23,7 @@
                 </div>
             </div>
             <div class="text-center">
-                <h1 class="test text-4xl font-bold tracking-tight sm:text-6xl">{{env('app_name')}}</h1>
+                <h1 class="test text-4xl font-bold tracking-tight sm:text-6xl">{{config('app.name')}}</h1>
                 <h3 class="logo text-4xl font-bold tracking-tight ">Games e informações</h3>
 
                 <p class="mt-6 text-lg leading-8">
@@ -31,13 +31,14 @@
                     e até histórias curiosas e guias de gameplay. Além disso, o <em class="text-blue-400 bold">Retro Community</em> mantém você atualizado
                     sobre campanhas, lançamentos, eventos e tendências.
                 </p>
-                <div class="mt-10 flex items-center justify-center gap-x-6">
+                <div class="mt-10 flex items-center justify-center gap-x-6 hover:animate-ping">
                     <a href="{{route('app.home')}}" class="rounded-md bg-indigo-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
                         Saíba mais sobre
                     </a>
                 </div>
             </div>
 
+            <img src="{{asset('images/controle.png')}}" alt="" class="absolute logo animate-bounce bottom-100 left-[calc(80%)] w-[16.125rem] h-auto">
 
             <section class="mt-6">
                 <div class="max-w-screen-xl px-4 pb-8 mx-auto lg:pb-16">
@@ -46,11 +47,6 @@
                         <a href="https://www.youtube.com/@AlmirSantos" target="_blank" class="flex items-center lg:justify-center">
                             <img src="{{asset('images/channels/almir_santos_profile.jpg')}}" alt="image" class="rounded-full w-7 opacity-1 mr-2">
                             <p class="text-sm">Almir Santos</p>
-                        </a>
-
-                        <a href="https://www.youtube.com/@ZerandoJogos" target="_blank" class="flex items-center lg:justify-center">
-                            <img src="{{asset('images/channels/zerandojogos_profile.jpg')}}" alt="image" class="rounded-full w-7 opacity-1 mr-2">
-                            <p class="text-sm">Zerando Jogos</p>
                         </a>
 
                         <a href="https://www.youtube.com/@alan.jogamais" target="_blank" class="flex items-center lg:justify-center">
