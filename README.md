@@ -61,6 +61,19 @@ In order to ensure that the Laravel community is welcoming to all, please review
 
 If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
 
+##  	Limpeza de cache, config, route and view
+
+```
+    php artisan config:clear
+    php artisan config:cache
+    php artisan route:clear
+    php artisan route:cache
+    php artisan view:clear
+    php artisan view:cache
+    php artisan event:clear
+    php artisan event:cache
+```
+
 ## License
 
 The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).

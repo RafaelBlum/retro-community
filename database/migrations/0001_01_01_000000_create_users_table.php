@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('name');
             $table->string('email')->unique();
             $table->string('panel')->default('app');
-            $table->string('avatar')->default('/storage/default.jpg');
+            $table->string('avatar')->default('/storage/default-post.jpg');
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->rememberToken();

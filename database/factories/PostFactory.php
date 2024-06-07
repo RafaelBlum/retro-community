@@ -2,6 +2,9 @@
 
 namespace Database\Factories;
 
+use App\Enums\StatusArticleEnum;
+use App\Models\Category;
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -16,8 +19,19 @@ class PostFactory extends Factory
      */
     public function definition(): array
     {
+        $users = User::all()->pluck('id');
+        $categories = Category::all()->pluck('id');
+
         return [
-            //
+            'user_id'  => User::all()->random()->id,
+            'category_id'  => Category::all()->random()->id,
+            'title'  => fake()->name(),
+            'slug'  => fake()->slug(),
+            'subTitle' => fake()->title,
+            'summary' => fake()->text(50),
+            'content' => fake()->text(150),
+            'status' => StatusArticleEnum::PRIVATE,
+            'views' => 0
         ];
     }
 }

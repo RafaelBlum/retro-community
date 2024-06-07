@@ -28,6 +28,8 @@ class CategoryResource extends Resource
     protected static ?string $modelLabel = "Categoria";
 
     protected static ?string $cluster = Blog::class;
+
+    protected static ?int $navigationSort = 2;
     protected static SubNavigationPosition $subNavigationPosition = SubNavigationPosition::Top;
 
     public static function form(Form $form): Form

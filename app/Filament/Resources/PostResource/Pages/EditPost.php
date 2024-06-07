@@ -10,6 +10,10 @@ class EditPost extends EditRecord
 {
     protected static string $resource = PostResource::class;
 
+    protected static ?int $navigationSort = 2;
+
+    protected static ?string $navigationLabel = "Editar Post";
+
     protected function getHeaderActions(): array
     {
         return [

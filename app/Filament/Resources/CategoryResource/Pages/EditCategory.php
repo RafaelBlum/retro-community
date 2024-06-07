@@ -10,6 +10,10 @@ class EditCategory extends EditRecord
 {
     protected static string $resource = CategoryResource::class;
 
+    protected static ?int $navigationSort = 2;
+
+    protected static ?string $navigationLabel = "Editar categoria";
+
     protected function getHeaderActions(): array
     {
         return [

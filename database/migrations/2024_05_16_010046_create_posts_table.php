@@ -23,8 +23,8 @@ return new class extends Migration
             $table->dateTime('published_at')->nullable();
             $table->dateTime('scheduled_for')->nullable();
             $table->string('status')->default('DRAFT');
-            $table->unsignedInteger('views')->nullable(0);
-            $table->string('featured_image_url')->nullable();
+            $table->unsignedInteger('views')->default(0);
+            $table->string('featured_image_url')->default('public/default-post.jpg');
             $table->timestamps();
         });
     }
