@@ -10,6 +10,10 @@ class ListPosts extends ListRecords
 {
     protected static string $resource = PostResource::class;
 
+    protected static ?int $navigationSort = 0;
+
+    protected static ?string $navigationLabel = "Listagem";
+
     protected function getHeaderActions(): array
     {
         return [

@@ -71,14 +71,7 @@ class PostResource extends Resource
                                     ->label('Título do artigo')
                                     ->required()
                                     ->maxLength(255)
-                                    ->live(debounce: '1000')
-                                    ->afterStateUpdated(fn(Set $set, ?string $state) => $set('slug', Str::slug($state))),
-                                TextInput::make('slug')
-                                    ->maxLength(255)
-                                    ->visible(false)
-                                    ->disabled()
-                                    ->dehydrated()
-                                    ->unique(ignoreRecord: true),
+
                             ])->columnSpan(4),
                         ]),
 
@@ -233,7 +226,15 @@ class PostResource extends Resource
                 //
             ])
             ->actions([
-                Tables\Actions\EditAction::make(),
+                Tables\Actions\ActionGroup::make([
+                    Tables\Actions\EditAction::make()->slideOver(),
+                    Tables\Actions\DeleteAction::make()
+                        ->action(fn(Post $record) => $record->delete())
+                        ->requiresConfirmation()
+                        ->modalHeading('Deletar ' . static::$modelLabel)
+                        ->modalDescription('Tem certeza de que deseja excluir este ' . static::$modelLabel . '? Isto não pode ser desfeito.')
+                        ->modalSubmitActionLabel('Sim, deletar!'),
+                ])->tooltip("Menu")
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
@@ -247,6 +248,7 @@ class PostResource extends Resource
         return $page->generateNavigationItems([
             Pages\ViewPost::class,
             Pages\EditPost::class,
+            Pages\ListPosts::class,
         ]);
     }
 
