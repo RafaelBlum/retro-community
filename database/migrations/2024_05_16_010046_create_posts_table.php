@@ -24,7 +24,7 @@ return new class extends Migration
             $table->dateTime('scheduled_for')->nullable();
             $table->string('status')->default('DRAFT');
             $table->unsignedInteger('views')->default(0);
-            $table->string('featured_image_url')->default('public/default-post.jpg');
+            $table->string('featured_image_url')->default('default-post.jpg');
             $table->timestamps();
         });
     }

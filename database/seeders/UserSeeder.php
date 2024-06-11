@@ -21,6 +21,7 @@ class UserSeeder extends Seeder
             'email'    => 'rafaelblum_digital@hotmail.com',
             'password' => Hash::make('123'),
             'panel'   => PanelTypeEnum::ADMIN,
+            'avatar' => 'default.jpg',
         ]);
 
         User::updateOrCreate([
@@ -28,6 +29,7 @@ class UserSeeder extends Seeder
             'email'    => 'teste@hotmail.com',
             'password' => Hash::make('teste'),
             'panel'   => PanelTypeEnum::APP,
+            'avatar' => 'default.jpg',
         ]);
     }
 }

@@ -15,4 +15,6 @@ class Blog extends Cluster
         $posts = Post::all();
         return $posts->count();
     }
+
+    protected static ?string $navigationBadgeTooltip = "Total de postagens";
 }

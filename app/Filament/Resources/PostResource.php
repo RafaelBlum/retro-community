@@ -42,7 +42,7 @@ class PostResource extends Resource
     protected static ?string $pluralModelLabel = "Blog";
     protected static ?string $modelLabel = "Post";
 
-    protected static ?int $navigationSort = 1;
+    protected static ?int $navigationSort = 2;
 
     protected static ?string $cluster = Blog::class;
     protected static SubNavigationPosition $subNavigationPosition = SubNavigationPosition::Top;
@@ -267,5 +267,15 @@ class PostResource extends Resource
             'view' => Pages\ViewPost::route('/{record}'),
             'edit' => Pages\EditPost::route('/{record}/edit'),
         ];
+    }
+
+    public static function getNavigationBadge(): ?string
+    {
+        return static::getModel()::count();
+    }
+
+    public static function getNavigationBadgeColor(): ?string
+    {
+        return static::getModel()::count() < 10 ? 'warning' : 'success';
     }
 }

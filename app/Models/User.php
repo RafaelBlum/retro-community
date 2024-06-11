@@ -17,6 +17,8 @@ class User extends Authenticatable implements HasAvatar, FilamentUser
 {
     use HasFactory, Notifiable;
 
+    protected $guarded = ['id'];
+
     /**
      * The attributes that are mass assignable.
      *
@@ -26,6 +28,8 @@ class User extends Authenticatable implements HasAvatar, FilamentUser
         'name',
         'email',
         'password',
+        'panel',
+        'avatar'
     ];
 
     /**
@@ -33,10 +37,7 @@ class User extends Authenticatable implements HasAvatar, FilamentUser
      *
      * @var array<int, string>
      */
-    protected $hidden = [
-        'password',
-        'remember_token',
-    ];
+    protected $hidden = ['password', 'remember_token'];
 
     protected $casts = [
         'email_verified_at' => 'datetime',

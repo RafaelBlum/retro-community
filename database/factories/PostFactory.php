@@ -31,7 +31,7 @@ class PostFactory extends Factory
             'summary' => fake()->text(50),
             'content' => fake()->text(150),
             'status' => StatusArticleEnum::PRIVATE,
-            'views' => 0
+            'featured_image_url' => 'default-post.jpg'
         ];
     }
 }
