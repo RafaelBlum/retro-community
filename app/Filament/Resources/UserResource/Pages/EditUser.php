@@ -5,8 +5,11 @@ namespace App\Filament\Resources\UserResource\Pages;
 use App\Filament\Resources\UserResource;
 use App\Models\User;
 use Filament\Actions;
+use Filament\Actions\RestoreAction;
+use Filament\Facades\Filament;
 use Filament\Notifications\Notification;
 use Filament\Resources\Pages\EditRecord;
+use Illuminate\Http\Client\Request;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Storage;
@@ -48,22 +51,33 @@ class EditUser extends EditRecord
         if ($user->avatar != $caminhoDaImagem) {
             Storage::delete('public/' . $user->avatar);
         }
-    }
 
-    protected function afterSave()
-    {
         if (!empty($this->data['password'])) {
 
-            Notification::make('register_error')
-                ->title('Senha alterada!')
-                ->body('Você será redirecionado ao Login...')
-                ->danger()
-                ->persistent()
-                ->send();
+            $this->getSavedNotification();
 
-            return redirect()->route('filament.admin.auth.login');
-
+            return to_route('filament.admin.auth.login');
         }
-        return null;
+
+    }
+
+    protected function getSavedNotification(): ?Notification
+    {
+        return Notification::make('register_error')
+            ->title('Senha alterada!')
+            ->body('Você será redirecionado ao Login...')
+            ->danger();
+    }
+
+    protected function mutateFormDataBeforeFill(array $data): array
+    {
+        //modificar os dados de um registro antes de preenchê-lo no formulário
+        //se você estiver editando registros em uma ação modal
+        return $data;
+    }
+
+    protected function redirectTo(Request $request): ?string
+    {
+        return $request->expectsJson() ? null : Filament::getCurrentPanel()->route('auth.login');
     }
 }

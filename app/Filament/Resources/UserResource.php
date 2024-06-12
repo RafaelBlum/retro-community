@@ -169,10 +169,10 @@ class UserResource extends Resource
             ]);
     }
 
-    public static function getEloquentQuery(): Builder
-    {
-        return static::getModel()::query()->where('id', '!=', auth()->id());
-    }
+//    public static function getEloquentQuery(): Builder
+//    {
+//        return static::getModel()::query()->where('id', '!=', auth()->id());
+//    }
 
     public static function getRelations(): array
     {

@@ -34,7 +34,7 @@ class AdminPanelProvider extends PanelProvider
             ])
             ->navigationItems([
                 NavigationItem::make('Home')
-                    ->url('http://127.0.0.1:8000/')
+                    ->url('http://127.0.0.1:8001/')
                     ->icon('heroicon-o-globe-asia-australia')
                     ->group('Links')
                     ->sort(5)->openUrlInNewTab()
