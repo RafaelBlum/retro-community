@@ -74,6 +74,10 @@ If you discover a security vulnerability within Laravel, please send an e-mail t
     php artisan event:cache
 ```
 
-## License
+## Pendências
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+- Criar autorizações entre ADMIN e usuários. [doc. infor](https://filamentphp.com/docs/1.x/admin/resources#authorization)
+  - [canAccessFilament falhe](https://v2.filamentphp.com/tricks/redirect-in-case-canaccessfilament-fails)
+- 
+- 
+- 

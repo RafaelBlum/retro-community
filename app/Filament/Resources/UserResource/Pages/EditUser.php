@@ -53,12 +53,13 @@ class EditUser extends EditRecord
         }
 
         if (!empty($this->data['password'])) {
-
-            $this->getSavedNotification();
-
-            return to_route('filament.admin.auth.login');
+            return redirect(route('filament.admin.auth.login'));
         }
+    }
 
+    protected function afterSave()
+    {
+        $this->getSavedNotification();
     }
 
     protected function getSavedNotification(): ?Notification
@@ -74,10 +75,5 @@ class EditUser extends EditRecord
         //modificar os dados de um registro antes de preenchê-lo no formulário
         //se você estiver editando registros em uma ação modal
         return $data;
-    }
-
-    protected function redirectTo(Request $request): ?string
-    {
-        return $request->expectsJson() ? null : Filament::getCurrentPanel()->route('auth.login');
     }
 }
