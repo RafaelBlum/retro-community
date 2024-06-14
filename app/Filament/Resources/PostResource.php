@@ -2,7 +2,7 @@
 
 namespace App\Filament\Resources;
 
-use App\Enums\StatusArticleEnum;
+use App\Enums\StatusPostEnum;
 use App\Filament\Clusters\Blog;
 use App\Filament\Resources\PostResource\Pages;
 use App\Filament\Resources\PostResource\RelationManagers;
@@ -128,7 +128,7 @@ class PostResource extends Resource
                                     ->hintIcon('heroicon-m-question-mark-circle', tooltip: 'Selecione o status do seu artigo.')
                                     ->hintColor('primary')
                                     ->default('draft')
-                                    ->options(StatusArticleEnum::class)
+                                    ->options(StatusPostEnum::class)
                                     ->live()
                                     ->required(),
 

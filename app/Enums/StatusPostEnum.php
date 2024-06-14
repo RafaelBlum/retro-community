@@ -3,9 +3,10 @@
 
 namespace App\Enums;
 use Filament\Support\Contracts\HasColor;
+use Filament\Support\Contracts\HasIcon;
 use Filament\Support\Contracts\HasLabel;
 
-enum StatusArticleEnum: string implements HasLabel, HasColor
+enum StatusPostEnum: string implements HasLabel, HasColor, HasIcon
 {
     case DRAFT = 'DRAFT';
     case PUBLISHED = 'PUBLISHED';
@@ -35,5 +36,17 @@ enum StatusArticleEnum: string implements HasLabel, HasColor
                 self::SCHEDULED => 'warning',
                 self::PRIVATE => 'danger',
            };
+    }
+
+    public function getIcon(): ?string
+    {
+        return match($this)
+        {
+            self::DRAFT => 'heroicon-o-bell-alert',
+            self::PUBLISHED => 'heroicon-o-bell-alert',
+            self::PENDING_REVIEW => 'heroicon-o-bell-alert',
+            self::SCHEDULED => 'heroicon-o-bell-alert',
+            self::PRIVATE => 'heroicon-o-bell-alert',
+        };
     }
 }

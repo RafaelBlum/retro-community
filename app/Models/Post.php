@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 namespace App\Models;
 
+use App\Enums\StatusPostEnum;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -13,7 +14,8 @@ class Post extends Model
 
     protected $casts = [
         'published_at' => 'date',
-        'scheduled_for' => 'date'
+        'scheduled_for' => 'date',
+        'status' => StatusPostEnum::class
     ];
 
     protected $fillable = [

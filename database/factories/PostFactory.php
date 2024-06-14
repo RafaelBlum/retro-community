@@ -2,7 +2,7 @@
 
 namespace Database\Factories;
 
-use App\Enums\StatusArticleEnum;
+use App\Enums\StatusPostEnum;
 use App\Models\Category;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
@@ -30,7 +30,7 @@ class PostFactory extends Factory
             'subTitle' => fake()->title,
             'summary' => fake()->text(50),
             'content' => fake()->text(150),
-            'status' => StatusArticleEnum::PRIVATE,
+            'status' => StatusPostEnum::PRIVATE,
             'featured_image_url' => 'default-post.jpg'
         ];
     }
