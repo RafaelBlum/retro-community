@@ -74,10 +74,10 @@ If you discover a security vulnerability within Laravel, please send an e-mail t
     php artisan event:cache
 ```
 
-## Pendências
+> [!IMPORTANT]
+> Pendências e links
 
-- Criar autorizações entre ADMIN e usuários. [doc. infor](https://filamentphp.com/docs/1.x/admin/resources#authorization)
-  - [canAccessFilament falhe](https://v2.filamentphp.com/tricks/redirect-in-case-canaccessfilament-fails)
-- 
+- Criar autorizações entre ADMIN e usuários. [doc. infor](https://filamentphp.com/docs/1.x/admin/resources#authorization) | [canAccessFilament falhe](https://v2.filamentphp.com/tricks/redirect-in-case-canaccessfilament-fails)
+- Criar linha marcada para post publicado. [Doc](https://www.youtube.com/watch?v=7SnzOjPV7ms)
 - 
 - 
