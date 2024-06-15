@@ -174,7 +174,7 @@ class UserResource extends Resource
 
     public static function getEloquentQuery(): Builder
     {
-        return static::getModel()::query()->where('id', '!=', auth()->id());
+        return static::getModel()::query()->where('id', '!=', auth()->id())->Where('panel', '!=', 'super-admin');
     }
 
     public static function getRelations(): array

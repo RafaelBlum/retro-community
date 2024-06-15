@@ -7,6 +7,21 @@ use Illuminate\Auth\Access\Response;
 
 class UserPolicy
 {
+
+    /**
+     * before
+     * O beforemétodo será executado antes de qualquer outro método na política, dando a você a oportunidade de
+     * autorizar a ação antes que o método de política pretendido seja realmente chamado.
+     */
+//    public function before(User $user, string $ability): bool|null
+//    {
+//        if ($user->panel->value === 'admin' || $user->panel->value === 'super-admin') {
+//            return true;
+//        }
+//
+//        return null;
+//    }
+
     /**
      * Determine whether the user can view any models.
      */
