@@ -49,17 +49,20 @@ class EditUser extends EditRecord
         $caminhoDaImagem = array_values($this->data['avatar'])[0];
 
         if ($user->avatar != $caminhoDaImagem) {
-            Storage::delete('public/' . $user->avatar);
+            if($user->avatar != 'default.jpg'){
+                Storage::delete('public/' . $user->avatar);
+            }
         }
 
         if (!empty($this->data['password'])) {
+            $this->getSavedNotification();
             return redirect(route('filament.admin.auth.login'));
         }
     }
 
     protected function afterSave()
     {
-        $this->getSavedNotification();
+
     }
 
     protected function getSavedNotification(): ?Notification

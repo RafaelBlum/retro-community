@@ -14,9 +14,12 @@ use Filament\Forms\Components\Section;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
+use Filament\Forms\Get;
+use Filament\Forms\Set;
 use Filament\Notifications\Notification;
 use Filament\Resources\Resource;
 use Filament\Tables;
+use Filament\Tables\Actions\AttachAction;
 use Filament\Tables\Actions\DeleteAction;
 use Filament\Tables\Actions\EditAction;
 use Filament\Tables\Actions\ViewAction;
@@ -119,7 +122,7 @@ class UserResource extends Resource
 
                 TextColumn::make('name')
                     ->label('Nome')
-                    ->description(fn(User $record) => $record->panel->value === 'admin' ? 'Acesso administrativo' : 'acesso aplicativo')
+                    ->description(fn(User $record) => $record->panel->value === 'admin' ? 'Administrador' : ($record->panel->value === 'super-admin' ? 'Super administrador' : 'acesso aplicativo'))
                     ->searchable(),
 
                 TextColumn::make('email')
@@ -169,10 +172,10 @@ class UserResource extends Resource
             ]);
     }
 
-//    public static function getEloquentQuery(): Builder
-//    {
-//        return static::getModel()::query()->where('id', '!=', auth()->id());
-//    }
+    public static function getEloquentQuery(): Builder
+    {
+        return static::getModel()::query()->where('id', '!=', auth()->id());
+    }
 
     public static function getRelations(): array
     {
