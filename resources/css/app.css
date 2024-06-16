@@ -6,3 +6,22 @@
     @apply h-screen pb-14 bg-right bg-cover;
     background-image: url('/public/images/landing/background2.jpg');
 }
+
+/*
+    animation from header home
+*/
+@keyframes verticalLoop {
+    0% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-50px);
+    }
+    100% {
+        transform: translateY(0);
+    }
+}
+
+.vertical-loop-animation {
+    animation: verticalLoop 5s infinite;
+}

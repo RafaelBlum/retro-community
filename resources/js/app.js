@@ -14,14 +14,10 @@ const sr = ScrollReveal({
     delay: 400,
 });
 
-sr.reveal('.test', {origin: 'top', distance: '30px', duration: 4000, delay: 400,});
-sr.reveal('.logo', {origin: 'top', duration: 1500});
-sr.reveal('.button', {origin: 'right'});
-sr.reveal('.description', {origin: 'bottom'});
-sr.reveal('.footer', {origin: 'bottom'});
-
-
-
+sr.reveal('.up', {origin: 'top', distance: '30px', duration: 4000, delay: 400,});
+sr.reveal('.down', {origin: 'bottom', distance: '30px', duration: 4000, delay: 400,});
+sr.reveal('.dir', {origin: 'right', distance: '30px', duration: 4000, delay: 400,});
+sr.reveal('.header_img_2', {origin: 'top', reset: true, interval: 2000});
 
 const jsConfetti = new JSConfetti();
 

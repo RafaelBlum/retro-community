@@ -90,4 +90,9 @@ If you discover a security vulnerability within Laravel, please send an e-mail t
 
 > [!IMPORTANT]
 > Pendências de desenvolvimento área SITE
-- 
+- Ajustar e redefinir quais sessões o site terá
+  - Header
+  - 
+  - Footer
+- Ajustar imagens POST
+- Ajustar ControllerPost para buscar posts em publicação

@@ -19,7 +19,7 @@ class WebController extends Controller
 
     public function home()
     {
-        $posts = Post::all();
+        $posts = Post::all()->take(3);
 //        return view('home', compact('posts'));
         return view('home', compact('posts'));
     }

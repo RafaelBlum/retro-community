@@ -7,6 +7,10 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [WebController::class, 'landing'])->name('app.landing');
 Route::get('home', [WebController::class, 'home'])->name('app.home');
 
+Route::fallback(function (){
+    return redirect('home');
+});
+
 Route::get('/posts', [PostController::class, 'index'])->name('posts.index');
 Route::get('/posts/{post}', [PostController::class, 'show'])->name('posts.show');
 

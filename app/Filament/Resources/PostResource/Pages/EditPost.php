@@ -30,7 +30,9 @@ class EditPost extends EditRecord
         $caminhoDaImagem = array_values($this->data['featured_image_url'])[0];
 
         if($post->featured_image_url != $caminhoDaImagem){
-            Storage::delete('public/' . $post->featured_image_url);
+            if($post->featured_image_url != 'default-post.jpg'){
+                Storage::delete('public/' . $post->featured_image_url);
+            }
         }
     }
 

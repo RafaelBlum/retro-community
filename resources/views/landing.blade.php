@@ -36,6 +36,11 @@
                         Saíba mais sobre
                     </a>
                 </div>
+                <div class="mt-10 flex items-center justify-center gap-x-6 hover:animate-ping">
+                    <a id="confettiButton" href="#" class="rounded-md bg-indigo-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
+                        Saíba mais sobre
+                    </a>
+                </div>
             </div>
 
             <img src="{{asset('images/controle.png')}}" alt="" class="absolute logo animate-bounce bottom-100 left-[calc(80%)] w-[16.125rem] h-auto">
@@ -46,27 +51,27 @@
 
                         <a href="https://www.youtube.com/@AlmirSantos" target="_blank" class="flex items-center lg:justify-center">
                             <img src="{{asset('images/channels/almir_santos_profile.jpg')}}" alt="image" class="rounded-full w-7 opacity-1 mr-2">
-                            <p class="text-sm">Almir Santos</p>
+                            <p class="text-sm dark:text-white text-white">Almir Santos</p>
                         </a>
 
                         <a href="https://www.youtube.com/@alan.jogamais" target="_blank" class="flex items-center lg:justify-center">
                             <img src="{{asset('images/channels/joga_plus_profile.jpg')}}" alt="image" class="rounded-full w-7 opacity-1 mr-2">
-                            <p class="text-sm">Joga+</p>
+                            <p class="text-sm dark:text-white text-white">Joga+</p>
                         </a>
 
                         <a href="https://www.youtube.com/@TroopaGames" target="_blank" class="flex items-center lg:justify-center">
                             <img src="{{asset('images/channels/troopa_games_profile.jpg')}}" alt="image" class="rounded-full w-7 opacity-1 mr-2">
-                            <p class="text-sm">Troopa Games</p>
+                            <p class="text-sm dark:text-white text-white">Troopa Games</p>
                         </a>
 
                         <a href="https://www.youtube.com/@SpockyGames" target="_blank" class="flex items-center lg:justify-center">
                             <img src="{{asset('images/channels/spocky_games_profile.jpg')}}" alt="image" class="rounded-full w-7 opacity-1 mr-2">
-                            <p class="text-sm">Spocky Games</p>
+                            <p class="text-sm dark:text-white text-white">Spocky Games</p>
                         </a>
 
                         <a href="https://www.youtube.com/@Retrostalgia1985" target="_blank" class="flex items-center lg:justify-center">
                             <img src="{{asset('images/channels/retrostalgia_profile.jpg')}}" alt="image" class="rounded-full w-7 opacity-1 mr-2">
-                            <p class="text-sm">Retrostalgia</p>
+                            <p class="text-sm dark:text-white text-white">Retrostalgia</p>
                         </a>
                     </div>
                 </div>
@@ -77,6 +82,20 @@
             <div class="relative left-[calc(50%+3rem)] aspect-[1155/678] w-[36.125rem] -translate-x-1/2 bg-gradient-to-tr from-[#ff80b5] to-[#9089fc] opacity-30 sm:left-[calc(50%+36rem)] sm:w-[72.1875rem]" style="clip-path: polygon(74.1% 44.1%, 100% 61.6%, 97.5% 26.9%, 85.5% 0.1%, 80.7% 2%, 72.5% 32.5%, 60.2% 62.4%, 52.4% 68.1%, 47.5% 58.3%, 45.2% 34.5%, 27.5% 76.7%, 0.1% 64.9%, 17.9% 100%, 27.6% 76.8%, 76.1% 97.7%, 74.1% 44.1%)"></div>
         </div>
     </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/js-confetti@0.8.0/dist/js-confetti.browser.js"></script>
+    <script>
+        // Inicialize o JSConfetti
+        const jsConfetti = new JSConfetti();
+
+        // Adicione um event listener ao botão
+        document.getElementById('confettiButton').addEventListener('click', () => {
+            jsConfetti.addConfetti({
+                emojis: ['⭐'],
+                confettiNumber: 20, // Opcional: quantidade de confetes
+            });
+        });
+    </script>
 
     </body>
 
