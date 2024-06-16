@@ -22,22 +22,17 @@ class EditUser extends EditRecord
     protected function getHeaderActions(): array
     {
         return [
-            Actions\DeleteAction::make()->action(function(User $record) {
-                if($record->panel->value == 'admin'){
-                    Notification::make('register_error')
-                        ->title('Ação negada!')
-                        ->body('Você não tem permisão para para deletar um administrador!')
-                        ->danger()
-                        ->persistent()
-                        ->send();
-                    return null;
-                }
-                $record->delete();
-            })
-                ->requiresConfirmation()
-                ->modalHeading('Deletar ' . $this->data['name'])
-                ->modalDescription('Tem certeza de que deseja excluir este ' . $this->data['name'] . '? Isto não pode ser desfeito.')
-                ->modalSubmitActionLabel('Sim, deletar!'),
+            Actions\DeleteAction::make()
+                ->action(function(User $record) {
+                    if($record->avatar !== 'default.jpg'){
+                        Storage::delete('public/' . $record->avatar);
+                    }
+                    $record->delete();
+                })
+                    ->requiresConfirmation()
+                    ->modalHeading('Deletar Usuário')
+                    ->modalDescription('Tem certeza de que deseja excluir este usuário? Isto não pode ser desfeito.')
+                    ->modalSubmitActionLabel('Sim, deletar!'),
         ];
     }
 

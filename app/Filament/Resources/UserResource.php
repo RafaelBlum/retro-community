@@ -6,6 +6,7 @@ use App\Enums\MaritalStatusEnum;
 use App\Enums\PanelTypeEnum;
 use App\Filament\Resources\UserResource\Pages;
 use App\Filament\Resources\UserResource\RelationManagers;
+use App\Models\Post;
 use App\Models\User;
 use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\Grid;
@@ -27,6 +28,7 @@ use Filament\Tables\Columns\ImageColumn;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Support\Facades\Storage;
 
 class UserResource extends Resource
 {
@@ -146,17 +148,10 @@ class UserResource extends Resource
                     EditAction::make(),
                     DeleteAction::make()
                         ->action(function(User $record) {
-                            if($record->panel->value == 'admin'){
-                                Notification::make('register_error')
-                                    ->title('Ação negada!')
-                                    ->body('Você não tem permisão para para deletar um administrador!')
-                                    ->danger()
-                                    ->persistent()
-                                    ->send();
-                                return null;
+                            if($record->avatar != 'default.jpg'){
+                                Storage::delete('public/' . $record->avatar);
                             }
-                        $record->delete();
-
+                            $record->delete();
                         })
                         ->requiresConfirmation()
                         ->modalHeading('Deletar ' . static::$modelLabel)

@@ -22,6 +22,7 @@ use Filament\Forms\Components\ViewField;
 use Filament\Forms\Form;
 use Filament\Forms\Get;
 use Filament\Forms\Set;
+use Filament\Notifications\Notification;
 use Filament\Pages\SubNavigationPosition;
 use Filament\Resources\Pages\Page;
 use Filament\Resources\Resource;
@@ -229,7 +230,12 @@ class PostResource extends Resource
                 Tables\Actions\ActionGroup::make([
                     Tables\Actions\EditAction::make()->slideOver(),
                     Tables\Actions\DeleteAction::make()
-                        ->action(fn(Post $record) => $record->delete())
+                        ->action(function(Post $record) {
+                            if($record->featured_image_url != 'default-post.jpg'){
+                                Storage::delete('public/' . $record->featured_image_url);
+                            }
+                            $record->delete();
+                        })
                         ->requiresConfirmation()
                         ->modalHeading('Deletar ' . static::$modelLabel)
                         ->modalDescription('Tem certeza de que deseja excluir este ' . static::$modelLabel . '? Isto não pode ser desfeito.')

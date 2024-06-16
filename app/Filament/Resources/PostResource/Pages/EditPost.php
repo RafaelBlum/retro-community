@@ -5,6 +5,7 @@ namespace App\Filament\Resources\PostResource\Pages;
 use App\Filament\Resources\PostResource;
 use App\Models\Post;
 use Filament\Actions;
+use Filament\Notifications\Notification;
 use Filament\Resources\Pages\EditRecord;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
@@ -20,7 +21,17 @@ class EditPost extends EditRecord
     protected function getHeaderActions(): array
     {
         return [
-            Actions\DeleteAction::make(),
+            Actions\DeleteAction::make()
+                ->action(function(Post $record) {
+                    if($record->featured_image_url !== 'default-post.jpg'){
+                        Storage::delete('public/' . $record->featured_image_url);
+                    }
+                    $record->delete();
+                })
+                ->requiresConfirmation()
+                ->modalHeading('Deletar Post')
+                ->modalDescription('Tem certeza de que deseja excluir este post? Isto não pode ser desfeito.')
+                ->modalSubmitActionLabel('Sim, deletar!'),
         ];
     }
 
