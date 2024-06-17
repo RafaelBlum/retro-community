@@ -159,28 +159,86 @@
                 <!-- Content -->
 
                 @if($posts->count() != 0)
-                    <div class="mb-6 grid gap-4 sm:grid-cols-2 sm:justify-items-stretch md:mb-10 md:grid-cols-3 lg:mb-12 lg:gap-6">
-                        @foreach($posts as $post)
-                            <a href="#" class="flex flex-col gap-4 rounded-md border border-solid border-gray-300 px-4 py-8 md:p-0">
-                                <img src="{{Storage::url($post->featured_image_url)}}" alt="" class="h-60 object-cover rounded-tl-md rounded-tr-md" />
-                                <div class="px-6 py-4 dark:text-white   ">
-                                    <p class="mb-4 text-sm font-semibold uppercase text-fuchsia-700 dark:text-amber-400"> {{$post->category->name}} </p>
-                                    <p class="mb-4 text-xl font-semibold"> {{$post->title}} </p>
-                                    <p class="mb-6 text-sm text-gray-500 sm:text-base lg:mb-8"> {{$post->content}} </p>
-                                    <div class="flex">
-                                        <img src="{{Storage::url($post->author->avatar)}}" alt="" class="mr-4 h-10 w-10 rounded-full object-cover" />
-                                        <div class="flex flex-col">
-                                            <h6 class="text-base font-bold">{{$post->author->name}}</h6>
-                                            <div class="flex flex-col lg:flex-row">
-                                                <p class="text-sm text-gray-500">{{$post->created_at->format('M, d Y')}}</p>
+
+                        @if($posts->count() == 1)
+                            <div class="max-w-screen-xl px-4 py-8 mx-auto space-y-12 lg:space-y-20 lg:py-24 lg:px-6">
+                                @foreach($posts as $post)
+                                <!-- Row -->
+                                <div class="items-center gap-8 lg:grid lg:grid-cols-2 xl:gap-16">
+                                    <div class="text-gray-500 sm:text-lg dark:text-gray-400">
+                                        <h2 class="mb-4 text-3xl font-extrabold tracking-tight text-gray-900 dark:text-white">{{$post->title}}</h2>
+                                        <p class="mb-8 font-light lg:text-xl">{{$post->content}} </p>
+                                        <!-- List -->
+                                        <ul role="list" class="pt-8 space-y-5 border-t border-gray-200 my-7 dark:border-gray-700">
+                                            <li class="flex space-x-3">
+                                                <!-- Icon -->
+                                                <svg class="flex-shrink-0 w-5 h-5 text-purple-500 dark:text-purple-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
+                                                <span class="text-base font-medium leading-tight text-gray-900 dark:text-white">{{$post->category->name}}</span>
+                                            </li>
+                                        </ul>
+                                        <div class="flex">
+                                            <img src="{{Storage::url($post->author->avatar)}}" alt="" class="mr-4 h-10 w-10 rounded-full object-cover" />
+                                            <div class="flex flex-col">
+                                                <h6 class="text-base font-bold">{{$post->author->name}}</h6>
+                                                <div class="flex flex-col lg:flex-row">
+                                                    <p class="text-sm text-gray-500">{{$post->created_at->format('M, d Y')}}</p>
+                                                </div>
+                                            </div>
+                                        </div>                                    </div>
+                                    <img class="hidden w-full mb-4 rounded-lg lg:mb-0 lg:flex" src="{{Storage::url($post->featured_image_url)}}" alt="dashboard feature image">
+                                </div>
+                                @endforeach
+                            </div>
+                        @elseif($posts->count() == 2)
+                            <div class="mb-6 grid gap-2 sm:grid-cols-2 sm:justify-items-stretch md:mb-10 md:grid-cols-2 lg:mb-12 lg:gap-6">
+                                @foreach($posts as $post)
+                                    <a href="#" class="flex flex-col gap-4 rounded-md border border-solid border-gray-300 px-4 py-8 md:p-0">
+                                        <img src="{{Storage::url($post->featured_image_url)}}" alt="" class="h-60 object-cover rounded-tl-md rounded-tr-md" />
+                                        <div class="px-6 py-4 dark:text-white   ">
+                                            <p class="mb-4 text-sm font-semibold uppercase text-fuchsia-700 dark:text-amber-400"> {{$post->category->name}} </p>
+                                            <p class="mb-4 text-xl font-semibold"> {{$post->title}} </p>
+                                            <p class="mb-6 text-sm text-gray-500 sm:text-base lg:mb-8"> {{$post->content}} </p>
+                                            <div class="flex">
+                                                <img src="{{Storage::url($post->author->avatar)}}" alt="" class="mr-4 h-10 w-10 rounded-full object-cover" />
+                                                <div class="flex flex-col">
+                                                    <h6 class="text-base font-bold">{{$post->author->name}}</h6>
+                                                    <div class="flex flex-col lg:flex-row">
+                                                        <p class="text-sm text-gray-500">{{$post->created_at->format('M, d Y')}}</p>
+                                                    </div>
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
-                                </div>
-                            </a>
-                        @endforeach
-                    </div>
-                    <a href="#" class="mt-6 inline-block flex-none cursor-pointer rounded-2xl border-0 bg-[#f7d046] px-[1.688rem] py-[0.813rem] hover:bg-[#FAC819] transition-colors font-[Manrope,_sans-serif] text-base font-semibold capitalize leading-[1.313rem] text-black antialiased [transition:color_0.25s_ease_0s] hover:[box-shadow:rgb(0,_0,_0)_0px_0px]"> View More </a>
+                                    </a>
+                                @endforeach
+                            </div>
+                        @else
+                            <div class="mb-6 grid gap-4 sm:grid-cols-2 sm:justify-items-stretch md:mb-10 md:grid-cols-3 lg:mb-12 lg:gap-6">
+                                @foreach($posts as $post)
+                                    <a href="#" class="flex flex-col gap-4 rounded-md border border-solid border-gray-300 px-4 py-8 md:p-0">
+                                        <img src="{{Storage::url($post->featured_image_url)}}" alt="" class="h-60 object-cover rounded-tl-md rounded-tr-md" />
+                                        <div class="px-6 py-4 dark:text-white   ">
+                                            <p class="mb-4 text-sm font-semibold uppercase text-fuchsia-700 dark:text-amber-400"> {{$post->category->name}} </p>
+                                            <p class="mb-4 text-xl font-semibold"> {{$post->title}} </p>
+                                            <p class="mb-6 text-sm text-gray-500 sm:text-base lg:mb-8"> {{$post->content}} </p>
+                                            <div class="flex">
+                                                <img src="{{Storage::url($post->author->avatar)}}" alt="" class="mr-4 h-10 w-10 rounded-full object-cover" />
+                                                <div class="flex flex-col">
+                                                    <h6 class="text-base font-bold">{{$post->author->name}}</h6>
+                                                    <div class="flex flex-col lg:flex-row">
+                                                        <p class="text-sm text-gray-500">{{$post->created_at->format('M, d Y')}}</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </a>
+                                @endforeach
+                            </div>
+
+                            @if($posts->count() <= 3)
+                                <a href="#" class="mt-6 inline-block flex-none cursor-pointer rounded-2xl border-0 bg-[#f7d046] px-[1.688rem] py-[0.813rem] hover:bg-[#FAC819] transition-colors font-[Manrope,_sans-serif] text-base font-semibold capitalize leading-[1.313rem] text-black antialiased [transition:color_0.25s_ease_0s] hover:[box-shadow:rgb(0,_0,_0)_0px_0px]"> View More </a>
+                            @endif
+                    @endif
+
                 @else
                     <div class="mb-6 grid gap-4 sm:grid-cols-2 sm:justify-items-stretch md:mb-10 md:grid-cols-3 lg:mb-12 lg:gap-6">
                         <h2 class="mb-4 text-3xl font-extrabold tracking-tight text-gray-900 dark:text-white">No momento estamos trabalhando com novas informações</h2>

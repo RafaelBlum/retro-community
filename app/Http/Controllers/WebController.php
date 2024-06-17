@@ -19,7 +19,8 @@ class WebController extends Controller
 
     public function home()
     {
-        $posts = Post::all()->take(3);
+        $posts = Post::query()->where('status', '=', 'published')
+            ->get()->take(3);
 //        return view('home', compact('posts'));
         return view('home', compact('posts'));
     }
