@@ -80,7 +80,7 @@ If you discover a security vulnerability within Laravel, please send an e-mail t
 - OK:: Criar autorizações entre ADMIN e usuários. [doc. infor](https://filamentphp.com/docs/1.x/admin/resources#authorization) | [canAccessFilament falhe](https://v2.filamentphp.com/tricks/redirect-in-case-canaccessfilament-fails)| [permissões](https://laraveldaily.com/post/laravel-roles-permissions-middleware-gates-policies?mtm_campaign=post-footer-premium)
 - OK:: Criar super Admin com poder total. :)
 - OK:: Criar Perfil de usuário e retirar user logado da lista
-  - [Perfil de usuário](https://docs.laravel-filament.cn/docs/widgets)
+  - OK:: [Perfil de usuário](https://docs.laravel-filament.cn/docs/widgets)
 - Criar linha marcada para post publicado. [Doc](https://www.youtube.com/watch?v=7SnzOjPV7ms)
 - Criar campanha
 - Criar dashboar com Widgets e graficos
@@ -96,3 +96,7 @@ If you discover a security vulnerability within Laravel, please send an e-mail t
   - Footer
 - Ajustar imagens POST
 - Ajustar ControllerPost para buscar posts em publicação
+
+> [!IMPORTANT]
+> NOVA BRANCH Multi-tenancy
+[Multi-tenancy](https://filamentphp.com/docs/3.x/panels/tenancy)

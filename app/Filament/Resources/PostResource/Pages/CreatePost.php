@@ -13,6 +13,9 @@ class CreatePost extends CreateRecord
 {
     protected static string $resource = PostResource::class;
 
+    protected static ?string $breadcrumb = 'Criar postagem';
+    protected static ?string $title = "Criação";
+
     public function getSubNavigation(): array
     {
         if (filled($cluster = static::getCluster())) {

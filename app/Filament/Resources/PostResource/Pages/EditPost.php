@@ -7,21 +7,26 @@ use App\Models\Post;
 use Filament\Actions;
 use Filament\Notifications\Notification;
 use Filament\Resources\Pages\EditRecord;
+use Filament\Support\Assets\Js;
+use Filament\Support\Facades\FilamentAsset;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 
 class EditPost extends EditRecord
 {
     protected static string $resource = PostResource::class;
+    protected static ?string $breadcrumb = 'Edição de postagem';
+    protected static ?string $title = "Editar";
 
     protected static ?int $navigationSort = 2;
 
-    protected static ?string $navigationLabel = "Editar Post";
+    protected static ?string $navigationLabel = "Editar Postagem";
 
     protected function getHeaderActions(): array
     {
         return [
             Actions\DeleteAction::make()
+                ->label('Deletar postagem')
                 ->action(function(Post $record) {
                     if($record->featured_image_url !== 'default-post.jpg'){
                         Storage::delete('public/' . $record->featured_image_url);
@@ -32,6 +37,14 @@ class EditPost extends EditRecord
                 ->modalHeading('Deletar Post')
                 ->modalDescription('Tem certeza de que deseja excluir este post? Isto não pode ser desfeito.')
                 ->modalSubmitActionLabel('Sim, deletar!'),
+            Actions\Action::make('impersonate')
+                ->action(function (): void {
+                    FilamentAsset::register([
+                        Js::make('custom-Script', __DIR__ . 'App\Script\confetti.js'),
+                    ]);
+
+
+                }),
         ];
     }
 

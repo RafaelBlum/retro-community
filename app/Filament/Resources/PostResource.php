@@ -244,8 +244,15 @@ class PostResource extends Resource
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
-                    Tables\Actions\DeleteBulkAction::make(),
-                ]),
+                    Tables\Actions\DeleteBulkAction::make()->label('Deletar todos selecionados')
+                        ->action(function(Post $record) {
+                            dd($record);
+                        })
+                        ->requiresConfirmation()
+                        ->modalHeading('Deletar ' . static::$modelLabel)
+                        ->modalDescription('Tem certeza de que deseja excluir este ' . static::$modelLabel . '? Isto não pode ser desfeito.')
+                        ->modalSubmitActionLabel('Sim, deletar!'),
+                ])->label('Deletar seleção'),
             ]);
     }
 

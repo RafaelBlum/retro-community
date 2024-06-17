@@ -10,6 +10,9 @@ class ViewPost extends ViewRecord
 {
     protected static string $resource = PostResource::class;
 
+    protected static ?string $breadcrumb = 'Visualizar postagem';
+    protected static ?string $title = "Visualização";
+
     protected static ?int $navigationSort = 1;
 
     protected static ?string $navigationLabel = "Visualizar";
@@ -17,7 +20,8 @@ class ViewPost extends ViewRecord
     protected function getHeaderActions(): array
     {
         return [
-            Actions\EditAction::make(),
+            Actions\EditAction::make()
+                ->label('Editar postagem'),
         ];
     }
 }
