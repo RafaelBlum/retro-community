@@ -102,6 +102,7 @@ class CategoryResource extends Resource
         return $page->generateNavigationItems([
             Pages\ViewCategory::class,
             Pages\EditCategory::class,
+            Pages\ListCategories::class,
         ]);
     }
 

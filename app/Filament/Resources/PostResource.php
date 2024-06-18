@@ -7,6 +7,9 @@ use App\Filament\Clusters\Blog;
 use App\Filament\Resources\PostResource\Pages;
 use App\Filament\Resources\PostResource\RelationManagers;
 use App\Models\Post;
+use Filament\Actions\Action;
+use Filament\Actions\DeleteAction;
+use Filament\Forms\Components\Actions;
 use Filament\Forms\Components\DatePicker;
 use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\Grid;
@@ -57,7 +60,7 @@ class PostResource extends Resource
 
                     Section::make()->schema([
                         FileUpload::make('featured_image_url')
-                            ->label('Imagem do artigo')
+                            ->label('Imagem da postagem')
                             ->required()
                             ->disk('public')
                             ->directory('image_posts')
@@ -69,7 +72,7 @@ class PostResource extends Resource
                         Grid::make(4)->schema([
                             Group::make()->schema([
                                 TextInput::make('title')
-                                    ->label('Título do artigo')
+                                    ->label('Título da postagem')
                                     ->required()
                                     ->maxLength(255)
 
@@ -78,29 +81,35 @@ class PostResource extends Resource
 
                         Grid::make(4)->schema([
                             Group::make()->schema([
-
+                                DatePicker::make('scheduled_for')
+                                    ->label('Data programada da postagem')
+                                    ->hidden(fn(Get $get) => $get('status') !== 'SCHEDULED')
+                                    ->displayFormat(function () {
+                                        return 'd/m/Y';
+                                    })
+                                    ->required(),
 
                             ])->columnSpan(2),
-
-                            Group::make()->schema([
-
-                            ])->columnSpan(2),
+//
+//                            Group::make()->schema([
+//
+//                            ])->columnSpan(2),
                         ]),
 
-                        Grid::make(11)->schema([
-                            Group::make()->schema([
-
-
-                            ])->columnSpan(1),
-
-                            Group::make()->schema([
-
-                            ])->columnSpan(5),
-
-                            Group::make()->schema([
-
-                            ])->columnSpan(5),
-                        ]),
+//                        Grid::make(11)->schema([
+//                            Group::make()->schema([
+//
+//
+//                            ])->columnSpan(1),
+//
+//                            Group::make()->schema([
+//
+//                            ])->columnSpan(5),
+//
+//                            Group::make()->schema([
+//
+//                            ])->columnSpan(5),
+//                        ]),
 
                     ])->columnSpan(2),
                 ]),
@@ -109,10 +118,7 @@ class PostResource extends Resource
 
                     Tab::make('Configurações')->icon('heroicon-m-inbox')->schema([
                         Grid::make(8)->schema([
-                            Group::make()->schema([
 
-
-                            ])->columnSpan(2),
 
                             Group::make()->schema([
                                 Select::make('category_id')
@@ -121,30 +127,23 @@ class PostResource extends Resource
                                     ->preload()
                                     ->reactive()
                                     ->distinct()
+                                    ->required()
                                     ->relationship('category', 'name'),
                             ])->columnSpan(2),
 
                             Group::make()->schema([
                                 Select::make('status')
+                                    ->label('Status da postagem')
                                     ->hintIcon('heroicon-m-question-mark-circle', tooltip: 'Selecione o status do seu artigo.')
                                     ->hintColor('primary')
-                                    ->default('draft')
                                     ->options(StatusPostEnum::class)
                                     ->live()
                                     ->required(),
 
-                            ])->columnSpan(2),
+                            ])->columnSpan(6),
 
                             Group::make()->schema([
-                                DatePicker::make('published_at')->hidden(fn(Get $get) => $get('status') !== 'published_at')
-                                    ->displayFormat(function () {
-                                        return 'd/m/Y';
-                                    })->columnSpanFull(),
 
-                                DatePicker::make('scheduled_for')->hidden(fn(Get $get) => $get('status') !== 'scheduled_for')
-                                    ->displayFormat(function () {
-                                        return 'd/m/Y';
-                                    }),
                             ])->columnSpan(2),
                         ]),
 
@@ -155,14 +154,17 @@ class PostResource extends Resource
                         ->icon('heroicon-m-inbox')
                         ->schema([
                             TextInput::make('subTitle')->label('Sub Titulo')
+                                ->label('Sub Titulo')
                                 ->maxLength(255)
                                 ->required(),
 
-                            Textarea::make('summary')->label('Resumo')
+                            Textarea::make('summary')
+                                ->label('Resumo')
                                 ->maxLength(255)
                                 ->required(),
 
                             RichEditor::make('content')
+                                ->label('Conteúdo')
                                 ->toolbarButtons([
                                     'attachFiles',
                                     'blockquote',
@@ -181,9 +183,11 @@ class PostResource extends Resource
                                     'undo',
                                 ])
                                 ->maxLength(65535)
+                                ->required()
                                 ->columnSpanFull(),
-                        ])
-                ])->columnSpanFull()->activeTab(1)->persistTabInQueryString(),
+                        ]),
+
+            ])->columnSpanFull()->activeTab(1)->persistTabInQueryString()
 
             ])->columns([
                 'default' => 2,
@@ -194,6 +198,8 @@ class PostResource extends Resource
                 '2xl' => 2
             ]);
     }
+
+
 
     public static function table(Table $table): Table
     {
@@ -228,6 +234,16 @@ class PostResource extends Resource
             ])
             ->actions([
                 Tables\Actions\ActionGroup::make([
+                    DeleteAction::make()
+                        ->successNotification(
+                            Notification::make()
+                                ->success()
+                                ->title('User deleted')
+                                ->body('The user has been deleted successfully.'),
+                        )
+                        ->before(function () {
+                            dd('action aqui');
+                        }),
                     Tables\Actions\EditAction::make()->slideOver(),
                     Tables\Actions\DeleteAction::make()
                         ->action(function(Post $record) {
@@ -244,16 +260,40 @@ class PostResource extends Resource
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
-                    Tables\Actions\DeleteBulkAction::make()->label('Deletar todos selecionados')
+                    Tables\Actions\DeleteBulkAction::make()
+                        ->label('Deletar todos selecionados')
                         ->action(function(Post $record) {
-                            dd($record);
+                            //... AJUSTAR
                         })
                         ->requiresConfirmation()
                         ->modalHeading('Deletar ' . static::$modelLabel)
                         ->modalDescription('Tem certeza de que deseja excluir este ' . static::$modelLabel . '? Isto não pode ser desfeito.')
-                        ->modalSubmitActionLabel('Sim, deletar!'),
+                        ->modalSubmitActionLabel('Sim, deletar!')
+                        ->before(function (Post $record) {
+                            //... AJUSTAR
+                        }),
                 ])->label('Deletar seleção'),
             ]);
+    }
+
+    protected function getActions(): array
+    {
+        return [
+            DeleteAction::make()
+                ->before(function (Post $record) {
+
+
+                    dd('sadmsadjnsalkj');
+
+//                    if ($record->photo) {
+//                        Storage::disk('public')->delete($record->photo);
+//                    }
+//                    // delete multiple
+//                    if ($record->galery) {
+//                        foreach ($record->galery as $ph) Storage::disk('public')->delete($ph);
+//                    }
+                })
+        ];
     }
 
     public static function getRecordSubNavigation(Page $page): array

@@ -5,9 +5,11 @@ namespace App\Filament\Resources\PostResource\Pages;
 use App\Filament\Resources\PostResource;
 use App\Models\Post;
 use Filament\Actions;
+use Filament\Actions\Action;
 use Filament\Notifications\Notification;
 use Filament\Resources\Pages\EditRecord;
 use Filament\Support\Assets\Js;
+use Filament\Support\Colors\Color;
 use Filament\Support\Facades\FilamentAsset;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
@@ -37,14 +39,6 @@ class EditPost extends EditRecord
                 ->modalHeading('Deletar Post')
                 ->modalDescription('Tem certeza de que deseja excluir este post? Isto não pode ser desfeito.')
                 ->modalSubmitActionLabel('Sim, deletar!'),
-            Actions\Action::make('impersonate')
-                ->action(function (): void {
-                    FilamentAsset::register([
-                        Js::make('custom-Script', __DIR__ . 'App\Script\confetti.js'),
-                    ]);
-
-
-                }),
         ];
     }
 
@@ -65,5 +59,20 @@ class EditPost extends EditRecord
         $post = Post::find($this->data['id']);
         $post->slug = Str::slug($this->data['title']);
         $post->save();
+    }
+
+    protected function getFormActions(): array
+    {
+        return [
+            $this->getSaveFormAction()->label('Salvar mudanças'),
+            $this->getCancelFormAction()->label('Cancelar'),
+        ];
+    }
+
+    protected function getSavedNotification(): ?Notification
+    {
+        return parent::getSavedNotification()
+            ->title('Postagem editada com sucesso!')
+            ->body($this->data['title']);
     }
 }

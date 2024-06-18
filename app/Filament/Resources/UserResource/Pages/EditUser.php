@@ -19,10 +19,15 @@ class EditUser extends EditRecord
 {
     protected static string $resource = UserResource::class;
 
+    protected static ?string $breadcrumb = 'Edição de usuário';
+    protected static ?string $title = "Editar";
+    protected static ?string $navigationLabel = "Editar Usuário";
+
     protected function getHeaderActions(): array
     {
         return [
             Actions\DeleteAction::make()
+                ->label('Deletar usuário')
                 ->action(function(User $record) {
                     if($record->avatar !== 'default.jpg'){
                         Storage::delete('public/' . $record->avatar);
@@ -55,23 +60,25 @@ class EditUser extends EditRecord
         }
     }
 
-    protected function afterSave()
-    {
-
-    }
-
-    protected function getSavedNotification(): ?Notification
-    {
-        return Notification::make('register_error')
-            ->title('Senha alterada!')
-            ->body('Você será redirecionado ao Login...')
-            ->danger();
-    }
-
     protected function mutateFormDataBeforeFill(array $data): array
     {
         //modificar os dados de um registro antes de preenchê-lo no formulário
         //se você estiver editando registros em uma ação modal
         return $data;
+    }
+
+    protected function getFormActions(): array
+    {
+        return [
+            $this->getSaveFormAction()->label('Salvar mudanças'),
+            $this->getCancelFormAction()->label('Cancelar'),
+        ];
+    }
+
+    protected function getSavedNotification(): ?Notification
+    {
+        return parent::getSavedNotification()
+            ->title('Usuário editado com sucesso!')
+            ->body($this->data['name'] . ' | ' . $this->data['email']);
     }
 }
