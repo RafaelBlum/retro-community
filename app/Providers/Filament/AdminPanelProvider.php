@@ -30,6 +30,8 @@ class AdminPanelProvider extends PanelProvider
             ->default()
             ->id('admin')
             ->path('admin')
+            ->brandName(config('app.name'))
+            ->favicon(asset('images/favicon-retrocommunity.png'))
             ->login()
             ->profile(EditProfile::class)
             ->colors([
@@ -74,10 +76,5 @@ class AdminPanelProvider extends PanelProvider
             ->authMiddleware([
                 Authenticate::class,
             ]);
-    }
-
-    protected function redirectTo(Request $request): ?string
-    {
-        return $request->expectsJson() ? null : route('filament.admin.auth.login');
     }
 }
