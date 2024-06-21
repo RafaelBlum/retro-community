@@ -31,7 +31,7 @@ class AdminPanelProvider extends PanelProvider
             ->id('admin')
             ->path('admin')
             ->brandName(config('app.name'))
-            ->favicon(asset('images/favicon-retrocommunity.png'))
+            ->favicon(asset('images/brandname/favicon-retrocommunity.png'))
             ->login()
             ->profile(EditProfile::class)
             ->colors([

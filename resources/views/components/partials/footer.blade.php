@@ -53,7 +53,7 @@
 
         <hr class="my-6 border-gray-200 sm:mx-auto dark:border-gray-700 lg:my-8">
 
-        <div class="text-center">
+        <div class="text-center down">
             <a href="#" class="flex items-center justify-center mb-5 text-2xl font-semibold text-gray-900 dark:text-white">
                 <img src="./images/logo.svg" class="h-6 mr-3 sm:h-9" alt="" />
                 {{config('app.name')}}
