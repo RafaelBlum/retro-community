@@ -23,13 +23,13 @@
     </section>
 
     {{--  SECTION CHANNELS  --}}
-    <section class="bg-gray-50 dark:bg-gray-800 up">
+    <section class="bg-gray-50 dark:bg-gray-800">
         <div class="mx-auto w-full max-w-7xl px-5 py-16 md:px-10 md:py-20">
             <div class="flex flex-col items-center">
-                <h2 class="mb-4 text-3xl font-extrabold tracking-tight text-gray-900 dark:text-white dir"> Canais parceiros  </h2>
-                <p class="mb-5 font-light text-gray-500 sm:text-xl dark:text-gray-400 "> Comunidade retrô games fortalecidos </p>
 
-                <ul class="mx-auto grid lg:gap-4 sm:grid-cols-2 md:grid-cols-6 max-w-lg md:max-w-5xl px-5">
+                <x-partials.header-section title="Canais parceiros" description="Comunidade retrô games fortalecidos"/>
+
+                <ul class="mx-auto grid lg:gap-4 sm:grid-cols-2 md:grid-cols-6 max-w-lg md:max-w-5xl px-5 up">
                     <li class="mx-auto flex max-w-xs flex-col items-center gap-4 py-6 md:py-4 text-center">
                         <img src="https://assets.website-files.com/6357722e2a5f19121d37f84d/635a0f4871ea332919af9f8d_Rectangle%2035.png" alt="" class="mb-4 inline-block h-40 w-40 rounded-full object-cover" />
                         <p class="font-bold text-gray-900 dark:text-white">John</p>
