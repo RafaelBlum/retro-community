@@ -113,3 +113,9 @@ If you discover a security vulnerability within Laravel, please send an e-mail t
 > [!IMPORTANT]
 > NOVA BRANCH Multi-tenancy
 [Multi-tenancy](https://filamentphp.com/docs/3.x/panels/tenancy)
+
+
+> [!WARNING]
+> Importante para realizar deploy no servidor compartilhado
+> Deletar o link symbolico e no servidor usar comando php artisan storage:link
+> Ajustar dados de banco
