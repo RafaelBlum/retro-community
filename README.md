@@ -114,8 +114,22 @@ If you discover a security vulnerability within Laravel, please send an e-mail t
 > NOVA BRANCH Multi-tenancy
 [Multi-tenancy](https://filamentphp.com/docs/3.x/panels/tenancy)
 
+> [!WARNING]
+> Apontamento do `public_html` para `public` do projeto laravel
+
+```
+    # Modifico
+    mv public_html public_html_bpk
+
+    # Nesta parte, o `www` estará com erro, pois não encontra a public_html
+    # solução de apontamento
+    ln -s nameprojeto/public public_html
+    ls -la
+```
 
 > [!WARNING]
 > Importante para realizar deploy no servidor compartilhado
 > Deletar o link symbolico e no servidor usar comando php artisan storage:link
 > Ajustar dados de banco
+> 
+> 
