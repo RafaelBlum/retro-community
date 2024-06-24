@@ -41,6 +41,10 @@ class EditUser extends EditRecord
         ];
     }
 
+    protected function afterSave()
+    {
+        $this->data['channel']['link'] = 'https://www.youtube.com/@'.$this->data['channel']['link'];
+    }
 
     protected function beforeSave()
     {

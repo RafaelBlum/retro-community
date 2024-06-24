@@ -21,6 +21,7 @@ use Filament\Forms\Set;
 use Filament\Notifications\Notification;
 use Filament\Pages\Auth\EditProfile as BaseEditProfile;
 use Filament\Pages\Page;
+use Filament\Support\Colors\Color;
 use Illuminate\Database\Eloquent\Model;
 
 class EditProfile extends BaseEditProfile
@@ -81,6 +82,47 @@ class EditProfile extends BaseEditProfile
 
                             ])
                             ->columnSpan(2),
+
+                        Tabs::make('informations')->tabs([
+
+                            Tab::make('Meu Canal')->icon('heroicon-m-identification')->schema([
+                                Grid::make(8)->relationship('channel')->schema([
+                                    Group::make()->schema([
+                                        FileUpload::make('brand')
+                                            ->label('')
+                                            ->disk('public')
+                                            ->debounce()
+                                            ->helperText('Logo do seu canal')
+                                            ->avatar()
+                                            ->directory('channel_brand')
+                                            ->columnSpanFull()
+                                    ])->columnSpan(1),
+
+                                    Group::make()->schema([
+                                        Grid::make(4)->schema([
+                                            Group::make()->schema([
+                                                TextInput::make('title')
+                                                    ->label('Nome do seu canal')
+                                                    ->hintIcon('heroicon-m-check-badge', tooltip: 'Seu canal do Youtube.')
+                                                    ->hintColor(Color::Green)
+                                                    ->required(),
+                                            ])->columnSpan(2),
+
+                                            Group::make()->schema([
+                                                TextInput::make('name')
+                                                    ->label('Seu nome')
+                                                    ->required(),
+                                            ])->columnSpan(2),
+                                        ])->columnSpanFull(),
+
+                                        TextInput::make('link')
+                                            ->label('Link canal do Youtube')
+                                            ->prefix('https://www.youtube.com/@')->suffixIcon('heroicon-m-globe-alt')
+                                            ->required(),
+                                    ])->columnSpan(7),
+                                ]),
+                            ]),
+                        ])->columnSpanFull()->activeTab(1)->persistTabInQueryString(),
                     ]),
             ])->statePath('data')->columns([
                 'default' => 2,

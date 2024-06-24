@@ -60,6 +60,7 @@ class PostResource extends Resource
 
                     Section::make()->schema([
                         FileUpload::make('featured_image_url')
+                            ->default('default-post.jpg')
                             ->label('Imagem da postagem')
                             ->required()
                             ->disk('public')

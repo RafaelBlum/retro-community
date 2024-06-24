@@ -29,37 +29,16 @@
 
                 <x-partials.header-section title="Canais parceiros" description="Comunidade retrô games fortalecidos"/>
 
-                <ul class="mx-auto grid lg:gap-4 sm:grid-cols-2 md:grid-cols-6 max-w-lg md:max-w-5xl px-5 up">
-                    <li class="mx-auto flex max-w-xs flex-col items-center gap-4 py-6 md:py-4 text-center">
-                        <img src="https://assets.website-files.com/6357722e2a5f19121d37f84d/635a0f4871ea332919af9f8d_Rectangle%2035.png" alt="" class="mb-4 inline-block h-40 w-40 rounded-full object-cover" />
-                        <p class="font-bold text-gray-900 dark:text-white">John</p>
-                        <p class="text-sm font-light text-gray-900 dark:text-white">Webflow Developer</p>
-                    </li>
-                    <li class="mx-auto flex max-w-xs flex-col items-center gap-4 py-6 md:py-4 text-center">
-                        <img src="https://assets.website-files.com/6357722e2a5f19121d37f84d/635a0f4871ea332919af9f8d_Rectangle%2035.png" alt="" class="mb-4 inline-block h-40 w-40 rounded-full object-cover" />
-                        <p class="font-bold text-gray-900 dark:text-white">John</p>
-                        <p class="text-sm font-light text-gray-900 dark:text-white">Webflow Developer</p>
-                    </li>
-                    <li class="mx-auto flex max-w-xs flex-col items-center gap-4 py-6 md:py-4 text-center">
-                        <img src="https://assets.website-files.com/6357722e2a5f19121d37f84d/635a0f4871ea332919af9f8d_Rectangle%2035.png" alt="" class="mb-4 inline-block h-40 w-40 rounded-full object-cover" />
-                        <p class="font-bold text-gray-900 dark:text-white">John</p>
-                        <p class="text-sm font-light text-gray-900 dark:text-white">Webflow Developer</p>
-                    </li>
-                    <li class="mx-auto flex max-w-xs flex-col items-center gap-4 py-6 md:py-4 text-center">
-                        <img src="https://assets.website-files.com/6357722e2a5f19121d37f84d/635a0f4871ea332919af9f8d_Rectangle%2035.png" alt="" class="mb-4 inline-block h-40 w-40 rounded-full object-cover" />
-                        <p class="font-bold text-gray-900 dark:text-white">John</p>
-                        <p class="text-sm font-light text-gray-900 dark:text-white">Webflow Developer</p>
-                    </li>
-                    <li class="mx-auto flex max-w-xs flex-col items-center gap-4 py-6 md:py-4 text-center">
-                        <img src="https://assets.website-files.com/6357722e2a5f19121d37f84d/635a0f4871ea332919af9f8d_Rectangle%2035.png" alt="" class="mb-4 inline-block h-40 w-40 rounded-full object-cover" />
-                        <p class="font-bold text-gray-900 dark:text-white">John</p>
-                        <p class="text-sm font-light text-gray-900 dark:text-white">Webflow Developer</p>
-                    </li>
-                    <li class="mx-auto flex max-w-xs flex-col items-center gap-4 py-6 md:py-4 text-center">
-                        <img src="https://assets.website-files.com/6357722e2a5f19121d37f84d/635a0f4871ea332919af9f8d_Rectangle%2035.png" alt="" class="mb-4 inline-block h-40 w-40 rounded-full object-cover" />
-                        <p class="font-bold text-gray-900 dark:text-white">John</p>
-                        <p class="text-sm font-light text-gray-900 dark:text-white">Webflow Developer</p>
-                    </li>
+                <ul class="mx-auto grid lg:gap-3 sm:grid-cols-2 md:grid-cols-3 max-w-lg md:max-w-max px-5">
+                    @foreach($channels as $channel)
+                        <li class="mx-auto flex max-w-xs flex-col items-center gap-4 py-6 md:py-4 text-center up mx-10">
+                            <img src="{{Storage::url($channel->brand)}}" alt="" class="mb-4 inline-block h-40 w-40 rounded-full object-cover" />
+                            <p class="font-bold text-gray-900 dark:text-white">{{$channel->name}}</p>
+                            <a href="{{$channel->link}}" target="_blank" class="mb-4 inline-block h-40 w-40 rounded-full object-cover dark:text-white">
+                                {{$channel->title}}
+                            </a>
+                        </li>
+                    @endforeach
                 </ul>
             </div>
         </div>

@@ -20,6 +20,9 @@
 	</a>
 </p>
 
+> [!WARNING]
+> Documentação do projeto em desenvolvimento
+
 ## Sobre Retro Community
 
 Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
@@ -85,6 +88,8 @@ If you discover a security vulnerability within Laravel, please send an e-mail t
     php artisan view:cache
     php artisan event:clear
     php artisan event:cache
+    
+    php artisan optimize:clear
 ```
 
 > [!IMPORTANT]
@@ -131,5 +136,18 @@ If you discover a security vulnerability within Laravel, please send an e-mail t
 > Importante para realizar deploy no servidor compartilhado
 > Deletar o link symbolico e no servidor usar comando php artisan storage:link
 > Ajustar dados de banco
-> 
-> 
+
+> [!NOTE]
+> :sparkles: Helpful advice for doing things better or more easily.
+
+> [!TIP]
+> Helpful advice for doing things better or more easily.
+
+> [!IMPORTANT]
+> Key information users need to know to achieve their goal.
+
+> [!WARNING]
+> Urgent info that needs immediate user attention to avoid problems.
+
+> [!CAUTION]
+> Advises about risks or negative outcomes of certain actions.

@@ -8,17 +8,22 @@ use App\Filament\Resources\UserResource\Pages;
 use App\Filament\Resources\UserResource\RelationManagers;
 use App\Models\Post;
 use App\Models\User;
+use Filament\Forms\Components\DatePicker;
 use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\Grid;
 use Filament\Forms\Components\Group;
 use Filament\Forms\Components\Section;
 use Filament\Forms\Components\Select;
+use Filament\Forms\Components\Tabs;
+use Filament\Forms\Components\Tabs\Tab;
+use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
 use Filament\Forms\Get;
 use Filament\Forms\Set;
 use Filament\Notifications\Notification;
 use Filament\Resources\Resource;
+use Filament\Support\Colors\Color;
 use Filament\Tables;
 use Filament\Tables\Actions\AttachAction;
 use Filament\Tables\Actions\DeleteAction;
@@ -53,6 +58,7 @@ class UserResource extends Resource
                     Section::make()->schema([
                         FileUpload::make('avatar')
                             ->label('')
+                            ->default('default.jpg')
                             ->disk('public')
                             ->directory('thumbnails')
                             ->columnSpanFull()
@@ -96,13 +102,51 @@ class UserResource extends Resource
                                     ->required(fn (string $operation): bool => $operation === 'create')
                                     ->minLength(3)
                                     ->maxLength(255),
-                            ])->columnSpan(4),
-
-                            Group::make()->schema([
-
-                            ])->columnSpan(1),
+                            ])->columnSpan(5),
                         ]),
                     ])->columnSpan(2),
+
+
+                    Tabs::make('informations')->tabs([
+
+                        Tab::make('Meu Canal')->icon('heroicon-m-identification')->schema([
+                            Grid::make(8)->relationship('channel')->schema([
+                                    Group::make()->schema([
+                                        FileUpload::make('brand')
+                                            ->label('')
+                                            ->disk('public')
+                                            ->debounce()
+                                            ->helperText('Logo do seu canal')
+                                            ->avatar()
+                                            ->directory('channel_brand')
+                                            ->columnSpanFull()
+                                    ])->columnSpan(1),
+
+                                    Group::make()->schema([
+                                        Grid::make(4)->schema([
+                                            Group::make()->schema([
+                                                TextInput::make('title')
+                                                    ->label('Nome do seu canal')
+                                                    ->hintIcon('heroicon-m-check-badge', tooltip: 'Seu canal do Youtube.')
+                                                    ->hintColor(Color::Green)
+                                                    ->required(),
+                                            ])->columnSpan(2),
+
+                                            Group::make()->schema([
+                                                TextInput::make('name')
+                                                    ->label('Seu nome')
+                                                    ->required(),
+                                            ])->columnSpan(2),
+                                        ])->columnSpanFull(),
+
+                                        TextInput::make('link')
+                                            ->label('Link canal do Youtube')
+                                            ->prefix('https://www.youtube.com/@')->suffixIcon('heroicon-m-globe-alt')
+                                            ->required(),
+                                    ])->columnSpan(7),
+                            ]),
+                        ]),
+                    ])->columnSpanFull()->activeTab(1)->persistTabInQueryString(),
                 ]),
             ])->columns([
                 'default' => 2,
@@ -124,12 +168,16 @@ class UserResource extends Resource
 
                 TextColumn::make('name')
                     ->label('Nome')
-                    ->description(fn(User $record) => $record->panel->value === 'admin' ? 'Administrador' : ($record->panel->value === 'super-admin' ? 'Super administrador' : 'acesso aplicativo'))
+                    ->description(fn(User $record) => $record->email)
                     ->searchable(),
 
-                TextColumn::make('email')
-                    ->label('E-mail')
-                    ->searchable(),
+                ImageColumn::make('posts.featured_image_url')
+                    ->circular()
+                    ->stacked()
+                    ->limit(3),
+
+                TextColumn::make('channel.name')
+                ->label('Canal'),
 
                 TextColumn::make('panel')
                     ->label('Acesso')

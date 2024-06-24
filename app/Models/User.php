@@ -10,6 +10,7 @@ use Filament\Models\Contracts\HasAvatar;
 use Filament\Panel;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
@@ -48,6 +49,11 @@ class User extends Authenticatable implements HasAvatar, FilamentUser
     public function posts(): HasMany
     {
         return $this->hasMany(Post::class);
+    }
+
+    public function channel(): HasOne
+    {
+        return $this->hasOne(Channel::class);
     }
 
     /**

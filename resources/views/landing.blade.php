@@ -37,31 +37,18 @@
 
             <section class="mt-10">
                 <div class="max-w-screen-xl px-4 pb-8 mx-auto lg:pb-16">
-                    <ul class="mx-auto grid gap-4 sm:grid-cols-4 md:grid-cols-4 justify-center">
-                        <li class="flex flex-col items-center gap-1 text-center">
-                            <img src="{{asset('images/channels/almir_santos_profile.jpg')}}" alt=""
-                                 class="inline-block h-20 w-20 rounded-full object-cover" />
-                            <p class="font-bold text-white dark:text-white">John</p>
-                            <p class="text-sm font-light text-white dark:text-white">Webflow Developer</p>
-                        </li>
-                        <li class="flex flex-col items-center gap-1 text-center">
-                            <img src="{{asset('images/channels/joga_plus_profile.jpg')}}" alt=""
-                                 class="inline-block h-20 w-20 rounded-full object-cover" />
-                            <p class="font-bold text-white dark:text-white">John</p>
-                            <p class="text-sm font-light text-white dark:text-white">Webflow Developer</p>
-                        </li>
-                        <li class="flex flex-col items-center gap-1 text-center">
-                            <img src="{{asset('images/channels/troopa_games_profile.jpg')}}" alt=""
-                                 class="inline-block h-20 w-20 rounded-full object-cover" />
-                            <p class="font-bold text-white dark:text-white">John</p>
-                            <p class="text-sm font-light text-white dark:text-white">Webflow Developer</p>
-                        </li>
-                        <li class="flex flex-col items-center gap-1 text-center">
-                            <img src="{{asset('images/channels/retrostalgia_profile.jpg')}}" alt=""
-                                 class="inline-block h-20 w-20 rounded-full object-cover" />
-                            <p class="font-bold text-white dark:text-white">John</p>
-                            <p class="text-sm font-light text-white dark:text-white">Webflow Developer</p>
-                        </li>
+                    <ul class="mx-auto grid gap-{{$grid}} sm:grid-cols-{{$grid}} md:grid-cols-{{$grid}} justify-center">
+                        @foreach($channels as $channel)
+                            <li class="flex flex-col items-center gap-1 text-center">
+                                <img src="{{Storage::url($channel->brand)}}" alt=""
+                                     class="inline-block h-20 w-20 rounded-full object-cover" />
+                                <p class="font-bold text-white dark:text-white">{{$channel->name}}</p>
+                                <a href="{{'https://www.youtube.com/@' . $channel->link}}" target="_blank" class="text-sm font-light text-white dark:text-white">
+                                    {{$channel->title}}
+                                </a>
+                            </li>
+                        @endforeach
+
                     </ul>
                 </div>
             </section>

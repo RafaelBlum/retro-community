@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use App\Enums\PanelTypeEnum;
+use App\Models\Channel;
 use App\Models\Role;
 use App\Models\User;
 use Illuminate\Database\Seeder;
@@ -23,6 +24,16 @@ class UserSeeder extends Seeder
             'avatar' => 'default.jpg',
         ]);
 
+        $users = User::find(1);
+
+        Channel::updateOrCreate([
+            'title'  => $users->name,
+            'user_id' => $users->id,
+            'name'  => 'Meu canal',
+            'link'  => fake()->url(),
+            'brand' => 'default-brand.png'
+        ]);
+
         User::updateOrCreate([
             'name' => 'Usuário Admin',
             'email' => 'admin-retro-community@hotmail.com',
@@ -31,12 +42,32 @@ class UserSeeder extends Seeder
             'avatar' => 'default.jpg',
         ]);
 
+        $users = User::find(2);
+
+        Channel::updateOrCreate([
+            'title'  => $users->name,
+            'user_id' => $users->id,
+            'name'  => 'Meu canal',
+            'link'  => fake()->url(),
+            'brand' => 'default-brand.png'
+        ]);
+
         User::updateOrCreate([
             'name' => 'Usuário App',
             'email' => 'user-retro-community@hotmail.com',
             'password' => Hash::make('teste'),
             'panel' => PanelTypeEnum::APP,
             'avatar' => 'default.jpg',
+        ]);
+
+        $users = User::find(3);
+
+        Channel::updateOrCreate([
+            'title'  => $users->name,
+            'user_id' => $users->id,
+            'name'  => 'Meu canal',
+            'link'  => fake()->url(),
+            'brand' => 'default-brand.png'
         ]);
     }
 }
