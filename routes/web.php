@@ -18,3 +18,8 @@ Route::get('/posts/{post}', [PostController::class, 'show'])->name('posts.show')
 Route::get('/login', function () {
     return redirect(route('filament.admin.auth.login'));
 })->name('login');
+
+
+Route::middleware('auth')->group(function (){
+    Route::post('/logout', [WebController::class, 'logout'])->name('app.logout');
+});

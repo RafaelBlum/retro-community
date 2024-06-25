@@ -41,10 +41,9 @@
                         @foreach($channels as $channel)
                             <li class="flex flex-col items-center gap-1 text-center">
                                 <img src="{{Storage::url($channel->brand)}}" alt=""
-                                     class="inline-block h-20 w-20 rounded-full object-cover" />
-                                <p class="font-bold text-white dark:text-white">{{$channel->name}}</p>
+                                     class="w-16 h-16 p-[0.1875rem] rounded-full ring-1 ring-slate-900/10 shadow overflow-hidden flex-none dark:bg-indigo-500 dark:highlight-white/20" />
                                 <a href="{{'https://www.youtube.com/@' . $channel->link}}" target="_blank" class="text-sm font-light text-white dark:text-white">
-                                    {{$channel->title}}
+                                    {{$channel->name}}
                                 </a>
                             </li>
                         @endforeach

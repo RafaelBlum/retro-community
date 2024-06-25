@@ -4,8 +4,9 @@
 ])
 
 <a {{$attributes->class([
-    'inline-block flex-none cursor-pointer rounded-[5px] border-0 mt-6 px-[1.688rem] py-[0.813rem] bg-[#f7d046] hover:bg-[#FAC819] transition-colors font-[Manrope,_sans-serif] text-base font-semibold capitalize leading-[1.313rem] text-black antialiased [transition:color_0.25s_ease_0s] hover:[box-shadow:rgb(0,_0,_0)_0px_0px]' => $btn,
-    'text-white bg-purple-700 hover:bg-purple-800 focus:ring-4 focus:ring-purple-300 font-medium rounded-[5px] text-sm px-4 lg:px-5 py-2 lg:py-1.5 sm:mr-2 lg:mr-0 dark:bg-purple-600 dark:hover:bg-purple-700 focus:outline-none dark:focus:ring-purple-800' => $login
+    'text-white inline-block rounded-full m-10 border-2 border-warning px-6 pb-[6px] pt-2 text-xs font-medium uppercase leading-normal text-warning transition duration-150 ease-in-out hover:border-warning-600 hover:bg-yellow-400 hover:text-warning-600 focus:border-warning-600 focus:bg-warning-50/50 focus:text-warning-600 focus:outline-none focus:ring-0 active:border-warning-700 active:text-warning-700 motion-reduce:transition-none dark:hover:bg-yellow-950 dark:focus:bg-yellow-950' => $btn,
+    'text-white inline-block rounded border-2 border-primary px-6 pb-[6px] pt-2 text-xs font-medium uppercase leading-normal text-primary transition duration-150 ease-in-out hover:border-primary-accent-300 hover:bg-primary-50/50 hover:text-primary-accent-300 focus:border-primary-600 focus:bg-primary-50/50 focus:text-primary-600 focus:outline-none focus:ring-0 active:border-primary-700 active:text-primary-700 motion-reduce:transition-none dark:text-primary-500 dark:hover:bg-blue-950 dark:focus:bg-blue-950' => $login
+
 ])}}>
     {{$slot}}
 </a>

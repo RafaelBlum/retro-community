@@ -29,12 +29,12 @@
 
                 <x-partials.header-section title="Canais parceiros" description="Comunidade retrô games fortalecidos"/>
 
-                <ul class="mx-auto grid lg:gap-3 sm:grid-cols-2 md:grid-cols-3 max-w-lg md:max-w-max px-5">
+                <ul class="mx-auto grid lg:gap-3 sm:grid-cols-2 md:grid-cols-4 max-w-lg md:max-w-max px-5">
                     @foreach($channels as $channel)
                         <li class="mx-auto flex max-w-xs flex-col items-center gap-4 py-6 md:py-4 text-center up mx-10">
-                            <img src="{{Storage::url($channel->brand)}}" alt="" class="mb-4 inline-block h-40 w-40 rounded-full object-cover" />
+                            <img src="{{Storage::url($channel->brand)}}" alt="" class="w-20 h-20 p-[0.1875rem] rounded-full ring-1 ring-slate-900/10 shadow overflow-hidden flex-none dark:bg-indigo-500 dark:highlight-white/20" />
                             <p class="font-bold text-gray-900 dark:text-white">{{$channel->name}}</p>
-                            <a href="{{$channel->link}}" target="_blank" class="mb-4 inline-block h-40 w-40 rounded-full object-cover dark:text-white">
+                            <a href="{{'https://www.youtube.com/@' . $channel->link}}" target="_blank" class="font-bold text-gray-900 dark:text-white">
                                 {{$channel->title}}
                             </a>
                         </li>
@@ -60,7 +60,7 @@
                                     <div class="items-center gap-8 lg:grid lg:grid-cols-2 xl:gap-16">
                                         <div class="text-gray-500 sm:text-lg dark:text-gray-400">
                                             <h2 class="mb-4 text-3xl font-extrabold tracking-tight text-gray-900 dark:text-white">{{$post->title}}</h2>
-                                            <p class="mb-8 font-light lg:text-xl"> {!!$post->content!!} </p>
+                                            <p class="mb-8 font-light lg:text-xl text-gray-900 dark:text-white"> {!!$post->content!!} </p>
 
                                             <ul role="list" class="pt-8 space-y-5 border-t border-gray-200 my-7 dark:border-gray-700">
                                                 <li class="flex space-x-3">
@@ -71,11 +71,11 @@
                                             </ul>
 
                                             <div class="flex">
-                                                <img src="{{Storage::url($post->author->avatar)}}" alt="" class="mr-4 h-10 w-10 rounded-full object-cover" />
+                                                <img src="{{Storage::url($post->author->channel->brand)}}" alt="" class="mr-4 h-10 w-10 p-[0.1875rem] rounded-full ring-1 ring-slate-900/10 shadow overflow-hidden flex-none dark:bg-indigo-500 dark:highlight-white/20" />
                                                 <div class="flex flex-col">
-                                                    <h6 class="text-base font-bold">{{$post->author->name}}</h6>
+                                                    <h6 class="text-base font-bold">Canal {{$post->author->channel->name}}</h6>
                                                     <div class="flex flex-col lg:flex-row">
-                                                        <p class="text-sm text-gray-500">{{$post->created_at->format('M, d Y')}}</p>
+                                                        <p class="text-sm text-gray-500">{{$post->author->channel->title}}</p>
                                                     </div>
                                                 </div>
                                             </div>
@@ -91,14 +91,14 @@
                                         <img src="{{Storage::url($post->featured_image_url)}}" alt="" class="h-60 object-cover rounded-tl-md rounded-tr-md" />
                                         <div class="px-6 py-4 dark:text-white   ">
                                             <p class="mb-4 text-sm font-semibold uppercase text-fuchsia-700 dark:text-amber-400"> {{$post->category->name}} </p>
-                                            <p class="mb-4 text-xl font-semibold"> {{$post->title}} </p>
-                                            <p class="mb-6 text-sm text-gray-500 sm:text-base lg:mb-8"> {!!$post->content!!} </p>
+                                            <p class="mb-4 text-xl font-semibold text-gray-900 dark:text-white"> {{$post->title}} </p>
+                                            <p class="mb-6 text-sm text-gray-900 dark:text-white sm:text-base lg:mb-8"> {!!$post->content!!} </p>
                                             <div class="flex">
-                                                <img src="{{Storage::url($post->author->avatar)}}" alt="" class="mr-4 h-10 w-10 rounded-full object-cover" />
+                                                <img src="{{Storage::url($post->author->channel->brand)}}" alt="" class="mr-4 h-10 w-10 p-[0.1875rem] rounded-full ring-1 ring-slate-900/10 shadow overflow-hidden flex-none dark:bg-indigo-500 dark:highlight-white/20" />
                                                 <div class="flex flex-col">
-                                                    <h6 class="text-base font-bold">{{$post->author->name}}</h6>
+                                                    <h6 class="text-base font-bold">Canal {{$post->author->channel->name}}</h6>
                                                     <div class="flex flex-col lg:flex-row">
-                                                        <p class="text-sm text-gray-500">{{$post->created_at->format('M, d Y')}}</p>
+                                                        <p class="text-sm text-gray-500">{{$post->author->channel->title}}</p>
                                                     </div>
                                                 </div>
                                             </div>
@@ -121,11 +121,11 @@
 
 
                                             <div class="flex">
-                                                <img src="{{Storage::url($post->author->avatar)}}" alt="" class="mr-4 h-10 w-10 rounded-full object-cover" />
+                                                <img src="{{Storage::url($post->author->channel->brand)}}" alt="" class="mr-4 h-10 w-10 p-[0.1875rem] rounded-full ring-1 ring-slate-900/10 shadow overflow-hidden flex-none dark:bg-indigo-500 dark:highlight-white/20" />
                                                 <div class="flex flex-col">
-                                                    <h6 class="text-base font-bold">{{$post->author->name}}</h6>
+                                                    <h6 class="text-base font-bold">Canal {{$post->author->channel->name}}</h6>
                                                     <div class="flex flex-col lg:flex-row">
-                                                        <p class="text-sm text-gray-500">{{$post->created_at->format('M, d Y')}}</p>
+                                                        <p class="text-sm text-gray-500">{{$post->author->channel->title}}</p>
                                                     </div>
                                                 </div>
                                             </div>
@@ -135,7 +135,7 @@
                             </div>
 
                             @if($posts->count() <= 3)
-                                <x-partials.btn-actions btn href="/">
+                                <x-partials.btn-actions href="/" btn>
                                     Ver mais
                                 </x-partials.btn-actions>
                            @endif
