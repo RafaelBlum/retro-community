@@ -3,63 +3,38 @@
 namespace App\Http\Controllers;
 
 use App\Models\Category;
+use App\Models\Post;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class CategoryController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
+
     public function index()
     {
         //
     }
 
     /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
+     * 1. return: Traz somente publicados que estiverem dentro da data agendada
+     * 2. return: Traz os publicados E os não publicados, mas dentro da data agendada.
+    */
+    public function searchPostsForCategory(Category $category)
     {
-        //
-    }
+        try {
+            $posts = $category->posts()->where(function (Builder $query){
+                //return $query->where('status', 'PUBLISHED')->where('scheduled_for', '<=', now()); NÃO FUNCIONA ???
+                return $query->where('status', 'PUBLISHED')->orWhere('scheduled_for', '<=', now());
+            })->paginate();
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
-    {
-        //
-    }
+            return view('pages.index', compact('posts', 'category'));
+        }catch (\Exception $exception){
+            if(env('APP_DEBUG')){
+                return redirect()->back();
+            }
+            return redirect()->back();
+        }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(Category $category)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Category $category)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, Category $category)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(Category $category)
-    {
-        //
     }
 }

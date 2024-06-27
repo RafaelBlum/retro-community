@@ -4,62 +4,30 @@ namespace App\Http\Controllers;
 
 use App\Models\Post;
 use Illuminate\Http\Request;
+use Illuminate\Support\Carbon;
 
 class PostController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
+
     public function index()
     {
-        //
+        try {
+            $posts = Post::where('status', '=', 'PUBLISHED')->orWhere('scheduled_for', '<', now())->get();
+            $lastPost = collect($posts);
+
+            return view('pages.index', ['posts'=>$posts, 'lastPost' => $lastPost]);
+        }catch (\Exception $exception){
+            if(env('APP_DEBUG')){
+                return redirect()->back();
+            }
+
+            return redirect()->back();
+        }
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
+    public function post(Post $post)
     {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(Post $post)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Post $post)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, Post $post)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(Post $post)
-    {
-        //
+        return view('pages.post', compact('post'));
     }
 }

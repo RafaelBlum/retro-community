@@ -22,6 +22,25 @@
     }
 }
 
+@keyframes verticalLoopImg {
+    0% {
+        transform: translateY(0);
+    }
+    40% {
+        transform: translateY(-40px);
+    }
+    70% {
+        transform: translateY(-70px);
+    }
+    100% {
+        transform: translateY(0);
+    }
+}
+
 .vertical-loop-animation {
     animation: verticalLoop 5s infinite;
+}
+
+.vertical-loop-animation-img {
+    animation: verticalLoopImg 7s infinite;
 }

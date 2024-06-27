@@ -135,7 +135,7 @@
                             </div>
 
                             @if($posts->count() <= 3)
-                                <x-partials.btn-actions href="{{route('posts.index')}}" btn>
+                                <x-partials.btn-actions href="/" btn>
                                     Ver mais
                                 </x-partials.btn-actions>
                            @endif
