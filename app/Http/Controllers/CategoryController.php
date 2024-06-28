@@ -27,8 +27,8 @@ class CategoryController extends Controller
                 //return $query->where('status', 'PUBLISHED')->where('scheduled_for', '<=', now()); NÃO FUNCIONA ???
                 return $query->where('status', 'PUBLISHED')->orWhere('scheduled_for', '<=', now());
             })->paginate();
-
-            return view('pages.index', compact('posts', 'category'));
+            $categories = Category::all();
+            return view('pages.index', compact('posts', 'categories'));
         }catch (\Exception $exception){
             if(env('APP_DEBUG')){
                 return redirect()->back();

@@ -31,6 +31,14 @@
                     title="{{($posts->count() != null ? 'Blog community retrô':'Trabalhando em novos conteúdos')}}"
                     description="{{($posts->count() != null ? 'Não fique de fora das últimas novidades!':'')}}"/>
 
+                <div class="flex items-center space-x-4 mb-5">
+                    @foreach($categories as $category)
+                        <a href="{{route('posts.category', ['category'=> $category])}}" class="text-gray-900 dark:text-white inline-block rounded border-2 border-gray-400 px-1 py-1 text-xs font-light uppercase leading-normal text-primary transition duration-150 ease-in-out hover:border-primary-accent-300 hover:bg-primary-50/50 hover:text-primary-accent-300 focus:border-primary-600 focus:bg-primary-50/50 focus:text-primary-600 focus:outline-none focus:ring-0 active:border-primary-700 active:text-primary-700 motion-reduce:transition-none dark:hover:bg-blue-950 dark:focus:bg-blue-950">
+                            {{$category->name}}
+                        </a>
+                    @endforeach
+                </div>
+
                 @if($posts->count() != 0)
 
                         @if($posts->count() == 1)
