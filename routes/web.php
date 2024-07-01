@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [WebController::class, 'landing'])->name('app.landing');
 Route::get('home', [WebController::class, 'home'])->name('app.home');
+Route::get('/sobre', [WebController::class, 'about'])->name('app.about');
 
 Route::fallback(function (){
     return redirect('home');
@@ -15,7 +16,6 @@ Route::fallback(function (){
 Route::get('/posts', [PostController::class, 'index'])->name('posts.index');
 Route::get('/posts/{post}', [PostController::class, 'post'])->name('posts.post');
 Route::get('/category/{category}', [CategoryController::class, 'searchPostsForCategory'])->name('posts.category');
-
 
 Route::get('/login', function () {
     return redirect(route('filament.admin.auth.login'));

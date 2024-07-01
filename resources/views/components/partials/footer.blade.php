@@ -8,24 +8,21 @@
                 </a>
                 <ul class="text-gray-500 dark:text-gray-400">
                     <li class="mb-4">
-                        <a href="#" class=" hover:underline">Sobre</a>
+                        <a href="{{route('app.about')}}" class=" hover:underline">Sobre</a>
+                    </li>
+                    <li class="mb-4">
+                        <a href="#" class="hover:underline">Política de privacidade</a>
                     </li>
                 </ul>
+            </div>
+            <div>
+
             </div>
             <div>
                 <h3 class="mb-6 text-sm font-semibold text-gray-900 uppercase dark:text-white">Ajuda</h3>
                 <ul class="text-gray-500 dark:text-gray-400">
                     <li class="mb-4">
                         <a href="#" class="hover:underline">Suporte</a>
-                    </li>
-
-                </ul>
-            </div>
-            <div>
-                <h3 class="mb-6 text-sm font-semibold text-gray-900 uppercase dark:text-white">Legal</h3>
-                <ul class="text-gray-500 dark:text-gray-400">
-                    <li class="mb-4">
-                        <a href="#" class="hover:underline">Política de privacidade</a>
                     </li>
 
                 </ul>
@@ -38,9 +35,6 @@
                     </li>
                     <li class="mb-4">
                         <a href="#" class="hover:underline">Campanhas</a>
-                    </li>
-                    <li class="mb-4">
-                        <a href="#" class="hover:underline">Sobre</a>
                     </li>
                 </ul>
             </div>

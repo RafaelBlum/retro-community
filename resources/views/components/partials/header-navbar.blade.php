@@ -40,7 +40,7 @@
                         Home
                     </x-partials.link>
 
-                    <x-partials.link href="{{route('posts.index')}}">
+                    <x-partials.link href="{{route('app.about')}}">
                         Blog
                     </x-partials.link>
 

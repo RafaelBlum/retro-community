@@ -42,4 +42,9 @@ class WebController extends Controller
 
         return to_route('app.home');
     }
+
+    public function about()
+    {
+        return view('pages.about');
+    }
 }

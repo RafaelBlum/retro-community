@@ -44,7 +44,6 @@
             </div>
         </div>
     </section>
-
     <x-partials.footer />
 
     <script>
