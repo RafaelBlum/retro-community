@@ -1,6 +1,6 @@
 <p align="center">
 	<a href="#" target="_blank" title="Visite Retro Community">
-		<img src="public/images/logo-retrocommunity-dark.png" alt="Sistema Retro Community" width="240px">
+		<img src="public/images/brandname/logo-retrocommunity-dark.png" alt="Sistema Retro Community" width="240px">
 	</a>
 </p>
 
