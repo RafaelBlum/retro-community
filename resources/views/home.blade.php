@@ -31,10 +31,12 @@
 
                 <ul class="mx-auto grid lg:gap-3 sm:grid-cols-2 md:grid-cols-4 max-w-lg md:max-w-max px-5">
                     @foreach($channels as $channel)
-                        <li class="mx-auto flex max-w-xs flex-col items-center gap-4 py-6 md:py-4 text-center up mx-10">
-                            <img src="{{Storage::url($channel->brand)}}" alt="" class="w-20 h-20 p-[0.1875rem] rounded-full ring-1 ring-slate-900/10 shadow overflow-hidden flex-none dark:bg-indigo-500 dark:highlight-white/20" />
-                            <p class="font-bold text-gray-900 dark:text-white">{{$channel->name}}</p>
-                            <a href="{{'https://www.youtube.com/@' . $channel->link}}" target="_blank" class="font-bold text-gray-900 dark:text-white">
+                        <li class="mx-auto flex max-w-xs flex-col items-center gap-2 py-4 md:py-2 text-center up mx-10">
+                            <img src="{{Storage::url($channel->brand)}}" alt="" class="w-20 h-20 p-1 rounded-full ring-1 ring-slate-900/10 shadow overflow-hidden flex-none dark:bg-indigo-500 dark:highlight-white/20" />
+                            <a href="{{route('my.channel', ['channel'=> $channel])}}" class="text-purple-600 dark:text-purple-500 hover:underline">
+                                {{$channel->name}}
+                            </a>
+                            <a href="{{'https://www.youtube.com/@' . $channel->link}}" target="_blank" class="font-light text-white dark:text-white hover:underline">
                                 {{$channel->title}}
                             </a>
                         </li>
@@ -161,7 +163,7 @@
                                 @foreach($posts as $post)
                                     <a href="#" class="flex flex-col gap-4 rounded-md border border-solid border-gray-300 px-4 py-8 md:p-0">
                                         <img src="{{Storage::url($post->featured_image_url)}}" alt="" class="h-60 object-cover rounded-tl-md rounded-tr-md" />
-                                        <div class="px-6 py-4 dark:text-white   ">
+                                        <div class="px-6 py-4 dark:text-white">
                                             <p class="mb-4 text-sm font-semibold uppercase text-fuchsia-700 dark:text-amber-400"> {{$post->category->name}} </p>
                                             <p class="mb-4 text-xl font-semibold"> {{Str::limit($post->title, 30)}}</p>
 

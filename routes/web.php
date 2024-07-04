@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\ChannelController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\WebController;
 use Illuminate\Support\Facades\Route;
@@ -16,6 +17,7 @@ Route::fallback(function (){
 Route::get('/posts', [PostController::class, 'index'])->name('posts.index');
 Route::get('/posts/{post}', [PostController::class, 'post'])->name('posts.post');
 Route::get('/category/{category}', [CategoryController::class, 'searchPostsForCategory'])->name('posts.category');
+Route::get('/{channel}', [ChannelController::class, 'index'])->name('my.channel');
 
 Route::get('/login', function () {
     return redirect(route('filament.admin.auth.login'));

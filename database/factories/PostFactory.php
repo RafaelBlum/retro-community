@@ -5,6 +5,7 @@ namespace Database\Factories;
 use App\Enums\StatusPostEnum;
 use App\Models\Category;
 use App\Models\User;
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -31,7 +32,9 @@ class PostFactory extends Factory
             'summary' => fake()->text(50),
             'content' => fake()->text(150),
             'status' => StatusPostEnum::PRIVATE,
-            'featured_image_url' => 'default-post.jpg'
+            'featured_image_url' => 'default-post.jpg',
+            'created_at' => Carbon::now(),
+            'updated_at' => Carbon::now(),
         ];
     }
 }
