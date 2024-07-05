@@ -176,7 +176,7 @@ class UserResource extends Resource
                     ->stacked()
                     ->limit(3),
 
-                TextColumn::make('channel.name')
+                TextColumn::make('channel.title')
                 ->label('Canal'),
 
                 TextColumn::make('panel')
@@ -186,7 +186,7 @@ class UserResource extends Resource
 
                 TextColumn::make('posts_count')
                     ->counts('posts')
-                    ->label('Postagens'),
+                    ->label('Publicações'),
             ])
             ->filters([
                 //

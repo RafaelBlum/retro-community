@@ -41,20 +41,22 @@ class EditUser extends EditRecord
         ];
     }
 
-    protected function afterSave()
-    {
-        $this->data['channel']['link'] = 'https://www.youtube.com/@'.$this->data['channel']['link'];
-    }
-
     protected function beforeSave()
     {
         $user = User::find($this->data['id']);
 
+        $brandImagem = array_values($this->data['channel']['brand'])[0];
         $caminhoDaImagem = array_values($this->data['avatar'])[0];
 
         if ($user->avatar != $caminhoDaImagem) {
             if($user->avatar != 'default.jpg'){
                 Storage::delete('public/' . $user->avatar);
+            }
+        }
+
+        if ($user->channel->brand != $brandImagem) {
+            if($user->channel->brand != 'default-brand.png'){
+                Storage::delete('public/' . $user->channel->brand);
             }
         }
 
