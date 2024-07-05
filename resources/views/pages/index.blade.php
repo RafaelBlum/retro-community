@@ -113,7 +113,9 @@
                                                {{$post->category->name}}
                                            </a>
 
-                                            <p class="mb-4 text-xl font-semibold"> {{Str::limit($post->title, 30)}}</p>
+                                            <a href="{{route('posts.post', ['post'=>$post])}}">
+                                                <p class="mb-4 text-xl font-semibold"> {{Str::limit($post->title, 30)}}</p>
+                                            </a>
 
                                             <p class="line-clamp-3 lg:line-clamp-none h-auto mb-4">
                                                 {!! $post->summary !!}
@@ -121,12 +123,16 @@
 
 
                                             <div class="flex">
-                                                <img src="{{Storage::url($post->author->channel->brand)}}" alt="" class="mr-4 h-10 w-10 p-[0.1875rem] rounded-full ring-1 ring-slate-900/10 shadow overflow-hidden flex-none dark:bg-indigo-500 dark:highlight-white/20" />
+                                                <a href="{{'https://www.youtube.com/@' . $post->author->channel->link}}" target="_blank" class="font-light text-white dark:text-white hover:underline">
+                                                    <img src="{{Storage::url($post->author->channel->brand)}}" alt="" class="mr-4 h-10 w-10 p-[0.1875rem] rounded-full ring-1 ring-slate-900/10 shadow overflow-hidden flex-none dark:bg-indigo-500 dark:highlight-white/20" />
+                                                </a>
                                                 <div class="flex flex-col">
-                                                    <h6 class="text-base font-bold">Canal {{$post->author->channel->name}}</h6>
-                                                    <div class="flex flex-col lg:flex-row">
-                                                        <p class="text-sm text-gray-500">{{$post->author->channel->title}}</p>
-                                                    </div>
+                                                    <a href="{{route('my.channel', ['channel'=> $post->author->channel])}}" class="text-purple-600 dark:text-purple-500 hover:underline">
+                                                        {{$post->author->channel->title}}
+                                                    </a>
+                                                    <a href="{{'https://www.youtube.com/@' . $post->author->channel->link}}" target="_blank" class="font-light text-white dark:text-white hover:underline">
+                                                        {{$post->author->channel->name}}
+                                                    </a>
                                                 </div>
                                             </div>
                                         </div>

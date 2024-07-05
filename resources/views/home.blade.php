@@ -46,6 +46,7 @@
         </div>
     </section>
 
+    {{--  SECTION ?????  --}}
     <section class="bg-white dark:bg-gray-900">
         <div class="mx-auto w-full max-w-7xl px-5 py-16 md:px-10 md:py-20">
 
@@ -101,7 +102,7 @@
         <div class="mx-auto w-full max-w-7xl px-5 py-16 md:px-10 md:py-20">
             <div class="flex flex-col items-center">
                 <x-partials.title-section
-                    title="{{($posts->count() != null ? 'Últimas postagens':'Trabalhando em novos conteúdos')}}"
+                    title="{{($posts->count() != null ? 'Postagens recentes':'Trabalhando em novos conteúdos')}}"
                     description="{{($posts->count() != null ? 'Veja algumas das últimas novidades criadas':'')}}"/>
 
                 @if($posts->count() != 0)
@@ -116,7 +117,6 @@
 
                                             <ul role="list" class="pt-8 space-y-5 border-t border-gray-200 my-7 dark:border-gray-700">
                                                 <li class="flex space-x-3">
-                                                    <!-- Icon -->
                                                     <svg class="flex-shrink-0 w-5 h-5 text-purple-500 dark:text-purple-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
                                                     <span class="text-base font-medium leading-tight text-gray-900 dark:text-white">{{$post->category->name}}</span>
                                                 </li>
@@ -161,28 +161,40 @@
                         @else
                             <div class="mb-6 grid gap-4 sm:grid-cols-2 sm:justify-items-stretch md:mb-10 md:grid-cols-3 lg:mb-12 lg:gap-6 up">
                                 @foreach($posts as $post)
-                                    <a href="#" class="flex flex-col gap-4 rounded-md border border-solid border-gray-300 px-4 py-8 md:p-0">
-                                        <img src="{{Storage::url($post->featured_image_url)}}" alt="" class="h-60 object-cover rounded-tl-md rounded-tr-md" />
+                                    <div class="flex flex-col gap-4 rounded-md border border-solid border-gray-300 px-4 py-8 md:p-0">
+                                        <a href="{{route('posts.post', ['post'=>$post])}}">
+                                            <img src="{{Storage::url($post->featured_image_url)}}" alt="" class="h-auto object-cover rounded-tl-md rounded-tr-md" />
+                                        </a>
                                         <div class="px-6 py-4 dark:text-white">
-                                            <p class="mb-4 text-sm font-semibold uppercase text-fuchsia-700 dark:text-amber-400"> {{$post->category->name}} </p>
-                                            <p class="mb-4 text-xl font-semibold"> {{Str::limit($post->title, 30)}}</p>
 
-                                            <p class="line-clamp-3 lg:line-clamp-none h-auto mb-4">
+                                            <a href="{{route('posts.category', ['category'=> $post->category])}}" class="text-sm font-semibold uppercase text-fuchsia-700 dark:text-amber-400">
+                                                {{$post->category->name}}
+                                            </a>
+
+                                            <a href="{{route('posts.post', ['post'=>$post])}}">
+                                                <p class="mb-4 text-xl font-semibold"> {{Str::limit($post->title, 30)}}</p>
+                                            </a>
+
+                                            <p class="line-clamp-3 lg:line-clamp-3 h-auto mb-4">
                                                 {!! $post->summary !!}
                                             </p>
 
 
                                             <div class="flex">
-                                                <img src="{{Storage::url($post->author->channel->brand)}}" alt="" class="mr-4 h-10 w-10 p-[0.1875rem] rounded-full ring-1 ring-slate-900/10 shadow overflow-hidden flex-none dark:bg-indigo-500 dark:highlight-white/20" />
+                                                <a href="{{'https://www.youtube.com/@' . $post->author->channel->link}}" target="_blank" class="font-light text-white dark:text-white hover:underline">
+                                                    <img src="{{Storage::url($post->author->channel->brand)}}" alt="" class="mr-4 h-10 w-10 p-[0.1875rem] rounded-full ring-1 ring-slate-900/10 shadow overflow-hidden flex-none dark:bg-indigo-500 dark:highlight-white/20" />
+                                                </a>
                                                 <div class="flex flex-col">
-                                                    <h6 class="text-base font-bold">Canal {{$post->author->channel->name}}</h6>
-                                                    <div class="flex flex-col lg:flex-row">
-                                                        <p class="text-sm text-gray-500">{{$post->author->channel->title}}</p>
-                                                    </div>
+                                                    <a href="{{route('my.channel', ['channel'=> $post->author->channel])}}" class="text-purple-600 dark:text-purple-500 hover:underline">
+                                                        {{$post->author->channel->title}}
+                                                    </a>
+                                                    <a href="{{'https://www.youtube.com/@' . $post->author->channel->link}}" target="_blank" class="font-light text-white dark:text-white hover:underline">
+                                                        {{$post->author->channel->name}}
+                                                    </a>
                                                 </div>
                                             </div>
                                         </div>
-                                    </a>
+                                    </div>
                                 @endforeach
                             </div>
 
