@@ -25,8 +25,9 @@
     <section class="bg-gray-50 dark:bg-gray-800">
         <div class="mx-auto w-full max-w-7xl px-5 py-16 md:px-10 md:py-20 text-gray-900 dark:text-white">
 
-            <div data-aos="fade-up" data-aos-delay="100" class="mx-auto w-fit bg-white p-4 rounded-[28px] shadow">
-                <img data-aos="zoom-in" data-aos-delay="200" src="{{Storage::url($post->featured_image_url)}}" alt="product cover" width="984px" height="505px" class="shadow rounded-xl" />
+            <div data-aos="fade-up" data-aos-delay="100" class="mx-auto w-fit bg-white p-4 rounded-[15px] shadow">
+                <img src="{{Storage::url($post->featured_image_url)}}"
+                     alt="product cover" width="984px" height="505px" class="shadow rounded-[15px]" />
             </div>
 
             <div class="lg:px-28">

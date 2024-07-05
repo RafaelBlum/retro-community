@@ -30,6 +30,8 @@ class PostController extends Controller
 
     public function post(Post $post)
     {
+        $post->views += 1;
+        $post->save();
         return view('pages.post', compact('post'));
     }
 }
