@@ -17,7 +17,8 @@ class Channel extends Model
         'user_id',
         'name',
         'link',
-        'brand'
+        'brand',
+        'color'
     ];
 
     public function user(): BelongsTo
