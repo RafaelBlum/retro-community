@@ -1,7 +1,7 @@
 <x-layout>
 
 
-    <x-partials.header-navbar/>
+    <x-partials.navbar-section/>
 
     {{--  HEADER HOME  --}}
     <section class="bg-white dark:bg-gray-900">
@@ -26,7 +26,7 @@
     <section class="bg-white dark:bg-gray-900">
         <div class="mx-auto w-full max-w-7xl px-5 py-16 md:px-10 md:py-20">
             <div class="flex flex-col items-center text-gray-900 dark:text-white">
-                <x-partials.header-section
+                <x-partials.title-section
                     title="Sobre"
                     description="Sejá bem-vindo a comunidade"/>
 
@@ -549,7 +549,7 @@
 
 
             <div class="flex flex-row items-center justify-between">
-                <x-partials.header-section title="Tocados recentemente" description=""/>
+                <x-partials.title-section title="Tocados recentemente" description=""/>
                 <span class="text-sm text-zinc-400">Mostrar tudo</span>
             </div>
             <div class="mt-4 -ml-3 grid grid-cols-5 gap-2">

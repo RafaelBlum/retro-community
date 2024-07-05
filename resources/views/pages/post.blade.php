@@ -1,7 +1,7 @@
 <x-layout>
 
 
-    <x-partials.header-navbar/>
+    <x-partials.navbar-section/>
 
     {{--  HEADER HOME  --}}
     <section class="bg-white dark:bg-gray-900">

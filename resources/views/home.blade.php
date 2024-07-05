@@ -1,7 +1,7 @@
 <x-layout>
 
 
-    <x-partials.header-navbar/>
+    <x-partials.navbar-section/>
 
     {{--  HEADER HOME  --}}
     <section class="bg-white dark:bg-gray-900">
@@ -27,7 +27,7 @@
         <div class="mx-auto w-full max-w-7xl px-5 py-16 md:px-10 md:py-20">
             <div class="flex flex-col items-center">
 
-                <x-partials.header-section title="Canais parceiros" description="Comunidade retrô games fortalecidos"/>
+                <x-partials.title-section title="Canais parceiros" description="Comunidade retrô games fortalecidos"/>
 
                 <ul class="mx-auto grid lg:gap-3 sm:grid-cols-2 md:grid-cols-4 max-w-lg md:max-w-max px-5">
                     @foreach($channels as $channel)
@@ -100,7 +100,7 @@
     <section class="bg-white dark:bg-gray-900">
         <div class="mx-auto w-full max-w-7xl px-5 py-16 md:px-10 md:py-20">
             <div class="flex flex-col items-center">
-                <x-partials.header-section
+                <x-partials.title-section
                     title="{{($posts->count() != null ? 'Últimas postagens':'Trabalhando em novos conteúdos')}}"
                     description="{{($posts->count() != null ? 'Veja algumas das últimas novidades criadas':'')}}"/>
 

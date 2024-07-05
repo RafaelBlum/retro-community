@@ -1,7 +1,7 @@
 <x-layout>
 
 
-    <x-partials.header-navbar/>
+    <x-partials.navbar-section/>
 
     {{--  HEADER HOME  --}}
     <section class="bg-white dark:bg-gray-900">
@@ -27,7 +27,7 @@
     <section class="bg-white dark:bg-gray-900">
         <div class="mx-auto w-full max-w-7xl px-5 py-16 md:px-10 md:py-20">
             <div class="flex flex-col items-center">
-                <x-partials.header-section
+                <x-partials.title-section
                     title="{{($posts->count() != null ? 'Blog community retrô':'Trabalhando em novos conteúdos')}}"
                     description="{{($posts->count() != null ? 'Não fique de fora das últimas novidades!':'')}}"/>
 
