@@ -8,6 +8,7 @@ use App\Filament\Resources\UserResource\Pages;
 use App\Filament\Resources\UserResource\RelationManagers;
 use App\Models\Post;
 use App\Models\User;
+use Filament\Forms\Components\ColorPicker;
 use Filament\Forms\Components\DatePicker;
 use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\Grid;
@@ -143,6 +144,8 @@ class UserResource extends Resource
                                             ->label('Link canal do Youtube')
                                             ->prefix('https://www.youtube.com/@')->suffixIcon('heroicon-m-globe-alt')
                                             ->required(),
+
+                                        ColorPicker::make('color')
                                     ])->columnSpan(7),
                             ]),
                         ]),

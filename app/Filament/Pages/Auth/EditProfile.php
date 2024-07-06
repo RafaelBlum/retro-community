@@ -5,6 +5,7 @@ namespace App\Filament\Pages\Auth;
 use App\Enums\MaritalStatusEnum;
 use Filament\Actions\Action;
 use Filament\Facades\Filament;
+use Filament\Forms\Components\ColorPicker;
 use Filament\Forms\Components\DatePicker;
 use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\Grid;
@@ -119,6 +120,8 @@ class EditProfile extends BaseEditProfile
                                             ->label('Link canal do Youtube')
                                             ->prefix('https://www.youtube.com/@')->suffixIcon('heroicon-m-globe-alt')
                                             ->required(),
+
+                                        ColorPicker::make('color')
                                     ])->columnSpan(7),
                                 ]),
                             ]),

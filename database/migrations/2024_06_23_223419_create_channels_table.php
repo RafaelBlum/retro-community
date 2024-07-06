@@ -18,7 +18,6 @@ return new class extends Migration
             $table->string('name');
             $table->string('link')->nullable();
             $table->string('brand')->default('default-brand.png');
-            $table->string('color')->default('ffffff');
             $table->timestamps();
         });
     }
