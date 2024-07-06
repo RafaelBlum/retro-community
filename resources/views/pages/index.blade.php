@@ -60,12 +60,16 @@
                                             </ul>
 
                                             <div class="flex">
-                                                <img src="{{Storage::url($post->author->channel->brand)}}" alt="" class="mr-4 h-10 w-10 p-[0.1875rem] rounded-full ring-1 ring-slate-900/10 shadow overflow-hidden flex-none dark:bg-indigo-500 dark:highlight-white/20" />
+                                                <a href="{{'https://www.youtube.com/@' . $post->author->channel->link}}" target="_blank" class="font-light text-white dark:text-white hover:underline">
+                                                    <img src="{{Storage::url($post->author->channel->brand)}}" alt="" class="mr-4 h-10 w-10 p-[0.1875rem] rounded-full ring-1 ring-slate-900/10 shadow overflow-hidden flex-none dark:bg-indigo-500 dark:highlight-white/20" />
+                                                </a>
                                                 <div class="flex flex-col">
-                                                    <h6 class="text-base font-bold">Canal {{$post->author->channel->name}}</h6>
-                                                    <div class="flex flex-col lg:flex-row">
-                                                        <p class="text-sm text-gray-500">{{$post->author->channel->title}}</p>
-                                                    </div>
+                                                    <a href="{{route('my.channel', ['channel'=> $post->author->channel])}}" class="text-purple-600 dark:text-purple-500 hover:underline">
+                                                        {{$post->author->channel->title}}
+                                                    </a>
+                                                    <a href="{{'https://www.youtube.com/@' . $post->author->channel->link}}" target="_blank" class="font-light text-white dark:text-white hover:underline">
+                                                        {{$post->author->channel->name}}
+                                                    </a>
                                                 </div>
                                             </div>
                                         </div>
@@ -88,12 +92,16 @@
                                             <p class="mb-4 text-xl font-semibold text-gray-900 dark:text-white"> {{$post->title}} </p>
                                             <p class="mb-6 text-sm text-gray-900 dark:text-white sm:text-base lg:mb-8"> {!! $post->summary !!} </p>
                                             <div class="flex">
-                                                <img src="{{Storage::url($post->author->channel->brand)}}" alt="" class="mr-4 h-10 w-10 p-[0.1875rem] rounded-full ring-1 ring-slate-900/10 shadow overflow-hidden flex-none dark:bg-indigo-500 dark:highlight-white/20" />
+                                                <a href="{{'https://www.youtube.com/@' . $post->author->channel->link}}" target="_blank" class="font-light text-white dark:text-white hover:underline">
+                                                    <img src="{{Storage::url($post->author->channel->brand)}}" alt="" class="mr-4 h-10 w-10 p-[0.1875rem] rounded-full ring-1 ring-slate-900/10 shadow overflow-hidden flex-none dark:bg-indigo-500 dark:highlight-white/20" />
+                                                </a>
                                                 <div class="flex flex-col">
-                                                    <h6 class="text-base font-bold">Canal {{$post->author->channel->name}}</h6>
-                                                    <div class="flex flex-col lg:flex-row">
-                                                        <p class="text-sm text-gray-500">{{$post->author->channel->title}}</p>
-                                                    </div>
+                                                    <a href="{{route('my.channel', ['channel'=> $post->author->channel])}}" class="text-purple-600 dark:text-purple-500 hover:underline">
+                                                        {{$post->author->channel->title}}
+                                                    </a>
+                                                    <a href="{{'https://www.youtube.com/@' . $post->author->channel->link}}" target="_blank" class="font-light text-white dark:text-white hover:underline">
+                                                        {{$post->author->channel->name}}
+                                                    </a>
                                                 </div>
                                             </div>
                                         </div>
@@ -140,13 +148,9 @@
                                 @endforeach
                             </div>
 
-                            @if($posts->count() <= 3)
-                                <x-partials.btn-actions href="{{route('posts.index')}}" btn>
-                                    Ver mais
-                                </x-partials.btn-actions>
-                           @endif
-                    @endif
 
+                    @endif
+                     {{ $posts->links('components.partials.paginate') }}
                 @else
 
                     <div class="max-w-screen-xl px-4 py-8 mx-auto text-center lg:py-24 lg:px-6">
