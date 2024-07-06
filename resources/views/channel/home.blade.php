@@ -3,6 +3,34 @@
 
     <x-partials.navbar-section/>
 
+    <!-- component -->
+    <section>
+        <div class="bg-black text-white py-20">
+            <div class="container mx-auto flex flex-col md:flex-row items-center my-12 md:my-24">
+                <div class="flex flex-col w-full lg:w-1/3 justify-center items-start p-8">
+                    <h1 class="text-3xl md:text-5xl p-2 text-yellow-300 tracking-loose">TechFest</h1>
+                    <h2 class="text-3xl md:text-5xl leading-relaxed md:leading-snug mb-2">Space : The Timeless Infinity
+                    </h2>
+                    <p class="text-sm md:text-base text-gray-50 mb-4">Explore your favourite events and
+                        register now to showcase your talent and win exciting prizes.</p>
+                    <a href="#"
+                       class="bg-transparent hover:bg-yellow-300 text-yellow-300 hover:text-black rounded shadow hover:shadow-lg py-2 px-4 border border-yellow-300 hover:border-transparent">
+                        Explore Now</a>
+                </div>
+                <div class="p-8 mt-12 mb-6 md:mb-0 md:mt-0 ml-0 md:ml-12 lg:w-2/3  justify-center">
+                    <div class="h-48 flex flex-wrap content-center">
+                        <div>
+                            <img class="inline-block mt-28 hidden xl:block" src="https://user-images.githubusercontent.com/54521023/116969935-c13d5b00-acd4-11eb-82b1-5ad2ff10fb76.png"></div>
+                        <div>
+                            <img class="inline-block mt-24 md:mt-0 p-8 md:p-0"  src="https://user-images.githubusercontent.com/54521023/116969931-bedb0100-acd4-11eb-99a9-ff5e0ee9f31f.png"></div>
+                        <div>
+                            <img class="inline-block mt-28 hidden lg:block" src="https://user-images.githubusercontent.com/54521023/116969939-c1d5f180-acd4-11eb-8ad4-9ab9143bdb50.png"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
     {{--  HEADER HOME  --}}
     <section class="bg-white dark:bg-gray-900">
         <div class="grid max-w-screen-xl px-4 pt-20 pb-8 mx-auto lg:gap-8 xl:gap-0 lg:py-16 lg:grid-cols-12 lg:pt-28">
@@ -29,9 +57,10 @@
                 </div>
             </div>
         </div>
+
     </section>
 
-    <section class="bg-gray-50 dark:bg-gray-800">
+    <section class="bg-gray-50 dark:bg-gray-800 -mt-20">
         <div class="gap-16 items-center py-8 px-4 mx-auto max-w-screen-xl lg:grid lg:grid-cols-2 lg:py-16 lg:px-6">
             <div class="font-light text-gray-500 sm:text-lg dark:text-gray-400">
                 <h2 class="mb-4 text-4xl tracking-tight font-extrabold text-gray-900 dark:text-white">We didn't reinvent the wheel</h2>
@@ -39,8 +68,121 @@
                 <p>We are strategists, designers and developers. Innovators and problem solvers. Small enough to be simple and quick.</p>
             </div>
             <div class="grid grid-cols-2 gap-4 mt-8">
-                <img class="w-full rounded-lg" src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/content/office-long-2.png" alt="office content 1">
-                <img class="mt-4 w-full lg:mt-10 rounded-lg" src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/content/office-long-1.png" alt="office content 2">
+{{--                <img class="w-full rounded-lg" src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/content/office-long-2.png" alt="office content 1">--}}
+{{--                <img class="mt-4 w-full lg:mt-10 rounded-lg" src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/content/office-long-1.png" alt="office content 2">--}}
+                <div class="relative flex flex-col items-center rounded-[20px] w-[400px] mx-auto p-4 bg-white bg-clip-border shadow-3xl shadow-shadow-500 dark:!bg-navy-800 dark:text-white dark:!shadow-none">
+                    <div class="relative flex h-32 w-full justify-center rounded-xl bg-cover" >
+                        <img src='https://horizon-tailwind-react-git-tailwind-components-horizon-ui.vercel.app/static/media/banner.ef572d78f29b0fee0a09.png' class="absolute flex h-32 w-full justify-center rounded-xl bg-cover">
+                        <div class="absolute -bottom-12 flex h-[87px] w-[87px] items-center justify-center rounded-full border-[4px] border-white bg-pink-400 dark:!border-navy-700">
+                            <img class="h-full w-full rounded-full" src='https://horizon-tailwind-react-git-tailwind-components-horizon-ui.vercel.app/static/media/avatar11.1060b63041fdffa5f8ef.png' alt="" />
+                        </div>
+                    </div>
+                    <div class="mt-16 flex flex-col items-center">
+                        <h4 class="text-xl font-bold text-navy-700 dark:text-white">
+                            Adela Parkson
+                        </h4>
+                        <p class="text-base font-normal text-gray-600">Product Manager</p>
+                    </div>
+                    <div class="mt-6 mb-3 flex gap-14 md:!gap-14">
+                        <div class="flex flex-col items-center justify-center">
+                            <p class="text-2xl font-bold text-navy-700 dark:text-white">17</p>
+                            <p class="text-sm font-normal text-gray-600">Posts</p>
+                        </div>
+                        <div class="flex flex-col items-center justify-center">
+                            <p class="text-2xl font-bold text-navy-700 dark:text-white">
+                                9.7K
+                            </p>
+                            <p class="text-sm font-normal text-gray-600">Followers</p>
+                        </div>
+                        <div class="flex flex-col items-center justify-center">
+                            <p class="text-2xl font-bold text-navy-700 dark:text-white">
+                                434
+                            </p>
+                            <p class="text-sm font-normal text-gray-600">Following</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <section class="bg-gray-50 dark:bg-gray-800">
+        <div class="mx-auto w-full max-w-7xl px-5 py-16 md:px-10 md:py-20">
+            <div class="overflow-x-hidden">
+                <div class="px-6 py-8">
+                    <div class="container flex justify-between mx-auto">
+                        <div class="w-full lg:w-8/12">
+                            <div class="flex items-center justify-between">
+                                <h1 class="text-xl font-bold text-gray-700 md:text-2xl">Post</h1>
+                            </div>
+
+                            <div class="mt-6">
+                                <div class="max-w-4xl px-10 py-6 mx-auto bg-white rounded-lg shadow-md">
+                                    <div class="flex items-center justify-between"><span class="font-light text-gray-600">Jun 1,
+                                2020</span><a href="#"
+                                              class="px-2 py-1 font-bold text-gray-100 bg-gray-600 rounded hover:bg-gray-500">Laravel</a>
+                                    </div>
+                                    <div class="mt-2"><a href="#" class="text-2xl font-bold text-gray-700 hover:underline">Build
+                                            Your New Idea with Laravel Freamwork.</a>
+                                        <p class="mt-2 text-gray-600">Lorem ipsum dolor sit, amet consectetur adipisicing elit.
+                                            Tempora expedita dicta totam aspernatur doloremque. Excepturi iste iusto eos enim
+                                            reprehenderit nisi, accusamus delectus nihil quis facere in modi ratione libero!</p>
+                                    </div>
+                                    <div class="flex items-center justify-between mt-4"><a href="#"
+                                                                                           class="text-blue-500 hover:underline">Read more</a>
+                                        <div><a href="#" class="flex items-center"><img
+                                                    src="https://images.unsplash.com/photo-1492562080023-ab3db95bfbce?ixlib=rb-1.2.1&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=crop&amp;w=731&amp;q=80"
+                                                    alt="avatar" class="hidden object-cover w-10 h-10 mx-4 rounded-full sm:block">
+                                                <h1 class="font-bold text-gray-700 hover:underline">Alex John</h1>
+                                            </a></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="hidden w-4/12 -mx-8 lg:block">
+                            <div class="px-8">
+                                <h1 class="mb-4 text-xl font-bold text-gray-700">Authors</h1>
+                                <div class="flex flex-col max-w-sm px-6 py-4 mx-auto bg-white rounded-lg shadow-md">
+                                    <ul class="-mx-4">
+                                        <li class="flex items-center"><img
+                                                src="https://images.unsplash.com/photo-1492562080023-ab3db95bfbce?ixlib=rb-1.2.1&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=crop&amp;w=731&amp;q=80"
+                                                alt="avatar" class="object-cover w-10 h-10 mx-4 rounded-full">
+                                            <p><a href="#" class="mx-1 font-bold text-gray-700 hover:underline">Alex John</a><span
+                                                    class="text-sm font-light text-gray-700">Created 23 Posts</span></p>
+                                        </li>
+                                        <li class="flex items-center mt-6"><img
+                                                src="https://images.unsplash.com/photo-1464863979621-258859e62245?ixlib=rb-1.2.1&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=crop&amp;w=333&amp;q=80"
+                                                alt="avatar" class="object-cover w-10 h-10 mx-4 rounded-full">
+                                            <p><a href="#" class="mx-1 font-bold text-gray-700 hover:underline">Jane Doe</a><span
+                                                    class="text-sm font-light text-gray-700">Created 52 Posts</span></p>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <section class="bg-gray-50 dark:bg-gray-800">
+        <div class="mx-auto w-full max-w-7xl px-5 py-16 md:px-10 md:py-20">
+            <div class="flex items-center justify-center mt-2">
+                @foreach($posts as $post)
+                    <a href="{{route('posts.post', ['post'=>$post])}}" class="relative w-full h-60 bg-cover bg-center bg-no-repeat" style="background-image: url('{{Storage::url($post->featured_image_url)}}');">
+                        <div class="absolute bottom-1 left-1 flex gap-1 text-white text-xs items-center">
+                            <svg class="ml-4 mr-1 justify-center" style="width:20px;height:20px" viewBox="0 0 24 24">
+                                <path fill="currentColor" d="M12,9A3,3 0 0,0 9,12A3,3 0 0,0 12,15A3,3 0 0,0 15,12A3,3 0 0,0 12,9M12,17A5,5 0 0,1 7,12A5,5 0 0,1 12,7A5,5 0 0,1 17,12A5,5 0 0,1 12,17M12,4.5C7,4.5 2.73,7.61 1,12C2.73,16.39 7,19.5 12,19.5C17,19.5 21.27,16.39 23,12C21.27,7.61 17,4.5 12,4.5Z" />
+                            </svg>
+                            <span>{{$post->views}}</span>
+                        </div>
+                    </a>
+                @endforeach
             </div>
         </div>
     </section>

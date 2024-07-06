@@ -14,7 +14,7 @@ class PostController extends Controller
     public function index()
     {
         try {
-            $posts = Post::where('status', '=', 'PUBLISHED')->orWhere('scheduled_for', '<', now())->paginate(1)->fragment('posts');
+            $posts = Post::where('status', '=', 'PUBLISHED')->orWhere('scheduled_for', '<', now())->paginate(2)->fragment('posts');
             $categories = Category::all();
 
             return view('pages.index', compact('posts', 'categories'));

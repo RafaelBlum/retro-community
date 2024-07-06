@@ -17,7 +17,7 @@
                     <img src="{{ asset('images/hero-3.png') }}" alt="hero image" class="up relative inset-0 w-full h-full object-cover z-10">
                     <img src="{{ asset('images/hero-7.png') }}" alt="hero image" class="vertical-loop-animation m-4 header_img_2 absolute inset-0 w-auto object-cover z-20">
                     <img src="{{ asset('images/hero-9.png') }}" alt="hero image" class="vertical-loop-animation-img m-4 header_img_2 absolute inset-0 w-auto object-cover z-15">
-
+                    <img width="800" height="600" class="mx-auto mt-12 h-52 w-52 rounded-lg border p-2 md:mt-0" src="https://widget.livepix.gg/embed/2f773f7c-5073-425b-8b13-359f2f650a89" alt="step" />
                 </div>
             </div>
         </div>
@@ -47,7 +47,9 @@
                                     <div class="items-center gap-8 lg:grid lg:grid-cols-2 xl:gap-16">
                                         <div class="text-gray-500 sm:text-lg dark:text-gray-400">
                                             <a href="{{route('posts.post', ['post'=>$post])}}" class="mb-4 text-3xl font-extrabold tracking-tight text-gray-900 dark:text-white">{{$post->title}}</a>
-                                            <p class="mb-8 font-light lg:text-xl text-gray-900 dark:text-white"> {!!$post->content!!} </p>
+                                            <p class="line-clamp-3 lg:line-clamp-6 mb-8 font-light lg:text-xl text-gray-900 dark:text-white">
+                                                {!! $post->summary !!}
+                                            </p>
 
                                             <ul role="list" class="pt-8 space-y-5 border-t border-gray-200 my-7 dark:border-gray-700">
                                                 <li class="flex space-x-3">
@@ -60,14 +62,14 @@
                                             </ul>
 
                                             <div class="flex">
-                                                <a href="{{'https://www.youtube.com/@' . $post->author->channel->link}}" target="_blank" class="font-light text-white dark:text-white hover:underline">
-                                                    <img src="{{Storage::url($post->author->channel->brand)}}" alt="" class="mr-4 h-10 w-10 p-[0.1875rem] rounded-full ring-1 ring-slate-900/10 shadow overflow-hidden flex-none dark:bg-indigo-500 dark:highlight-white/20" />
+                                                <a href="{{'https://www.youtube.com/@' . $post->author->channel->link}}" target="_blank" class="font-light text-gray-900 dark:text-white hover:underline">
+                                                    <img src="{{Storage::url($post->author->channel->brand)}}" alt="" class="mr-4 h-12 w-12 p-[0.1875rem] rounded-full ring-1 ring-slate-900/10 shadow overflow-hidden flex-none dark:bg-indigo-500 dark:highlight-white/20" />
                                                 </a>
                                                 <div class="flex flex-col">
                                                     <a href="{{route('my.channel', ['channel'=> $post->author->channel])}}" class="text-purple-600 dark:text-purple-500 hover:underline">
                                                         {{$post->author->channel->title}}
                                                     </a>
-                                                    <a href="{{'https://www.youtube.com/@' . $post->author->channel->link}}" target="_blank" class="font-light text-white dark:text-white hover:underline">
+                                                    <a href="{{'https://www.youtube.com/@' . $post->author->channel->link}}" target="_blank" class="font-light hover:underline">
                                                         {{$post->author->channel->name}}
                                                     </a>
                                                 </div>
@@ -90,7 +92,9 @@
                                                 {{$post->category->name}}
                                             </a>
                                             <p class="mb-4 text-xl font-semibold text-gray-900 dark:text-white"> {{$post->title}} </p>
-                                            <p class="mb-6 text-sm text-gray-900 dark:text-white sm:text-base lg:mb-8"> {!! $post->summary !!} </p>
+                                            <p class="line-clamp-3 lg:line-clamp-6 mb-8 font-light lg:text-xl text-gray-900 dark:text-white">
+                                                {!! $post->summary !!}
+                                            </p>
                                             <div class="flex">
                                                 <a href="{{'https://www.youtube.com/@' . $post->author->channel->link}}" target="_blank" class="font-light text-white dark:text-white hover:underline">
                                                     <img src="{{Storage::url($post->author->channel->brand)}}" alt="" class="mr-4 h-10 w-10 p-[0.1875rem] rounded-full ring-1 ring-slate-900/10 shadow overflow-hidden flex-none dark:bg-indigo-500 dark:highlight-white/20" />
