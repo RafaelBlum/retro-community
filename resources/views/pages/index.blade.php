@@ -17,7 +17,6 @@
                     <img src="{{ asset('images/hero-3.png') }}" alt="hero image" class="up relative inset-0 w-full h-full object-cover z-10">
                     <img src="{{ asset('images/hero-7.png') }}" alt="hero image" class="vertical-loop-animation m-4 header_img_2 absolute inset-0 w-auto object-cover z-20">
                     <img src="{{ asset('images/hero-9.png') }}" alt="hero image" class="vertical-loop-animation-img m-4 header_img_2 absolute inset-0 w-auto object-cover z-15">
-                    <img width="800" height="600" class="mx-auto mt-12 h-52 w-52 rounded-lg border p-2 md:mt-0" src="https://widget.livepix.gg/embed/2f773f7c-5073-425b-8b13-359f2f650a89" alt="step" />
                 </div>
             </div>
         </div>
