@@ -121,7 +121,12 @@ class EditProfile extends BaseEditProfile
                                             ->prefix('https://www.youtube.com/@')->suffixIcon('heroicon-m-globe-alt')
                                             ->required(),
 
-                                        ColorPicker::make('color')
+                                        ColorPicker::make('color'),
+
+                                        Textarea::make('description')
+                                            ->label('Descrição canal')
+                                            ->maxLength(255),
+
                                     ])->columnSpan(7),
                                 ]),
                             ]),

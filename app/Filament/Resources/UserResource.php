@@ -140,12 +140,25 @@ class UserResource extends Resource
                                             ])->columnSpan(2),
                                         ])->columnSpanFull(),
 
-                                        TextInput::make('link')
-                                            ->label('Link canal do Youtube')
-                                            ->prefix('https://www.youtube.com/@')->suffixIcon('heroicon-m-globe-alt')
-                                            ->required(),
 
-                                        ColorPicker::make('color')
+
+                                        Grid::make(4)->schema([
+                                            Group::make()->schema([
+                                                TextInput::make('link')
+                                                    ->label('Link canal do Youtube')
+                                                    ->prefix('https://www.youtube.com/@')->suffixIcon('heroicon-m-globe-alt')
+                                                    ->required(),
+                                            ])->columnSpan(3),
+
+                                            Group::make()->schema([
+                                                ColorPicker::make('Cor'),
+                                            ])->columnSpan(1),
+                                        ])->columnSpanFull(),
+
+                                        Textarea::make('description')
+                                            ->label('Descrição')
+                                            ->maxLength(255),
+
                                     ])->columnSpan(7),
                             ]),
                         ]),

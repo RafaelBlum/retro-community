@@ -5,6 +5,7 @@ namespace App\Filament\Resources\UserResource\Pages;
 use App\Filament\Resources\UserResource;
 use Filament\Notifications\Notification;
 use Filament\Resources\Pages\CreateRecord;
+use Illuminate\Support\Str;
 
 class CreateUser extends CreateRecord
 {
@@ -23,6 +24,21 @@ class CreateUser extends CreateRecord
 
         ];
     }
+
+    protected function mutateFormDataBeforeCreate(array $data): array
+    {
+        //dd($data, $this->data);
+
+        $data['slug'] = Str::slug($this->data['channel']['link']);
+        dd($data, $this->data);
+        return $data;
+    }
+
+//    protected function beforeSave()
+//    {
+//        $data['slug'] = Str::slug($this->data['channel']['link']);
+//        dd($data['slug'], $this->data['channel']['link']);
+//    }
 
     protected function getCreatedNotification(): ?Notification
     {
