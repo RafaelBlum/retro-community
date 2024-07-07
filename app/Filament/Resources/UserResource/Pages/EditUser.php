@@ -13,6 +13,7 @@ use Illuminate\Http\Client\Request;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
 
 
 class EditUser extends EditRecord
@@ -44,6 +45,11 @@ class EditUser extends EditRecord
     protected function beforeSave()
     {
         $user = User::find($this->data['id']);
+
+        $user->channel->slug = $this->data['channel']['slug'] = Str::slug($this->data['channel']['link']);
+        $user->save();
+
+        //dd($user, $this->data['channel']);
 
         $brandImagem = array_values($this->data['channel']['brand'])[0];
         $caminhoDaImagem = array_values($this->data['avatar'])[0];
