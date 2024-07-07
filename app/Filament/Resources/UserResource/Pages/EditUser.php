@@ -3,6 +3,7 @@
 namespace App\Filament\Resources\UserResource\Pages;
 
 use App\Filament\Resources\UserResource;
+use App\Models\Channel;
 use App\Models\User;
 use Filament\Actions;
 use Filament\Actions\RestoreAction;
@@ -46,11 +47,6 @@ class EditUser extends EditRecord
     {
         $user = User::find($this->data['id']);
 
-        $user->channel->slug = $this->data['channel']['slug'] = Str::slug($this->data['channel']['link']);
-        $user->save();
-
-        //dd($user, $this->data['channel']);
-
         $brandImagem = array_values($this->data['channel']['brand'])[0];
         $caminhoDaImagem = array_values($this->data['avatar'])[0];
 
@@ -70,6 +66,18 @@ class EditUser extends EditRecord
             $this->getSavedNotification();
             return redirect(route('filament.admin.auth.login'));
         }
+    }
+
+    protected function afterSave()
+    {
+        $user = User::with('channel')->find($this->data['id']);
+        //$channel = Channel::query()->where('user_id', $this->data['id'])->get();
+
+
+
+        $user->channel->slug = "xxxxxxxx";
+        //dd($user->channel, $this->data);
+        $user->save();
     }
 
     protected function mutateFormDataBeforeFill(array $data): array
