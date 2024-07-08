@@ -28,8 +28,9 @@ class PostController extends Controller
     }
 
 
-    public function post(Post $post)
+    public function post($slug)
     {
+        $post = Post::where('slug', $slug)->firstOrFail();
         $post->views += 1;
         $post->save();
         return view('pages.post', compact('post'));

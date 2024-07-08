@@ -45,7 +45,7 @@
                                 @foreach($posts as $post)
                                     <div class="items-center gap-8 lg:grid lg:grid-cols-2 xl:gap-16">
                                         <div class="text-gray-500 sm:text-lg dark:text-gray-400">
-                                            <a href="{{route('posts.post', ['post'=>$post])}}" class="mb-4 text-3xl font-extrabold tracking-tight text-gray-900 dark:text-white">{{$post->title}}</a>
+                                            <a href="{{route('posts.post', ['slug'=>$post->slug])}}" class="mb-4 text-3xl font-extrabold tracking-tight text-gray-900 dark:text-white">{{$post->title}}</a>
                                             <p class="line-clamp-3 lg:line-clamp-6 mb-8 font-light lg:text-xl text-gray-900 dark:text-white">
                                                 {!! $post->summary !!}
                                             </p>
@@ -81,7 +81,7 @@
                         @elseif($posts->count() == 2)
                             <div class="mb-6 grid gap-2 sm:grid-cols-2 sm:justify-items-stretch md:mb-10 md:grid-cols-2 lg:mb-12 lg:gap-6 up">
                                 @foreach($posts as $post)
-                                    <a href="{{route('posts.post', ['post'=>$post])}}" class="flex flex-col gap-4 px-4 py-8 md:p-0">
+                                    <a href="{{route('posts.post', ['slug'=>$post->slug])}}" class="flex flex-col gap-4 px-4 py-8 md:p-0">
                                         <img src="{{Storage::url($post->featured_image_url)}}" alt="" class="h-60 object-cover border rounded-md  border-solid border-gray-300 rounded-tl-md rounded-tr-md" />
 
 
@@ -115,7 +115,7 @@
                             <div class="mb-6 grid gap-4 sm:grid-cols-2 sm:justify-items-stretch md:mb-10 md:grid-cols-3 lg:mb-12 lg:gap-6 up">
                                 @foreach($posts as $post)
                                     <div class="flex flex-col gap-4 rounded-md border border-solid border-gray-300 px-4 py-8 md:p-0">
-                                        <a href="{{route('posts.post', ['post'=>$post])}}">
+                                        <a href="{{route('posts.post', ['slug'=>$post->slug])}}">
                                             <img src="{{Storage::url($post->featured_image_url)}}" alt="" class="h-auto object-cover rounded-tl-md rounded-tr-md" />
                                         </a>
                                         <div class="px-6 py-4 dark:text-white">

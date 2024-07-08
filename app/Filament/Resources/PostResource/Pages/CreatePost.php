@@ -35,7 +35,7 @@ class CreatePost extends CreateRecord
         }
 
         $data['user_id'] = auth()->id();
-        $data['slug'] = Str::slug($data['title']);
+        $data['slug'] = Str::slug($data['title'] . '-' . $data['id']);
         return $data;
     }
 

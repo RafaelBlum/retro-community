@@ -112,7 +112,7 @@
                                 @foreach($posts as $post)
                                     <div class="items-center gap-8 lg:grid lg:grid-cols-2 xl:gap-16">
                                         <div class="text-gray-500 sm:text-lg dark:text-gray-400">
-                                            <h2 class="mb-4 text-3xl font-extrabold tracking-tight text-gray-900 dark:text-white">{{$post->title}}</h2>
+                                            <a href="{{route('posts.post', ['slug'=>$post->slug])}}" class="mb-4 text-3xl font-extrabold tracking-tight text-gray-900 dark:text-white">{{$post->title}}</a>
                                             <p class="mb-8 font-light lg:text-xl text-gray-900 dark:text-white"> {!!$post->content!!} </p>
 
                                             <ul role="list" class="pt-8 space-y-5 border-t border-gray-200 my-7 dark:border-gray-700">
@@ -132,14 +132,16 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <img class="hidden w-full mb-4 rounded-lg lg:mb-0 lg:flex" src="{{Storage::url($post->featured_image_url)}}" alt="dashboard feature image">
+                                        <a href="{{route('posts.post', ['slug'=>$post->slug])}}">
+                                            <img class="hidden w-full mb-4 rounded-lg lg:mb-0 lg:flex" src="{{Storage::url($post->featured_image_url)}}" alt="dashboard feature image">
+                                        </a>
                                     </div>
                                 @endforeach
                             </div>
                         @elseif($posts->count() == 2)
                             <div class="mb-6 grid gap-2 sm:grid-cols-2 sm:justify-items-stretch md:mb-10 md:grid-cols-2 lg:mb-12 lg:gap-6 up">
                                 @foreach($posts as $post)
-                                    <a href="#" class="flex flex-col gap-4 rounded-md border border-solid border-gray-300 px-4 py-8 md:p-0">
+                                    <a href="{{route('posts.post', ['slug'=>$post->slug])}}" class="flex flex-col gap-4 rounded-md border border-solid border-gray-300 px-4 py-8 md:p-0">
                                         <img src="{{Storage::url($post->featured_image_url)}}" alt="" class="h-60 object-cover rounded-tl-md rounded-tr-md" />
                                         <div class="px-6 py-4 dark:text-white   ">
                                             <p class="mb-4 text-sm font-semibold uppercase text-fuchsia-700 dark:text-amber-400"> {{$post->category->name}} </p>
@@ -162,7 +164,7 @@
                             <div class="mb-6 grid gap-4 sm:grid-cols-2 sm:justify-items-stretch md:mb-10 md:grid-cols-3 lg:mb-12 lg:gap-6 up">
                                 @foreach($posts as $post)
                                     <div class="flex flex-col gap-4 rounded-md border border-solid border-gray-300 px-4 py-8 md:p-0">
-                                        <a href="{{route('posts.post', ['post'=>$post])}}">
+                                        <a href="{{route('posts.post', ['slug'=>$post->slug])}}">
                                             <img src="{{Storage::url($post->featured_image_url)}}" alt="" class="h-auto object-cover rounded-tl-md rounded-tr-md" />
                                         </a>
                                         <div class="px-6 py-4 dark:text-white">
@@ -171,7 +173,7 @@
                                                 {{$post->category->name}}
                                             </a>
 
-                                            <a href="{{route('posts.post', ['post'=>$post])}}">
+                                            <a href="{{route('posts.post', ['slug'=>$post->slug])}}">
                                                 <p class="mb-4 text-xl font-semibold"> {{Str::limit($post->title, 30)}}</p>
                                             </a>
 

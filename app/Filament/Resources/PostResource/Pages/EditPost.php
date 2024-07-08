@@ -57,7 +57,7 @@ class EditPost extends EditRecord
     protected function afterSave()
     {
         $post = Post::find($this->data['id']);
-        $post->slug = Str::slug($this->data['title']);
+        $post->slug = Str::slug($this->data['title'] . '-' . $this->data['id']);
         $post->save();
     }
 
