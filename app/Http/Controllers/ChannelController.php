@@ -8,14 +8,18 @@ use Illuminate\Http\Request;
 
 class ChannelController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
     public function index($slug)
     {
-        $channel = Channel::where('slug', $slug)->firstOrFail();
-        $posts = Post::where('user_id', '=', $channel->id)->get();
+        try{
+            $channel = Channel::where('slug', $slug)->firstOrFail();
+            $posts = Post::where('user_id', '=', $channel->id)->get();
 
-        return view('channel.home', compact('channel', 'posts'));
+            return view('channel.home', compact('channel', 'posts'));
+        }catch (\Exception $exception){
+            if(env('APP_DEBUG')){
+                return redirect()->back();
+            }
+            return redirect()->back();
+        }
     }
 }

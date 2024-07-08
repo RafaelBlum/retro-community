@@ -13,13 +13,16 @@ class CategoryController extends Controller
 
     public function index()
     {
-        //
+        try{
+            return '';
+        }catch (\Exception $exception){
+            if(env('APP_DEBUG')){
+                return redirect()->back();
+            }
+            return redirect()->back();
+        }
     }
 
-    /**
-     * 1. return: Traz somente publicados que estiverem dentro da data agendada
-     * 2. return: Traz os publicados E os não publicados, mas dentro da data agendada.
-    */
     public function searchPostsForCategory($slug)
     {
         try {

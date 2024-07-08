@@ -10,7 +10,6 @@ use MongoDB\Driver\Query;
 
 class PostController extends Controller
 {
-
     public function index()
     {
         try {
@@ -30,9 +29,16 @@ class PostController extends Controller
 
     public function post($slug)
     {
-        $post = Post::where('slug', $slug)->firstOrFail();
-        $post->views += 1;
-        $post->save();
-        return view('pages.post', compact('post'));
+        try{
+            $post = Post::where('slug', $slug)->firstOrFail();
+            $post->views += 1;
+            $post->save();
+            return view('pages.post', compact('post'));
+        }catch (\Exception $exception){
+            if(env('APP_DEBUG')){
+                return redirect()->back();
+            }
+            return redirect()->back();
+        }
     }
 }
