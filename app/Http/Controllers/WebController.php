@@ -18,9 +18,7 @@ class WebController extends Controller
             $channels = Channel::all();
             $grid = $channels->count();
 
-            if($campaign){
-                return ($campaign == true ? view('landing', compact('channels', 'grid')): view('campaign'));
-            }
+            return ($campaign == true ? view('landing', compact('channels', 'grid')): view('campaign'));
         }catch (\Exception $exception){
             if(env('APP_DEBUG')){
                 return redirect()->back();
