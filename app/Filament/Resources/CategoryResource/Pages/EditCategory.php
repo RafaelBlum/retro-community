@@ -7,6 +7,7 @@ use App\Models\Category;
 use Filament\Actions;
 use Filament\Notifications\Notification;
 use Filament\Resources\Pages\EditRecord;
+use Illuminate\Support\Str;
 
 class EditCategory extends EditRecord
 {
@@ -46,5 +47,12 @@ class EditCategory extends EditRecord
         return parent::getSavedNotification()
             ->title('Categoria editada com sucesso!')
             ->body($this->data['name']);
+    }
+
+    protected function afterSave()
+    {
+        $category = Category::find($this->data['id']);
+        $category->slug = Str::slug($this->data['name'] . '-' . $this->data['id']);
+        $category->save();
     }
 }

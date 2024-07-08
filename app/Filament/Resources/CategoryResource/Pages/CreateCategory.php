@@ -6,6 +6,7 @@ use App\Filament\Resources\CategoryResource;
 use Filament\Actions;
 use Filament\Notifications\Notification;
 use Filament\Resources\Pages\CreateRecord;
+use Illuminate\Support\Str;
 
 class CreateCategory extends CreateRecord
 {
@@ -38,5 +39,11 @@ class CreateCategory extends CreateRecord
         return parent::getCreatedNotification()
             ->title('Categoria criada com sucesso!')
             ->body($this->data['name']);
+    }
+
+    protected function mutateFormDataBeforeCreate(array $data): array
+    {
+        $data['slug'] = Str::slug($data['name'] . '-' . $data['id']);
+        return $data;
     }
 }
