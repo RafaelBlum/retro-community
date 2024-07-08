@@ -20,7 +20,8 @@ class Channel extends Model
         'description',
         'link',
         'brand',
-        'color'
+        'color',
+        'qrCode'
     ];
 
     public function user(): BelongsTo

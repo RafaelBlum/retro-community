@@ -25,21 +25,6 @@ class CreateUser extends CreateRecord
         ];
     }
 
-    protected function mutateFormDataBeforeCreate(array $data): array
-    {
-        //dd($data, $this->data);
-
-        $data['slug'] = Str::slug($this->data['channel']['link']);
-        dd($data, $this->data);
-        return $data;
-    }
-
-//    protected function beforeSave()
-//    {
-//        $data['slug'] = Str::slug($this->data['channel']['link']);
-//        dd($data['slug'], $this->data['channel']['link']);
-//    }
-
     protected function getCreatedNotification(): ?Notification
     {
         return parent::getCreatedNotification()

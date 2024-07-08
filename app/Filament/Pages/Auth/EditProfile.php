@@ -3,6 +3,7 @@
 namespace App\Filament\Pages\Auth;
 
 use App\Enums\MaritalStatusEnum;
+use App\Models\User;
 use Filament\Actions\Action;
 use Filament\Facades\Filament;
 use Filament\Forms\Components\ColorPicker;
@@ -24,6 +25,7 @@ use Filament\Pages\Auth\EditProfile as BaseEditProfile;
 use Filament\Pages\Page;
 use Filament\Support\Colors\Color;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Str;
 
 class EditProfile extends BaseEditProfile
 {
@@ -116,16 +118,34 @@ class EditProfile extends BaseEditProfile
                                             ])->columnSpan(2),
                                         ])->columnSpanFull(),
 
-                                        TextInput::make('link')
-                                            ->label('Link canal do Youtube')
-                                            ->prefix('https://www.youtube.com/@')->suffixIcon('heroicon-m-globe-alt')
-                                            ->required(),
 
-                                        ColorPicker::make('color'),
+
+                                        Grid::make(4)->schema([
+                                            Group::make()->schema([
+                                                TextInput::make('link')
+                                                    ->label('Link canal do Youtube')
+                                                    ->hintIcon('heroicon-m-question-mark-circle', tooltip: 'Adicione o nome do seu canal da URL sem "@"')
+                                                    ->hintColor(Color::Yellow)
+                                                    ->prefix('https://www.youtube.com/@')->suffixIcon('heroicon-m-globe-alt')
+                                                    ->required(),
+                                            ])->columnSpan(3),
+
+                                            Group::make()->schema([
+                                                ColorPicker::make('Cor'),
+                                            ])->columnSpan(1),
+                                        ])->columnSpanFull(),
 
                                         Textarea::make('description')
-                                            ->label('Descrição canal')
+                                            ->label('Descrição')
+                                            ->hintIcon('heroicon-m-question-mark-circle', tooltip: 'Descreva brevemente aqui sobre seu canal.')
+                                            ->hintColor(Color::Yellow)
                                             ->maxLength(255),
+
+                                        TextInput::make('qrCode')
+                                            ->label('Link livePix do seu canal')
+                                            ->hintIcon('heroicon-m-question-mark-circle', tooltip: 'Cole a URL do seu livePix, caso queira deixa fixado na página do seu canal')
+                                            ->hintColor(Color::Yellow)
+                                            ->suffixIcon('heroicon-m-qr-code'),
 
                                     ])->columnSpan(7),
                                 ]),
@@ -145,6 +165,14 @@ class EditProfile extends BaseEditProfile
     protected function hasFullWidthFormActions(): bool
     {
         return false;
+    }
+
+    protected function afterSave()
+    {
+        $user = User::with('channel')->findOrFail($this->data['id']);
+        $channel = $user->channel;
+        $user->channel->slug = Str::slug($this->data['channel']['link']) . '-' . $this->data['id'];
+        $user->channel()->save($channel);
     }
 
     public static function getSlug(): string

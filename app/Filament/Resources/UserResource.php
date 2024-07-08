@@ -146,6 +146,8 @@ class UserResource extends Resource
                                             Group::make()->schema([
                                                 TextInput::make('link')
                                                     ->label('Link canal do Youtube')
+                                                    ->hintIcon('heroicon-m-question-mark-circle', tooltip: 'Adicione o nome do seu canal da URL sem "@"')
+                                                    ->hintColor(Color::Yellow)
                                                     ->prefix('https://www.youtube.com/@')->suffixIcon('heroicon-m-globe-alt')
                                                     ->required(),
                                             ])->columnSpan(3),
@@ -157,7 +159,15 @@ class UserResource extends Resource
 
                                         Textarea::make('description')
                                             ->label('Descrição')
+                                            ->hintIcon('heroicon-m-question-mark-circle', tooltip: 'Descreva brevemente aqui sobre seu canal.')
+                                            ->hintColor(Color::Yellow)
                                             ->maxLength(255),
+
+                                        TextInput::make('qrCode')
+                                            ->label('Link livePix do seu canal')
+                                            ->hintIcon('heroicon-m-question-mark-circle', tooltip: 'Cole a URL do seu livePix, caso queira deixa fixado na página do seu canal')
+                                            ->hintColor(Color::Yellow)
+                                            ->suffixIcon('heroicon-m-qr-code'),
 
                                     ])->columnSpan(7),
                             ]),

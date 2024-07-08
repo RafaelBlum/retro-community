@@ -72,9 +72,6 @@ class EditUser extends EditRecord
     {
         $user = User::with('channel')->findOrFail($this->data['id']);
         $channel = $user->channel;
-
-
-
         $user->channel->slug = Str::slug($this->data['channel']['link']) . '-' . $this->data['id'];
         $user->channel()->save($channel);
     }
