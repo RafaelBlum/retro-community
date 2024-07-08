@@ -32,7 +32,7 @@
 
                 <div class="flex items-center space-x-4 mb-5">
                     @foreach($categories as $category)
-                        <a href="{{route('posts.category', ['category'=> $category])}}" class="text-gray-900 dark:text-white inline-block rounded border-2 border-gray-400 px-1 py-1 text-xs font-light uppercase leading-normal text-primary transition duration-150 ease-in-out hover:border-primary-accent-300 hover:bg-primary-50/50 hover:text-primary-accent-300 focus:border-primary-600 focus:bg-primary-50/50 focus:text-primary-600 focus:outline-none focus:ring-0 active:border-primary-700 active:text-primary-700 motion-reduce:transition-none dark:hover:bg-blue-950 dark:focus:bg-blue-950">
+                        <a href="{{route('posts.category', ['slug'=> $category->slug])}}" class="text-gray-900 dark:text-white inline-block rounded border-2 border-gray-400 px-1 py-1 text-xs font-light uppercase leading-normal text-primary transition duration-150 ease-in-out hover:border-primary-accent-300 hover:bg-primary-50/50 hover:text-primary-accent-300 focus:border-primary-600 focus:bg-primary-50/50 focus:text-primary-600 focus:outline-none focus:ring-0 active:border-primary-700 active:text-primary-700 motion-reduce:transition-none dark:hover:bg-blue-950 dark:focus:bg-blue-950">
                             {{$category->name}}
                         </a>
                     @endforeach
@@ -87,7 +87,7 @@
 
                                         <div class="px-6 py-4 dark:text-white">
 
-                                            <a href="{{route('posts.category', ['category'=> $post->category])}}" class="text-sm font-semibold uppercase text-fuchsia-700 dark:text-amber-400">
+                                            <a href="{{route('posts.category', ['slug'=> $post->category->slug])}}" class="text-sm font-semibold uppercase text-fuchsia-700 dark:text-amber-400">
                                                 {{$post->category->name}}
                                             </a>
                                             <p class="mb-4 text-xl font-semibold text-gray-900 dark:text-white"> {{$post->title}} </p>

@@ -20,11 +20,11 @@ class CategoryController extends Controller
      * 1. return: Traz somente publicados que estiverem dentro da data agendada
      * 2. return: Traz os publicados E os não publicados, mas dentro da data agendada.
     */
-    public function searchPostsForCategory(Category $category)
+    public function searchPostsForCategory($slug)
     {
         try {
+            $category = Category::where('slug', $slug)->firstOrFail();
             $posts = $category->posts()->where(function (Builder $query){
-                //return $query->where('status', 'PUBLISHED')->where('scheduled_for', '<=', now()); NÃO FUNCIONA ???
                 return $query->where('status', 'PUBLISHED')->orWhere('scheduled_for', '<=', now());
             })->paginate();
             $categories = Category::all();

@@ -129,7 +129,7 @@
 
 
 
-                                <a href="{{route('posts.category', ['category'=> $post->category])}}" class="text-sm text-center w-full px-3 py-1 mt-8 bg-blue-500 text-gray-100 dark:text-white rounded-md no-underline">
+                                <a href="{{route('posts.category', ['slug'=> $post->category->slug])}}" class="text-sm text-center w-full px-3 py-1 mt-8 bg-blue-500 text-gray-100 dark:text-white rounded-md no-underline">
                                     {{$post->category->name}}
                                 </a>
                             </div>

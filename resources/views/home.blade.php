@@ -169,7 +169,7 @@
                                         </a>
                                         <div class="px-6 py-4 dark:text-white">
 
-                                            <a href="{{route('posts.category', ['category'=> $post->category])}}" class="text-sm font-semibold uppercase text-fuchsia-700 dark:text-amber-400">
+                                            <a href="{{route('posts.category', ['slug'=> $post->category->slug])}}" class="text-sm font-semibold uppercase text-fuchsia-700 dark:text-amber-400">
                                                 {{$post->category->name}}
                                             </a>
 
