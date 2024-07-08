@@ -11,9 +11,11 @@ class ChannelController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index(Channel $channel)
+    public function index($slug)
     {
-        $posts = Post::where('user_id', '=', $channel->user->id)->get();
+        $channel = Channel::where('slug', $slug)->firstOrFail();
+        $posts = Post::where('user_id', '=', $channel->id)->get();
+
         return view('channel.home', compact('channel', 'posts'));
     }
 }

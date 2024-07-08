@@ -33,7 +33,7 @@
                     @foreach($channels as $channel)
                         <li class="mx-auto flex max-w-xs flex-col items-center gap-2 py-4 md:py-2 text-center up mx-10">
                             <img src="{{Storage::url($channel->brand)}}" alt="" class="w-20 h-20 p-1 rounded-full ring-1 ring-slate-900/10 shadow overflow-hidden flex-none dark:bg-indigo-500 dark:highlight-white/20" />
-                            <a href="{{route('my.channel', ['channel'=> $channel])}}" class="text-purple-600 dark:text-purple-500 hover:underline">
+                            <a href="{{route('my.channel', ['slug'=> $channel->slug])}}" class="text-purple-600 dark:text-purple-500 hover:underline">
                                 {{$channel->name}}
                             </a>
                             <a href="{{'https://www.youtube.com/@' . $channel->link}}" target="_blank" class="font-light text-white dark:text-white hover:underline">
@@ -185,7 +185,7 @@
                                                     <img src="{{Storage::url($post->author->channel->brand)}}" alt="" class="mr-4 h-10 w-10 p-[0.1875rem] rounded-full ring-1 ring-slate-900/10 shadow overflow-hidden flex-none dark:bg-indigo-500 dark:highlight-white/20" />
                                                 </a>
                                                 <div class="flex flex-col">
-                                                    <a href="{{route('my.channel', ['channel'=> $post->author->channel])}}" class="text-purple-600 dark:text-purple-500 hover:underline">
+                                                    <a href="{{route('my.channel', ['slug'=> $post->author->channel->slug])}}" class="text-purple-600 dark:text-purple-500 hover:underline">
                                                         {{$post->author->channel->title}}
                                                     </a>
                                                     <a href="{{'https://www.youtube.com/@' . $post->author->channel->link}}" target="_blank" class="font-light text-white dark:text-white hover:underline">

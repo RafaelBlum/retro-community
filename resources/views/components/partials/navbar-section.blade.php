@@ -21,7 +21,7 @@
                                 Logout
                             </x-partials.link>
                         </form>
-                        <x-partials.link href="{{route('my.channel', ['channel'=> auth()->user()->channel])}}">
+                        <x-partials.link href="{{route('my.channel', ['slug'=> auth()->user()->channel->slug])}}">
                             <div class="flex justify-center text-center items-center">
                                 <img src="{{Storage::url(auth()->user()->channel->brand)}}" class="w-8 h-8 mr-3 rounded-full">
                                 <p class="text-center">{{auth()->user()->channel->name}}</p>
