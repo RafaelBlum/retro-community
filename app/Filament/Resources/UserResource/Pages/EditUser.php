@@ -70,14 +70,13 @@ class EditUser extends EditRecord
 
     protected function afterSave()
     {
-        $user = User::with('channel')->find($this->data['id']);
-        //$channel = Channel::query()->where('user_id', $this->data['id'])->get();
+        $user = User::with('channel')->findOrFail($this->data['id']);
+        $channel = $user->channel;
 
 
 
-        $user->channel->slug = "xxxxxxxx";
-        //dd($user->channel, $this->data);
-        $user->save();
+        $user->channel->slug = Str::slug($this->data['channel']['link']) . '-' . $this->data['id'];
+        $user->channel()->save($channel);
     }
 
     protected function mutateFormDataBeforeFill(array $data): array
