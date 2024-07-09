@@ -18,6 +18,7 @@ class CampaingResource extends Resource
     protected static ?string $model = Campaing::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?string $modelLabel = "Campanha";
 
     public static function form(Form $form): Form
     {

@@ -5,19 +5,28 @@ namespace App\Filament\Resources;
 use App\Filament\Resources\ChannelResource\Pages;
 use App\Filament\Resources\ChannelResource\RelationManagers;
 use App\Models\Channel;
+use App\Models\User;
 use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
+use Filament\Tables\Actions\DeleteAction;
+use Filament\Tables\Actions\EditAction;
+use Filament\Tables\Actions\ViewAction;
+use Filament\Tables\Columns\ImageColumn;
+use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
+use Illuminate\Support\Facades\Storage;
 
 class ChannelResource extends Resource
 {
     protected static ?string $model = Channel::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?string $pluralModelLabel = "Canais";
+    protected static ?string $modelLabel = "Canal";
 
     public static function form(Form $form): Form
     {
@@ -58,37 +67,39 @@ class ChannelResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('user.name')
-                    ->numeric()
-                    ->sortable(),
-                Tables\Columns\TextColumn::make('slug')
-                    ->searchable(),
-                Tables\Columns\TextColumn::make('title')
-                    ->searchable(),
-                Tables\Columns\TextColumn::make('name')
-                    ->searchable(),
-                Tables\Columns\TextColumn::make('link')
-                    ->searchable(),
-                Tables\Columns\TextColumn::make('brand')
-                    ->searchable(),
-                Tables\Columns\TextColumn::make('color')
-                    ->searchable(),
-                Tables\Columns\TextColumn::make('created_at')
-                    ->dateTime()
-                    ->sortable()
-                    ->toggleable(isToggledHiddenByDefault: true),
-                Tables\Columns\TextColumn::make('updated_at')
-                    ->dateTime()
-                    ->sortable()
-                    ->toggleable(isToggledHiddenByDefault: true),
-                Tables\Columns\TextColumn::make('qrCode')
-                    ->searchable(),
+                ImageColumn::make('brand')
+                    ->circular()
+                    ->label(''),
+
+                TextColumn::make('name')
+                    ->label('Canal')
+                    ->description(fn(Channel $record) => $record->title),
+
+                TextColumn::make('user.name')
+                    ->label('Usuário'),
+
+                TextColumn::make('link'),
+
             ])
             ->filters([
                 //
             ])
             ->actions([
-                Tables\Actions\EditAction::make(),
+                Tables\Actions\ActionGroup::make([
+                    EditAction::make(),
+                    DeleteAction::make()
+                        ->action(function(Channel $record) {
+                            if($record->brand != 'default-brand.png'){
+                                Storage::delete('public/' . $record->brand);
+                            }
+                            $record->delete();
+                        })
+                        ->requiresConfirmation()
+                        ->modalHeading('Deletar ' . static::$modelLabel)
+                        ->modalDescription('Tem certeza de que deseja excluir este ' . static::$modelLabel . '? Isto não pode ser desfeito.')
+                        ->modalSubmitActionLabel('Sim, deletar!'),
+                    ViewAction::make(),
+                ])->tooltip("Menu")
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
@@ -100,7 +111,7 @@ class ChannelResource extends Resource
     public static function getRelations(): array
     {
         return [
-            RelationManagers\ChannelRelationManager::class
+            //
         ];
     }
 
