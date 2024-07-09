@@ -47,48 +47,48 @@
     </section>
 
     {{--  SECTION ?????  --}}
-    <section class="bg-white dark:bg-gray-900">
+    <section class="bg-white dark:bg-gray-900 text-gray-900 dark:text-white">
         <div class="mx-auto w-full max-w-7xl px-5 py-16 md:px-10 md:py-20">
 
             <div class="flex flex-wrap -mx-4">
-                <!-- Category 1 -->
+
                 <div class="w-full sm:w-1/3 px-4 mb-8 up">
                     <div class="category-banner relative overflow-hidden rounded-lg shadow-lg group">
                         <img src="{{ asset('images/feature-2.png') }}" alt="Category 2" class="w-full h-auto opacity-10">
                         <div class="absolute inset-0 bg-gray-light bg-opacity-50"></div>
                         <div
-                            class="absolute inset-0 flex flex-col items-center justify-center text-center text-white p-4">
+                            class="absolute inset-0 flex flex-col items-center justify-center text-center p-4">
                             <h2 class="text-2xl md:text-3xl font-bold mb-4">Men</h2>
                             <a href="/"
-                               class="bg-primary hover:bg-transparent border border-transparent hover:border-white text-white hover:text-white font-semibold px-4 py-2 rounded-full inline-block">Shop
+                               class="bg-primary hover:bg-transparent border border-transparent hover:border-amber-700 hover:dark:border-white hover:text-amber-700 hover:dark:hover:text-white font-semibold px-4 py-2 rounded-full inline-block">Shop
                                 now</a>
                         </div>
                     </div>
                 </div>
-                <!-- Category 2 -->
-                <div class="w-full sm:w-1/3 px-4 mb-8 down">
+
+                <div class="w-full sm:w-1/3 px-4 mb-8 up">
                     <div class="category-banner relative overflow-hidden rounded-lg shadow-lg group">
                         <img src="{{ asset('images/feature-2.png') }}" alt="Category 2" class="w-full h-auto opacity-10">
                         <div class="absolute inset-0 bg-gray-light bg-opacity-50"></div>
                         <div
-                            class="category-text absolute inset-0 flex flex-col items-center justify-center text-center text-white p-4 transition duration-300">
-                            <h2 class="text-2xl md:text-3xl font-bold mb-4">Women </h2>
+                            class="absolute inset-0 flex flex-col items-center justify-center text-center p-4">
+                            <h2 class="text-2xl md:text-3xl font-bold mb-4">Men</h2>
                             <a href="/"
-                               class="bg-primary hover:bg-transparent border border-transparent hover:border-white text-white hover:text-white font-semibold px-4 py-2 rounded-full inline-block">Shop
+                               class="bg-primary hover:bg-transparent border border-transparent hover:border-amber-700 hover:dark:border-white hover:text-amber-700 hover:dark:hover:text-white font-semibold px-4 py-2 rounded-full inline-block">Shop
                                 now</a>
                         </div>
                     </div>
                 </div>
-                <!-- Category 3 -->
+
                 <div class="w-full sm:w-1/3 px-4 mb-8 up">
                     <div class="category-banner relative overflow-hidden rounded-lg shadow-lg group">
-                        <img src="{{ asset('images/feature-2.png') }}" alt="Category 2" class="w-full h-auto opacity-10">>
+                        <img src="{{ asset('images/feature-2.png') }}" alt="Category 2" class="w-full h-auto opacity-10">
                         <div class="absolute inset-0 bg-gray-light bg-opacity-50"></div>
                         <div
-                            class="category-text absolute inset-0 flex flex-col items-center justify-center text-center text-white p-4 transition duration-300">
-                            <h2 class="text-2xl md:text-3xl font-bold mb-4">Accessories</h2>
+                            class="absolute inset-0 flex flex-col items-center justify-center text-center p-4">
+                            <h2 class="text-2xl md:text-3xl font-bold mb-4">Men</h2>
                             <a href="/"
-                               class="bg-primary hover:bg-transparent border border-transparent hover:border-white text-white hover:text-white font-semibold px-4 py-2 rounded-full inline-block">Shop
+                               class="bg-primary hover:bg-transparent border border-transparent hover:border-amber-700 hover:dark:border-white hover:text-amber-700 hover:dark:hover:text-white font-semibold px-4 py-2 rounded-full inline-block">Shop
                                 now</a>
                         </div>
                     </div>

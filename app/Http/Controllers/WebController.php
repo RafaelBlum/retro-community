@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Campaing;
 use App\Models\Channel;
 use App\Models\Post;
 use Illuminate\Http\Request;
@@ -10,15 +11,31 @@ use Illuminate\Support\Facades\Auth;
 class WebController extends Controller
 {
 
+    public function templateTest()
+    {
+        $channels = Channel::all();
+
+        $campings = Campaing::where('camping', true)->get();
+
+        $grid = $channels->count();
+        return view('campaings.template', compact('channels', 'campings', 'grid'));
+    }
+
     public function landing()
     {
         try{
-            $campaign = true;
 
             $channels = Channel::all();
+
+            $campings = Campaing::where('camping', true)->get();
+
             $grid = $channels->count();
 
-            return ($campaign == true ? view('landing', compact('channels', 'grid')): view('campaign'));
+            return (
+                    $campings->isEmpty() ?
+                        view('landing', compact('channels',  'grid')) :
+                        view('campaings.home-campaing', compact('channels', 'campings', 'grid'))
+            );
         }catch (\Exception $exception){
             if(env('APP_DEBUG')){
                 return redirect()->back();

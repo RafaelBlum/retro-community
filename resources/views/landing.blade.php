@@ -28,6 +28,7 @@
                     e até histórias curiosas e guias de gameplay. Além disso, o <em class="text-blue-400 bold">Retrô Community</em> mantém você atualizado
                     sobre campanhas, lançamentos, eventos e tendências.
                 </p>
+
                 <div class="mt-10 flex items-center justify-center gap-x-6">
                     <a href="{{route('app.home')}}" class="rounded-md bg-indigo-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
                         Saiba mais sobre

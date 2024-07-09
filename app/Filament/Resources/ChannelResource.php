@@ -92,11 +92,11 @@ class ChannelResource extends Resource
                             if($record->brand != 'default-brand.png'){
                                 Storage::delete('public/' . $record->brand);
                             }
-                            $record->delete();
+                            //$record->delete();
                         })
                         ->requiresConfirmation()
                         ->modalHeading('Deletar ' . static::$modelLabel)
-                        ->modalDescription('Tem certeza de que deseja excluir este ' . static::$modelLabel . '? Isto não pode ser desfeito.')
+                        ->modalDescription('Tem certeza de que deseja excluir este ' . static::$modelLabel . '? Com isto, você irá deletar o usuário e todas postagens e não pode ser desfeito.')
                         ->modalSubmitActionLabel('Sim, deletar!'),
                     ViewAction::make(),
                 ])->tooltip("Menu")

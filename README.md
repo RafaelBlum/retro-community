@@ -151,3 +151,5 @@ If you discover a security vulnerability within Laravel, please send an e-mail t
 
 > [!CAUTION]
 > Advises about risks or negative outcomes of certain actions.
+
+https://astrowind.vercel.app
