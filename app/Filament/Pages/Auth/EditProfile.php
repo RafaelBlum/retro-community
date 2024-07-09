@@ -150,6 +150,9 @@ class EditProfile extends BaseEditProfile
                                     ])->columnSpan(7),
                                 ]),
                             ]),
+                            Tab::make('Minha campanha')->icon('heroicon-m-banknotes')->schema([
+
+                            ]),
                         ])->columnSpanFull()->activeTab(1)->persistTabInQueryString(),
                     ]),
             ])->statePath('data')->columns([

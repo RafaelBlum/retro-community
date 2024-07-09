@@ -172,6 +172,9 @@ class UserResource extends Resource
                                     ])->columnSpan(7),
                             ]),
                         ]),
+                        Tab::make('Minha campanha')->icon('heroicon-m-identification')->schema([
+
+                        ]),
                     ])->columnSpanFull()->activeTab(1)->persistTabInQueryString(),
                 ]),
             ])->columns([
