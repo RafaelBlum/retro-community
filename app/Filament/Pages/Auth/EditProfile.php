@@ -146,7 +146,14 @@ class EditProfile extends BaseEditProfile
                                             ->hintIcon('heroicon-m-question-mark-circle', tooltip: 'Cole a URL do seu livePix, caso queira deixa fixado na página do seu canal')
                                             ->hintColor(Color::Yellow)
                                             ->suffixIcon('heroicon-m-qr-code'),
+                                        Select::make('channel_id')
+                                            ->relationship('camping', 'title')
+                                            ->searchable()
+                                            ->preload()
+                                            ->createOptionForm([
 
+                                            ])
+                                            ->required()
                                     ])->columnSpan(7),
                                 ]),
                             ]),

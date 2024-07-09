@@ -13,7 +13,7 @@ class CampaingPolicy
      */
     public function viewAny(User $user): bool
     {
-        //
+        return true;
     }
 
     /**
@@ -21,7 +21,7 @@ class CampaingPolicy
      */
     public function view(User $user, Campaing $campaing): bool
     {
-        //
+        return true;
     }
 
     /**
@@ -29,7 +29,7 @@ class CampaingPolicy
      */
     public function create(User $user): bool
     {
-        //
+        return true;
     }
 
     /**
@@ -37,7 +37,7 @@ class CampaingPolicy
      */
     public function update(User $user, Campaing $campaing): bool
     {
-        //
+        return true;
     }
 
     /**
@@ -45,7 +45,7 @@ class CampaingPolicy
      */
     public function delete(User $user, Campaing $campaing): bool
     {
-        //
+        return true;
     }
 
     /**
@@ -53,7 +53,7 @@ class CampaingPolicy
      */
     public function restore(User $user, Campaing $campaing): bool
     {
-        //
+        return true;
     }
 
     /**
@@ -61,6 +61,6 @@ class CampaingPolicy
      */
     public function forceDelete(User $user, Campaing $campaing): bool
     {
-        //
+        return true;
     }
 }
