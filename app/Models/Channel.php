@@ -30,7 +30,7 @@ class Channel extends Model
         return $this->belongsTo(User::class);
     }
 
-    public function channel(): HasOne
+    public function camping(): HasOne
     {
         return $this->hasOne(Campaing::class);
     }

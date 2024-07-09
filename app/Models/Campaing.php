@@ -22,7 +22,7 @@ class Campaing extends Model
         'image',
     ];
 
-    public function user(): BelongsTo
+    public function channel(): BelongsTo
     {
         return $this->belongsTo(Channel::class);
     }
