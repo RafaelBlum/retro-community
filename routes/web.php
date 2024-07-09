@@ -16,7 +16,7 @@ Route::fallback(function (){
 
 Route::get('/posts', [PostController::class, 'index'])->name('posts.index');
 Route::get('/posts/{slug}', [PostController::class, 'post'])->name('posts.post');
-Route::get('/category/{slug}', [CategoryController::class, 'searchPostsForCategory'])->name('posts.category');
+Route::get('/category/{slug}', [CategoryController::class, 'postsForCategory'])->name('posts.category');
 Route::get('/{slug}', [ChannelController::class, 'index'])->name('my.channel');
 
 Route::get('/login', function () {

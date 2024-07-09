@@ -14,7 +14,10 @@ class PostController extends Controller
     {
         try {
             $posts = Post::where('status', '=', 'PUBLISHED')->orWhere('scheduled_for', '<', now())->paginate(2)->fragment('posts');
-            $categories = Category::all();
+
+            $categories = Category::whereHas('posts', function ($query) {
+                $query->where('status', '=', 'PUBLISHED')->orWhere('scheduled_for', '<', now());
+            })->get();
 
             return view('pages.index', compact('posts', 'categories'));
         }catch (\Exception $exception){

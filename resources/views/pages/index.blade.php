@@ -30,12 +30,18 @@
                     title="{{($posts->count() != null ? 'Blog community retrô':'Trabalhando em novos conteúdos')}}"
                     description="{{($posts->count() != null ? 'Não fique de fora das últimas novidades!':'')}}"/>
 
-                <div class="flex items-center space-x-4 mb-5">
-                    @foreach($categories as $category)
-                        <a href="{{route('posts.category', ['slug'=> $category->slug])}}" class="text-gray-900 dark:text-white inline-block rounded border-2 border-gray-400 px-1 py-1 text-xs font-light uppercase leading-normal text-primary transition duration-150 ease-in-out hover:border-primary-accent-300 hover:bg-primary-50/50 hover:text-primary-accent-300 focus:border-primary-600 focus:bg-primary-50/50 focus:text-primary-600 focus:outline-none focus:ring-0 active:border-primary-700 active:text-primary-700 motion-reduce:transition-none dark:hover:bg-blue-950 dark:focus:bg-blue-950">
+                <div class="flex items-center space-x-4 mb-5 up">
+                    @if(isset($category))
+                        <a href="{{route('posts.category', ['slug'=> $category->slug])}}" class="text-purple-600 font-semibold dark:text-purple-500 hover:underline">
                             {{$category->name}}
                         </a>
-                    @endforeach
+                    @else
+                        @foreach($categories as $category)
+                            <a href="{{route('posts.category', ['slug'=> $category->slug])}}" class="text-purple-600 font-semibold dark:text-purple-500 hover:underline">
+                                {{$category->name}}
+                            </a>
+                        @endforeach
+                    @endif
                 </div>
 
                 @if($posts->count() != 0)
@@ -54,7 +60,7 @@
                                                 <li class="flex space-x-3">
                                                     <!-- Icon -->
                                                     <svg class="flex-shrink-0 w-5 h-5 text-purple-500 dark:text-purple-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
-                                                    <a href="{{route('posts.category', ['category'=> $post->category])}}" class="text-sm font-semibold uppercase text-fuchsia-700 dark:text-amber-400">
+                                                    <a href="{{route('posts.category', ['slug'=> $post->category->slug])}}" class="text-sm font-semibold uppercase text-fuchsia-700 dark:text-amber-400">
                                                         {{$post->category->name}}
                                                     </a>
                                                 </li>
@@ -65,7 +71,7 @@
                                                     <img src="{{Storage::url($post->author->channel->brand)}}" alt="" class="mr-4 h-12 w-12 p-[0.1875rem] rounded-full ring-1 ring-slate-900/10 shadow overflow-hidden flex-none dark:bg-indigo-500 dark:highlight-white/20" />
                                                 </a>
                                                 <div class="flex flex-col">
-                                                    <a href="{{route('my.channel', ['channel'=> $post->author->channel])}}" class="text-purple-600 dark:text-purple-500 hover:underline">
+                                                    <a href="{{route('my.channel', ['slug'=> $post->author->channel->slug])}}" class="text-purple-600 dark:text-purple-500 hover:underline">
                                                         {{$post->author->channel->title}}
                                                     </a>
                                                     <a href="{{'https://www.youtube.com/@' . $post->author->channel->link}}" target="_blank" class="font-light hover:underline">

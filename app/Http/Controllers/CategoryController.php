@@ -10,28 +10,14 @@ use Illuminate\Support\Facades\DB;
 
 class CategoryController extends Controller
 {
-
-    public function index()
-    {
-        try{
-            return '';
-        }catch (\Exception $exception){
-            if(env('APP_DEBUG')){
-                return redirect()->back();
-            }
-            return redirect()->back();
-        }
-    }
-
-    public function searchPostsForCategory($slug)
+    public function postsForCategory($slug)
     {
         try {
             $category = Category::where('slug', $slug)->firstOrFail();
             $posts = $category->posts()->where(function (Builder $query){
                 return $query->where('status', 'PUBLISHED')->orWhere('scheduled_for', '<=', now());
-            })->paginate();
-            $categories = Category::all();
-            return view('pages.index', compact('posts', 'categories'));
+            })->paginate(2)->fragment('posts');
+            return view('pages.index', compact('posts', 'category'));
         }catch (\Exception $exception){
             if(env('APP_DEBUG')){
                 return redirect()->back();
