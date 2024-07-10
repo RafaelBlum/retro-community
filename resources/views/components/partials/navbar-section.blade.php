@@ -46,6 +46,9 @@
                     <x-partials.link href="{{route('app.about')}}">
                         Sobre
                     </x-partials.link>
+                    <x-partials.link href="/teste">
+                        Teste
+                    </x-partials.link>
                     @auth
                         <ul class="flex flex-col mt-4 font-medium lg:flex-row lg:space-x-8 lg:mt-0">
                             <x-partials.link href="{{route('filament.admin.pages.dashboard')}}">

@@ -9,7 +9,16 @@ export default {
 
     darkMode: 'class',
   theme: {
-    extend: {},
+    extend: {
+        colors: {
+            primary: '#3940da',
+            secondary: '#da8f39',
+            accent: '#95da8a',
+            default: '#9a9de0',
+            muted: '#325651',
+            retro: '#e04997',
+        },
+    },
   },
   plugins: [],
 }
