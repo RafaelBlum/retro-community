@@ -59,37 +59,40 @@
         </div>
     </section>
 
-    <section class="bg-gray-50 dark:bg-gray-800">
-        <div class="max-w-screen-xl px-4 py-8 mx-auto space-y-12 lg:space-y-20 lg:py-24 lg:px-6">
-            <!-- Row -->
-            <div class="items-center gap-8 flex justify-center xl:gap-16">
-                <div class="text-gray-500 sm:text-lg dark:text-gray-400">
-                    <h2 class="mb-4 text-4xl font-extrabold tracking-tight text-gray-900 dark:text-white">{{$channel->camping->title}}</h2>
-                    <p class="mb-8 font-light lg:text-xl">
-                        {{$channel->camping->content}}</p>
+    @if($channel->camping)
+        <section class="bg-gray-50 dark:bg-gray-800">
+            <div class="max-w-screen-xl px-4 py-8 mx-auto space-y-12 lg:space-y-20 lg:py-24 lg:px-6">
+                <!-- Row -->
+                <div class="items-center gap-8 flex justify-center xl:gap-16">
+                    <div class="text-gray-500 sm:text-lg dark:text-gray-400">
+                        <h2 class="mb-4 text-4xl font-extrabold tracking-tight text-gray-900 dark:text-white">{{$channel->camping->title}}</h2>
+                        <p class="mb-8 font-light lg:text-xl">
+                            {{$channel->camping->content}}</p>
 
-                    <div class="pt-8 space-y-5 border-t border-gray-200 my-7 dark:border-gray-700">
-                        <iframe class="w-[620px] h-[200px] mt-3 border-none" src="{{$channel->camping->linkGoal}}" frameborder="0"></iframe>
+                        <div class="pt-8 space-y-5 border-t border-gray-200 my-7 dark:border-gray-700">
+                            <iframe class="w-[620px] h-[200px] mt-3 border-none" src="{{$channel->camping->linkGoal}}" frameborder="0"></iframe>
+                        </div>
+                    </div>
+                    <div class="flex justify-center">
+
+                        <iframe class="w-[220px] h-[300px] mt-3 border-none" src="{{$channel->camping->qrCode}}" frameborder="0"></iframe>
                     </div>
                 </div>
-                <div class="flex justify-center">
 
-                    <iframe class="w-[220px] h-[300px] mt-3 border-none" src="{{$channel->camping->qrCode}}" frameborder="0"></iframe>
+                <div class="w-full mt-20 text-gray-900 dark:text-white">
+                    <p class="flex text-center items-center justify-center w-full text-base font-medium">
+                        Ajude o canal acessando o nosso QR code
+                        <svg class="w-8 ml-3" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M16 17V16H13V13H16V15H18V17H17V19H15V21H13V18H15V17H16ZM21 21H17V19H19V17H21V21ZM3 3H11V11H3V3ZM5 5V9H9V5H5ZM13 3H21V11H13V3ZM15 5V9H19V5H15ZM3 13H11V21H3V13ZM5 15V19H9V15H5ZM18 13H21V15H18V13ZM6 6H8V8H6V6ZM6 16H8V18H6V16ZM16 6H18V8H16V6Z"></path></svg>
+                    </p>
+                </div>
+
+                <div class="items-center gap-8 lg:grid lg:grid-cols xl:gap-16">
+                    <img class="hidden w-full mb-4 rounded-lg lg:mb-0 m-10 lg:flex" src="{{Storage::url($channel->camping->image)}}" alt="dashboard feature image">
                 </div>
             </div>
+        </section>
+    @endif
 
-            <div class="w-full mt-20 text-gray-900 dark:text-white">
-                <p class="flex text-center items-center justify-center w-full text-base font-medium">
-                    Ajude o canal acessando o nosso QR code
-                    <svg class="w-8 ml-3" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M16 17V16H13V13H16V15H18V17H17V19H15V21H13V18H15V17H16ZM21 21H17V19H19V17H21V21ZM3 3H11V11H3V3ZM5 5V9H9V5H5ZM13 3H21V11H13V3ZM15 5V9H19V5H15ZM3 13H11V21H3V13ZM5 15V19H9V15H5ZM18 13H21V15H18V13ZM6 6H8V8H6V6ZM6 16H8V18H6V16ZM16 6H18V8H16V6Z"></path></svg>
-                </p>
-            </div>
-
-            <div class="items-center gap-8 lg:grid lg:grid-cols xl:gap-16">
-                <img class="hidden w-full mb-4 rounded-lg lg:mb-0 m-10 lg:flex" src="{{Storage::url($channel->camping->image)}}" alt="dashboard feature image">
-            </div>
-        </div>
-    </section>
 
     <section class="bg-gray-50 dark:bg-gray-800">
         <div class="mx-auto w-full max-w-7xl px-5 py-16 md:px-10 md:py-20">

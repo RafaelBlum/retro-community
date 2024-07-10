@@ -1,9 +1,11 @@
 <header class="fixed w-full z-50">
     <nav class="bg-white border-gray-200 py-2.5 dark:bg-gray-900">
+
         <div class="flex flex-wrap items-center justify-between max-w-screen-xl px-4 mx-auto">
             <a href="{{route('app.landing')}}" class="flex items-center">
                 <span class="self-center text-xl font-semibold whitespace-nowrap dark:text-white">{{config('app.name')}}</span>
             </a>
+
             <div class="flex items-center lg:order-2">
                 @guest
                     <x-partials.btn-actions href="{{route('filament.admin.pages.dashboard')}}" login>
@@ -12,15 +14,6 @@
                 @endguest
                 @auth
                     <ul class="flex flex-col mt-4 font-medium lg:flex-row lg:space-x-8 lg:mt-0">
-                        <x-partials.link href="{{route('filament.admin.pages.dashboard')}}">
-                            Admin
-                        </x-partials.link>
-                        <form method="POST" action="{{route('app.logout')}}">
-                            @csrf
-                            <x-partials.link href="{{route('app.logout')}}" onclick="event.preventDefault(); this.closest('form').submit();">
-                                Logout
-                            </x-partials.link>
-                        </form>
                         <x-partials.link href="{{route('my.channel', ['slug'=> auth()->user()->channel->slug])}}">
                             <div class="flex justify-center text-center items-center">
                                 <img src="{{Storage::url(auth()->user()->channel->brand)}}" class="w-8 h-8 mr-3 rounded-full">
@@ -53,6 +46,19 @@
                     <x-partials.link href="{{route('app.about')}}">
                         Sobre
                     </x-partials.link>
+                    @auth
+                        <ul class="flex flex-col mt-4 font-medium lg:flex-row lg:space-x-8 lg:mt-0">
+                            <x-partials.link href="{{route('filament.admin.pages.dashboard')}}">
+                                Admin
+                            </x-partials.link>
+                            <form method="POST" action="{{route('app.logout')}}">
+                                @csrf
+                                <x-partials.link href="{{route('app.logout')}}" onclick="event.preventDefault(); this.closest('form').submit();">
+                                    Logout
+                                </x-partials.link>
+                            </form>
+                        </ul>
+                    @endauth
                 </ul>
 
             </div>
