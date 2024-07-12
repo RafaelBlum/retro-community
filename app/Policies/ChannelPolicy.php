@@ -29,7 +29,7 @@ class ChannelPolicy
      */
     public function create(User $user): bool
     {
-        return true;
+        return $user->panel->value === 'super-admin';
     }
 
     /**
@@ -37,7 +37,7 @@ class ChannelPolicy
      */
     public function update(User $user, Channel $channel): bool
     {
-        return true;
+        return ($user->id === $channel->id || $user->panel->value === 'super-admin');
     }
 
     /**
@@ -45,7 +45,7 @@ class ChannelPolicy
      */
     public function delete(User $user, Channel $channel): bool
     {
-        return true;
+        return ($user->id === $channel->id || $user->panel->value === 'super-admin');
     }
 
     /**
@@ -53,7 +53,7 @@ class ChannelPolicy
      */
     public function restore(User $user, Channel $channel): bool
     {
-        return true;
+        return $user->panel->value === 'super-admin';
     }
 
     /**
@@ -61,6 +61,6 @@ class ChannelPolicy
      */
     public function forceDelete(User $user, Channel $channel): bool
     {
-        return true;
+        return $user->panel->value === 'super-admin';
     }
 }
