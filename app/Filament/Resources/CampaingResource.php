@@ -42,6 +42,7 @@ class CampaingResource extends Resource
                 Forms\Components\Toggle::make('camping')
                     ->required(),
                 Forms\Components\FileUpload::make('image')
+                    ->directory('campaing_folder')
                     ->image(),
             ]);
     }
