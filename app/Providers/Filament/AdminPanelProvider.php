@@ -31,6 +31,7 @@ class AdminPanelProvider extends PanelProvider
             ->id('admin')
             ->path('admin')
             ->brandName(config('app.name'))
+            ->brandLogo(fn () => view('filament.logo'))
             ->favicon(asset('images/brandname/favicon-retrocommunity.png'))
             ->login()
             ->profile(EditProfile::class)
