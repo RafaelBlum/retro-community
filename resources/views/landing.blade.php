@@ -38,7 +38,7 @@
 
             <section class="mt-10">
                 <div class="max-w-screen-xl px-4 pb-8 mx-auto lg:pb-16">
-                    <ul class="mx-auto grid gap-{{$grid}} sm:grid-cols-{{$grid}} md:grid-cols-{{$grid}} justify-center">
+                    <ul class="grid gap-8 lg:gap-16 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
                         @foreach($channels as $channel)
                             <li class="flex flex-col items-center gap-1 text-center">
                                 <a href="{{'https://www.youtube.com/@' . $channel->link}}" target="_blank" class="font-light text-white dark:text-white hover:underline">
