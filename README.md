@@ -150,6 +150,6 @@ If you discover a security vulnerability within Laravel, please send an e-mail t
 > Urgent info that needs immediate user attention to avoid problems.
 
 > [!CAUTION]
-> Advises about risks or negative outcomes of certain actions.
-
-https://astrowind.vercel.app
+> Links de estudos e layouts.
+- https://astrowind.vercel.app
+- https://github.com/filamentphp/demo
