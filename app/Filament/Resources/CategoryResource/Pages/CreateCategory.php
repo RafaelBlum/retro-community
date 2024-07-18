@@ -3,6 +3,7 @@
 namespace App\Filament\Resources\CategoryResource\Pages;
 
 use App\Filament\Resources\CategoryResource;
+use App\Models\Category;
 use Filament\Actions;
 use Filament\Notifications\Notification;
 use Filament\Resources\Pages\CreateRecord;
@@ -43,7 +44,9 @@ class CreateCategory extends CreateRecord
 
     protected function mutateFormDataBeforeCreate(array $data): array
     {
-        $data['slug'] = Str::slug($data['name'] . '-' . $data['id']);
+        $categories = Category::all()->count();
+
+        $data['slug'] = Str::slug($data['name'] . '-' . $categories + 1);
         return $data;
     }
 }

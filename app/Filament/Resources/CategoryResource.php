@@ -86,9 +86,6 @@ class CategoryResource extends Resource
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
                     Tables\Actions\DeleteBulkAction::make()
-                        ->action(function(Category $record) {
-                            $record->delete();
-                        })
                         ->requiresConfirmation()
                         ->modalHeading('Deletar ' . static::$modelLabel)
                         ->modalDescription('Tem certeza de que deseja excluir esta ' . static::$modelLabel . '? Isto não pode ser desfeito.')
