@@ -43,13 +43,14 @@ class PostResource extends Resource
     protected static ?string $navigationIcon = 'heroicon-o-newspaper';
     protected static ?string $activeNavigationIcon = 'heroicon-o-book-open';
 
+    protected static ?string $slug = 'postagens';
     protected static ?string $pluralModelLabel = "Blog";
     protected static ?string $modelLabel = "Post";
 
     protected static ?int $navigationSort = 2;
 
     protected static ?string $cluster = Blog::class;
-    protected static SubNavigationPosition $subNavigationPosition = SubNavigationPosition::Top;
+    protected static SubNavigationPosition $subNavigationPosition = SubNavigationPosition::Start;
 
     public static function form(Form $form): Form
     {
@@ -128,7 +129,6 @@ class PostResource extends Resource
                                     ->preload()
                                     ->reactive()
                                     ->distinct()
-                                    ->required()
                                     ->relationship('category', 'name'),
                             ])->columnSpan(2),
 
@@ -235,17 +235,7 @@ class PostResource extends Resource
             ])
             ->actions([
                 Tables\Actions\ActionGroup::make([
-                    DeleteAction::make()
-                        ->successNotification(
-                            Notification::make()
-                                ->success()
-                                ->title('User deleted')
-                                ->body('The user has been deleted successfully.'),
-                        )
-                        ->before(function () {
-                            dd('action aqui');
-                        }),
-                    Tables\Actions\EditAction::make()->slideOver(),
+                    Tables\Actions\EditAction::make(),
                     Tables\Actions\DeleteAction::make()
                         ->action(function(Post $record) {
                             if($record->featured_image_url != 'default-post.jpg'){
@@ -263,38 +253,12 @@ class PostResource extends Resource
                 Tables\Actions\BulkActionGroup::make([
                     Tables\Actions\DeleteBulkAction::make()
                         ->label('Deletar todos selecionados')
-                        ->action(function(Post $record) {
-                            //... AJUSTAR
-                        })
                         ->requiresConfirmation()
                         ->modalHeading('Deletar ' . static::$modelLabel)
                         ->modalDescription('Tem certeza de que deseja excluir este ' . static::$modelLabel . '? Isto não pode ser desfeito.')
-                        ->modalSubmitActionLabel('Sim, deletar!')
-                        ->before(function (Post $record) {
-                            //... AJUSTAR
-                        }),
+                        ->modalSubmitActionLabel('Sim, deletar!'),
                 ])->label('Deletar seleção'),
             ]);
-    }
-
-    protected function getActions(): array
-    {
-        return [
-            DeleteAction::make()
-                ->before(function (Post $record) {
-
-
-                    dd('sadmsadjnsalkj');
-
-//                    if ($record->photo) {
-//                        Storage::disk('public')->delete($record->photo);
-//                    }
-//                    // delete multiple
-//                    if ($record->galery) {
-//                        foreach ($record->galery as $ph) Storage::disk('public')->delete($ph);
-//                    }
-                })
-        ];
     }
 
     public static function getRecordSubNavigation(Page $page): array

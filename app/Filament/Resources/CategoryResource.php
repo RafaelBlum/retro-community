@@ -6,6 +6,7 @@ use App\Filament\Clusters\Blog;
 use App\Filament\Resources\CategoryResource\Pages;
 use App\Filament\Resources\CategoryResource\RelationManagers;
 use App\Models\Category;
+use Filament\Actions\DeleteAction;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
 use Filament\Forms\Set;
@@ -25,12 +26,13 @@ class CategoryResource extends Resource
     protected static ?string $navigationIcon = 'heroicon-o-bookmark';
     protected static ?string $activeNavigationIcon = 'heroicon-o-book-open';
 
+    protected static ?string $slug = 'categorias';
     protected static ?string $modelLabel = "Categoria";
 
     protected static ?string $cluster = Blog::class;
 
     protected static ?int $navigationSort = 3;
-    protected static SubNavigationPosition $subNavigationPosition = SubNavigationPosition::Top;
+    protected static SubNavigationPosition $subNavigationPosition = SubNavigationPosition::Start;
 
     public static function form(Form $form): Form
     {
@@ -76,7 +78,9 @@ class CategoryResource extends Resource
                 Tables\Actions\ActionGroup::make([
                     Tables\Actions\EditAction::make()->slideOver(),
                     Tables\Actions\DeleteAction::make()
-                        ->action(fn(Category $record) => $record->delete())
+                        ->action(function(Category $record) {
+                            $record->delete();
+                        })
                         ->requiresConfirmation()
                         ->modalHeading('Deletar ' . static::$modelLabel)
                         ->modalDescription('Tem certeza de que deseja excluir esta ' . static::$modelLabel . '? Isto não pode ser desfeito.')
