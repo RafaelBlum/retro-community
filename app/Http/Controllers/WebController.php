@@ -25,11 +25,9 @@ class WebController extends Controller
     {
         try{
 
-            $channels = Channel::all();
-
-            $campings = Campaing::where('camping', true)->get();
-
+            $channels = Channel::all()->take(4);
             $grid = $channels->count();
+            $campings = Campaing::where('camping', true)->get();
 
             return (
                     $campings->isEmpty() ?

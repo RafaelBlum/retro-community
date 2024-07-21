@@ -1,7 +1,9 @@
 <x-layout>
 
+    {{-- :: NAVBAR :: --}}
     <x-partials.navbar-section/>
 
+    {{-- :: HEADER :: --}}
     <div class="relative isolate px-6 pt lg:px-8 bg-white dark:bg-gray-900 text-white dark:text-white">
         <div class="absolute inset-x-0 -top-40 -z-10 transform-gpu overflow-hidden blur-3xl sm:-top-80" aria-hidden="true">
             <div class="relative left-[calc(50%-11rem)] aspect-[1155/678] w-[36.125rem] -translate-x-1/2 rotate-[30deg] bg-gradient-to-tr from-[#ff80b5] to-[#9089fc] opacity-30 sm:left-[calc(50%-30rem)] sm:w-[72.1875rem]" style="clip-path: polygon(74.1% 44.1%, 100% 61.6%, 97.5% 26.9%, 85.5% 0.1%, 80.7% 2%, 72.5% 32.5%, 60.2% 62.4%, 52.4% 68.1%, 47.5% 58.3%, 45.2% 34.5%, 27.5% 76.7%, 0.1% 64.9%, 17.9% 100%, 27.6% 76.8%, 76.1% 97.7%, 74.1% 44.1%)"></div>
@@ -64,6 +66,7 @@
         </div>
     </div>
 
+    {{-- ::  :: --}}
     <section class="bg-gray-50 dark:bg-gray-800 -mt-20">
         <div class="gap-16 items-center py-8 px-4 mx-auto max-w-screen-xl lg:grid lg:grid-cols-2 lg:py-16 lg:px-6">
             <div class="font-light text-gray-500 sm:text-lg dark:text-gray-400">
@@ -109,6 +112,8 @@
             </div>
         </div>
     </section>
+
+    {{-- ::  :: --}}
     <section class="bg-gray-50 dark:bg-gray-800">
         <div class="mx-auto w-full max-w-7xl px-5 py-16 md:px-10 md:py-20">
             <div class="overflow-x-hidden">
@@ -170,6 +175,8 @@
             </div>
         </div>
     </section>
+
+    {{-- ::  :: --}}
     <section class="bg-gray-50 dark:bg-gray-800">
         <div class="mx-auto w-full max-w-7xl px-5 py-16 md:px-10 md:py-20">
             <div class="flex items-center justify-center mt-2">
@@ -201,7 +208,7 @@
         </div>
     </section>
 
-
+    {{-- ::  :: --}}
     <section class="bg-white dark:bg-gray-900 text-white dark:text-white">
         <div class="grid max-w-screen-xl px-4 pt-20 pb-8 mx-auto lg:gap-8 xl:gap-0 lg:py-16 lg:grid-cols-12 lg:pt-28">
             <div class="mr-auto place-self-center lg:col-span-7">
@@ -222,6 +229,7 @@
         </div>
     </section>
 
+    {{-- ::  :: --}}
     <section class="bg-white dark:bg-gray-900">
 
         <div class="max-w-screen-xl px-4 pb-8 mx-auto lg:pb-16">
@@ -285,6 +293,7 @@
         </div>
     </section>
 
+    {{-- ::  :: --}}
     <section class="bg-gray-50 dark:bg-gray-800">
         <div class="max-w-screen-xl px-4 py-8 mx-auto space-y-12 lg:space-y-20 lg:py-24 lg:px-6">
             <!-- Row -->
@@ -354,6 +363,7 @@
         </div>
     </section>
 
+    {{-- ::  :: --}}
     <section class="bg-white dark:bg-gray-900">
         <div class="items-center max-w-screen-xl px-4 py-8 mx-auto lg:grid lg:grid-cols-4 lg:gap-16 xl:gap-24 lg:py-24 lg:px-6">
             <div class="col-span-2 mb-8">
@@ -400,6 +410,7 @@
         </div>
     </section>
 
+    {{-- ::  :: --}}
     <section class="bg-gray-50 dark:bg-gray-800">
         <div class="max-w-screen-xl px-4 py-8 mx-auto text-center lg:py-24 lg:px-6">
             <figure class="max-w-screen-md mx-auto">
@@ -420,6 +431,7 @@
         </div>
     </section>
 
+    {{-- ::  :: --}}
     <section class="bg-white dark:bg-gray-900">
         <div class="max-w-screen-xl px-4 py-8 mx-auto lg:py-24 lg:px-6">
             <div class="max-w-screen-md mx-auto mb-8 text-center lg:mb-12">
@@ -545,6 +557,7 @@
         </div>
     </section>
 
+    {{-- ::  :: --}}
     <section class="bg-white dark:bg-gray-900">
         <div class="max-w-screen-xl px-4 pb-8 mx-auto lg:pb-24 lg:px-6 ">
             <h2 class="mb-6 text-3xl font-extrabold tracking-tight text-center text-gray-900 lg:mb-8 lg:text-3xl dark:text-white">Frequently asked questions</h2>
@@ -613,6 +626,7 @@
         </div>
     </section>
 
+    {{-- ::  :: --}}
     <section class="bg-gray-50 dark:bg-gray-800">
         <div class="max-w-screen-xl px-4 py-8 mx-auto lg:py-16 lg:px-6">
             <div class="max-w-screen-sm mx-auto text-center">
@@ -623,6 +637,7 @@
         </div>
     </section>
 
+    {{-- ::  :: --}}
     <section class="relative bg-gray-50 dark:bg-gray-800 isolate overflow-hidden bg-white px-6 py-24 sm:py-32 lg:px-8">
         <div class="absolute inset-0 -z-10 bg-[radial-gradient(45rem_50rem_at_top,theme(colors.indigo.100),white)] opacity-20"></div>
         <div class="absolute inset-y-0 right-1/2 -z-10 mr-16 w-[200%] origin-bottom-left skew-x-[-30deg] bg-gray-50 dark:bg-gray-800 shadow-xl shadow-indigo-600/10 ring-1 ring-indigo-50 sm:mr-28 lg:mr-0 xl:mr-16 xl:origin-center"></div>
@@ -646,7 +661,7 @@
         </div>
     </section>
 
-
+    {{-- :: CARD USERS :: --}}
     <section class="bg-white dark:bg-gray-900">
         <div class="py-8 px-4 mx-auto max-w-screen-xl lg:py-16 lg:px-6 ">
             <div class="mx-auto max-w-screen-sm text-center mb-8 lg:mb-16">
@@ -695,13 +710,15 @@
         </div>
     </section>
 
+    {{-- :: CARD TEAM :: --}}
     <section class="bg-white dark:bg-gray-900">
         <div class="py-8 px-4 mx-auto max-w-screen-xl text-center lg:py-16 lg:px-6">
             <div class="mx-auto mb-8 max-w-screen-sm lg:mb-16">
                 <h2 class="mb-4 text-4xl tracking-tight font-extrabold text-gray-900 dark:text-white">Our team</h2>
                 <p class="font-light text-gray-500 sm:text-xl dark:text-gray-400">Explore the whole collection of open-source web components and elements built with the utility classes from Tailwind</p>
             </div>
-            <div class="grid gap-8 lg:gap-16 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+            <div class="grid gap-8 lg:gap-16 grid-cols-2 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-4">
+
                 <div class="text-center text-gray-500 dark:text-gray-400">
                     <img class="mx-auto mb-4 w-36 h-36 rounded-full" src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/avatars/bonnie-green.png" alt="Bonnie Avatar">
                     <h3 class="mb-1 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
@@ -731,6 +748,7 @@
                         </li>
                     </ul>
                 </div>
+
                 <div class="text-center text-gray-500 dark:text-gray-400">
                     <img class="mx-auto mb-4 w-36 h-36 rounded-full" src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/avatars/helene-engels.png" alt="Helene Avatar">
                     <h3 class="mb-1 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
@@ -760,6 +778,7 @@
                         </li>
                     </ul>
                 </div>
+
                 <div class="text-center text-gray-500 dark:text-gray-400">
                     <img class="mx-auto mb-4 w-36 h-36 rounded-full" src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/avatars/jese-leos.png" alt="Jese Avatar">
                     <h3 class="mb-1 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
@@ -789,6 +808,7 @@
                         </li>
                     </ul>
                 </div>
+
                 <div class="text-center text-gray-500 dark:text-gray-400">
                     <img class="mx-auto mb-4 w-36 h-36 rounded-full" src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/avatars/joseph-mcfall.png" alt="Joseph Avatar">
                     <h3 class="mb-1 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
@@ -818,6 +838,7 @@
                         </li>
                     </ul>
                 </div>
+
                 <div class="text-center text-gray-500 dark:text-gray-400">
                     <img class="mx-auto mb-4 w-36 h-36 rounded-full" src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/avatars/sofia-mcguire.png" alt="Sofia Avatar">
                     <h3 class="mb-1 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
@@ -847,6 +868,7 @@
                         </li>
                     </ul>
                 </div>
+
                 <div class="text-center text-gray-500 dark:text-gray-400">
                     <img class="mx-auto mb-4 w-36 h-36 rounded-full" src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/avatars/thomas-lean.png" alt="Leslie Avatar">
                     <h3 class="mb-1 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
@@ -876,6 +898,7 @@
                         </li>
                     </ul>
                 </div>
+
                 <div class="text-center text-gray-500 dark:text-gray-400">
                     <img class="mx-auto mb-4 w-36 h-36 rounded-full" src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/avatars/michael-gouch.png" alt="Michael Avatar">
                     <h3 class="mb-1 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
@@ -905,6 +928,7 @@
                         </li>
                     </ul>
                 </div>
+
                 <div class="text-center text-gray-500 dark:text-gray-400">
                     <img class="mx-auto mb-4 w-36 h-36 rounded-full" src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/avatars/neil-sims.png" alt="Neil Avatar">
                     <h3 class="mb-1 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
@@ -938,6 +962,7 @@
         </div>
     </section>
 
+    {{-- ::  :: --}}
     <section class="bg-gray-50 dark:bg-gray-800">
 
         <div class="mx-auto w-full max-w-7xl px-5 py-16 md:px-10 md:py-20">
@@ -974,6 +999,7 @@
         </div>
     </section>
 
+    {{-- ::  :: --}}
     <main>
         {{-- About--}}
         <section class="relative not-prose md:-mt-[76px]">
@@ -2152,6 +2178,7 @@
         </section>
     </main>
 
+    {{-- :: FOOTER 1 :: --}}
     <footer class="bg-white dark:bg-gray-800">
         <div class="max-w-screen-xl p-4 py-6 mx-auto lg:py-16 md:p-8 lg:p-10">
             <div class="grid grid-cols-2 gap-8 md:grid-cols-3 lg:grid-cols-5">
@@ -2277,7 +2304,7 @@
         </div>
     </footer>
 
-    {{--Footer--}}
+    {{-- :: FOOTER 2 :: --}}
     <footer class="relative dark:border-slate-800 border-gray-200 border-t not-prose">
         <div class="absolute inset-0 pointer-events-none dark:bg-dark" aria-hidden="true"></div>
         <div class="mx-auto sm:px-6 px-4 dark:text-slate-300 max-w-7xl relative">

@@ -56,9 +56,7 @@ class PostResource extends Resource
     {
         return $form
             ->schema([
-
                 Grid::make(3)->schema([
-
                     Section::make()->schema([
                         FileUpload::make('featured_image_url')
                             ->default('default-post.jpg')
@@ -92,27 +90,7 @@ class PostResource extends Resource
                                     ->required(),
 
                             ])->columnSpan(2),
-//
-//                            Group::make()->schema([
-//
-//                            ])->columnSpan(2),
                         ]),
-
-//                        Grid::make(11)->schema([
-//                            Group::make()->schema([
-//
-//
-//                            ])->columnSpan(1),
-//
-//                            Group::make()->schema([
-//
-//                            ])->columnSpan(5),
-//
-//                            Group::make()->schema([
-//
-//                            ])->columnSpan(5),
-//                        ]),
-
                     ])->columnSpan(2),
                 ]),
 
@@ -120,8 +98,6 @@ class PostResource extends Resource
 
                     Tab::make('Configurações')->icon('heroicon-m-inbox')->schema([
                         Grid::make(8)->schema([
-
-
                             Group::make()->schema([
                                 Select::make('category_id')
                                     ->label('Categoria')
@@ -142,13 +118,7 @@ class PostResource extends Resource
                                     ->required(),
 
                             ])->columnSpan(6),
-
-                            Group::make()->schema([
-
-                            ])->columnSpan(2),
                         ]),
-
-
                     ])->columns(3),
 
                     Tab::make('Conteúdo descritivo')
