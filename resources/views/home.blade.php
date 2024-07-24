@@ -34,9 +34,9 @@
                     <div class="text-center text-gray-500 dark:text-gray-400">
                     <img class="mx-auto mb-4 w-36 h-36 rounded-full" src="{{Storage::url($channel->brand)}}" alt="Bonnie Avatar">
                     <h3 class="mb-1 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
-                        <a href="{{route('my.channel', ['slug'=> $channel->slug])}}">{{$channel->name}}</a>
+                        <a href="{{route('my.channel', ['slug'=> $channel->slug])}}">{{$channel->title}}</a>
                     </h3>
-                    <p>{{$channel->title}}</p>
+                    <p>{{$channel->name}}</p>
                     <ul class="flex justify-center mt-4 space-x-4">
                         <li>
                             <a href="#" class="text-[#39569c] hover:text-gray-900 dark:hover:text-white">
@@ -156,9 +156,9 @@
                                             <div class="flex">
                                                 <img src="{{Storage::url($post->author->channel->brand)}}" alt="" class="mr-4 h-10 w-10 p-[0.1875rem] rounded-full ring-1 ring-slate-900/10 shadow overflow-hidden flex-none dark:bg-indigo-500 dark:highlight-white/20" />
                                                 <div class="flex flex-col">
-                                                    <h6 class="text-base font-bold">Canal {{$post->author->channel->name}}</h6>
+                                                    <h6 class="text-base font-bold">Canal {{$post->author->channel->title}}</h6>
                                                     <div class="flex flex-col lg:flex-row">
-                                                        <p class="text-sm text-gray-500">{{$post->author->channel->title}}</p>
+                                                        <p class="text-sm text-gray-500">{{$post->author->channel->name}}</p>
                                                     </div>
                                                 </div>
                                             </div>
@@ -181,9 +181,9 @@
                                             <div class="flex">
                                                 <img src="{{Storage::url($post->author->channel->brand)}}" alt="" class="mr-4 h-10 w-10 p-[0.1875rem] rounded-full ring-1 ring-slate-900/10 shadow overflow-hidden flex-none dark:bg-indigo-500 dark:highlight-white/20" />
                                                 <div class="flex flex-col">
-                                                    <h6 class="text-base font-bold">Canal {{$post->author->channel->name}}</h6>
+                                                    <h6 class="text-base font-bold">Canal {{$post->author->channel->title}}</h6>
                                                     <div class="flex flex-col lg:flex-row">
-                                                        <p class="text-sm text-gray-500">{{$post->author->channel->title}}</p>
+                                                        <p class="text-sm text-gray-500">{{$post->author->channel->name}}</p>
                                                     </div>
                                                 </div>
                                             </div>

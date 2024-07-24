@@ -49,7 +49,7 @@ class WebController extends Controller
             $channels = Channel::all();
             $grid = $channels->count();
 
-            $posts = Post::query()->where('status', '=', 'published')->get()->take(3);
+            $posts = Post::query()->where('status', '=', 'published')->get()->take(6);
 
             return view('home', compact('posts', 'section', 'channels', 'grid'));
         }catch (\Exception $exception){
