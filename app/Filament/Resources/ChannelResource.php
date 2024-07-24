@@ -15,6 +15,7 @@ use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Support\Colors\Color;
+use Filament\Support\Enums\IconPosition;
 use Filament\Tables;
 use Filament\Tables\Actions\DeleteAction;
 use Filament\Tables\Actions\EditAction;
@@ -116,12 +117,19 @@ class ChannelResource extends Resource
 
                 TextColumn::make('title')
                     ->label('Canal')
-                    ->description(fn(Channel $record) => $record->name),
+                    ->description(fn(Channel $record) => $record->name)
+                    ->icon('heroicon-m-play-circle')
+                    ->iconPosition(IconPosition::After)
+                    ->iconColor(Color::Green),
 
                 TextColumn::make('user.name')
                     ->label('Usuário'),
 
-                TextColumn::make('link'),
+                TextColumn::make('link')
+                    ->icon('heroicon-m-at-symbol')
+                    ->iconPosition(IconPosition::Before)
+                    ->iconColor(Color::Indigo)
+                    ->copyable(),
 
             ])
             ->filters([

@@ -14,10 +14,19 @@ use Filament\Forms\Components\ViewField;
 use Filament\Forms\Form;
 use Filament\Forms\Get;
 use Filament\Resources\Resource;
+use Filament\Support\Enums\IconPosition;
 use Filament\Tables;
+use Filament\Tables\Actions\DeleteAction;
+use Filament\Tables\Actions\EditAction;
+use Filament\Tables\Actions\ViewAction;
+use Filament\Tables\Columns\IconColumn;
+use Filament\Tables\Columns\ImageColumn;
+use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
+use Illuminate\Contracts\View\View;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\HtmlString;
 
 class CampaingResource extends Resource
@@ -117,32 +126,43 @@ class CampaingResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('created_at')
-                    ->dateTime()
-                    ->sortable()
-                    ->toggleable(isToggledHiddenByDefault: true),
-                Tables\Columns\TextColumn::make('updated_at')
-                    ->dateTime()
-                    ->sortable()
-                    ->toggleable(isToggledHiddenByDefault: true),
-                Tables\Columns\TextColumn::make('channel.name')
-                    ->numeric()
-                    ->sortable(),
-                Tables\Columns\TextColumn::make('title')
-                    ->searchable(),
-                Tables\Columns\TextColumn::make('linkGoal')
-                    ->searchable(),
-                Tables\Columns\TextColumn::make('qrCode')
-                    ->searchable(),
-                Tables\Columns\IconColumn::make('camping')
+                ImageColumn::make('image')
+                    ->label('')
+                ->width(60)
+                ->height(60),
+                TextColumn::make('channel.title')
+                    ->label('Canal'),
+                IconColumn::make('camping')
+                    ->label('Status')
                     ->boolean(),
-                Tables\Columns\ImageColumn::make('image'),
+
+                TextColumn::make('title')
+                    ->label('Titulo')
+                    ->limit(50)
+                    ->description(function (Campaing $record): View
+                    {
+                        return view('components.partials.icon', ['state' => $record]);
+                    }),
             ])
             ->filters([
                 //
             ])
             ->actions([
-                Tables\Actions\EditAction::make(),
+                Tables\Actions\ActionGroup::make([
+                    EditAction::make(),
+                    ViewAction::make(),
+                    DeleteAction::make()
+                        ->action(function(Campaing $record) {
+                            if($record->image){
+                                Storage::delete('public/' . $record->image);
+                            }
+                            $record->delete();
+                        })
+                        ->requiresConfirmation()
+                        ->modalHeading('Deletar ' . static::$modelLabel)
+                        ->modalDescription('Tem certeza de que deseja excluir a ' . static::$modelLabel . '? Isto não pode ser desfeito.')
+                        ->modalSubmitActionLabel('Sim, deletar!'),
+                ])->tooltip("Menu")
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([

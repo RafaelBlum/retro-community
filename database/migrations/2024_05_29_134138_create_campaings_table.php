@@ -13,6 +13,13 @@ return new class extends Migration
     {
         Schema::create('campaings', function (Blueprint $table) {
             $table->id();
+            $table->string('channel_id')->constrained()->cascadeOnUpdate();
+            $table->string('title');
+            $table->text('content');
+            $table->string('linkGoal');
+            $table->string('qrCode');
+            $table->string('camping')->default(false);
+            $table->string('image')->nullable();
             $table->timestamps();
         });
     }
