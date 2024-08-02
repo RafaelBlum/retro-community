@@ -45,9 +45,9 @@ class EditPost extends EditRecord
     protected function beforeSave()
     {
         $post = Post::find($this->data['id']);
-        $caminhoDaImagem = array_values($this->data['featured_image_url'])[0];
+        $pathNameImage = array_values($this->data['featured_image_url'])[0];
 
-        if($post->featured_image_url != $caminhoDaImagem){
+        if($post->featured_image_url != $pathNameImage){
             if($post->featured_image_url != 'default-post.jpg'){
                 Storage::delete('public/' . $post->featured_image_url);
             }

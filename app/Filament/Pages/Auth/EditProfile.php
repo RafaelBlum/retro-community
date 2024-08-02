@@ -3,6 +3,7 @@
 namespace App\Filament\Pages\Auth;
 
 use App\Enums\MaritalStatusEnum;
+use App\Models\Channel;
 use App\Models\User;
 use Filament\Actions\Action;
 use Filament\Facades\Filament;
@@ -11,6 +12,7 @@ use Filament\Forms\Components\DatePicker;
 use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\Grid;
 use Filament\Forms\Components\Group;
+use Filament\Forms\Components\Hidden;
 use Filament\Forms\Components\Section;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\Tabs;
@@ -25,7 +27,10 @@ use Filament\Pages\Auth\EditProfile as BaseEditProfile;
 use Filament\Pages\Page;
 use Filament\Support\Colors\Color;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
+use Override;
 
 class EditProfile extends BaseEditProfile
 {
@@ -56,7 +61,9 @@ class EditProfile extends BaseEditProfile
 
                                 Grid::make(4)->schema([
                                     Group::make()->schema([
-                                        $this->getNameFormComponent()->autofocus(),
+                                        TextInput::make('name')
+                                            ->label('Nome')
+                                            ->required()->autofocus(),
                                     ])->columnSpan(2),
 
                                     Group::make()->schema([
@@ -80,78 +87,69 @@ class EditProfile extends BaseEditProfile
                                     ])->columnSpan(2),
                                 ])->columnSpanFull(),
 
-
-
-
                             ])
                             ->columnSpan(2),
 
                         Tabs::make('informations')->tabs([
 
                             Tab::make('Meu Canal')->icon('heroicon-m-identification')->schema([
-                                Grid::make(8)->relationship('channel')->schema([
-                                    Group::make()->schema([
-                                        FileUpload::make('brand')
-                                            ->label('')
-                                            ->disk('public')
-                                            ->debounce()
-                                            ->helperText('Logo do seu canal')
-                                            ->avatar()
-                                            ->directory('channel_brand')
-                                            ->columnSpanFull()
-                                    ])->columnSpan(1),
+                                Grid::make(8)
+                                    ->relationship('channel')
+                                    ->schema([
+                                        Group::make()->schema([
+                                            FileUpload::make('brand')
+                                                ->label('')
+                                                ->disk('public')
+                                                ->debounce()
+                                                ->helperText('Logo do seu canal')
+                                                ->avatar()
+                                                ->directory('channel_brand')
+                                                ->columnSpanFull(),
+                                        ])->columnSpan(1),
 
-                                    Group::make()->schema([
-                                        Grid::make(4)->schema([
-                                            Group::make()->schema([
-                                                TextInput::make('title')
-                                                    ->label('Nome do seu canal')
-                                                    ->hintIcon('heroicon-m-check-badge', tooltip: 'Seu canal do Youtube.')
-                                                    ->hintColor(Color::Green)
-                                                    ->required(),
-                                            ])->columnSpan(2),
+                                        Group::make()->schema([
+                                            Grid::make(4)->schema([
+                                                Group::make()->schema([
+                                                    TextInput::make('title')
+                                                        ->label('Nome do seu canal')
+                                                        ->hintIcon('heroicon-m-check-badge', tooltip: 'Seu canal do Youtube.')
+                                                        ->hintColor(Color::Green)
+                                                        ->required(),
+                                                ])->columnSpan(2),
 
-                                            Group::make()->schema([
-                                                TextInput::make('name')
-                                                    ->label('Seu nome')
-                                                    ->required(),
-                                            ])->columnSpan(2),
-                                        ])->columnSpanFull(),
+                                                Group::make()->schema([
+                                                    TextInput::make('name')
+                                                        ->label('Seu nome')
+                                                        ->required(),
+                                                ])->columnSpan(2),
+                                            ])->columnSpanFull(),
 
+                                            Grid::make(4)->schema([
+                                                Group::make()->schema([
+                                                    TextInput::make('link')
+                                                        ->label('Link canal do Youtube')
+                                                        ->hintIcon('heroicon-m-question-mark-circle', tooltip: 'Adicione o nome do seu canal da URL sem "@"')
+                                                        ->hintColor(Color::Yellow)
+                                                        ->prefix('https://www.youtube.com/@')->suffixIcon('heroicon-m-globe-alt')
+                                                        ->required(),
+                                                ])->columnSpan(3),
 
+                                                Group::make()->schema([
+                                                    ColorPicker::make('color'),
+                                                ])->columnSpan(1),
+                                            ])->columnSpanFull(),
 
-                                        Grid::make(4)->schema([
-                                            Group::make()->schema([
-                                                TextInput::make('link')
-                                                    ->label('Link canal do Youtube')
-                                                    ->hintIcon('heroicon-m-question-mark-circle', tooltip: 'Adicione o nome do seu canal da URL sem "@"')
-                                                    ->hintColor(Color::Yellow)
-                                                    ->prefix('https://www.youtube.com/@')->suffixIcon('heroicon-m-globe-alt')
-                                                    ->required(),
-                                            ])->columnSpan(3),
-
-                                            Group::make()->schema([
-                                                ColorPicker::make('Cor'),
-                                            ])->columnSpan(1),
-                                        ])->columnSpanFull(),
-
-                                        Textarea::make('description')
-                                            ->label('Descrição')
-                                            ->hintIcon('heroicon-m-question-mark-circle', tooltip: 'Descreva brevemente aqui sobre seu canal.')
-                                            ->hintColor(Color::Yellow)
-                                            ->maxLength(255),
-
-                                        TextInput::make('qrCode')
-                                            ->label('Link livePix do seu canal')
-                                            ->hintIcon('heroicon-m-question-mark-circle', tooltip: 'Cole a URL do seu livePix, caso queira deixa fixado na página do seu canal')
-                                            ->hintColor(Color::Yellow)
-                                            ->suffixIcon('heroicon-m-qr-code'),
-
-                                    ])->columnSpan(7),
+                                            Textarea::make('description')
+                                                ->label('Descrição')
+                                                ->hintIcon('heroicon-m-question-mark-circle', tooltip: 'Descreva brevemente aqui sobre seu canal.')
+                                                ->hintColor(Color::Yellow)
+                                                ->maxLength(255),
+                                        ])->columnSpan(7),
                                 ]),
                             ]),
                             Tab::make('Minha campanha')->icon('heroicon-m-banknotes')->schema([
-
+                                    Select::make(8)
+                                        ->relationship(name: 'channel.camping', titleAttribute: 'title'),
                             ]),
                         ])->columnSpanFull()->activeTab(1)->persistTabInQueryString(),
                     ]),
@@ -165,10 +163,47 @@ class EditProfile extends BaseEditProfile
             ]);
     }
 
-    protected function hasFullWidthFormActions(): bool
+
+//    protected function beforeSave(){
+//        $user = User::with('channel')->find(\auth()->id());
+//        $pathNameImage = array_values($this->data['channel']['brand'])[0];
+//        $pathNameImage2 = $user->channel->brand;
+//
+//        $channel = Channel::where('user_id', $user->id)->get();
+//
+//        dd($user, $pathNameImage2);
+//
+//        if ($user->channel->brand != $pathNameImage) {
+//            if($user->channel->brand != 'default-brand.png'){
+//                Storage::delete('public/' . $user->channel->brand);
+//            }
+//        }
+//    }
+
+    #[Override]
+    public function mount(): void
     {
-        return false;
+        $user = User::with('channel')->find(\auth()->id());
+        $pathNameImage2 = $user->channel->brand;
+        //dd($user, $pathNameImage2, $this->data);
+        $this->fillForm();
     }
+
+//    #[Override]
+//    public function save(): void
+//    {
+//        $user = User::with('channel')->find(\auth()->id());
+//        $pathNameImage = $user->channel->brand;
+////        $channel = Channel::where('user_id', $user->id)->first();
+////        $data = $this->form->getState();
+////        $test = $this->form;
+////        dd($user, $pathNameImage);
+//        if($user->channel->brand == $pathNameImage){
+//            dd('IGUAIS - NÃO TROCOU!! :)', $user->channel->brand, $pathNameImage);
+//        }elseif ($user->channel->brand != $pathNameImage){
+//            dd('DIFERENTE - TROCOU!! :)', $user->channel->brand, $pathNameImage);
+//        }
+//    }
 
     protected function afterSave()
     {
@@ -209,18 +244,5 @@ class EditProfile extends BaseEditProfile
                 ->button()
                 ->url(route('filament.admin.pages.dashboard'), shouldOpenInNewTab: false),
         ];
-    }
-
-    public function update()
-    {
-        dd('asdas');
-        auth()->user()->update(
-            $this->form->getState()
-        );
-
-        Notification::make()
-            ->title('Perfil atualizado com sucesso!')
-            ->success()
-            ->send();
     }
 }

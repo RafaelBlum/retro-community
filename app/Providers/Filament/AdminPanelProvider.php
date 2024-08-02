@@ -43,14 +43,18 @@ class AdminPanelProvider extends PanelProvider
                     ->url(config('app.url'))
                     ->icon('heroicon-o-globe-asia-australia')
                     ->group('Links')
-                    ->sort(5)->openUrlInNewTab()
+                    ->sort(5)->openUrlInNewTab(),
             ])
             ->userMenuItems([
                 MenuItem::make()
                     ->label('Configurações')
                     ->url('')
                     ->icon('heroicon-o-cog-6-tooth'),
-                'logout' => MenuItem::make()->label('Sair')
+                'logout' => MenuItem::make()->label('Sair'),
+                'profile' => MenuItem::make()
+                    ->label(fn() => auth()->user()->name)
+                    ->url(fn (): string => EditProfile::getUrl())
+                    ->icon('heroicon-m-user-circle'),
             ])
             ->discoverResources(in: app_path('Filament/Resources'), for: 'App\\Filament\\Resources')
             ->discoverPages(in: app_path('Filament/Pages'), for: 'App\\Filament\\Pages')
