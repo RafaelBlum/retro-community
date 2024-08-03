@@ -5,6 +5,7 @@ namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use App\Enums\PanelTypeEnum;
+use App\Traits\Avatarable;
 use Filament\Models\Contracts\FilamentUser;
 use Filament\Models\Contracts\HasAvatar;
 use Filament\Panel;
@@ -16,7 +17,7 @@ use Illuminate\Notifications\Notifiable;
 
 class User extends Authenticatable implements HasAvatar, FilamentUser
 {
-    use HasFactory, Notifiable;
+    use HasFactory, Notifiable, Avatarable;
 
     protected $guarded = ['id'];
 
@@ -72,7 +73,8 @@ class User extends Authenticatable implements HasAvatar, FilamentUser
 
     public function getFilamentAvatarUrl(): ?string
     {
-        return asset('storage/' . $this->avatar);
+//        return asset('storage/' . $this->avatar);
+        return $this->avatar_url;
     }
 
     public function canAccessPanel(Panel $panel): bool

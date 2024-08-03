@@ -153,3 +153,4 @@ If you discover a security vulnerability within Laravel, please send an e-mail t
 > Links de estudos e layouts.
 - https://astrowind.vercel.app
 - https://github.com/filamentphp/demo
+- https://notes.suluh.my.id/profile-page-filament-3 - profile user

@@ -2,6 +2,7 @@
 
 namespace App\Providers\Filament;
 
+use App\Filament\Pages\App\Profile;
 use App\Filament\Pages\Auth\EditProfile;
 use Filament\Http\Middleware\Authenticate;
 use Filament\Http\Middleware\DisableBladeIconComponents;
@@ -34,7 +35,6 @@ class AdminPanelProvider extends PanelProvider
             ->brandLogo(fn () => view('filament.logo'))
             ->favicon(asset('images/brandname/favicon-retrocommunity.png'))
             ->login()
-            ->profile(EditProfile::class)
             ->colors([
                 'primary' => Color::Amber,
             ])
@@ -53,8 +53,8 @@ class AdminPanelProvider extends PanelProvider
                 'logout' => MenuItem::make()->label('Sair'),
                 'profile' => MenuItem::make()
                     ->label(fn() => auth()->user()->name)
-                    ->url(fn (): string => EditProfile::getUrl())
-                    ->icon('heroicon-m-user-circle'),
+                    ->icon('heroicon-o-user-circle')
+                    ->url(static fn (): string => route(Profile::getRouteName(panel: 'admin'))),
             ])
             ->discoverResources(in: app_path('Filament/Resources'), for: 'App\\Filament\\Resources')
             ->discoverPages(in: app_path('Filament/Pages'), for: 'App\\Filament\\Pages')
