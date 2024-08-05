@@ -154,3 +154,18 @@ If you discover a security vulnerability within Laravel, please send an e-mail t
 - https://astrowind.vercel.app
 - https://github.com/filamentphp/demo
 - https://notes.suluh.my.id/profile-page-filament-3 - profile user
+
+[
+    [link](https://filamentphp.com/docs/3.x/panels/pages)
+    [video](https://www.youtube.com/watch?v=iFoVoa4l95U&t=1257s)
+    - php artisan make:filament-page Resume
+
+        - page Resume implement HasForm                             : 12:39
+            use InractsWithForm;
+ 
+        # Dados para interação na página
+        public ?array $data = [];
+        
+
+   
+]
