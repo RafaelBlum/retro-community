@@ -5,23 +5,28 @@ namespace App\Filament\Pages;
 use App\Enums\PanelTypeEnum;
 use Filament\Actions\Action;
 use Filament\Forms\Components\ColorPicker;
+use Filament\Forms\Components\Fieldset;
 use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\Grid;
 use Filament\Forms\Components\Group;
+use Filament\Forms\Components\Placeholder;
 use Filament\Forms\Components\Section;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\Tabs;
 use Filament\Forms\Components\Tabs\Tab;
 use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
+use Filament\Forms\Components\Toggle;
 use Filament\Forms\Concerns\InteractsWithForms;
 use Filament\Forms\Contracts\HasForms;
 use Filament\Forms\Form;
+use Filament\Forms\Get;
 use Filament\Notifications\Notification;
 use Filament\Pages\Page;
 use Filament\Actions;
 use Filament\Support\Colors\Color;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\HtmlString;
 
 class Profile extends Page implements HasForms
 {
@@ -40,7 +45,7 @@ class Profile extends Page implements HasForms
     public function mount(): void
     {
         $this->form->fill(
-            auth()->user()->attributesToArray()
+            auth()->user()->load('channel.camping')->attributesToArray()
         );
     }
 
@@ -164,6 +169,88 @@ class Profile extends Page implements HasForms
                                         ->hintColor(Color::Yellow)
                                         ->maxLength(255),
                                 ])->columnSpan(7),
+
+                                Grid::make(8)
+                                    ->relationship('camping')
+                                    ->schema([
+                                    Grid::make(3)->schema([
+
+                                        Section::make()->schema([
+
+                                            Placeholder::make('qrCode')
+                                                ->label('Últimas qrCode')
+
+                                                ->content(function ($get) {
+                                                    if (is_null($get('qrCode'))) {
+                                                        return 'Nenhum qrCode selecionado';
+                                                    }
+
+                                                    return new HtmlString(
+                                                        view(
+                                                            view: 'filament.campaing.iframe'
+                                                        )->render()
+                                                    );
+                                                }),
+                                        ])->columnSpan(1)
+                                            ->visible(function(Get $get){
+                                                if($get('qrCode') !== null){
+                                                    return true;
+                                                }
+                                                return false;
+                                            }),
+
+                                        Section::make()->schema([
+                                            Select::make('channel_id')
+                                                ->relationship('channel', 'name')
+                                                ->required(),
+                                            TextInput::make('title')
+                                                ->required()
+                                                ->maxLength(255),
+                                            Textarea::make('content')
+                                                ->required()
+                                                ->columnSpanFull(),
+                                            TextInput::make('linkGoal')
+                                                ->required()
+                                                ->maxLength(255),
+                                            TextInput::make('qrCode')
+                                                ->maxLength(255)
+                                                ->default(null),
+                                            Toggle::make('camping')
+                                                ->required(),
+                                            FileUpload::make('image')
+                                                ->directory('campaing_folder')
+                                                ->image(),
+                                        ])->columnSpan(2),
+                                    ]),
+
+
+
+                                    Fieldset::make('qrCode')
+                                        ->label('QR CODE')
+                                        ->visible(function(Get $get){
+                                            if($get('qrCode') !== null){
+                                                return true;
+                                            }
+                                            return false;
+                                        }),
+
+                                    Section::make()
+                                        ->schema([
+                                            Placeholder::make('qrCode')
+                                                ->label('Últimas qrCode')
+                                                ->content(function ($get) {
+                                                    if (is_null($get('qrCode'))) {
+                                                        return 'Nenhum qrCode selecionado';
+                                                    }
+
+                                                    return new HtmlString(
+                                                        view(
+                                                            view: 'filament.campaing.iframe'
+                                                        )->render()
+                                                    );
+                                                }),
+                                        ])
+                                ])
                             ]),
                         ]),
                         Tab::make('Minha campanha')->icon('heroicon-m-identification')->schema([
@@ -196,7 +283,7 @@ class Profile extends Page implements HasForms
     public function update()
     {
 
-        auth()->user()->load('channel')->update(
+        auth()->user()->load('channel.camping')->update(
             $this->form->getState()
         );
 
