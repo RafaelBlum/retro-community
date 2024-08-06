@@ -3,6 +3,7 @@
 namespace App\Filament\Pages;
 
 use App\Enums\PanelTypeEnum;
+use App\Models\User;
 use Filament\Actions\Action;
 use Filament\Forms\Components\ColorPicker;
 use Filament\Forms\Components\Fieldset;
@@ -23,10 +24,13 @@ use Filament\Forms\Form;
 use Filament\Forms\Get;
 use Filament\Notifications\Notification;
 use Filament\Pages\Page;
-use Filament\Actions;
 use Filament\Support\Colors\Color;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\HtmlString;
+use Illuminate\Validation\Rules\Password;
+use Illuminate\Validation\ValidationException;
 
 class Profile extends Page implements HasForms
 {
@@ -36,7 +40,7 @@ class Profile extends Page implements HasForms
 
     protected static bool $shouldRegisterNavigation = false;
 
-    protected static ?string $title = 'Update Profile';
+    protected static ?string $title = 'Meu Perfil';
 
     protected static string $view = 'filament.pages.profile';
 
@@ -49,18 +53,11 @@ class Profile extends Page implements HasForms
         );
     }
 
-    protected function getViewData(): array
-    {
-        return [
-            'user' => Auth::user(),
-        ];
-    }
-
     public function form(Form $form): Form
     {
         return $form
             ->schema([
-                Grid::make(3)->schema([
+                Grid::make(9)->schema([
 
                     Section::make()->schema([
                         FileUpload::make('avatar')
@@ -69,7 +66,7 @@ class Profile extends Page implements HasForms
                             ->disk('public')
                             ->directory('thumbnails')
                             ->columnSpanFull()
-                    ])->columnSpan(1),
+                    ])->columnSpan(3),
 
                     Section::make()->schema([
                         Grid::make(3)->schema([
@@ -111,152 +108,137 @@ class Profile extends Page implements HasForms
                                     ->maxLength(255),
                             ])->columnSpan(5),
                         ]),
-                    ])->columnSpan(2),
+                    ])->columnSpan(6),
 
+                    Grid::make(8)->relationship('channel')->schema([
 
-                    Tabs::make('informations')->tabs([
+                        Section::make()->schema([
+                            FileUpload::make('brand')
+                                ->label('')
+                                ->disk('public')
+                                ->debounce()
+                                ->helperText('Logo do seu canal')
+                                ->directory('channel_brand')
+                                ->columnSpanFull()
+                        ])->columnSpan(3),
 
-                        Tab::make('Meu Canal')->icon('heroicon-m-identification')->schema([
-                            Grid::make(8)->relationship('channel')->schema([
+                        Section::make()->schema([
+                            Grid::make(4)->schema([
                                 Group::make()->schema([
-                                    FileUpload::make('brand')
-                                        ->label('')
-                                        ->disk('public')
-                                        ->debounce()
-                                        ->helperText('Logo do seu canal')
-                                        ->avatar()
-                                        ->directory('channel_brand')
-                                        ->columnSpanFull()
-                                ])->columnSpan(1),
+                                    TextInput::make('title')
+                                        ->label('Nome do seu canal')
+                                        ->hintIcon('heroicon-m-check-badge', tooltip: 'Seu canal do Youtube.')
+                                        ->hintColor(Color::Green)
+                                        ->required(),
+                                ])->columnSpan(2),
 
                                 Group::make()->schema([
-                                    Grid::make(4)->schema([
-                                        Group::make()->schema([
-                                            TextInput::make('title')
-                                                ->label('Nome do seu canal')
-                                                ->hintIcon('heroicon-m-check-badge', tooltip: 'Seu canal do Youtube.')
-                                                ->hintColor(Color::Green)
-                                                ->required(),
-                                        ])->columnSpan(2),
+                                    TextInput::make('name')
+                                        ->label('Seu nome')
+                                        ->required(),
+                                ])->columnSpan(2),
+                            ])->columnSpanFull(),
 
-                                        Group::make()->schema([
-                                            TextInput::make('name')
-                                                ->label('Seu nome')
-                                                ->required(),
-                                        ])->columnSpan(2),
-                                    ])->columnSpanFull(),
-
-
-
-                                    Grid::make(4)->schema([
-                                        Group::make()->schema([
-                                            TextInput::make('link')
-                                                ->label('Link canal do Youtube')
-                                                ->hintIcon('heroicon-m-question-mark-circle', tooltip: 'Adicione o nome do seu canal da URL sem "@"')
-                                                ->hintColor(Color::Yellow)
-                                                ->prefix('https://www.youtube.com/@')->suffixIcon('heroicon-m-globe-alt')
-                                                ->required(),
-                                        ])->columnSpan(3),
-
-                                        Group::make()->schema([
-                                            ColorPicker::make('Cor'),
-                                        ])->columnSpan(1),
-                                    ])->columnSpanFull(),
-
-                                    Textarea::make('description')
-                                        ->label('Descrição')
-                                        ->hintIcon('heroicon-m-question-mark-circle', tooltip: 'Descreva brevemente aqui sobre seu canal.')
+                            Grid::make(4)->schema([
+                                Group::make()->schema([
+                                    TextInput::make('link')
+                                        ->label('Link canal do Youtube')
+                                        ->hintIcon('heroicon-m-question-mark-circle', tooltip: 'Adicione o nome do seu canal da URL sem "@"')
                                         ->hintColor(Color::Yellow)
-                                        ->maxLength(255),
-                                ])->columnSpan(7),
+                                        ->prefix('https://www.youtube.com/@')->suffixIcon('heroicon-m-globe-alt')
+                                        ->required(),
+                                ])->columnSpan(3),
 
-                                Grid::make(8)
-                                    ->relationship('camping')
-                                    ->schema([
-                                    Grid::make(3)->schema([
+                                Group::make()->schema([
+                                    ColorPicker::make('color'),
+                                ])->columnSpan(1),
+                            ])->columnSpanFull(),
 
-                                        Section::make()->schema([
+                            Textarea::make('description')
+                                ->label('Descrição')
+                                ->hintIcon('heroicon-m-question-mark-circle', tooltip: 'Descreva brevemente aqui sobre seu canal.')
+                                ->hintColor(Color::Yellow)
+                                ->maxLength(255),
+                        ])->columnSpan(5),
 
-                                            Placeholder::make('qrCode')
-                                                ->label('Últimas qrCode')
 
-                                                ->content(function ($get) {
-                                                    if (is_null($get('qrCode'))) {
-                                                        return 'Nenhum qrCode selecionado';
-                                                    }
+                        Grid::make(8)->relationship('camping')->schema([
+                            Section::make()->schema([
+                                FileUpload::make('image')
+                                    ->label('')
+                                    ->disk('public')
+                                    ->debounce()
+                                    ->helperText('Imagem da sua campanha, informativa.')
+                                    ->directory('campaing_folder')
+                                    ->image()
+                                    ->columnSpanFull()
+                            ])->columnSpan(3),
 
-                                                    return new HtmlString(
-                                                        view(
-                                                            view: 'filament.campaing.iframe'
-                                                        )->render()
-                                                    );
-                                                }),
-                                        ])->columnSpan(1)
-                                            ->visible(function(Get $get){
-                                                if($get('qrCode') !== null){
-                                                    return true;
+                            Section::make()->schema([
+                                Grid::make(10)->schema([
+                                    Group::make()->schema([
+                                        Placeholder::make('qrCode')
+                                            ->label('QR Code LivePix')
+                                            ->content(function ($get) {
+                                                if (is_null($get('qrCode'))) {
+                                                    return 'Nenhum qrCode selecionado';
                                                 }
-                                                return false;
+
+                                                return new HtmlString(
+                                                    view(
+                                                        view: 'filament.campaing.iframe'
+                                                    )->render()
+                                                );
                                             }),
+                                    ])->columnSpan(4)->visible(function (Get $get) {
+                                        if ($get('qrCode') !== null) {
+                                            return true;
+                                        }
+                                        return false;
+                                    }),
 
-                                        Section::make()->schema([
-                                            Select::make('channel_id')
-                                                ->relationship('channel', 'name')
-                                                ->required(),
-                                            TextInput::make('title')
-                                                ->required()
-                                                ->maxLength(255),
-                                            Textarea::make('content')
-                                                ->required()
-                                                ->columnSpanFull(),
-                                            TextInput::make('linkGoal')
-                                                ->required()
-                                                ->maxLength(255),
-                                            TextInput::make('qrCode')
-                                                ->maxLength(255)
-                                                ->default(null),
-                                            Toggle::make('camping')
-                                                ->required(),
-                                            FileUpload::make('image')
-                                                ->directory('campaing_folder')
-                                                ->image(),
-                                        ])->columnSpan(2),
-                                    ]),
+                                    Group::make()->schema([
+
+                                        TextInput::make('title')
+                                            ->label('Titulo')
+                                            ->required()
+                                            ->maxLength(255),
+                                        Textarea::make('content')
+                                            ->label('Descrição da campanha')
+                                            ->required()
+                                            ->columnSpanFull(),
+
+                                        TextInput::make('linkGoal')
+                                            ->label('Link campanha status')
+                                            ->hintIcon('heroicon-m-question-mark-circle', tooltip: 'Adicione o link da campanha do seu LivePix')
+                                            ->hintColor(Color::Yellow)
+                                            ->prefixIcon('heroicon-m-currency-dollar')->suffixIcon('heroicon-m-chart-bar')
+                                            ->required(),
+
+                                        TextInput::make('qrCode')
+                                            ->label('Link QR Code')
+                                            ->hintIcon('heroicon-m-question-mark-circle', tooltip: 'Adicione o link do seu QRCODE do livePix')
+                                            ->hintColor(Color::Yellow)
+                                            ->prefixIcon('heroicon-m-qr-code')->suffixIcon('heroicon-m-viewfinder-circle')
+                                            ->required(),
 
 
-
-                                    Fieldset::make('qrCode')
-                                        ->label('QR CODE')
-                                        ->visible(function(Get $get){
-                                            if($get('qrCode') !== null){
-                                                return true;
-                                            }
-                                            return false;
-                                        }),
-
-                                    Section::make()
-                                        ->schema([
-                                            Placeholder::make('qrCode')
-                                                ->label('Últimas qrCode')
-                                                ->content(function ($get) {
-                                                    if (is_null($get('qrCode'))) {
-                                                        return 'Nenhum qrCode selecionado';
-                                                    }
-
-                                                    return new HtmlString(
-                                                        view(
-                                                            view: 'filament.campaing.iframe'
-                                                        )->render()
-                                                    );
-                                                }),
-                                        ])
-                                ])
-                            ]),
+                                        Toggle::make('camping')
+                                            ->label(function (Get $get){
+                                                if($get('camping') == true){
+                                                    return 'Campanha ativada';
+                                                }
+                                                return 'Campanha desativada';
+                                            })->live(),
+                                    ])->columnSpan(6),
+                                ])->columnSpanFull(),
+                            ])->columnSpan(5),
                         ]),
-                        Tab::make('Minha campanha')->icon('heroicon-m-identification')->schema([
 
-                        ]),
-                    ])->columnSpanFull()->activeTab(1)->persistTabInQueryString(),
+
+
+                    ]),
+
                 ]),
             ])
             ->statePath('data')
@@ -271,24 +253,39 @@ class Profile extends Page implements HasForms
             ]);
     }
 
+    protected function onValidationError(ValidationException $exception): void
+    {
+        Notification::make()
+            ->title($exception->getMessage())
+            ->danger()
+            ->send();
+    }
+
     protected function getFormActions(): array
     {
         return [
-            Action::make('Update')
+            Action::make('Salvar modificações')
                 ->color('primary')
-                ->submit('Update'),
+                ->submit('update'),
         ];
     }
 
     public function update()
     {
+//        $user = auth()->user()->load('channel.camping');
+//        $user2 = User::find(\auth()->user()->id);
+//        $brandImagem = $user2->channel->brand;
+        //dd($brandImagem);
 
         auth()->user()->load('channel.camping')->update(
             $this->form->getState()
         );
 
+        //dd($brandImagem, $user->channel->brand, $user2->channel, $this->form->model->channel->brand);
+
         Notification::make()
-            ->title('Profile updated!')
+            ->title('Perfil atualizado com sucesso!!')
+            ->body(\auth()->user()->name)
             ->success()
             ->send();
     }

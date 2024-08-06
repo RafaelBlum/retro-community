@@ -119,6 +119,12 @@ If you discover a security vulnerability within Laravel, please send an e-mail t
 > NOVA BRANCH Multi-tenancy
 [Multi-tenancy](https://filamentphp.com/docs/3.x/panels/tenancy)
 
+> [!IMPORTANT]
+> Custom pages docs
+[Custom Pages Resume - Curriculo page](https://www.youtube.com/watch?v=iFoVoa4l95U)
+[Customizing User Profile and Password - components](https://notes.suluh.my.id/profile-page-filament-3)
+[Customizing Profile:Integrating Multiple Forms](https://medium.com/@laravelprotips/personalizing-the-filament-profile-page-expanding-the-design-and-integrating-multiple-forms-62db7ca68343)
+
 > [!WARNING]
 > Apontamento do `public_html` para `public` do projeto laravel
 
