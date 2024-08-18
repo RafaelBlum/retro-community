@@ -9,7 +9,7 @@
         </li>
     @endif
 
-    @if($state->linkGoal)
+    @if($state->qrCode)
         <li>
             <a href="{{$state->qrCode}}" target="_blank" class="text-[#ea4c89] hover:text-gray-900 dark:hover:text-white">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">

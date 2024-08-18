@@ -23,6 +23,14 @@
 > [!WARNING]
 > Documentação do projeto em desenvolvimento
 
+1. Run the following commands from within the `core` directory:
+```shell
+    composer update
+    npm install
+    npm run build
+    npm run dev
+```
+
 ## Sobre Retro Community
 
 Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
