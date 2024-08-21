@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CampaingController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ChannelController;
 use App\Http\Controllers\PostController;
@@ -9,7 +10,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [WebController::class, 'landing'])->name('app.landing');
 Route::get('home', [WebController::class, 'home'])->name('app.home');
 Route::get('/sobre', [WebController::class, 'about'])->name('app.about');
-
+Route::get('/campaings', [CampaingController::class, 'index'])->name('app.campaings');
 Route::get('/teste', [WebController::class, 'templateTest'])->name('app.test');
 
 Route::fallback(function (){

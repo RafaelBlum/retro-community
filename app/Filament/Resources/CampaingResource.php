@@ -47,13 +47,12 @@ class CampaingResource extends Resource
                     Section::make()->schema([
 
                         Placeholder::make('qrCode')
-                            ->label('Últimas qrCode')
+                            ->label('Seu QR Code')
 
                             ->content(function ($get) {
                                 if (is_null($get('qrCode'))) {
                                     return 'Nenhum qrCode selecionado';
                                 }
-
                                 return new HtmlString(
                                     view(
                                         view: 'filament.campaing.iframe'
@@ -94,19 +93,12 @@ class CampaingResource extends Resource
 
 
 
-                Fieldset::make('qrCode')
-                    ->label('QR CODE')
-                    ->visible(function(Get $get){
-                        if($get('qrCode') !== null){
-                            return true;
-                        }
-                        return false;
-                    }),
+
 
                 Section::make()
                     ->schema([
                         Placeholder::make('qrCode')
-                            ->label('Últimas qrCode')
+                            ->label('Sua campanha')
                             ->content(function ($get) {
                                 if (is_null($get('qrCode'))) {
                                     return 'Nenhum qrCode selecionado';
