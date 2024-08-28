@@ -7,12 +7,15 @@ use App\Filament\Resources\ChannelResource\RelationManagers;
 use App\Models\Channel;
 use Filament\Forms\Components\ColorPicker;
 use Filament\Forms\Components\FileUpload;
+use Filament\Forms\Components\Grid;
 use Filament\Forms\Components\Group;
 use Filament\Forms\Components\Placeholder;
 use Filament\Forms\Components\Section;
 use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
+use Filament\Forms\Components\Toggle;
 use Filament\Forms\Form;
+use Filament\Forms\Get;
 use Filament\Resources\Resource;
 use Filament\Support\Colors\Color;
 use Filament\Support\Enums\IconPosition;
@@ -65,6 +68,9 @@ class ChannelResource extends Resource
                             ->required()
                             ->columnSpanFull(),
 
+
+
+
                     ])->columns(3),
 
                 ])->columnSpan([
@@ -96,6 +102,7 @@ class ChannelResource extends Resource
                             ->content(fn (Channel $record): ?string => $record->updated_at?->diffForHumans()),
 
                     ])->columns(2),
+
                 ])->columnSpan([
                     'default' => 1,
                     'sm' => 1,
@@ -103,6 +110,78 @@ class ChannelResource extends Resource
                     'lg' => 1,
                     'xl' => 1,
                     '2xl' => 1
+                ]),
+
+                Placeholder::make('')->label('Campanha do canal '),
+
+                Grid::make(9)->relationship('camping')->schema([
+
+                    Section::make()->schema([
+                        TextInput::make('title'),
+                        FileUpload::make('image')
+                            ->label('')
+                            ->disk('public')
+                            ->debounce()
+                            ->helperText('Imagem da sua campanha, informativa.')
+                            ->directory('campaing_folder')
+                            ->image()
+                            ->columnSpanFull()
+                    ])->columnSpan(3),
+
+                    Section::make()->schema([
+                        Grid::make(3)->schema([
+
+                            Group::make()->schema([
+                                Toggle::make('camping')
+                                    ->label(function (Get $get){
+                                        if($get('camping') == true){
+                                            return 'Campanha ativada';
+                                        }
+                                        return 'Campanha desativada';
+                                    })->live(),
+                            ])->columnSpan(1),
+
+                            Group::make()->schema([
+                                TextInput::make('title')
+                                    ->label('Titulo')
+                                    ->required()
+                                    ->maxLength(255),
+                            ])->columnSpan(2),
+                        ]),
+
+                        Grid::make(8)->schema([
+                            Group::make()->schema([
+
+
+
+                                TextInput::make('linkGoal')
+                                    ->label('Link campanha status')
+                                    ->hintIcon('heroicon-m-question-mark-circle', tooltip: 'Adicione o link da campanha do seu LivePix')
+                                    ->hintColor(Color::Yellow)
+                                    ->prefixIcon('heroicon-m-currency-dollar')->suffixIcon('heroicon-m-chart-bar')
+                                    ->required(),
+
+                                TextInput::make('qrCode')
+                                    ->label('Link QR Code')
+                                    ->hintIcon('heroicon-m-question-mark-circle', tooltip: 'Adicione o link do seu QRCODE do livePix')
+                                    ->hintColor(Color::Yellow)
+                                    ->prefixIcon('heroicon-m-qr-code')->suffixIcon('heroicon-m-viewfinder-circle')
+                                    ->required(),
+
+
+
+
+                            ])->columnSpan(3),
+
+                            Group::make()->schema([
+                                Textarea::make('content')
+                                    ->label('Descrição da campanha')
+                                    ->required()
+                                    ->columnSpanFull(),
+                            ])->columnSpan(5),
+                        ]),
+
+                    ])->columnSpan(6),
                 ]),
             ])->columns(3);
     }
@@ -124,6 +203,9 @@ class ChannelResource extends Resource
 
                 TextColumn::make('user.name')
                     ->label('Usuário'),
+
+                Tables\Columns\CheckboxColumn::make('camping.camping')
+                    ->label('Campanha'),
 
                 TextColumn::make('link')
                     ->icon('heroicon-m-at-symbol')
