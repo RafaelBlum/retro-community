@@ -109,24 +109,14 @@ class CampaingResource extends Resource
                     }),
 
                     Section::make()->schema([
-                        Select::make('channel_id')
-                            ->relationship(
-                                'channel',
-                                'name',
-                                modifyQueryUsing: function (Builder $query) {
 
-                                    // Verifica se o ID do modelo Campaing está presente
-//                                    if ($this->getModel() && $this->getModel()->exists) {
-//                                        // No modo de edição: filtra para mostrar apenas o canal associado
-//                                        return $query->where('id', $this->getModel()->channel_id);
-//                                    } else {
-//                                        // No modo de criação: filtra para mostrar apenas canais sem campanha
-//                                        return $query->doesntHave('camping');
-//                                    }
-                                    return static::modifyChannelQuery($query);
-                                    //return $query->doesntHave('camping');
-                                })
+                        Select::make('channel_id')
+                            ->label('Canal responsável')
+                            ->relationship('channel', 'title', function (Builder $query) {
+                                return static::modifyChannelQuery($query);
+                            })
                             ->required(),
+
 
                         TextInput::make('title')
                             ->required()
@@ -157,30 +147,25 @@ class CampaingResource extends Resource
             ]);
     }
 
-// Exemplo de método chamado na configuração do formulário
-    protected static function modifyChannelQuery(Builder $query)
-    {
-        $model = static::getModelInstance(); // Obtém a instância do modelo
 
-        if ($model && $model->exists) {
-            dd('existe');
-
-            return $query->where('id', $model->channel_id);
-        } else {
-            dd('NÃO existe');
-            return $query->doesntHave('camping');
-        }
-    }
-
-    // Método auxiliar para obter a instância do modelo
     protected static function getModelInstance()
     {
-        $te = static::$model::first();
-        dd($te);
+        $id = request()->route('record');
+        if ($id) {
+            return static::$model::find($id);
+        }
+        return null;
+    }
 
-        // Aqui você pode retornar uma instância do modelo se necessário
-        //request()->route('record_id')
-        return static::$model::first(); // Exemplo simplificado
+    protected static function modifyChannelQuery(Builder $query)
+    {
+        $model = static::getModelInstance();
+
+        if($model && $model->exists) {
+            return $query->where('id', $model->channel_id);
+        }else{
+            return $query->doesntHave('camping');
+        }
     }
 
     public static function table(Table $table): Table

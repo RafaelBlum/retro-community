@@ -16,12 +16,11 @@ class ListCampaings extends ListRecords
     {
         $camping = Channel::query()->doesntHave('camping')->get();
 
-        if($camping){
+        if(!$camping->isEmpty()){
             return [
                 Actions\CreateAction::make(),
             ];
         }
-
         return [];
     }
 }

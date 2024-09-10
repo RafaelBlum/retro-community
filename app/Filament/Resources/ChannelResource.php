@@ -4,6 +4,7 @@ namespace App\Filament\Resources;
 
 use App\Filament\Resources\ChannelResource\Pages;
 use App\Filament\Resources\ChannelResource\RelationManagers;
+use App\Models\Campaing;
 use App\Models\Channel;
 use Filament\Forms\Components\ColorPicker;
 use Filament\Forms\Components\FileUpload;
@@ -114,10 +115,14 @@ class ChannelResource extends Resource
 
                 Placeholder::make('')->label('Campanha do canal '),
 
+                /**
+                 * SECTION CAMPING CHANNEL USER
+                */
                 Grid::make(9)->relationship('camping')->schema([
 
                     Section::make()->schema([
-                        TextInput::make('title'),
+                        TextInput::make('title')
+                        ->label(''),
                         FileUpload::make('image')
                             ->label('')
                             ->disk('public')
@@ -129,26 +134,6 @@ class ChannelResource extends Resource
                     ])->columnSpan(3),
 
                     Section::make()->schema([
-                        Grid::make(3)->schema([
-
-                            Group::make()->schema([
-                                Toggle::make('camping')
-                                    ->label(function (Get $get){
-                                        if($get('camping') == true){
-                                            return 'Campanha ativada';
-                                        }
-                                        return 'Campanha desativada';
-                                    })->live(),
-                            ])->columnSpan(1),
-
-                            Group::make()->schema([
-                                TextInput::make('title')
-                                    ->label('Titulo')
-                                    ->required()
-                                    ->maxLength(255),
-                            ])->columnSpan(2),
-                        ]),
-
                         Grid::make(8)->schema([
                             Group::make()->schema([
 
@@ -171,16 +156,23 @@ class ChannelResource extends Resource
 
 
 
-                            ])->columnSpan(3),
+                            ])->columnSpan(8),
 
-                            Group::make()->schema([
-                                Textarea::make('content')
-                                    ->label('Descrição da campanha')
-                                    ->required()
-                                    ->columnSpanFull(),
-                            ])->columnSpan(5),
+
                         ]),
 
+                        Textarea::make('content')
+                            ->label('Descrição da campanha')
+                            ->required()
+                            ->columnSpanFull(),
+
+                        Toggle::make('camping')
+                            ->label(function (Get $get){
+                                if($get('camping') == true){
+                                    return 'Campanha ativada';
+                                }
+                                return 'Campanha desativada';
+                            })->live()->columnSpanFull(),
                     ])->columnSpan(6),
                 ]),
             ])->columns(3);
