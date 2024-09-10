@@ -114,6 +114,57 @@
     </section>
 
     {{-- ::  :: --}}
+    <section class="bg-white dark:bg-gray-900 text-gray-900 dark:text-white">
+        <div class="mx-auto w-full max-w-7xl px-5 py-16 md:px-10 md:py-20">
+
+            <div class="flex flex-wrap -mx-4">
+
+                <div class="w-full sm:w-1/3 px-4 mb-8 up">
+                    <div class="category-banner relative overflow-hidden rounded-lg shadow-lg group">
+                        <img src="{{ asset('images/feature-2.png') }}" alt="Category 2" class="w-full h-auto opacity-10">
+                        <div class="absolute inset-0 bg-gray-light bg-opacity-50"></div>
+                        <div
+                            class="absolute inset-0 flex flex-col items-center justify-center text-center p-4">
+                            <h2 class="text-2xl md:text-3xl font-bold mb-4">Men</h2>
+                            <a href="/"
+                               class="bg-primary hover:bg-transparent border border-transparent hover:border-amber-700 hover:dark:border-white hover:text-amber-700 hover:dark:hover:text-white font-semibold px-4 py-2 rounded-full inline-block">Shop
+                                now</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="w-full sm:w-1/3 px-4 mb-8 up">
+                    <div class="category-banner relative overflow-hidden rounded-lg shadow-lg group">
+                        <img src="{{ asset('images/feature-2.png') }}" alt="Category 2" class="w-full h-auto opacity-10">
+                        <div class="absolute inset-0 bg-gray-light bg-opacity-50"></div>
+                        <div
+                            class="absolute inset-0 flex flex-col items-center justify-center text-center p-4">
+                            <h2 class="text-2xl md:text-3xl font-bold mb-4">Men</h2>
+                            <a href="/"
+                               class="bg-primary hover:bg-transparent border border-transparent hover:border-amber-700 hover:dark:border-white hover:text-amber-700 hover:dark:hover:text-white font-semibold px-4 py-2 rounded-full inline-block">Shop
+                                now</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="w-full sm:w-1/3 px-4 mb-8 up">
+                    <div class="category-banner relative overflow-hidden rounded-lg shadow-lg group">
+                        <img src="{{ asset('images/feature-2.png') }}" alt="Category 2" class="w-full h-auto opacity-10">
+                        <div class="absolute inset-0 bg-gray-light bg-opacity-50"></div>
+                        <div
+                            class="absolute inset-0 flex flex-col items-center justify-center text-center p-4">
+                            <h2 class="text-2xl md:text-3xl font-bold mb-4">Men</h2>
+                            <a href="/"
+                               class="bg-primary hover:bg-transparent border border-transparent hover:border-amber-700 hover:dark:border-white hover:text-amber-700 hover:dark:hover:text-white font-semibold px-4 py-2 rounded-full inline-block">Shop
+                                now</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    {{-- ::  :: --}}
     <section class="bg-gray-50 dark:bg-gray-800">
         <div class="mx-auto w-full max-w-7xl px-5 py-16 md:px-10 md:py-20">
             <div class="overflow-x-hidden">
@@ -1891,6 +1942,9 @@
             </div>
         </section>
         <!-- ====== Services Section End -->
+
+
+
         <!-- ====== Testimonials Section Start -->
         <section id="testimonials" class="pt-20 pb-20 lg:pt-[120px] lg:pb-[120px]">
             <div class="container mx-auto">
@@ -1901,7 +1955,7 @@
                             <div class="swiper-slide">
                                 <div class="w-full md:flex">
                                     <div class="relative mb-12 w-full max-w-[310px] md:mr-12 md:mb-0 md:max-w-[250px] lg:mr-14 lg:max-w-[280px] xl:max-w-[310px] 2xl:mr-16">
-                                        <img src="./assets/images/image-01.jpg" alt="image" class="w-full rounded-xl">
+                                        <img src="/images/teste.jpg" alt="image" class="w-full rounded-xl">
                                         <span class="absolute -top-6 -right-6 z-[-1] hidden sm:block">
                                  <svg width="77" height="77" viewBox="0 0 77 77" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <circle cx="1.66343" cy="74.5221" r="1.66343" transform="rotate(-90 1.66343 74.5221)" fill="#3758F9"></circle>
@@ -1951,7 +2005,7 @@
                                     <div class="w-full">
                                         <div>
                                             <div class="mb-8 mt-5">
-                                                <img src="./assets/images/logo-blue.png" alt="image">
+                                                <img src="/images/teste.jpg" alt="image">
                                             </div>
                                             <p class="text-body-color mb-11 text-base leading-[1.81] font-normal italic sm:text-[22px]">
                                                 Effortless made managing our files a breeze – with powerful features that set it apart from the rest. It's an indispensable tool for our team.
@@ -1969,7 +2023,7 @@
                             <div class="swiper-slide">
                                 <div class="w-full md:flex">
                                     <div class="relative mb-12 w-full max-w-[310px] md:mr-12 md:mb-0 md:max-w-[250px] lg:mr-14 lg:max-w-[280px] xl:max-w-[310px] 2xl:mr-16">
-                                        <img src="./assets/images/image-01.jpg" alt="image" class="w-full rounded-xl">
+                                        <img src="/images/teste.jpg" alt="image" class="w-full rounded-xl">
                                         <span class="absolute -top-6 -right-6 z-[-1] hidden sm:block">
                                  <svg width="77" height="77" viewBox="0 0 77 77" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <circle cx="1.66343" cy="74.5221" r="1.66343" transform="rotate(-90 1.66343 74.5221)" fill="#3758F9"></circle>
@@ -2019,7 +2073,7 @@
                                     <div class="w-full">
                                         <div>
                                             <div class="mb-8 mt-5">
-                                                <img src="./assets/images/logo-blue.png" alt="image">
+                                                <img src="/images/teste.jpg" alt="image">
                                             </div>
                                             <p class="text-body-color mb-11 text-base leading-[1.81] font-normal italic sm:text-[22px]">
                                                 Effortless has revolutionized our file storage experience. Its intuitive interface and powerful features make managing files a breeze. Whether you're a small startup or a large corporation, Effortless is the solution you've been looking for.
@@ -2037,7 +2091,7 @@
                             <div class="swiper-slide">
                                 <div class="w-full md:flex">
                                     <div class="relative mb-12 w-full max-w-[310px] md:mr-12 md:mb-0 md:max-w-[250px] lg:mr-14 lg:max-w-[280px] xl:max-w-[310px] 2xl:mr-16">
-                                        <img src="./assets/images/image-01.jpg" alt="image" class="w-full rounded-xl">
+                                        <img src="/images/teste.jpg" alt="image" class="w-full rounded-xl">
                                         <span class="absolute -top-6 -right-6 z-[-1] hidden sm:block">
                                  <svg width="77" height="77" viewBox="0 0 77 77" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <circle cx="1.66343" cy="74.5221" r="1.66343" transform="rotate(-90 1.66343 74.5221)" fill="#3758F9"></circle>
@@ -2087,7 +2141,7 @@
                                     <div class="w-full">
                                         <div>
                                             <div class="mb-8 mt-5">
-                                                <img src="./assets/images/logo-blue.png" alt="image">
+                                                <img src="/images/teste.jpg" alt="image">
                                             </div>
                                             <p class="text-body-color mb-11 text-base leading-[1.81] font-normal italic sm:text-[22px]">
                                                 Effortless has truly simplified our file storage process, offering unparalleled features that are unmatched elsewhere. It's the go-to solution for anyone looking to streamline their file management tasks effortlessly.
@@ -2103,6 +2157,7 @@
                                 </div>
                             </div>
                         </div>
+
                         <div class="flex items-center gap-5 justify-center">
                             <button class="swiper-btn-prev text-dark border border-stroke flex h-[60px] w-[60px] mr-4 items-center justify-center rounded-full bg-white transition-all hover:bg-primary hover:border-primary">
                                 <svg width="20" height="21" viewBox="0 0 20 21" fill="none" xmlns="http://www.w3.org/2000/svg" class="fill-current">
@@ -2115,6 +2170,7 @@
                                 </svg>
                             </button>
                         </div>
+
                     </div>
                 </div>
             </div>

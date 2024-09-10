@@ -60,7 +60,7 @@
     </section>
 
     @if($channel->camping)
-        <section class="bg-gray-50 dark:bg-gray-800">
+        <section class="bg-gray-50 dark:bg-gray-800" id="campaind_id">
             <div class="max-w-screen-xl px-4 py-8 mx-auto space-y-12 lg:space-y-20 lg:py-24 lg:px-6">
                 <!-- Row -->
                 <div class="items-center gap-8 flex justify-center xl:gap-16">

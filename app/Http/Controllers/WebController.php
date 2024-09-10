@@ -24,16 +24,11 @@ class WebController extends Controller
     public function landing()
     {
         try{
-
             $channels = Channel::all()->take(4);
             $grid = $channels->count();
-            $campings = Campaing::where('camping', true)->get();
 
-            return (
-                    $campings->isEmpty() ?
-                        view('landing', compact('channels',  'grid')) :
-                        view('campaings.home-campaing', compact('channels', 'campings', 'grid'))
-            );
+            return view('landing', compact('channels',  'grid'));
+
         }catch (\Exception $exception){
             if(env('APP_DEBUG')){
                 return redirect()->back();

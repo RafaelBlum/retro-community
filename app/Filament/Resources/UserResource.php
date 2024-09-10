@@ -154,7 +154,7 @@ class UserResource extends Resource
                                             ])->columnSpan(3),
 
                                             Group::make()->schema([
-                                                ColorPicker::make('Cor'),
+                                                ColorPicker::make('color')->label('Cor base do canal'),
                                             ])->columnSpan(1),
                                         ])->columnSpanFull(),
 

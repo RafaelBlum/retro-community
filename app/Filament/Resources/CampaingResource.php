@@ -2,14 +2,21 @@
 
 namespace App\Filament\Resources;
 
+use App\Enums\PanelTypeEnum;
 use App\Filament\Resources\CampaingResource\Pages;
 use App\Filament\Resources\CampaingResource\RelationManagers;
 use App\Models\Campaing;
 use Filament\Forms;
 use Filament\Forms\Components\Fieldset;
+use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\Grid;
+use Filament\Forms\Components\Group;
 use Filament\Forms\Components\Placeholder;
 use Filament\Forms\Components\Section;
+use Filament\Forms\Components\Select;
+use Filament\Forms\Components\Textarea;
+use Filament\Forms\Components\TextInput;
+use Filament\Forms\Components\Toggle;
 use Filament\Forms\Components\ViewField;
 use Filament\Forms\Form;
 use Filament\Forms\Get;
@@ -45,15 +52,48 @@ class CampaingResource extends Resource
                 Grid::make(3)->schema([
 
                     Section::make()->schema([
+                        FileUpload::make('image')
+                            ->label('Banner da sua campanha')
+                            ->directory('campaing_folder')
+                            ->default('default-post.jpg')
+                            ->disk('public')
+                            ->columnSpanFull()
+                            ->image(),
+                    ])->columnSpan(1),
+
+                    Section::make()->schema([
+                        Grid::make(3)->schema([
+                            Placeholder::make('linkGoal')
+                                ->label('Meta da sua campanha')
+                                ->content(function ($get) {
+                                    if (is_null($get('linkGoal'))) {
+                                        return 'Nenhum qrCode selecionado';
+                                    }
+
+                                    return new HtmlString(
+                                        view(
+                                            view: 'filament.campaing.iframeGoal'
+                                        )->render()
+                                    );
+                                }),
+                        ]),
+                    ])->columnSpan(2)
+                        ->visible(function(Get $get){
+                        if($get('linkGoal') !== null){
+                            return true;
+                        }
+                        return false;
+                    }),
+
+                    Section::make()->schema([
 
                         Placeholder::make('qrCode')
-                            ->label('Últimas qrCode')
+                            ->label('Seu QR Code')
 
                             ->content(function ($get) {
                                 if (is_null($get('qrCode'))) {
                                     return 'Nenhum qrCode selecionado';
                                 }
-
                                 return new HtmlString(
                                     view(
                                         view: 'filament.campaing.iframe'
@@ -69,57 +109,63 @@ class CampaingResource extends Resource
                     }),
 
                     Section::make()->schema([
-                        Forms\Components\Select::make('channel_id')
-                            ->relationship('channel', 'name')
+
+                        Select::make('channel_id')
+                            ->label('Canal responsável')
+                            ->relationship('channel', 'title', function (Builder $query) {
+                                return static::modifyChannelQuery($query);
+                            })
                             ->required(),
-                        Forms\Components\TextInput::make('title')
+
+
+                        TextInput::make('title')
                             ->required()
                             ->maxLength(255),
-                        Forms\Components\Textarea::make('content')
+
+                        Textarea::make('content')
                             ->required()
                             ->columnSpanFull(),
-                        Forms\Components\TextInput::make('linkGoal')
+                        TextInput::make('linkGoal')
                             ->required()
                             ->maxLength(255),
-                        Forms\Components\TextInput::make('qrCode')
+
+                        TextInput::make('qrCode')
                             ->maxLength(255)
                             ->default(null),
-                        Forms\Components\Toggle::make('camping')
+
+                        Toggle::make('camping')
                             ->required(),
-                        Forms\Components\FileUpload::make('image')
-                            ->directory('campaing_folder')
-                            ->image(),
                     ])->columnSpan(2),
                 ]),
-
-
-
-                Fieldset::make('qrCode')
-                    ->label('QR CODE')
-                    ->visible(function(Get $get){
-                        if($get('qrCode') !== null){
-                            return true;
-                        }
-                        return false;
-                    }),
-
-                Section::make()
-                    ->schema([
-                        Placeholder::make('qrCode')
-                            ->label('Últimas qrCode')
-                            ->content(function ($get) {
-                                if (is_null($get('qrCode'))) {
-                                    return 'Nenhum qrCode selecionado';
-                                }
-
-                                return new HtmlString(
-                                    view(
-                                        view: 'filament.campaing.iframe'
-                                    )->render()
-                                );
-                            }),
-                    ])
+            ])->columns([
+                'default' => 2,
+                'sm' => 1,
+                'md' => 2,
+                'lg' => 2,
+                'xl' => 2,
+                '2xl' => 2
             ]);
+    }
+
+
+    protected static function getModelInstance()
+    {
+        $id = request()->route('record');
+        if ($id) {
+            return static::$model::find($id);
+        }
+        return null;
+    }
+
+    protected static function modifyChannelQuery(Builder $query)
+    {
+        $model = static::getModelInstance();
+
+        if($model && $model->exists) {
+            return $query->where('id', $model->channel_id);
+        }else{
+            return $query->doesntHave('camping');
+        }
     }
 
     public static function table(Table $table): Table

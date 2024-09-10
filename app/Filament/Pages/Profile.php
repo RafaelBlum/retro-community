@@ -108,6 +108,7 @@ class Profile extends Page implements HasForms
                                     ->maxLength(255),
                             ])->columnSpan(5),
                         ]),
+
                     ])->columnSpan(6),
 
                     Grid::make(8)->relationship('channel')->schema([
@@ -190,8 +191,8 @@ class Profile extends Page implements HasForms
                                                     )->render()
                                                 );
                                             }),
-                                    ])->columnSpan(4)->visible(function (Get $get) {
-                                        if ($get('qrCode') !== null) {
+                                    ])->columnSpan(4)->hidden(function (Get $get) {
+                                        if ($get('qrCode') === null) {
                                             return true;
                                         }
                                         return false;
@@ -230,7 +231,12 @@ class Profile extends Page implements HasForms
                                                 }
                                                 return 'Campanha desativada';
                                             })->live(),
-                                    ])->columnSpan(6),
+                                    ])->columnSpan(function (Get $get) {
+                                        if ($get('qrCode') === null && !array_key_exists('id', $this->data['channel']['camping'])) {
+                                            return 10;
+                                        }
+                                        return 6;
+                                    }),
                                 ])->columnSpanFull(),
                             ])->columnSpan(5),
                         ]),
