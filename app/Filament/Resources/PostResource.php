@@ -8,8 +8,6 @@ use App\Filament\Resources\PostResource\Pages;
 use App\Filament\Resources\PostResource\RelationManagers;
 use App\Models\Post;
 use Filament\Actions\Action;
-use Filament\Actions\DeleteAction;
-use Filament\Forms\Components\Actions;
 use Filament\Forms\Components\DatePicker;
 use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\Grid;
@@ -21,11 +19,8 @@ use Filament\Forms\Components\Tabs;
 use Filament\Forms\Components\Tabs\Tab;
 use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
-use Filament\Forms\Components\ViewField;
 use Filament\Forms\Form;
 use Filament\Forms\Get;
-use Filament\Forms\Set;
-use Filament\Notifications\Notification;
 use Filament\Pages\SubNavigationPosition;
 use Filament\Resources\Pages\Page;
 use Filament\Resources\Resource;
@@ -37,7 +32,6 @@ use Filament\Tables\Filters\SelectFilter;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Facades\Storage;
-use Illuminate\Support\Str;
 
 class PostResource extends Resource
 {
@@ -161,7 +155,7 @@ class PostResource extends Resource
                                 ->columnSpanFull(),
                         ]),
 
-            ])->columnSpanFull()->activeTab(1)->persistTabInQueryString()
+                ])->columnSpanFull()->activeTab(1)->persistTabInQueryString()
 
             ])->columns([
                 'default' => 2,
@@ -172,7 +166,6 @@ class PostResource extends Resource
                 '2xl' => 2
             ]);
     }
-
 
 
     public static function table(Table $table): Table
@@ -205,21 +198,18 @@ class PostResource extends Resource
             ])
             ->filters([
                 SelectFilter::make('status')
+                    ->label('Postagens pelo status')
                     ->options(StatusPostEnum::class),
                 Filter::make('user_id')
-                    ->label('Meus artigos')
-                    ->query(fn (Builder $query): Builder => $query->where('user_id', auth()->id()))
-            ])->filtersTriggerAction(
-                fn (Action $action) => $action
-                    ->button()
-                    ->label('Filter'),
-            )
+                    ->label('Mostrar meus posts')
+                    ->query(fn(Builder $query): Builder => $query->where('user_id', auth()->id()))
+            ])
             ->actions([
                 Tables\Actions\ActionGroup::make([
                     Tables\Actions\EditAction::make(),
                     Tables\Actions\DeleteAction::make()
-                        ->action(function(Post $record) {
-                            if($record->featured_image_url != 'default-post.jpg'){
+                        ->action(function (Post $record) {
+                            if ($record->featured_image_url != 'default-post.jpg') {
                                 Storage::delete('public/' . $record->featured_image_url);
                             }
                             $record->delete();
