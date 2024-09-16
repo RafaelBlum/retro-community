@@ -56,6 +56,11 @@ class User extends Authenticatable implements HasAvatar, FilamentUser
         return $this->hasOne(Channel::class);
     }
 
+    public function channelCamping(): HasOne
+    {
+        return $this->hasOne(Channel::class)->with('camping');
+    }
+
     /**
      * Get the attributes that should be cast.
      *
