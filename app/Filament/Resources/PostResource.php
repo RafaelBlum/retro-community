@@ -32,7 +32,10 @@ use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Columns\ImageColumn;
 use Filament\Tables\Columns\TextColumn;
+use Filament\Tables\Filters\Filter;
+use Filament\Tables\Filters\SelectFilter;
 use Filament\Tables\Table;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 
@@ -201,8 +204,16 @@ class PostResource extends Resource
                 TextColumn::make('')
             ])
             ->filters([
-                //
-            ])
+                SelectFilter::make('status')
+                    ->options(StatusPostEnum::class),
+                Filter::make('user_id')
+                    ->label('Meus artigos')
+                    ->query(fn (Builder $query): Builder => $query->where('user_id', auth()->id()))
+            ])->filtersTriggerAction(
+                fn (Action $action) => $action
+                    ->button()
+                    ->label('Filter'),
+            )
             ->actions([
                 Tables\Actions\ActionGroup::make([
                     Tables\Actions\EditAction::make(),

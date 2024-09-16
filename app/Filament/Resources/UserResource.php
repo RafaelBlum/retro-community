@@ -107,69 +107,98 @@ class UserResource extends Resource
                             ])->columnSpan(5),
                         ]),
                     ])->columnSpan(2),
+                    Grid::make(8)->relationship('channel')
+                        ->schema([
+                            TextInput::make('title')
+                                ->label('Nome do seu canal')
+                                ->hintIcon('heroicon-m-check-badge', tooltip: 'Seu canal do Youtube.')
+                                ->hintColor(Color::Green)
+                                ->required(),
+                            TextInput::make('camping.title')
+                                ->label('Nome do seu canal')
+                                ->hintIcon('heroicon-m-check-badge', tooltip: 'Seu canal do Youtube.')
+                                ->hintColor(Color::Green)
+                                ->required(),
+                            
+                            Tabs::make('informations')->tabs([
 
-
-                    Tabs::make('informations')->tabs([
-
-                        Tab::make('Meu Canal')->icon('heroicon-m-identification')->schema([
-                            Grid::make(8)->relationship('channel')->schema([
-                                    Group::make()->schema([
-                                        FileUpload::make('brand')
-                                            ->label('')
-                                            ->disk('public')
-                                            ->debounce()
-                                            ->helperText('Logo do seu canal')
-                                            ->avatar()
-                                            ->directory('channel_brand')
-                                            ->columnSpanFull()
-                                    ])->columnSpan(1),
-
-                                    Group::make()->schema([
-                                        Grid::make(4)->schema([
-                                            Group::make()->schema([
-                                                TextInput::make('title')
-                                                    ->label('Nome do seu canal')
-                                                    ->hintIcon('heroicon-m-check-badge', tooltip: 'Seu canal do Youtube.')
-                                                    ->hintColor(Color::Green)
-                                                    ->required(),
-                                            ])->columnSpan(2),
-
-                                            Group::make()->schema([
-                                                TextInput::make('name')
-                                                    ->label('Seu nome')
-                                                    ->required(),
-                                            ])->columnSpan(2),
-                                        ])->columnSpanFull(),
-
-
-
-                                        Grid::make(4)->schema([
-                                            Group::make()->schema([
-                                                TextInput::make('link')
-                                                    ->label('Link canal do Youtube')
-                                                    ->hintIcon('heroicon-m-question-mark-circle', tooltip: 'Adicione o nome do seu canal da URL sem "@"')
-                                                    ->hintColor(Color::Yellow)
-                                                    ->prefix('https://www.youtube.com/@')->suffixIcon('heroicon-m-globe-alt')
-                                                    ->required(),
-                                            ])->columnSpan(3),
-
-                                            Group::make()->schema([
-                                                ColorPicker::make('color')->label('Cor base do canal'),
-                                            ])->columnSpan(1),
-                                        ])->columnSpanFull(),
-
-                                        Textarea::make('description')
-                                            ->label('Descrição')
-                                            ->hintIcon('heroicon-m-question-mark-circle', tooltip: 'Descreva brevemente aqui sobre seu canal.')
-                                            ->hintColor(Color::Yellow)
-                                            ->maxLength(255),
-                                    ])->columnSpan(7),
-                            ]),
+                                Tab::make('Meu Canal')->icon('heroicon-m-identification')->schema([
+                                    TextInput::make('title')
+                                        ->label('Nome do seu canal')
+                                        ->hintIcon('heroicon-m-check-badge', tooltip: 'Seu canal do Youtube.')
+                                        ->hintColor(Color::Green)
+                                        ->required(),
+                                    TextInput::make('camping.title')
+                                        ->label('Nome do seu canal')
+                                        ->hintIcon('heroicon-m-check-badge', tooltip: 'Seu canal do Youtube.')
+                                        ->hintColor(Color::Green)
+                                        ->required(),
+//                                    Grid::make(8)->relationship('channel')
+//                                        ->schema([
+//                                            Group::make()->schema([
+//                                                FileUpload::make('brand')
+//                                                    ->label('')
+//                                                    ->disk('public')
+//                                                    ->debounce()
+//                                                    ->helperText('Logo do seu canal')
+//                                                    ->avatar()
+//                                                    ->directory('channel_brand')
+//                                                    ->columnSpanFull()
+//                                            ])->columnSpan(1),
+//
+//                                            Group::make()->schema([
+//                                                Grid::make(4)->schema([
+//                                                    Group::make()->schema([
+//                                                        TextInput::make('title')
+//                                                            ->label('Nome do seu canal')
+//                                                            ->hintIcon('heroicon-m-check-badge', tooltip: 'Seu canal do Youtube.')
+//                                                            ->hintColor(Color::Green)
+//                                                            ->required(),
+//                                                    ])->columnSpan(2),
+//
+//                                                    Group::make()->schema([
+//                                                        TextInput::make('name')
+//                                                            ->label('Seu nome')
+//                                                            ->required(),
+//                                                    ])->columnSpan(2),
+//                                                ])->columnSpanFull(),
+//
+//
+//
+//                                                Grid::make(4)->schema([
+//                                                    Group::make()->schema([
+//                                                        TextInput::make('link')
+//                                                            ->label('Link canal do Youtube')
+//                                                            ->hintIcon('heroicon-m-question-mark-circle', tooltip: 'Adicione o nome do seu canal da URL sem "@"')
+//                                                            ->hintColor(Color::Yellow)
+//                                                            ->prefix('https://www.youtube.com/@')->suffixIcon('heroicon-m-globe-alt')
+//                                                            ->required(),
+//                                                    ])->columnSpan(3),
+//
+//                                                    Group::make()->schema([
+//                                                        ColorPicker::make('color')->label('Cor base do canal'),
+//                                                    ])->columnSpan(1),
+//                                                ])->columnSpanFull(),
+//
+//                                                Textarea::make('description')
+//                                                    ->label('Descrição')
+//                                                    ->hintIcon('heroicon-m-question-mark-circle', tooltip: 'Descreva brevemente aqui sobre seu canal.')
+//                                                    ->hintColor(Color::Yellow)
+//                                                    ->maxLength(255),
+//                                            ])->columnSpan(7),
+//                                        ]),
+                                ]),
+                                Tab::make('Minha campanha')->icon('heroicon-m-identification')->schema([
+                                    TextInput::make('camping.title')
+                                        ->label('Nome do seu canal')
+                                        ->hintIcon('heroicon-m-check-badge', tooltip: 'Seu canal do Youtube.')
+                                        ->hintColor(Color::Green)
+                                        ->required(),
+                                ]),
+                            ])->columnSpanFull()->activeTab(1)->persistTabInQueryString(),
                         ]),
-                        Tab::make('Minha campanha')->icon('heroicon-m-identification')->schema([
 
-                        ]),
-                    ])->columnSpanFull()->activeTab(1)->persistTabInQueryString(),
+
                 ]),
             ])->columns([
                 'default' => 2,
