@@ -55,6 +55,21 @@ class WebController extends Controller
         }
     }
 
+    public function about()
+    {
+        return view('pages.about');
+    }
+
+    public function policy()
+    {
+        return view('pages.policy');
+    }
+
+    public function support()
+    {
+        return view('pages.support');
+    }
+
     public function logout(Request $request)
     {
         Auth::guard('web')->logout();
@@ -63,10 +78,5 @@ class WebController extends Controller
         $request->session()->regenerateToken();
 
         return to_route('app.home');
-    }
-
-    public function about()
-    {
-        return view('pages.about');
     }
 }

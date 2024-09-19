@@ -10,7 +10,9 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [WebController::class, 'landing'])->name('app.landing');
 Route::get('home', [WebController::class, 'home'])->name('app.home');
 Route::get('/sobre', [WebController::class, 'about'])->name('app.about');
-Route::get('/campaings', [CampaingController::class, 'index'])->name('app.campaings');
+Route::get('/politicas', [WebController::class, 'policy'])->name('app.policy');
+Route::get('/suporte', [WebController::class, 'support'])->name('app.support');
+Route::get('/campanhas', [CampaingController::class, 'index'])->name('app.campaings');
 Route::get('/teste', [WebController::class, 'templateTest'])->name('app.test');
 
 Route::fallback(function (){
