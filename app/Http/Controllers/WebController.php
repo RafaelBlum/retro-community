@@ -57,7 +57,11 @@ class WebController extends Controller
 
     public function about()
     {
-        return view('pages.about');
+        $channels = Channel::all();
+        $posts = Post::query()->where('status', '=', 'published')->get();
+        $campaings = Campaing::all();
+
+        return view('pages.about', compact('channels', 'posts', 'campaings'));
     }
 
     public function policy()

@@ -200,6 +200,8 @@
                         </div>
 
 
+
+
                         <div class="hidden w-4/12 -mx-8 lg:block">
                             <div class="px-8">
                                 <h1 class="mb-4 text-xl font-bold text-gray-700">Authors</h1>
