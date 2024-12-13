@@ -31,6 +31,7 @@ use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\HtmlString;
 use Illuminate\Validation\Rules\Password;
 use Illuminate\Validation\ValidationException;
+use Livewire\Features\SupportFileUploads\TemporaryUploadedFile;
 
 class Profile extends Page implements HasForms
 {
@@ -45,9 +46,11 @@ class Profile extends Page implements HasForms
     protected static string $view = 'filament.pages.profile';
 
     public ?array $data = [];
+    public string $oldImage = '';
 
     public function mount(): void
     {
+        $this->oldImage = Auth::user()->avatar;
         $this->form->fill(
             auth()->user()->load('channel.camping')->attributesToArray()
         );
@@ -65,7 +68,7 @@ class Profile extends Page implements HasForms
                             ->default('default.jpg')
                             ->disk('public')
                             ->directory('thumbnails')
-                            ->columnSpanFull()
+                            ->columnSpanFull(),
                     ])->columnSpan(3),
 
                     Section::make()->schema([
@@ -276,23 +279,71 @@ class Profile extends Page implements HasForms
         ];
     }
 
+//    protected function beforeSave()
+//    {
+//        $user = auth()->user()->load('channel.camping');
+//
+//        $profileImage = $user->avatar;
+//        //dd($user, $profileImage);
+////        $user2 = User::find(\auth()->user()->id);
+////        $brandImagem = $user2->channel->brand;
+//        //dd($brandImagem);
+//
+//        if($user->avatar != $profileImage)
+//        {
+//          //  dd("Imagens: ", $user->avatar, $profileImage);
+//        }
+//        //dd("Imagens: ", $user->avatar, $profileImage);
+//    }
+
+//    protected function handleRecordUpdate(Model $record, array $data): Model
+//    {
+//
+//        dd('asdadas 8888888888888');
+//        $data['updated_by'] = auth()->id();
+//        $record->update($data);
+//
+//        return $record;
+//    }
+
+//    public static function afterSave(User $user)
+//    {
+//
+//        dd('sadas');
+//        // Verificar se existe um avatar e se o arquivo existe no disco
+//        if ($user->avatar) {
+//            // Deletar a imagem antiga
+//            Storage::delete('public/' . $user->avatar);
+//        }
+//    }
+
     public function update()
     {
-//        $user = auth()->user()->load('channel.camping');
-//        $user2 = User::find(\auth()->user()->id);
-//        $brandImagem = $user2->channel->brand;
-        //dd($brandImagem);
-
+        $user = auth()->user()->load('channel.camping');
+        if($user->avatar != $this->oldImage)
+        {
+            Storage::delete('public/' . $this->oldImage);
+            $this->oldImage = $user->avatar;
+        }
         auth()->user()->load('channel.camping')->update(
             $this->form->getState()
         );
-
-        //dd($brandImagem, $user->channel->brand, $user2->channel, $this->form->model->channel->brand);
-
         Notification::make()
             ->title('Perfil atualizado com sucesso!!')
             ->body(\auth()->user()->name)
             ->success()
             ->send();
+    }
+
+    protected function mutateFormDataBeforeFill(array $data): array
+    {
+        dd("asdas");
+        //modificar os dados de um registro antes de preenchê-lo no formulário
+        //se você estiver editando registros em uma ação modal
+        return $data;
+    }
+
+    protected function mutateFormDataBeforeSave(){
+
     }
 }
