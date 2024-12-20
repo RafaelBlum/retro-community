@@ -51,6 +51,7 @@ class Profile extends Page implements HasForms
     public function mount(): void
     {
         $this->oldImage = Auth::user()->avatar;
+
         $this->form->fill(
             auth()->user()->load('channel.camping')->attributesToArray()
         );
@@ -320,14 +321,18 @@ class Profile extends Page implements HasForms
     public function update()
     {
         $user = auth()->user()->load('channel.camping');
+
+
+        auth()->user()->load('channel.camping')->update(
+            $this->form->getState()
+        );
+
         if($user->avatar != $this->oldImage)
         {
             Storage::delete('public/' . $this->oldImage);
             $this->oldImage = $user->avatar;
         }
-        auth()->user()->load('channel.camping')->update(
-            $this->form->getState()
-        );
+
         Notification::make()
             ->title('Perfil atualizado com sucesso!!')
             ->body(\auth()->user()->name)
