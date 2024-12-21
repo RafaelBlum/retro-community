@@ -46,12 +46,9 @@ class Profile extends Page implements HasForms
     protected static string $view = 'filament.pages.profile';
 
     public ?array $data = [];
-    public string $oldImage = '';
 
     public function mount(): void
     {
-        $this->oldImage = Auth::user()->avatar;
-
         $this->form->fill(
             auth()->user()->load('channel.camping')->attributesToArray()
         );
@@ -322,15 +319,29 @@ class Profile extends Page implements HasForms
     {
         $user = auth()->user()->load('channel.camping');
 
+        $oldImage = $user->avatar;
+        $imgChannel = $user->channel->brand;
+        $imgCamp = $user->channel->camping->image;
 
         auth()->user()->load('channel.camping')->update(
             $this->form->getState()
         );
 
-        if($user->avatar != $this->oldImage)
+        if($user->avatar != $oldImage)
         {
-            Storage::delete('public/' . $this->oldImage);
-            $this->oldImage = $user->avatar;
+            if($user->avatar != "default-post.jpg"){
+                Storage::delete('public/' . $oldImage);
+            }
+        }
+
+        if($user->channel->brand != $imgChannel){
+            if($user->channel->brand != "default-brand.png"){
+                Storage::delete('public/' . $imgChannel);
+            }
+        }
+
+        if($user->channel->camping->image != $imgCamp){
+                Storage::delete('public/' . $imgCamp);
         }
 
         Notification::make()
