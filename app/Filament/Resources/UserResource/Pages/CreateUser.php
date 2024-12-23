@@ -32,4 +32,36 @@ class CreateUser extends CreateRecord
             ->body($this->data['name'] . ' | ' . $this->data['email']);
     }
 
+    protected function beforeFill(): void
+    {
+        //dd("1 Runs before the form fields are populated from the database.");
+    }
+
+    protected function afterFill(): void
+    {
+        //dd("2 Runs after the form fields are populated from the database.");
+    }
+
+    protected function beforeValidate(): void
+    {
+        //dd($this->data, $this->data['channel']['slug']);
+        //dd("3 Runs before the form fields are validated when the form is saved.");
+    }
+
+    protected function afterValidate(): void
+    {
+        //dd("4 Runs after the form fields are validated when the form is saved.");
+    }
+
+    protected function beforeSave(): void
+    {
+        dd($this->data, $this->data['channel']['slug']);
+        //dd("5 Runs before the form fields are saved to the database.");
+    }
+
+    protected function afterSave(): void
+    {
+        dd("6 Runs after the form fields are saved to the database.");
+    }
+
 }

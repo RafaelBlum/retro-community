@@ -24,6 +24,15 @@ class Channel extends Model
         'color'
     ];
 
+    public function sluggable(): array
+    {
+        return [
+            'slug' => [
+                'source' => 'channel.name'
+            ],
+        ];
+    }
+
     public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);

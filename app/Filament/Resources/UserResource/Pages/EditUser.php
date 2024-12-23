@@ -45,14 +45,16 @@ class EditUser extends EditRecord
 
     protected function beforeSave()
     {
-        $user = User::find($this->data['id'])->get();
-        dd($user);
-        $brandImagem = array_values($this->data['channel']['brand'])[0];
-        $caminhoDaImagem = array_values($this->data['avatar'])[0];
+        $user = User::find($this->data['id'])->load('channel.camping');
+        dd($user, $this->data, $this->data['id']);
 
-        if ($user->avatar != $caminhoDaImagem) {
+        $brandImagem = $user->channel->brand;
+
+        $avatarImagem = $user->avatar;
+
+        if ($user->avatar != $avatarImagem) {
             if($user->avatar != 'default.jpg'){
-                Storage::delete('public/' . $user->avatar);
+                Storage::delete('public/' . $avatarImagem);
             }
         }
 
@@ -60,7 +62,7 @@ class EditUser extends EditRecord
 
         if ($user->channel->brand != $brandImagem) {
             if($user->channel->brand != 'default-brand.png'){
-                Storage::delete('public/' . $user->channel->brand);
+                Storage::delete('public/' . $brandImagem);
             }
         }
 

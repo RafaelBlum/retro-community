@@ -35,6 +35,7 @@ use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
 
 class UserResource extends Resource
 {
@@ -135,7 +136,10 @@ class UserResource extends Resource
                                                             ->label('Nome do seu canal')
                                                             ->hintIcon('heroicon-m-check-badge', tooltip: 'Seu canal do Youtube.')
                                                             ->hintColor(Color::Green)
-                                                            ->required(),
+                                                            ->required()
+                                                            ->live(onBlur: true)
+                                                            ->afterStateUpdated(fn (Set $set, ?string $state) => $set('slug', Str::slug($state))),
+                                                        TextInput::make('slug')->visible(false)
                                                     ])->columnSpan(2),
 
                                                     Group::make()->schema([

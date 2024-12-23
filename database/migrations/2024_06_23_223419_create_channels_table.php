@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('user_id')->constrained()->cascadeOnDelete()->cascadeOnUpdate();
             $table->string('title');
+            $table->string('slug');
             $table->string('name');
             $table->string('link')->nullable();
             $table->string('brand')->default('default-brand.png');
