@@ -45,7 +45,7 @@ class EditUser extends EditRecord
 
     protected function beforeSave()
     {
-        $user = User::find($this->data['id'])->load('channel.camping');
+        $user = User::find($this->data['id'])->load('channel.camping')->get();
         dd($user, $this->data, $this->data['id']);
 
         $brandImagem = $user->channel->brand;
