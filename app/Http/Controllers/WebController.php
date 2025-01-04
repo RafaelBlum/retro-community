@@ -41,7 +41,7 @@ class WebController extends Controller
     {
         try{
             $section = false;
-            $channels = Channel::all();
+            $channels = Channel::all()->take(4);
             $grid = $channels->count();
 
             $posts = Post::query()->where('status', '=', 'published')->get()->take(6);
