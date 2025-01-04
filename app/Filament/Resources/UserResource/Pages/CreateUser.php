@@ -3,6 +3,7 @@
 namespace App\Filament\Resources\UserResource\Pages;
 
 use App\Filament\Resources\UserResource;
+use Filament\Actions\CreateAction;
 use Filament\Notifications\Notification;
 use Filament\Resources\Pages\CreateRecord;
 use Illuminate\Support\Str;
@@ -30,6 +31,11 @@ class CreateUser extends CreateRecord
         return parent::getCreatedNotification()
             ->title('Usuário criado com sucesso!')
             ->body($this->data['name'] . ' | ' . $this->data['email']);
+    }
+
+    protected function getRedirectUrl(): string
+    {
+        return $this->getResource()::getUrl('index');
     }
 
     protected function beforeFill(): void

@@ -128,7 +128,7 @@ class UserResource extends Resource
                                                     ->directory('channel_brand')
                                                     ->columnSpanFull()
                                             ])->columnSpan(1),
-//
+
                                             Group::make()->schema([
                                                 Grid::make(4)->schema([
                                                     Group::make()->schema([
@@ -139,7 +139,8 @@ class UserResource extends Resource
                                                             ->required()
                                                             ->live(onBlur: true)
                                                             ->afterStateUpdated(fn (Set $set, ?string $state) => $set('slug', Str::slug($state))),
-                                                        TextInput::make('slug')->visible(false)
+
+                                                        TextInput::make('slug')
                                                     ])->columnSpan(2),
 
                                                     Group::make()->schema([
