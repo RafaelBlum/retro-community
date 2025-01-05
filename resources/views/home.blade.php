@@ -30,7 +30,6 @@
                 <p class="font-light text-gray-500 sm:text-xl dark:text-gray-400">Alguns canais parceiros que estão apoiando o projeto Retrô Community.</p>
             </div>
             @if($channels->count() != 0)
-{{--                @if($channels->count() <= 4)--}}
                     <div class="grid gap-8 lg:gap-16 sm:grid-cols-1 md:grid-cols-{{$channels->count()}} lg:grid-cols-{{$channels->count()}}">
                         @foreach($channels as $channel)
                             <div class="text-center text-gray-500 dark:text-gray-400">
@@ -61,9 +60,6 @@
                             </div>
                         @endforeach
                     </div>
-{{--                @else--}}
-
-{{--                @endif--}}
             @endif
         </div>
     </section>
