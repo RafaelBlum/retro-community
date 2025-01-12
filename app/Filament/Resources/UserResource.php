@@ -8,6 +8,7 @@ use App\Filament\Resources\UserResource\Pages;
 use App\Filament\Resources\UserResource\RelationManagers;
 use App\Models\Post;
 use App\Models\User;
+use Filament\Actions\CreateAction;
 use Filament\Forms\Components\ColorPicker;
 use Filament\Forms\Components\DatePicker;
 use Filament\Forms\Components\FileUpload;
@@ -92,6 +93,7 @@ class UserResource extends Resource
                                 Select::make('panel')
                                     ->label('Tipo de usuário')
                                     ->options(PanelTypeEnum::class)
+                                    ->required()
                                     ->native(false),
 
                             ])->columnSpan(3),
@@ -106,15 +108,10 @@ class UserResource extends Resource
                                     ->minLength(3)
                                     ->maxLength(255),
                             ])->columnSpan(5),
-                        ]),
+                        ])
                     ])->columnSpan(2),
-
-
-
                             Tabs::make('informations')->tabs([
-
                                 Tab::make('Meu Canal')->icon('heroicon-m-identification')->schema([
-
                                     Grid::make(8)
                                         ->relationship('channel')
                                         ->schema([
@@ -126,6 +123,7 @@ class UserResource extends Resource
                                                     ->helperText('Logo do seu canal')
                                                     ->avatar()
                                                     ->directory('channel_brand')
+                                                    ->required()
                                                     ->columnSpanFull()
                                             ])->columnSpan(1),
 
@@ -140,7 +138,7 @@ class UserResource extends Resource
                                                             ->live(onBlur: true)
                                                             ->afterStateUpdated(fn (Set $set, ?string $state) => $set('slug', Str::slug($state))),
 
-                                                        TextInput::make('slug')
+                                                        TextInput::make('slug')->visible(false)
                                                     ])->columnSpan(2),
 
                                                     Group::make()->schema([
@@ -187,6 +185,18 @@ class UserResource extends Resource
                 'xl' => 2,
                 '2xl' => 2
             ]);
+    }
+
+    public static function actions(): array
+    {
+        return [
+            // Ação de criação personalizada
+            CreateAction::make()->mutateFormDataUsing(function (array $data): array {
+                $data['user_id'] = auth()->id();
+                dd('mutateFormDataUsing');
+                return $data;
+            }),
+        ];
     }
 
     public static function table(Table $table): Table

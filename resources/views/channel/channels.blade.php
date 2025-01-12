@@ -12,71 +12,26 @@
                         <div class="mx-auto max-w-5xl md:pb-16 pb-10 text-center">
                             <p class="font-bold dark:text-blue-200 text-base text-secondary tracking-wide uppercase">Canais Parceiros</p>
                             <h1 class="font-bold font-heading leading-tighter tracking-tighter mb-4 dark:text-gray-200 md:text-6xl text-5xl">
-                                Eleve sua presença online na<br>
+                                Streamers parceiros da <br>
                                 <span class="highlight dark:text-white text-accent">Retrô Community</span></h1>
                             <div class="mx-auto max-w-3xl">
                                 <p class="text-muted text-xl dark:text-slate-300 mb-6">
                                     Bem-vindo à <a href="{{route('app.home')}}" class="text-purple-600 dark:text-purple-500 hover:underline">Retrô Community</a>,
-                                    sua comunidade dedicada aos clássicos dos games retrô! A nostalgia dos anos 80 e 90, uma época de ouro que foi incrível para muitas pessoas. Explore nosso blog repleto de
-                                    artigos atualizados sobre lives, gameplays, eventos entre outros conteúdos magnificos.
+                                    sua comunidade dedicada aos clássicos dos games retrô! A nostalgia dos anos 80 e 90, uma época de ouro que foi incrível para muitas pessoas.
+                                    Explore nosso blog repleto de artigos atualizados sobre lives, gameplays, eventos entre outros conteúdos magnificos.
                                 </p>
 
                             </div>
                         </div>
-                        <div>
-                            <div class="m-auto max-w-5xl">
-                                <img alt="Caos Image" class="up mx-auto w-full rounded-md" loading="eager"
-                                     src="{{asset('images/about_img.jpg')}}"
-                                     style="object-fit:cover;object-position:center;max-width:1024px;max-height:576px;aspect-ratio:1.7777777777777777;width:100%" sizes="(max-width: 767px) 400px, (max-width: 1023px) 768px, (max-width: 2039px) 1024px, 2040px" width="1024">
-                            </div>
-                        </div>
-
-                        <div class="mx-auto max-w-5xl md:pb-16 pb-10 mt-16 text-center up text-gray-900 dark:text-white">
-                            <p class="mb-8 font-light lg:text-xl">
-                                Na <a href="{{route('app.home')}}" class="text-purple-600 dark:text-purple-500 hover:underline">Retrô Community</a>, celebramos não apenas os jogos que marcaram época, mas também fortalecemos a comunidade através do apoio a nossos parceiros do YouTube. Trabalhamos com criadores apaixonados que compartilham histórias, dicas valiosas e momentos inesquecíveis em vídeos envolventes. Aqui, o bate-papo é tão importante quanto a jogatina, proporcionando uma plataforma onde os fãs de games retrô podem se reunir para discutir seus títulos favoritos, bate-papo, criar amizades, descobrir novos clássicos e viver momentos de felicidade e nosltagia como quando eramos criança jogando entre amigos na sala de casa ou locadoras.
-                            </p>
-                            <p class="mb-8 font-light lg:text-xl">
-                                Nosso blog oferece atualizações regulares sobre eventos de gaming, análises de gameplays icônicos e previews de novos lançamentos imperdíveis. Além disso, exploramos a história dos videogames e as tendências atuais da indústria em artigos informativos e cativantes.
-                            </p>
-                            <p class="mb-8 font-light lg:text-xl">
-                                Prepare-se para uma viagem no tempo através dos mundos pixelizados que capturaram nossa imaginação, enquanto celebramos a magia duradoura dos games retrô. Junte-se à <a href="{{route('app.home')}}" class="text-purple-600 dark:text-purple-500 hover:underline">Retrô Community</a>, onde o passado e o presente se encontram em uma comunidade apaixonada por videogames clássicos.
-                            </p>
-                        </div>
                     </div>
                 </div>
-        </section>
-
-        {{-- Estatisticas--}}
-        <section class="relative not-prose scroll-mt-[72px] bg-white dark:bg-gray-900">
-            <div class="absolute inset-0 pointer-events-none -z-[1]" aria-hidden="true">
-                <div class="absolute inset-0"></div>
-            </div>
-            <div class="relative mx-auto px-4 lg:py-20 md:px-6 md:py-16 py-12 text-default max-w-6xl">
-                <div class="text-center md:mx-auto max-w-3xl mb-8 md:mb-12">
-                    <h2 class="font-bold font-heading leading-tighter tracking-tighter text-3xl text-heading md:text-4xl">Estatísticas</h2>
-                </div>
-                <div class="flex justify-center -m-4 flex-wrap text-center">
-                    <div class="w-full text-center dark:md:border-slate-500 md:border-r md:last:border-none md:w-1/4 min-w-[220px] p-4 sm:w-1/2">
-                        <div class="font-bold font-heading dark:text-white lg:text-5xl text-[2.6rem] text-primary xl:text-6xl">{{$posts->count()}}</div>
-                        <div class="text-sm dark:text-slate-400 font-medium lg:text-base text-gray-800 tracking-widest uppercase">Postagens</div>
-                    </div>
-                    <div class="w-full text-center dark:md:border-slate-500 md:border-r md:last:border-none md:w-1/4 min-w-[220px] p-4 sm:w-1/2">
-                        <div class="font-bold font-heading dark:text-white lg:text-5xl text-[2.6rem] text-primary xl:text-6xl">{{$channels->count()}}</div>
-                        <div class="text-sm dark:text-slate-400 font-medium lg:text-base text-gray-800 tracking-widest uppercase">Canais</div>
-                    </div>
-                    <div class="w-full text-center dark:md:border-slate-500 md:border-r md:last:border-none md:w-1/4 min-w-[220px] p-4 sm:w-1/2">
-                        <div class="font-bold font-heading dark:text-white lg:text-5xl text-[2.6rem] text-primary xl:text-6xl">{{$campaings->count()}}</div>
-                        <div class="text-sm dark:text-slate-400 font-medium lg:text-base text-gray-800 tracking-widest uppercase">campanhas</div>
-                    </div>
-                </div>
-            </div>
         </section>
 
         <section class="bg-white dark:bg-gray-900">
             <div class="py-8 px-4 mx-auto max-w-screen-xl text-center lg:py-16 lg:px-6 up">
                 <div class="mx-auto mb-8 max-w-screen-sm lg:mb-16">
                     <h2 class="mb-4 text-4xl tracking-tight font-extrabold text-gray-900 dark:text-white">Canais apoiadores</h2>
-                    <p class="font-light text-gray-500 sm:text-xl dark:text-gray-400">Alguns canais parceiros que estão apoiando o projeto Retrô Community.</p>
+                    <p class="font-light text-gray-500 sm:text-xl dark:text-gray-400">Vejam todos canais que estão na comunidade</p>
                 </div>
 
                 <div class="grid gap-8 lg:gap-16 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">

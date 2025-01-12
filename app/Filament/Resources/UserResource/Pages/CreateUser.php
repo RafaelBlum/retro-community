@@ -50,7 +50,8 @@ class CreateUser extends CreateRecord
 
     protected function beforeValidate(): void
     {
-        //dd($this->data, $this->data['channel']['slug']);
+
+        //dd($this->data, $this->data['channel']['slug'], $this->form);
         //dd("3 Runs before the form fields are validated when the form is saved.");
     }
 
@@ -61,13 +62,13 @@ class CreateUser extends CreateRecord
 
     protected function beforeSave(): void
     {
-        dd($this->data, $this->data['channel']['slug']);
+        dd($this->data);
         //dd("5 Runs before the form fields are saved to the database.");
     }
 
     protected function afterSave(): void
     {
-        dd("6 Runs after the form fields are saved to the database.");
+        //dd("6 Runs after the form fields are saved to the database.");
     }
 
 }

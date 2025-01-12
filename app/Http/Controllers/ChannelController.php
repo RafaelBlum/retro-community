@@ -22,4 +22,10 @@ class ChannelController extends Controller
             return redirect()->back();
         }
     }
+
+    public function channels()
+    {
+        $channels = Channel::all();
+        return view('channel.channels', compact('channels'));
+    }
 }

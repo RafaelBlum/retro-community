@@ -42,6 +42,9 @@
                     <x-partials.link href="{{route('posts.index')}}">
                         Blog
                     </x-partials.link>
+                    <x-partials.link href="{{route('app.channels')}}">
+                        Canais
+                    </x-partials.link>
                     <x-partials.link href="{{route('app.campaings')}}">
                         Campanhas
                     </x-partials.link>

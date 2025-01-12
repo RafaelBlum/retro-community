@@ -45,8 +45,14 @@ class EditUser extends EditRecord
 
     protected function beforeSave()
     {
-        $user = User::find($this->data['id'])->load('channel.camping')->get();
-        dd($user, $this->data, $this->data['id']);
+        //O find retorna um único modelo, então não é necessário usar get() depois.
+        // O with é usado para carregar os relacionamentos (no caso, channel.camping).
+
+        $user = User::with('channel.camping')->find(100);
+
+        if (!$user) {
+            abort(404, 'Usuário não encontrado');
+        }
 
         $brandImagem = $user->channel->brand;
 
@@ -57,8 +63,6 @@ class EditUser extends EditRecord
                 Storage::delete('public/' . $avatarImagem);
             }
         }
-
-
 
         if ($user->channel->brand != $brandImagem) {
             if($user->channel->brand != 'default-brand.png'){
@@ -74,7 +78,6 @@ class EditUser extends EditRecord
 
     protected function afterSave()
     {
-        dd('afterSave');
         $user = User::with('channel')->findOrFail($this->data['id']);
         $channel = $user->channel;
         $user->channel->slug = Str::slug($this->data['channel']['link']) . '-' . $this->data['id'];
