@@ -48,11 +48,15 @@ class EditUser extends EditRecord
         //O find retorna um único modelo, então não é necessário usar get() depois.
         // O with é usado para carregar os relacionamentos (no caso, channel.camping).
 
-        $user = User::with('channel.camping')->find(100);
+        $user = User::with('channel.camping')->find($this->data['id']);
+
+        //dd($user, $this->data);
 
         if (!$user) {
             abort(404, 'Usuário não encontrado');
         }
+
+        $user->channel->slug = $this->data['channel']['slug'];
 
         $brandImagem = $user->channel->brand;
 
@@ -88,6 +92,7 @@ class EditUser extends EditRecord
     {
         //modificar os dados de um registro antes de preenchê-lo no formulário
         //se você estiver editando registros em uma ação modal
+        //dd($data);
         return $data;
     }
 

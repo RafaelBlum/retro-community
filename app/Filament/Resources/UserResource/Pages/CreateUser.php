@@ -3,6 +3,7 @@
 namespace App\Filament\Resources\UserResource\Pages;
 
 use App\Filament\Resources\UserResource;
+use App\Models\User;
 use Filament\Actions\CreateAction;
 use Filament\Notifications\Notification;
 use Filament\Resources\Pages\CreateRecord;
@@ -11,10 +12,29 @@ use Illuminate\Support\Str;
 class CreateUser extends CreateRecord
 {
     protected static string $resource = UserResource::class;
-
-
     protected static ?string $breadcrumb = 'Criar usuário';
     protected static ?string $title = "Criação";
+
+
+    protected function beforeCreate(): void
+    {
+
+        $existingCustomer = User::where('email', $this->data['email'])
+            ->first();
+
+        dd($existingCustomer, $this->data, $this->data['email']);
+
+        if ($existingCustomer && ($existingCustomer->email === $this->data['email'])) {
+            Notification::make('register_error')
+                ->title('Cadastro invalido!')
+                ->body('Seu E-mail já foi registrado!')
+                ->danger()
+                ->persistent()
+                ->send();
+
+            $this->halt();
+        }
+    }
 
     protected function getFormActions(): array
     {

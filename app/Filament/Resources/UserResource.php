@@ -138,7 +138,7 @@ class UserResource extends Resource
                                                             ->live(onBlur: true)
                                                             ->afterStateUpdated(fn (Set $set, ?string $state) => $set('slug', Str::slug($state))),
 
-                                                        TextInput::make('slug')->visible(false)
+                                                        TextInput::make('slug')->disabled()->label(""),
                                                     ])->columnSpan(2),
 
                                                     Group::make()->schema([
@@ -194,6 +194,13 @@ class UserResource extends Resource
             CreateAction::make()->mutateFormDataUsing(function (array $data): array {
                 $data['user_id'] = auth()->id();
                 dd('mutateFormDataUsing');
+                return $data;
+            })->beforeCreate(function ($record, $data) {
+                // Modificar os dados antes de salvar, como criptografar a senha
+//                $data['password'] = Hash::make($data['password']); // Criptografar a senha
+//                $data['role'] = $data['role'] ?? 'viewer'; // Definir um papel padrão
+                dd('mutateFormDataUsing');
+                // Retornar os dados modificados
                 return $data;
             }),
         ];
