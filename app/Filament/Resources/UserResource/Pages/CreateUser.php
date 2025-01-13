@@ -19,12 +19,12 @@ class CreateUser extends CreateRecord
     protected function beforeCreate(): void
     {
 
-        $existingCustomer = User::where('email', $this->data['email'])
+        $verifyEmailUser = User::where('email', $this->data['email'])
             ->first();
 
-        dd($existingCustomer, $this->data, $this->data['email']);
+        dd($verifyEmailUser, $this->data, $this->data['email']);
 
-        if ($existingCustomer && ($existingCustomer->email === $this->data['email'])) {
+        if ($verifyEmailUser && ($verifyEmailUser->email === $this->data['email'])) {
             Notification::make('register_error')
                 ->title('Cadastro invalido!')
                 ->body('Seu E-mail já foi registrado!')
