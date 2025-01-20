@@ -19,8 +19,7 @@ class CreateUser extends CreateRecord
     protected function beforeCreate(): void
     {
 
-        $verifyEmailUser = User::where('email', $this->data['email'])
-            ->first();
+        $verifyEmailUser = User::where('email', $this->data['email'])->first();
 
         dd($verifyEmailUser, $this->data, $this->data['email']);
 
