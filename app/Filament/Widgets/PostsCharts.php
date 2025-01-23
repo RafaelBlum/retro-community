@@ -18,7 +18,7 @@ class PostsCharts extends ApexChartWidget
      *
      * @var string|null
      */
-    protected static ?string $heading = 'PostsCharts';
+    protected static ?string $heading = 'Grafico de postagens';
 
     /**
      * Chart options (series, labels, types, size, animations...)

@@ -45,6 +45,16 @@ Laravel is a web application framework with expressive, elegant syntax. We belie
 
 Laravel is accessible, powerful, and provides tools required for large, robust applications.
 
+## :books: `DER` Diagramação base do projeto
+> As classes do sistema estão claramente definidas em um diagrama de classes.
+
+<p align="center" style="margin-top: 30px">
+	<a href="#"  target="_blank" title="Sistema Retro Community">
+		<img src="public/docs/diagram-class-RetroCommunity.png" alt="diagram class" width="80%">
+	</a>
+</p>
+
+
 ## Learning Laravel
 
 Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
