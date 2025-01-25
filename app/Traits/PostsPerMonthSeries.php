@@ -8,7 +8,7 @@ trait PostsPerMonthSeries
 {
     protected function getChartData(): array
     {
-        $test = T
+        $test;
 
         $postsMonth = Post::selectRaw('
         DATE_FORMAT(published_at, "%Y-%m") as month,
