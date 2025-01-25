@@ -2,10 +2,14 @@
 
 namespace App\Filament\Widgets;
 
+use App\Traits\ChannelsPerMonth;
+use App\Traits\PostsPerMonthSeries;
 use Leandrocfe\FilamentApexCharts\Widgets\ApexChartWidget;
 
 class PostsCharts extends ApexChartWidget
 {
+
+    use PostsPerMonthSeries;
     /**
      * Chart Id
      *
@@ -28,6 +32,8 @@ class PostsCharts extends ApexChartWidget
      */
     protected function getOptions(): array
     {
+        $chartData = $this->getChartData();
+
         return [
             'chart' => [
                 'type' => 'bar',
@@ -36,11 +42,11 @@ class PostsCharts extends ApexChartWidget
             'series' => [
                 [
                     'name' => 'BasicBarChart',
-                    'data' => [7, 10, 13, 15, 18],
+                    'data' => $chartData['data'],
                 ],
             ],
             'xaxis' => [
-                'categories' => ['Jan', 'Feb', 'Mar', 'Apr', 'May'],
+                'categories' => $chartData['labels'],
                 'labels' => [
                     'style' => [
                         'fontFamily' => 'inherit',

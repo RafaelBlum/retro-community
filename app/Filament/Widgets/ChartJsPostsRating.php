@@ -2,23 +2,30 @@
 
 namespace App\Filament\Widgets;
 
+use App\Traits\ChannelsPerMonth;
+use App\Traits\PostsPerMonthSeries;
 use Filament\Support\RawJs;
 use Filament\Widgets\ChartWidget;
 
 class ChartJsPostsRating extends ChartWidget
 {
-    protected static ?string $heading = 'Grafico ChartJS';
+    protected static ?string $heading = 'APEX Grafico ChartJS';
+
+    use ChannelsPerMonth;
+
 
     protected function getData(): array
     {
+
+        $chartData = $this->getChartData();
         return [
             'datasets' => [
                 [
                     'label' => 'Blog posts created',
-                    'data' => [0, 10, 5, 2, 21, 32, 45, 74, 65, 45, 77, 89],
+                    'data' => $chartData['data'],
                 ],
             ],
-            'labels' => ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+            'labels' => $chartData['labels'],
         ];
     }
 
@@ -27,10 +34,5 @@ class ChartJsPostsRating extends ChartWidget
         return 'bar';
     }
 
-    protected function getOptions(): array|RawJs|null
-    {
-        return [
-            'indexAxis' => 'y',
-        ];
-    }
+
 }
