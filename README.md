@@ -43,6 +43,9 @@ web projects, such as:
 ### Plugins
 
 - **[Apex Charts](https://filamentphp.com/plugins/leandrocfe-apex-charts)**
+```
+   composer require leandrocfe/filament-apex-charts:"^3.1" 
+```
 
 ## Limpeza de cache, config, route and view
 
