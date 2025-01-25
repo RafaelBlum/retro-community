@@ -45,6 +45,11 @@ web projects, such as:
 - **[Apex Charts](https://filamentphp.com/plugins/leandrocfe-apex-charts)**
 ```
    composer require leandrocfe/filament-apex-charts:"^3.1" 
+   php artisan make:filament-apex-charts
+```
+- **[Chart widgets](https://filamentphp.com/docs/3.x/widgets/charts)**
+```
+   php artisan make:filament-widget 
 ```
 
 ## Limpeza de cache, config, route and view

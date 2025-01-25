@@ -2,21 +2,31 @@
 
 namespace App\Traits;
 
+use App\Models\Post;
+
 trait PostsPerMonthSeries
 {
     protected function getChartData(): array
     {
+        $test = T
+
+        $postsMonth = Post::selectRaw('
+        DATE_FORMAT(published_at, "%Y-%m") as month,
+        COUNT(*) as post_count
+    ')
+            ->whereNotNull('published_at') // Exclui posts com data NULL
+            ->groupByRaw('DATE_FORMAT(published_at, "%Y-%m")')
+            ->orderByRaw('DATE_FORMAT(published_at, "%Y-%m")')
+            ->get();
+
+
+        //$postMonth = Post::selectRaw('');
+
+        //dd($postsMonth, $postsMonth->pluck('total'));
+
         return [
-            'data' => [
-                10, 12, 20, 28,
-                35, 42, 50, 45,
-                37, 23, 15, 8,
-            ],
-            'labels' => [
-                '2024-01', '2024-02', '2024-03', '2024-04',
-                '2024-05', '2024-06', '2024-07', '2024-08',
-                '2024-09', '2024-10', '2024-11', '2024-12',
-            ],
+            'data' => $postsMonth->pluck('post_count'),
+            'labels' => $postsMonth->pluck('month'),
         ];
     }
 }

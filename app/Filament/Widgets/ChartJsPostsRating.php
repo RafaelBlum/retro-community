@@ -9,7 +9,8 @@ use Filament\Widgets\ChartWidget;
 
 class ChartJsPostsRating extends ChartWidget
 {
-    protected static ?string $heading = 'APEX Grafico ChartJS';
+    protected static ?string $heading = 'Grafico ChartJS';
+    protected static ?int $sort = 2;
 
     use ChannelsPerMonth;
 
@@ -34,5 +35,11 @@ class ChartJsPostsRating extends ChartWidget
         return 'bar';
     }
 
+    protected function getOptions(): array|RawJs|null
+    {
+        return [
+          'indexAxis' => 'y'
+        ];
+    }
 
 }
