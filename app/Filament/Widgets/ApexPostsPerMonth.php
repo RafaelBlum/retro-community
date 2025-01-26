@@ -3,6 +3,7 @@
 namespace App\Filament\Widgets;
 
 use App\Traits\PostsPerMonthSeries;
+use Filament\Forms\Components\Select;
 use Leandrocfe\FilamentApexCharts\Widgets\ApexChartWidget;
 
 class ApexPostsPerMonth extends ApexChartWidget
@@ -15,9 +16,21 @@ class ApexPostsPerMonth extends ApexChartWidget
 
     protected static ?string $chartId = 'postsPerMonth';
 
-    protected static ?string $heading = 'Posts per month (ApexCharts)';
+    protected static ?string $heading = 'Postagens criadas por mês';
 
     protected static ?int $contentHeight = 293;
+
+
+    protected function getFormSchema(): array
+    {
+        return [
+            Select::make('chartType')->options([
+                'bar'=>'Barra',
+                'line'=>'Linha',
+                'area'=>'Área'
+            ])->default('bar')
+        ];
+    }
 
     /**
      * Chart options (series, labels, types, size, animations...)
@@ -27,11 +40,12 @@ class ApexPostsPerMonth extends ApexChartWidget
      */
     protected function getOptions(): array
     {
+        $chartType = $this->filterFormData['chartType'];
         $chartData = $this->getChartData();
 
         return [
             'chart' => [
-                'type' => 'bar',
+                'type' => $chartType,
                 'height' => 250,
                 'toolbar' => [
                     'show' => false,
