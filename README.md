@@ -100,27 +100,17 @@ permitindo uma gestão eficiente de todo o sistema, enquanto a integração com 
 > [!IMPORTANT]
 > Pendências de desenvolvimento área DASHBOARD
 
-- OK:: Criar autorizações entre ADMIN e usuários. [doc. infor](https://filamentphp.com/docs/1.x/admin/resources#authorization) | [canAccessFilament falhe](https://v2.filamentphp.com/tricks/redirect-in-case-canaccessfilament-fails)| [permissões](https://laraveldaily.com/post/laravel-roles-permissions-middleware-gates-policies?mtm_campaign=post-footer-premium)
-- OK:: Criar super Admin com poder total. :)
-- OK:: Criar Perfil de usuário e retirar user logado da lista
-  - OK:: [Perfil de usuário](https://docs.laravel-filament.cn/docs/widgets)
+- Ajustar tipo de acesso dos usuários [doc. infor](https://filamentphp.com/docs/1.x/admin/resources#authorization) | [canAccessFilament falhe](https://v2.filamentphp.com/tricks/redirect-in-case-canaccessfilament-fails)| [permissões](https://laraveldaily.com/post/laravel-roles-permissions-middleware-gates-policies?mtm_campaign=post-footer-premium)
+- Ajustar politicas de acesso geral na area administrativa.
 - Criar linha marcada para post publicado. [Doc](https://www.youtube.com/watch?v=7SnzOjPV7ms)
-- Criar campanha
-- Criar dashboar com Widgets e graficos
-- Post ajustar datas de postagens e layout
--
+- 
 
 > [!IMPORTANT]
-> Pendências de desenvolvimento área SITE
-- Ajustar e redefinir quais sessões o site terá
-  - bug: Header fica acima da navbar
-  - 
-  - Footer
-- Ajustar imagens POST
-- Ajustar ControllerPost para buscar posts em publicação
+> Pendências de desenvolvimento área FRONT-END
+- 
 
 > [!IMPORTANT]
-> NOVA BRANCH Multi-tenancy
+> NOVA BRANCH Multi-tenancy na V.2 - FUTURO
 [Multi-tenancy](https://filamentphp.com/docs/3.x/panels/tenancy)
 
 > [!IMPORTANT]
@@ -130,7 +120,7 @@ permitindo uma gestão eficiente de todo o sistema, enquanto a integração com 
 [Customizing Profile:Integrating Multiple Forms](https://medium.com/@laravelprotips/personalizing-the-filament-profile-page-expanding-the-design-and-integrating-multiple-forms-62db7ca68343)
 
 > [!WARNING]
-> Apontamento do `public_html` para `public` do projeto laravel
+> BUILD: Apontamento do `public_html` para `public` do projeto laravel
 
 ```
     # Modifico
