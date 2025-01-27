@@ -43,11 +43,13 @@ web projects, such as:
 ### Plugins
 
 - **[Apex Charts](https://filamentphp.com/plugins/leandrocfe-apex-charts)**
+- **[Laravel Trend](https://github.com/Flowframe/laravel-trend)**
 ```
    composer require leandrocfe/filament-apex-charts:"^3.1" 
    php artisan make:filament-apex-charts
+   composer require flowframe/laravel-trend
 ```
-- **[Chart widgets](https://filamentphp.com/docs/3.x/widgets/charts)**
+- **[Chart widgets - (Usando ChartJS)](https://filamentphp.com/docs/3.x/widgets/charts)**
 ```
    php artisan make:filament-widget 
 ```
