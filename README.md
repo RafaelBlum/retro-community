@@ -22,13 +22,41 @@
 
 ## Sobre Retro Community
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and 
-creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many 
-web projects, such as:
+Este projeto tem como objetivo potencializar a forma como as informações dos canais de streamers do YouTube são apresentadas, 
+fornecendo dados detalhados sobre seus posts, incluindo imagens, vídeos e formatação avançada de texto. A ideia é criar uma 
+plataforma mais rica e imersiva para os seguidores, bem como para os administradores dos canais, com funcionalidades 
+personalizadas de interação e gerenciamento.
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
+##### Funcionalidades
+Páginas de Perfil Personalizado para Canais: Cada usuário terá uma página exclusiva para seu canal, exibindo informações detalhadas, como dados sobre o canal, campanhas em andamento, formas de doação (incluindo PIX) e um link direto para o canal na plataforma do YouTube.
+
+Sistema de Postagens e Formatação Avançada: O sistema permite aos streamers criar e gerenciar postagens com imagens, vídeos e formatação de texto avançada, proporcionando uma comunicação mais eficaz e atraente com sua audiência.
+
+##### Frontend Completo:
+
+- Landing Page: Página inicial de apresentação, com informações sobre o projeto e os benefícios para streamers e seus seguidores.
+- Home Page: Exibição de canais populares, campanhas ativas e postagens recentes, criando um ambiente dinâmico para os usuários explorarem.
+- Blog: Área para exibição de artigos, atualizações e conteúdos relacionados ao universo dos streamers e do YouTube.
+- Canais e Campanhas: Página dedicada à visualização de todos os canais e campanhas, com filtros e detalhes de cada um.
+- Sobre e Fale Conosco: Páginas institucionais para fornecer mais informações sobre o projeto e oferecer suporte aos usuários.
+
+##### Área Administrativa:
+
+A área administrativa será construída com Filament PHP, fornecendo um painel de controle robusto e intuitivo para gerenciar dados do sistema, campanhas, postagens e usuários.
+O acesso à administração será controlado com base nos níveis de permissão do usuário, garantindo a segurança e integridade das informações.
+
+##### Tecnologias Utilizadas
+- Backend: Laravel (PHP)
+- Frontend: TailwindCSS para construção de layouts modernos e responsivos.
+- Área Administrativa: Filament PHP, utilizado para o gerenciamento do sistema, campanhas, postagens e usuários.
+- Banco de Dados: MySQL, com gerenciamento e visualização via phpMyAdmin.
+- Autenticação: A autenticação será gerenciada pelo próprio Laravel, garantindo segurança e controle de acesso. O login e a área administrativa serão feitos por meio do Filament PHP.
+- Design Responsivo: A plataforma será totalmente responsiva, garantindo uma experiência de usuário excelente em dispositivos móveis e desktop.
+
+#### Objetivo
+O projeto busca melhorar a interação entre streamers e seus seguidores, proporcionando uma plataforma que combina funcionalidades 
+práticas e design moderno. A área administrativa, construída com Filament PHP, oferece uma experiência intuitiva para os administradores, 
+permitindo uma gestão eficiente de todo o sistema, enquanto a integração com Laravel e TailwindCSS garante uma plataforma robusta, segura e escalável.
 
 
 ## :books: `DER` Diagramação base do projeto
