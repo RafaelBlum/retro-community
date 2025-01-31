@@ -78,6 +78,7 @@ permitindo uma gestão eficiente de todo o sistema, enquanto a integração com 
    composer require flowframe/laravel-trend
 ```
 - **[Chart widgets - (Usando ChartJS)](https://filamentphp.com/docs/3.x/widgets/charts)**
+- ***[Documentação ChartJS](https://www.chartjs.org/docs/latest/)*
 ```
    php artisan make:filament-widget 
 ```
@@ -100,10 +101,27 @@ permitindo uma gestão eficiente de todo o sistema, enquanto a integração com 
 > [!IMPORTANT]
 > Pendências de desenvolvimento área DASHBOARD
 
-- Ajustar tipo de acesso dos usuários [doc. infor](https://filamentphp.com/docs/1.x/admin/resources#authorization) | [canAccessFilament falhe](https://v2.filamentphp.com/tricks/redirect-in-case-canaccessfilament-fails)| [permissões](https://laraveldaily.com/post/laravel-roles-permissions-middleware-gates-policies?mtm_campaign=post-footer-premium)
-- Ajustar politicas de acesso geral na area administrativa.
-- Criar linha marcada para post publicado. [Doc](https://www.youtube.com/watch?v=7SnzOjPV7ms)
-- 
+- Dashboard::
+  - listar campanhas e canais 
+  - Ajustar tipo de acesso dos usuários [doc. infor](https://filamentphp.com/docs/1.x/admin/resources#authorization) | [canAccessFilament falhe](https://v2.filamentphp.com/tricks/redirect-in-case-canaccessfilament-fails)| [permissões](https://laraveldaily.com/post/laravel-roles-permissions-middleware-gates-policies?mtm_campaign=post-footer-premium)
+  - Ajustar politicas de acesso geral na area administrativa.
+- Posts
+  - Criar linha marcada para post publicado. [Doc](https://www.youtube.com/watch?v=7SnzOjPV7ms)
+  - View/editar Colocar imagem acima grande
+  - ajustar imagens para remover a antiga [create/edit]
+- Campanhas
+  - Colocar filtro de pesquisa
+  - Tentar tirar fundo branco da campanha no editar
+  - Na listagem colocar box para definir qual campanha fica em destaque. (Somente uma pode ser true e só super-admin pode)
+  - ajustar imagens para remover a antiga [create/edit]
+  - Usuario só pode editar e excluir a sua campanha (Ajustar, pois esta podendo editar e excluir) [zzzz_digital@hotmail.com : 123123123123]
+- Canais
+  - Tirar coluna campanha
+  - Super-admin deve ter acesso a excluir
+  - ajustar imagens para remover a antiga [create/edit]
+- Usuários
+  - 
+  - ajustar imagens para remover a antiga [create??/edit]
 
 > [!IMPORTANT]
 > Pendências de desenvolvimento área FRONT-END

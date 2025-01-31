@@ -6,6 +6,7 @@ use App\Filament\Resources\ChannelResource\Pages;
 use App\Filament\Resources\ChannelResource\RelationManagers;
 use App\Models\Campaing;
 use App\Models\Channel;
+use App\Models\User;
 use Filament\Forms\Components\ColorPicker;
 use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\Grid;
@@ -60,6 +61,7 @@ class ChannelResource extends Resource
                             ->default('ffffff'),
                         Textarea::make('description')
                             ->label('Descrição do canal')
+                            ->rows(10)
                             ->columnSpanFull(),
                         TextInput::make('link')
                             ->label('Link canal do Youtube')
@@ -111,69 +113,6 @@ class ChannelResource extends Resource
                     'lg' => 1,
                     'xl' => 1,
                     '2xl' => 1
-                ]),
-
-                Placeholder::make('')->label('Campanha do canal '),
-
-                /**
-                 * SECTION CAMPING CHANNEL USER
-                */
-                Grid::make(9)->relationship('camping')->schema([
-
-                    Section::make()->schema([
-                        TextInput::make('title')
-                        ->label(''),
-                        FileUpload::make('image')
-                            ->label('')
-                            ->disk('public')
-                            ->debounce()
-                            ->helperText('Imagem da sua campanha, informativa.')
-                            ->directory('campaing_folder')
-                            ->image()
-                            ->columnSpanFull()
-                    ])->columnSpan(3),
-
-                    Section::make()->schema([
-                        Grid::make(8)->schema([
-                            Group::make()->schema([
-
-
-
-                                TextInput::make('linkGoal')
-                                    ->label('Link campanha status')
-                                    ->hintIcon('heroicon-m-question-mark-circle', tooltip: 'Adicione o link da campanha do seu LivePix')
-                                    ->hintColor(Color::Yellow)
-                                    ->prefixIcon('heroicon-m-currency-dollar')->suffixIcon('heroicon-m-chart-bar')
-                                    ->required(),
-
-                                TextInput::make('qrCode')
-                                    ->label('Link QR Code')
-                                    ->hintIcon('heroicon-m-question-mark-circle', tooltip: 'Adicione o link do seu QRCODE do livePix')
-                                    ->hintColor(Color::Yellow)
-                                    ->prefixIcon('heroicon-m-qr-code')->suffixIcon('heroicon-m-viewfinder-circle')
-                                    ->required(),
-
-
-
-
-                            ])->columnSpan(8),
-
-
-                        ]),
-
-                        Textarea::make('content')
-                            ->label('Descrição da campanha')
-                            ->required()
-                            ->columnSpanFull(),
-
-                        Toggle::make('camping')
-                            ->label(function (Get $get){
-                                if($get('camping') == true){
-                                    return 'Campanha ativada';
-                                }
-                                return 'Campanha desativada';
-                            })->live()->columnSpanFull(),
-                    ])->columnSpan(6),
                 ]),
             ])->columns(3);
     }

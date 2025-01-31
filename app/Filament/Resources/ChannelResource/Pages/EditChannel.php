@@ -3,6 +3,8 @@
 namespace App\Filament\Resources\ChannelResource\Pages;
 
 use App\Filament\Resources\ChannelResource;
+use App\Models\Campaing;
+use App\Models\Channel;
 use App\Models\User;
 use Filament\Actions;
 use Filament\Resources\Pages\EditRecord;
@@ -22,22 +24,27 @@ class EditChannel extends EditRecord
 
     protected function beforeSave()
     {
-        $user = User::find($this->data['id']);
+        $channel = Channel::with('camping')->find($this->data['id']);
+
 
         $brandImagem = array_values($this->data['brand'])[0];
 
-        if ($user->channel->brand != $brandImagem) {
-            if($user->channel->brand != 'default-brand.png'){
-                Storage::delete('public/' . $user->channel->brand);
+        if ($channel->brand != $brandImagem) {
+            if($channel->brand != 'default-brand.png'){
+                Storage::delete('public/' . $channel->brand);
             }
         }
     }
 
+
+
     protected function afterSave()
     {
-        $user = User::with('channel')->findOrFail($this->data['id']);
-        $channel = $user->channel;
-        $user->channel->slug = Str::slug($this->data['link']) . '-' . $this->data['id'];
-        $user->channel()->save($channel);
+        //dd("afterSave");
+        //$user = User::with('channel')->findOrFail($this->data['id']);
+        $channel = Channel::with('camping')->find($this->data['id']);
+        //$channel = $user->channel;
+        $channel->slug = Str::slug($this->data['link']) . '-' . $this->data['id'];
+        $channel->save();
     }
 }

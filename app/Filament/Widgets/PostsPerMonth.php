@@ -6,8 +6,13 @@ use App\Traits\PostsPerMonthSeries;
 use Filament\Forms\Components\Select;
 use Leandrocfe\FilamentApexCharts\Widgets\ApexChartWidget;
 
-class ApexPostsPerMonth extends ApexChartWidget
+class PostsPerMonth extends ApexChartWidget
 {
+
+    /**
+     * Plugin APEX
+     * [Apex Charts](https://filamentphp.com/plugins/leandrocfe-apex-charts)
+    */
 
     use PostsPerMonthSeries;
 

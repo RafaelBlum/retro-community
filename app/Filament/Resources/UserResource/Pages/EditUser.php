@@ -50,8 +50,6 @@ class EditUser extends EditRecord
 
         $user = User::with('channel.camping')->find($this->data['id']);
 
-        //dd($user, $this->data);
-
         if (!$user) {
             abort(404, 'Usuário não encontrado');
         }
