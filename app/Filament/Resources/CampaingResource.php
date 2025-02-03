@@ -29,10 +29,13 @@ use Filament\Tables\Actions\ViewAction;
 use Filament\Tables\Columns\IconColumn;
 use Filament\Tables\Columns\ImageColumn;
 use Filament\Tables\Columns\TextColumn;
+use Filament\Tables\Columns\ToggleColumn;
 use Filament\Tables\Table;
 use Illuminate\Contracts\View\View;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\HtmlString;
 
@@ -75,7 +78,18 @@ class CampaingResource extends Resource
                                             view: 'filament.campaing.iframeGoal'
                                         )->render()
                                     );
-                                }),
+                                })->columnSpanFull(),
+                            Toggle::make('camping')
+                                ->label('Destacar campanha')
+                                ->afterStateUpdated(function ($state, $record) {
+                                    if ($state) {
+                                        $record->update(['camping' => true]); // Ativa a campanha atual
+                                        Campaing::where('channel_id', $record->channel_id)
+                                            ->where('id', '!=', $record->id)
+                                            ->update(['camping' => false]); // Desativa as outras campanhas do mesmo canal
+                                    }
+                                })
+                                ->required(),
                         ]),
                     ])->columnSpan(2)
                         ->visible(function(Get $get){
@@ -119,22 +133,23 @@ class CampaingResource extends Resource
 
 
                         TextInput::make('title')
+                            ->label("Titulo")
                             ->required()
                             ->maxLength(255),
 
                         Textarea::make('content')
+                            ->label("Descrição")
                             ->required()
                             ->columnSpanFull(),
                         TextInput::make('linkGoal')
+                            ->label("Link livePix da meta")
                             ->required()
                             ->maxLength(255),
 
                         TextInput::make('qrCode')
+                            ->label("Link LivePix do QR Code")
                             ->maxLength(255)
                             ->default(null),
-
-                        Toggle::make('camping')
-                            ->required(),
                     ])->columnSpan(2),
                 ]),
             ])->columns([
@@ -178,9 +193,49 @@ class CampaingResource extends Resource
                 ->height(60),
                 TextColumn::make('channel.title')
                     ->label('Canal'),
-                IconColumn::make('camping')
-                    ->label('Status')
-                    ->boolean(),
+
+//                ToggleColumn::make('camping')
+//                    ->label('Em destaque')
+//                    ->afterStateUpdated(function ($state, Campaing $record) {
+//                        if ($state) {
+//                            // Desativa todas as outras campanhas do mesmo canal antes de ativar a nova
+//                            Campaing::where('channel_id', $record->channel_id)
+//                                ->where('id', '!=', $record->id)
+//                                ->update(['camping' => false]);
+//
+//                            // Ativa a campanha atual (caso ainda não tenha sido ativada corretamente)
+//                            $record->update(['camping' => true]);
+//                        }
+//                    })
+//                    ->sortable(),
+
+
+                ToggleColumn::make('camping')
+                    ->label('Em destaque asdasd')
+                    ->afterStateUpdated(function ($state, Campaing $record) {
+                        Log::info("Toggle ativado para campanha ID: {$record->id}, Estado: " . ($state ? 'Ativado' : 'Desativado'));
+
+                        if ($state) {
+                            Log::info("Desativando outras campanhas do canal ID: {$record->channel_id}");
+
+                            // DESATIVA TODAS AS CAMPANHAS DO CANAL
+                            $affectedRows = DB::table('campaings')
+                                ->where('channel_id', $record->channel_id)
+                                ->where('id', '!=', $record->id)
+                                ->update(['camping' => false]);
+
+                            Log::info("Número de campanhas desativadas: {$affectedRows}");
+
+                            // ATIVA A CAMPANHA ATUAL
+                            DB::table('campaings')
+                                ->where('id', $record->id)
+                                ->update(['camping' => true]);
+
+                            Log::info("Campanha ID: {$record->id} ativada.");
+                        }
+                    })
+                    ->sortable(),
+
 
                 TextColumn::make('title')
                     ->label('Titulo')
