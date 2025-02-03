@@ -135,9 +135,6 @@ class ChannelResource extends Resource
                 TextColumn::make('user.name')
                     ->label('Usuário'),
 
-                Tables\Columns\CheckboxColumn::make('camping.camping')
-                    ->label('Campanha'),
-
                 TextColumn::make('link')
                     ->icon('heroicon-m-at-symbol')
                     ->iconPosition(IconPosition::Before)

@@ -196,37 +196,16 @@ class CampaingResource extends Resource
                 TextColumn::make('channel.title')
                     ->label('Canal'),
 
-//                ToggleColumn::make('camping')
-//                    ->label('Em destaque')
-//                    ->afterStateUpdated(function ($state, Campaing $record) {
-//                        if ($state) {
-//                            // Desativa todas as outras campanhas do mesmo canal antes de ativar a nova
-//                            Campaing::where('channel_id', $record->channel_id)
-//                                ->where('id', '!=', $record->id)
-//                                ->update(['camping' => false]);
-//
-//                            // Ativa a campanha atual (caso ainda não tenha sido ativada corretamente)
-//                            $record->update(['camping' => true]);
-//                        }
-//                    })
-//                    ->sortable(),
-
-
                 ToggleColumn::make('camping')
                     ->label('Em destaque')
                     ->updateStateUsing(function ($record, $state) {
                         if ($state) {
-                            // Desativa todas as outras campanhas do mesmo canal antes de ativar a nova
                             Campaing::where('channel_id', $record->channel_id)
                                 ->where('id', '!=', $record->id)
                                 ->update(['camping' => false]);
 
-                            // Ativa a campanha atual (caso ainda não tenha sido ativada corretamente)
                             $record->update(['camping' => true]);
                         }
-                    })
-                    ->afterStateUpdated(function ($record, $state) {
-                        // Runs after the state is saved to the database.
                     })->visible(function (){
                         if(auth()->user()->panel->value == 'super-admin'){
                             return true;
