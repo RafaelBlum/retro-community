@@ -45,9 +45,9 @@ class Campaing extends Model
 
                 $camp = Campaing::where('channel_id', $campaign->channel_id)->where('id', '!=', $campaign->id)->update(['camping' => false]);
 
-                dd("boot", static::where('channel_id', $campaign->channel_id)
-                    ->where('id', '!=', $campaign->id)
-                    ->update(['camping' => false]), $camp);
+//                dd("boot", static::where('channel_id', $campaign->channel_id)
+//                    ->where('id', '!=', $campaign->id)
+//                    ->update(['camping' => false]), $camp);
             }
         });
     }

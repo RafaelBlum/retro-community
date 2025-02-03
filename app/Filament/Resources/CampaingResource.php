@@ -79,6 +79,7 @@ class CampaingResource extends Resource
                                         )->render()
                                     );
                                 })->columnSpanFull(),
+
                             Toggle::make('camping')
                                 ->label('Destacar campanha')
                                 ->afterStateUpdated(function ($state, $record) {
@@ -90,6 +91,7 @@ class CampaingResource extends Resource
                                     }
                                 })
                                 ->required(),
+
                         ]),
                     ])->columnSpan(2)
                         ->visible(function(Get $get){
@@ -211,30 +213,26 @@ class CampaingResource extends Resource
 
 
                 ToggleColumn::make('camping')
-                    ->label('Em destaque asdasd')
-                    ->afterStateUpdated(function ($state, Campaing $record) {
-                        Log::info("Toggle ativado para campanha ID: {$record->id}, Estado: " . ($state ? 'Ativado' : 'Desativado'));
-
+                    ->label('Em destaque')
+                    ->updateStateUsing(function ($record, $state) {
                         if ($state) {
-                            Log::info("Desativando outras campanhas do canal ID: {$record->channel_id}");
-
-                            // DESATIVA TODAS AS CAMPANHAS DO CANAL
-                            $affectedRows = DB::table('campaings')
-                                ->where('channel_id', $record->channel_id)
+                            // Desativa todas as outras campanhas do mesmo canal antes de ativar a nova
+                            Campaing::where('channel_id', $record->channel_id)
                                 ->where('id', '!=', $record->id)
                                 ->update(['camping' => false]);
 
-                            Log::info("Número de campanhas desativadas: {$affectedRows}");
-
-                            // ATIVA A CAMPANHA ATUAL
-                            DB::table('campaings')
-                                ->where('id', $record->id)
-                                ->update(['camping' => true]);
-
-                            Log::info("Campanha ID: {$record->id} ativada.");
+                            // Ativa a campanha atual (caso ainda não tenha sido ativada corretamente)
+                            $record->update(['camping' => true]);
                         }
                     })
-                    ->sortable(),
+                    ->afterStateUpdated(function ($record, $state) {
+                        // Runs after the state is saved to the database.
+                    })->visible(function (){
+                        if(auth()->user()->panel->value == 'super-admin'){
+                            return true;
+                        }
+                        return false;
+                    }),
 
 
                 TextColumn::make('title')
