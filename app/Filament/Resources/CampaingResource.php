@@ -207,14 +207,10 @@ class CampaingResource extends Resource
                 ToggleColumn::make('camping')
                     ->label('Em destaque')
                     ->updateStateUsing(function ($record, $state) {
-                        if ($state) {
-                            Campaing::where('channel_id', $record->channel_id)
-                                ->where('id', '!=', $record->id)
-                                ->update(['camping' => false]);
-
-                            $record->update(['camping' => true]);
-                        }
-                    })->visible(function (){
+                        $record->update(['camping' => $state]);
+                        return $state;
+                    })
+                    ->visible(function (){
                         if(auth()->user()->panel->value == 'super-admin'){
                             return true;
                         }
