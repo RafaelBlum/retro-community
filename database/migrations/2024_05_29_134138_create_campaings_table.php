@@ -18,6 +18,7 @@ return new class extends Migration
             $table->text('content');
             $table->string('linkGoal');
             $table->string('qrCode');
+            $table->string('linkPagePix');
             $table->boolean('camping')->default(false);
             $table->string('image')->nullable();
             $table->timestamps();

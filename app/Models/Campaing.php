@@ -18,6 +18,7 @@ class Campaing extends Model
         'channel_id',
         'linkGoal',
         'qrCode',
+        'linkPagePix',
         'camping',
         'image',
     ];

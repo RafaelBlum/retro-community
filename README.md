@@ -111,10 +111,9 @@ permitindo uma gestão eficiente de todo o sistema, enquanto a integração com 
   - ajustar imagens para remover a antiga [create/edit]
 - Campanhas
   - Colocar filtro de pesquisa
-  - Tentar tirar fundo branco da campanha no editar
-  - Na listagem colocar box para definir qual campanha fica em destaque. (Somente uma pode ser true e só super-admin pode)
   - ajustar imagens para remover a antiga [create/edit]
   - Usuario só pode editar e excluir a sua campanha (Ajustar, pois esta podendo editar e excluir) [zzzz_digital@hotmail.com : 123123123123]
+  - Visualizar gera erro
 - Canais
   - Tirar coluna campanha
   - Super-admin deve ter acesso a excluir

@@ -21,6 +21,7 @@ use Filament\Forms\Components\ViewField;
 use Filament\Forms\Form;
 use Filament\Forms\Get;
 use Filament\Resources\Resource;
+use Filament\Support\Colors\Color;
 use Filament\Support\Enums\IconPosition;
 use Filament\Tables;
 use Filament\Tables\Actions\DeleteAction;
@@ -144,14 +145,21 @@ class CampaingResource extends Resource
                             ->required()
                             ->columnSpanFull(),
                         TextInput::make('linkGoal')
-                            ->label("Link livePix da meta")
+                            ->label("Link livePix Meta")
                             ->required()
                             ->maxLength(255),
 
                         TextInput::make('qrCode')
-                            ->label("Link LivePix do QR Code")
+                            ->label("Link LivePix QRCode")
                             ->maxLength(255)
                             ->default(null),
+
+                        TextInput::make('linkPagePix')
+                            ->label('Link livePix Perfil')
+                            ->hintIcon('heroicon-m-question-mark-circle', tooltip: 'Adicione nome da sua pagina do livePix')
+                            ->hintColor(Color::Yellow)
+                            ->prefix('https://livepix.gg/')->suffixIcon('heroicon-m-globe-alt')
+                            ->required(),
                     ])->columnSpan(2),
                 ]),
             ])->columns([
