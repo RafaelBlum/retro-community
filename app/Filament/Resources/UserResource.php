@@ -190,17 +190,13 @@ class UserResource extends Resource
     public static function actions(): array
     {
         return [
-            // Ação de criação personalizada
             CreateAction::make()->mutateFormDataUsing(function (array $data): array {
                 $data['user_id'] = auth()->id();
-                dd('mutateFormDataUsing');
+
                 return $data;
             })->beforeCreate(function ($record, $data) {
-                // Modificar os dados antes de salvar, como criptografar a senha
-//                $data['password'] = Hash::make($data['password']); // Criptografar a senha
-//                $data['role'] = $data['role'] ?? 'viewer'; // Definir um papel padrão
-                dd('mutateFormDataUsing');
-                // Retornar os dados modificados
+
+
                 return $data;
             }),
         ];

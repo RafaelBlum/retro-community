@@ -3,6 +3,7 @@
 namespace App\Filament\Pages;
 
 use App\Enums\PanelTypeEnum;
+use App\Models\Campaing;
 use App\Models\User;
 use Filament\Actions\Action;
 use Filament\Forms\Components\ColorPicker;
@@ -181,15 +182,17 @@ class Profile extends Page implements HasForms
                                     Group::make()->schema([
                                         Placeholder::make('qrCode')
                                             ->label('QR Code LivePix')
-                                            ->content(function ($get) {
-                                                if (is_null($get('qrCode'))) {
-                                                    return 'Nenhum qrCode selecionado';
+                                            ->content(function (Campaing $record) {
+                                                // Obtém o valor de 'qrCode' diretamente do modelo
+                                                //$qrCode = $get('qrCode'); // A variável 'qrCode' que você deseja passar para a view
+
+                                                if (is_null($record)) {
+                                                    return 'Nenhum QR Code selecionado';
                                                 }
 
+                                                // Passa os dados para a view corretamente
                                                 return new HtmlString(
-                                                    view(
-                                                        view: 'filament.campaing.iframe'
-                                                    )->render()
+                                                    view('filament.campaing.iframe', ['state' => $record])->render()
                                                 );
                                             }),
                                     ])->columnSpan(4)->hidden(function (Get $get) {
@@ -276,44 +279,6 @@ class Profile extends Page implements HasForms
                 ->submit('update'),
         ];
     }
-
-//    protected function beforeSave()
-//    {
-//        $user = auth()->user()->load('channel.camping');
-//
-//        $profileImage = $user->avatar;
-//        //dd($user, $profileImage);
-////        $user2 = User::find(\auth()->user()->id);
-////        $brandImagem = $user2->channel->brand;
-//        //dd($brandImagem);
-//
-//        if($user->avatar != $profileImage)
-//        {
-//          //  dd("Imagens: ", $user->avatar, $profileImage);
-//        }
-//        //dd("Imagens: ", $user->avatar, $profileImage);
-//    }
-
-//    protected function handleRecordUpdate(Model $record, array $data): Model
-//    {
-//
-//        dd('asdadas 8888888888888');
-//        $data['updated_by'] = auth()->id();
-//        $record->update($data);
-//
-//        return $record;
-//    }
-
-//    public static function afterSave(User $user)
-//    {
-//
-//        dd('sadas');
-//        // Verificar se existe um avatar e se o arquivo existe no disco
-//        if ($user->avatar) {
-//            // Deletar a imagem antiga
-//            Storage::delete('public/' . $user->avatar);
-//        }
-//    }
 
     public function update()
     {

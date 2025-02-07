@@ -38,17 +38,11 @@ class Campaing extends Model
 
         static::saving(function ($campaign) {
             if ($campaign->camping) {
-
-                // Desativa todas as outras campanhas do canal antes de ativar a nova
                 static::where('channel_id', $campaign->channel_id)
                     ->where('id', '!=', $campaign->id)
                     ->update(['camping' => false]);
 
                 $camp = Campaing::where('channel_id', $campaign->channel_id)->where('id', '!=', $campaign->id)->update(['camping' => false]);
-
-//                dd("boot", static::where('channel_id', $campaign->channel_id)
-//                    ->where('id', '!=', $campaign->id)
-//                    ->update(['camping' => false]), $camp);
             }
         });
     }

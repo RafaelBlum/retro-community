@@ -69,15 +69,12 @@ class CampaingResource extends Resource
                         Grid::make(3)->schema([
                             Placeholder::make('linkGoal')
                                 ->label('Meta da sua campanha')
-                                ->content(function ($get) {
-                                    if (is_null($get('linkGoal'))) {
-                                        return 'Nenhum qrCode selecionado';
+                                ->content(function (Campaing $record) {
+                                    if (is_null($record)) {
+                                        return 'Nenhum QR Code selecionado';
                                     }
-
                                     return new HtmlString(
-                                        view(
-                                            view: 'filament.campaing.iframeGoal'
-                                        )->render()
+                                        view('filament.campaing.iframeGoal', ['state' => $record])->render()
                                     );
                                 })->columnSpanFull(),
 
@@ -107,14 +104,13 @@ class CampaingResource extends Resource
                         Placeholder::make('qrCode')
                             ->label('Seu QR Code')
 
-                            ->content(function ($get) {
-                                if (is_null($get('qrCode'))) {
-                                    return 'Nenhum qrCode selecionado';
+                            ->content(function (Campaing $record) {
+                                if (is_null($record)) {
+                                    return 'Nenhum QR Code selecionado';
                                 }
+
                                 return new HtmlString(
-                                    view(
-                                        view: 'filament.campaing.iframe'
-                                    )->render()
+                                    view('filament.campaing.iframe', ['state' => $record])->render()
                                 );
                             }),
                     ])->columnSpan(1)
@@ -223,7 +219,9 @@ class CampaingResource extends Resource
                     ->limit(50)
                     ->description(function (Campaing $record): View
                     {
-                        return view('components.partials.icon', ['state' => $record]);
+                        return view('components.partials.icon', [
+                            'state' => $record,
+                        ]);
                     }),
             ])
             ->filters([
@@ -232,7 +230,41 @@ class CampaingResource extends Resource
             ->actions([
                 Tables\Actions\ActionGroup::make([
                     EditAction::make(),
-                    ViewAction::make(),
+
+                    ViewAction::make()
+                        ->label('Ver Detalhes')
+                        ->modalHeading('Detalhes da Campanha')
+                        ->modalWidth('full') // Tamanho máximo
+
+                        ->modalSubmitActionLabel('Fechar xx')
+                        ->icon('heroicon-o-eye')
+                        ->color('primary')
+                        ->form(fn (Form $form, $record) => $form->schema([
+
+                            TextInput::make('title')
+                                ->label('Título'),
+
+                            TextInput::make('content')
+                                ->label('Descrição'),
+
+                            TextInput::make('linkGoal')
+                                ->label('Descrição'),
+
+                            TextInput::make('qrCode')
+                                ->label('Descrição'),
+
+                            FileUpload::make('image')
+                                ->label('Banner da sua campanha')
+                                ->directory('campaing_folder')
+                                ->default('default-post.jpg')
+                                ->disk('public')
+                                ->columnSpanFull()
+                                ->image()
+                        ]))
+                        ->action(function($record) {
+                            return view('filament.campaing.iframe', ['record' => $record]);
+                        }),
+
                     DeleteAction::make()
                         ->action(function(Campaing $record) {
                             if($record->image){
@@ -252,6 +284,7 @@ class CampaingResource extends Resource
                 ]),
             ]);
     }
+
 
     public static function getRelations(): array
     {

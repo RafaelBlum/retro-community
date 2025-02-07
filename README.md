@@ -113,7 +113,6 @@ permitindo uma gestão eficiente de todo o sistema, enquanto a integração com 
   - Colocar filtro de pesquisa
   - ajustar imagens para remover a antiga [create/edit]
   - Usuario só pode editar e excluir a sua campanha (Ajustar, pois esta podendo editar e excluir) [zzzz_digital@hotmail.com : 123123123123]
-  - Visualizar gera erro
 - Canais
   - Tirar coluna campanha
   - Super-admin deve ter acesso a excluir

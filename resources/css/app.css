@@ -44,3 +44,25 @@
 .vertical-loop-animation-img {
     animation: verticalLoopImg 7s infinite;
 }
+
+.filament-modal {
+    width: 100% !important; /* Largura completa em telas pequenas */
+}
+
+@media (min-width: 640px) {
+    .filament-modal {
+        max-width: 448px; /* Largura máxima em telas pequenas */
+    }
+}
+
+@media (min-width: 768px) {
+    .filament-modal {
+        max-width: 512px; /* Largura máxima para telas médias */
+    }
+}
+
+@media (min-width: 1024px) {
+    .filament-modal {
+        max-width: 576px; /* Largura máxima para telas grandes */
+    }
+}
