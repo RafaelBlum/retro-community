@@ -236,7 +236,7 @@ class CampaingResource extends Resource
                         ->modalHeading('Detalhes da Campanha')
                         ->modalWidth('full') // Tamanho máximo
 
-                        ->modalSubmitActionLabel('Fechar xx')
+                        ->modalSubmitActionLabel('Fechar')
                         ->icon('heroicon-o-eye')
                         ->color('primary')
                         ->form(fn (Form $form, $record) => $form->schema([
