@@ -47,10 +47,7 @@ class EditChannel extends EditRecord
 
     protected function afterSave()
     {
-        //dd("afterSave");
-        //$user = User::with('channel')->findOrFail($this->data['id']);
         $channel = Channel::with('camping')->find($this->data['id']);
-        //$channel = $user->channel;
         $channel->slug = Str::slug($this->data['link']) . '-' . $this->data['id'];
         $channel->save();
     }
