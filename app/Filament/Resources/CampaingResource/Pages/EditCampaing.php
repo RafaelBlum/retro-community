@@ -25,4 +25,9 @@ class EditCampaing extends EditRecord
             ->title('User updated')
             ->body('The user has been saved successfully.');
     }
+
+    protected function beforeSave()
+    {
+        dd('before Save');
+    }
 }

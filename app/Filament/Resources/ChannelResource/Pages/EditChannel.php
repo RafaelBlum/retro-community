@@ -7,6 +7,7 @@ use App\Models\Campaing;
 use App\Models\Channel;
 use App\Models\User;
 use Filament\Actions;
+use Filament\Notifications\Notification;
 use Filament\Resources\Pages\EditRecord;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
@@ -36,7 +37,13 @@ class EditChannel extends EditRecord
         }
     }
 
-
+    protected function getSavedNotification(): ?Notification
+    {
+        return Notification::make()
+            ->success()
+            ->title('Canal atualizado com sucesso!')
+            ->body($this->data['title']);
+    }
 
     protected function afterSave()
     {
