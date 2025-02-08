@@ -6,11 +6,13 @@ use App\Enums\PanelTypeEnum;
 use App\Filament\Resources\CampaingResource\Pages;
 use App\Filament\Resources\CampaingResource\RelationManagers;
 use App\Models\Campaing;
+use App\Models\Channel;
 use Filament\Forms;
 use Filament\Forms\Components\Fieldset;
 use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\Grid;
 use Filament\Forms\Components\Group;
+use Filament\Forms\Components\Hidden;
 use Filament\Forms\Components\Placeholder;
 use Filament\Forms\Components\Section;
 use Filament\Forms\Components\Select;
@@ -62,7 +64,11 @@ class CampaingResource extends Resource
                             ->default('default-post.jpg')
                             ->disk('public')
                             ->columnSpanFull()
-                            ->image(),
+                            ->image()
+                            ->afterStateUpdated(function ($state, $get) {
+                                Log::info('Imagem alterada', ['channel_id' => $get('channel_id')]);
+                            }),
+
                     ])->columnSpan(1),
 
                     Section::make()->schema([
@@ -125,11 +131,42 @@ class CampaingResource extends Resource
 
                         Select::make('channel_id')
                             ->label('Canal responsável')
-                            ->relationship('channel', 'title', function (Builder $query) {
-                                return static::modifyChannelQuery($query);
+                            ->options(function () {
+                                $model = static::getModelInstance();
+
+                                if ($model && $model->exists) {
+                                    return Channel::where('id', $model->channel_id)->pluck('title', 'id');
+                                } else {
+                                    return Channel::whereDoesntHave('camping')->pluck('title', 'id');
+                                }
                             })
+                            ->default(fn ($record) => $record?->channel_id)
+                            ->reactive()
+
+                            ->afterStateHydrated(function ($state, $set, $record) {
+                                if ($record) {
+                                    $set('channel_id', $record->channel_id);
+                                }
+                            })
+                            ->disabled(fn ($record) => $record !== null) // ⚠️ Isso bloqueia edição do campo na edição
+                            ->visible(fn ($record) => $record === null) // Só exibe na criação
                             ->required(),
 
+// Campo de Texto (aparece apenas na edição)
+                        TextInput::make('title')
+                            ->label('Canal responsável kkk')
+                            ->default(fn ($record) => $record?->channel?->title) // Mostra o nome do canal
+                            ->disabled()
+                            ->visible(fn ($record) => $record !== null), // Só exibe na edição
+
+
+//                        Hidden::make('channel_id')
+//                            ->default(fn ($record) => $record?->channel_id)
+//                            ->afterStateHydrated(function ($state, $set, $record) {
+//                                if ($record) {
+//                                    $set('channel_id', $record->channel_id);
+//                                }
+//                            }),
 
                         TextInput::make('title')
                             ->label("Titulo")
@@ -171,23 +208,32 @@ class CampaingResource extends Resource
 
     protected static function getModelInstance()
     {
-        $id = request()->route('record');
-        if ($id) {
-            return static::$model::find($id);
+        static $instance = null;
+
+        if ($instance === null) {
+            $id = request()->route('record');
+            if ($id) {
+                $instance = Campaing::find($id);
+            }
         }
-        return null;
+
+        return $instance;
     }
 
     protected static function modifyChannelQuery(Builder $query)
     {
         $model = static::getModelInstance();
 
-        if($model && $model->exists) {
-            return $query->where('id', $model->channel_id);
-        }else{
-            return $query->doesntHave('camping');
+        if ($model && $model->exists) {
+            return $query->where('id', $model->channel_id)
+                ->orWhereDoesntHave('camping'); // Sempre incluir o canal original
+        } else {
+            return $query->whereDoesntHave('camping');
         }
     }
+
+
+
 
     public static function table(Table $table): Table
     {

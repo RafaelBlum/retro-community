@@ -45,9 +45,6 @@ class EditUser extends EditRecord
 
     protected function beforeSave()
     {
-        //O find retorna um único modelo, então não é necessário usar get() depois.
-        // O with é usado para carregar os relacionamentos (no caso, channel.camping).
-
         $user = User::with('channel.camping')->find($this->data['id']);
 
         if (!$user) {
