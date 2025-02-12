@@ -110,8 +110,6 @@ permitindo uma gestão eficiente de todo o sistema, enquanto a integração com 
   - View/editar Colocar imagem acima grande
   - ajustar imagens para remover a antiga [create/edit]
 - Campanhas
-  - Colocar filtro de pesquisa
-  - ajustar imagens para remover a antiga [create/edit]
   - Usuario só pode editar e excluir a sua campanha (Ajustar, pois esta podendo editar e excluir) [zzzz_digital@hotmail.com : 123123123123]
 - Canais
   - Tirar coluna campanha

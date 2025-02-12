@@ -34,6 +34,8 @@ use Filament\Tables\Columns\IconColumn;
 use Filament\Tables\Columns\ImageColumn;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Columns\ToggleColumn;
+use Filament\Tables\Filters\Filter;
+use Filament\Tables\Filters\SelectFilter;
 use Filament\Tables\Table;
 use Illuminate\Contracts\View\View;
 use Illuminate\Database\Eloquent\Builder;
@@ -206,7 +208,7 @@ class CampaingResource extends Resource
     protected static function getModelInstance()
     {
         static $instance = null;
-        
+
         if ($instance === null) {
             $id = request()->route('record');
             if ($id) {
@@ -268,7 +270,13 @@ class CampaingResource extends Resource
                     }),
             ])
             ->filters([
-                //
+                SelectFilter::make('channel')
+                    ->relationship('channel', 'title')
+                    ->preload()
+                    ->label('Canais responsaveis'),
+                Filter::make('channel_id')
+                    ->label('Minha campanha')
+                    ->query(fn(Builder $query): Builder => $query->where('channel_id', auth()->id()))
             ])
             ->actions([
                 Tables\Actions\ActionGroup::make([
