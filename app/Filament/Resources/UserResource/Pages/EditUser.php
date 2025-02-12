@@ -57,13 +57,14 @@ class EditUser extends EditRecord
 
         $avatarImagem = $user->avatar;
 
-        if ($user->avatar != $avatarImagem) {
+
+        if (reset($this->data['avatar']) != $avatarImagem) {
             if($user->avatar != 'default.jpg'){
                 Storage::delete('public/' . $avatarImagem);
             }
         }
 
-        if ($user->channel->brand != $brandImagem) {
+        if (reset($this->data['channel']['brand']) != $brandImagem) {
             if($user->channel->brand != 'default-brand.png'){
                 Storage::delete('public/' . $brandImagem);
             }

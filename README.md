@@ -117,8 +117,7 @@ permitindo uma gestão eficiente de todo o sistema, enquanto a integração com 
   - Super-admin deve ter acesso a excluir
   - ajustar imagens para remover a antiga [create/edit]
 - Usuários
-  - 
-  - ajustar imagens para remover a antiga [create??/edit]
+  - ok
 
 - Categories
   - ok
