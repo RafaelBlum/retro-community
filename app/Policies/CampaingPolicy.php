@@ -29,38 +29,38 @@ class CampaingPolicy
      */
     public function create(User $user): bool
     {
-        return true;
+        return $user->panel->value === 'super-admin';
     }
 
     /**
      * Determine whether the user can update the model.
      */
-    public function update(User $user, Campaing $campaing): bool
+    public function update(User $user, Campaing $model): bool
     {
-        return true;
+        return ($user->id === $model->id || $user->panel->value === 'super-admin');
     }
 
     /**
      * Determine whether the user can delete the model.
      */
-    public function delete(User $user, Campaing $campaing): bool
+    public function delete(User $user, Campaing $model): bool
     {
-        return true;
+        return ($user->id === $model->id || $user->panel->value === 'super-admin');
     }
 
     /**
      * Determine whether the user can restore the model.
      */
-    public function restore(User $user, Campaing $campaing): bool
+    public function restore(User $user, Campaing $model): bool
     {
-        return true;
+        return ($user->id === $model->id || $user->panel->value === 'super-admin');
     }
 
     /**
      * Determine whether the user can permanently delete the model.
      */
-    public function forceDelete(User $user, Campaing $campaing): bool
+    public function forceDelete(User $user, Campaing $model): bool
     {
-        return true;
+        return ($user->id === $model->id || $user->panel->value === 'super-admin');
     }
 }

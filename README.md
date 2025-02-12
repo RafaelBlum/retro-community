@@ -109,8 +109,9 @@ permitindo uma gestão eficiente de todo o sistema, enquanto a integração com 
   - Criar linha marcada para post publicado. [Doc](https://www.youtube.com/watch?v=7SnzOjPV7ms)
   - View/editar Colocar imagem acima grande
   - ajustar imagens para remover a antiga [create/edit]
+  - criar pontilhados MENU pra view COM USER normal
 - Campanhas
-  - Usuario só pode editar e excluir a sua campanha (Ajustar, pois esta podendo editar e excluir) [zzzz_digital@hotmail.com : 123123123123]
+  - ok
 - Canais
   - Tirar coluna campanha
   - Super-admin deve ter acesso a excluir
@@ -118,6 +119,9 @@ permitindo uma gestão eficiente de todo o sistema, enquanto a integração com 
 - Usuários
   - 
   - ajustar imagens para remover a antiga [create??/edit]
+
+- Categories
+  - ok
 
 > [!IMPORTANT]
 > Pendências de desenvolvimento área FRONT-END
