@@ -115,7 +115,7 @@ permitindo uma gestão eficiente de todo o sistema, enquanto a integração com 
 - Canais
   - OK
 - Usuários
-  - ADD filtros de pesquisa
+  - ok
 - Categories
   - ok
 

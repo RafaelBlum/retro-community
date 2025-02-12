@@ -215,7 +215,7 @@ class UserResource extends Resource
                     ->description(fn(User $record) => $record->email)
                     ->searchable(),
 
-                ImageColumn::make('posts.featured_image_url')
+                ImageColumn::make('channel.brand')
                     ->circular()
                     ->stacked()
                     ->limit(3),
@@ -233,8 +233,11 @@ class UserResource extends Resource
                     ->label('Publicações'),
             ])
             ->filters([
-                //
+                Tables\Filters\Filter::make('channel')
+                    ->label('Usuários com canais')
+                    ->query(fn (Builder $query): Builder => $query->whereHas('channel')),
             ])
+
             ->actions([
                 Tables\Actions\ActionGroup::make([
                     EditAction::make(),
