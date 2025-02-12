@@ -44,7 +44,7 @@ class EditCampaing extends EditRecord
 
         $imageCampaing = $campaing->image;
 
-        if($campaing->image != $imageCampaing )
+        if(reset($this->data['image']) != $imageCampaing )
         {
             Storage::delete("public/" . $imageCampaing);
         }

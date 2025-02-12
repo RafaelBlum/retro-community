@@ -22,6 +22,7 @@ use Filament\Forms\Components\Toggle;
 use Filament\Forms\Components\ViewField;
 use Filament\Forms\Form;
 use Filament\Forms\Get;
+use Filament\Notifications\Notification;
 use Filament\Resources\Resource;
 use Filament\Support\Colors\Color;
 use Filament\Support\Enums\IconPosition;
@@ -64,15 +65,13 @@ class CampaingResource extends Resource
                             ->default('default-post.jpg')
                             ->disk('public')
                             ->columnSpanFull()
-                            ->image()
-                            ->afterStateUpdated(function ($state, $get) {
-                                Log::info('Imagem alterada', ['channel_id' => $get('channel_id')]);
-                            }),
+                            ->image(),
 
                     ])->columnSpan(1),
 
                     Section::make()->schema([
                         Grid::make(3)->schema([
+
                             Placeholder::make('linkGoal')
                                 ->label('Meta da sua campanha')
                                 ->content(function (Campaing $record) {
@@ -94,7 +93,13 @@ class CampaingResource extends Resource
                                             ->update(['camping' => false]); // Desativa as outras campanhas do mesmo canal
                                     }
                                 })
-                                ->required(),
+                                ->required()
+                                ->visible(function (){
+                                    if(auth()->user()->panel->value == 'super-admin'){
+                                        return true;
+                                    }
+                                    return false;
+                                }),
 
                         ]),
                     ])->columnSpan(2)
@@ -109,12 +114,10 @@ class CampaingResource extends Resource
 
                         Placeholder::make('qrCode')
                             ->label('Seu QR Code')
-
                             ->content(function (Campaing $record) {
                                 if (is_null($record)) {
                                     return 'Nenhum QR Code selecionado';
                                 }
-
                                 return new HtmlString(
                                     view('filament.campaing.iframe', ['state' => $record])->render()
                                 );
@@ -152,21 +155,16 @@ class CampaingResource extends Resource
                             ->visible(fn ($record) => $record === null) // Só exibe na criação
                             ->required(),
 
-// Campo de Texto (aparece apenas na edição)
-                        TextInput::make('title')
-                            ->label('Canal responsável kkk')
-                            ->default(fn ($record) => $record?->channel?->title) // Mostra o nome do canal
-                            ->disabled()
-                            ->visible(fn ($record) => $record !== null), // Só exibe na edição
-
-
-//                        Hidden::make('channel_id')
-//                            ->default(fn ($record) => $record?->channel_id)
-//                            ->afterStateHydrated(function ($state, $set, $record) {
-//                                if ($record) {
-//                                    $set('channel_id', $record->channel_id);
-//                                }
-//                            }),
+                        /**
+                         * Campo exibe somente no form de edição
+                         */
+                        TextInput::make('channel_name')
+                            ->label('Canal Responsável')
+                            ->default(fn ($record) => optional($record?->channel)->title)
+                            ->disabled() // Impede edição
+                            ->dehydrated(false)
+                            ->visible(fn ($record) => filled($record) && filled($record->channel))
+                            ->afterStateHydrated(fn ($set, $record) => $set('channel_name', optional($record?->channel)->title)),
 
                         TextInput::make('title')
                             ->label("Titulo")
@@ -205,11 +203,10 @@ class CampaingResource extends Resource
             ]);
     }
 
-
     protected static function getModelInstance()
     {
         static $instance = null;
-
+        
         if ($instance === null) {
             $id = request()->route('record');
             if ($id) {
