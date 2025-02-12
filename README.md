@@ -113,12 +113,9 @@ permitindo uma gestão eficiente de todo o sistema, enquanto a integração com 
 - Campanhas
   - ok
 - Canais
-  - Tirar coluna campanha
-  - Super-admin deve ter acesso a excluir
-  - ajustar imagens para remover a antiga [create/edit]
+  - OK
 - Usuários
-  - ok
-
+  - ADD filtros de pesquisa
 - Categories
   - ok
 

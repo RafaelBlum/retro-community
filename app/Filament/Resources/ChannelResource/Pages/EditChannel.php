@@ -25,12 +25,12 @@ class EditChannel extends EditRecord
 
     protected function beforeSave()
     {
-        $channel = Channel::with('camping')->find($this->data['id']);
+        $channel = Channel::find($this->data['id']);
 
 
-        $brandImagem = array_values($this->data['brand'])[0];
+        $brandImagem = $channel->brand;
 
-        if ($channel->brand != $brandImagem) {
+        if (reset($this->data['brand']) != $brandImagem) {
             if($channel->brand != 'default-brand.png'){
                 Storage::delete('public/' . $channel->brand);
             }

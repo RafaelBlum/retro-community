@@ -149,6 +149,17 @@ class ChannelResource extends Resource
                 Tables\Actions\ActionGroup::make([
                     EditAction::make(),
                     ViewAction::make(),
+                    DeleteAction::make()
+                        ->action(function (Channel $record){
+                            if($record->brand != 'default-brand.png'){
+                                Storage::delete('public/' . $record->brand);
+                            }
+                            $record->delete();
+                        })
+                        ->requiresConfirmation()
+                        ->modalHeading('Deletar ' . static::$modelLabel)
+                        ->modalDescription('Tem certeza de que deseja excluir ' . static::$modelLabel . '? Isto não pode ser desfeito.')
+                        ->modalSubmitActionLabel('Sim, deletar!'),
                 ])->tooltip("Menu")
             ])
             ->bulkActions([
