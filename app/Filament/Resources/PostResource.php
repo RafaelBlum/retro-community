@@ -53,70 +53,20 @@ class PostResource extends Resource
     {
         return $form
             ->schema([
-                Grid::make(3)->schema([
-                    Section::make()->schema([
-                        FileUpload::make('featured_image_url')
-                            ->default('default-post.jpg')
-                            ->label('Imagem da postagem')
-                            ->required()
-                            ->disk('public')
-                            ->directory('image_posts')
-                            ->columnSpanFull(),
+                FileUpload::make('featured_image_url')
+                    ->default('default-post.jpg')
+                    ->label('Imagem da postagem')
+                    ->required()
+                    ->disk('public')
+                    ->directory('image_posts')
+                    ->columnSpanFull(),
 
-                    ])->columnSpan(1),
-
-                    Section::make()->schema([
-                        Grid::make(4)->schema([
-                            Group::make()->schema([
-                                TextInput::make('title')
-                                    ->label('Título da postagem')
-                                    ->required()
-                                    ->maxLength(255)
-
-                            ])->columnSpan(4),
-                        ]),
-
-                        Grid::make(4)->schema([
-                            Group::make()->schema([
-                                DatePicker::make('scheduled_for')
-                                    ->label('Data programada da postagem')
-                                    ->hidden(fn(Get $get) => $get('status') !== 'SCHEDULED')
-                                    ->displayFormat(function () {
-                                        return 'd/m/Y';
-                                    })
-                                    ->required(),
-
-                            ])->columnSpan(2),
-                        ]),
-                    ])->columnSpan(2),
-                ]),
+                TextInput::make('title')
+                    ->label('Título da postagem')
+                    ->required()
+                    ->maxLength(255)->columnSpanFull(),
 
                 Tabs::make('Create article')->tabs([
-
-                    Tab::make('Configurações')->icon('heroicon-m-inbox')->schema([
-                        Grid::make(8)->schema([
-                            Group::make()->schema([
-                                Select::make('category_id')
-                                    ->label('Categoria')
-                                    ->searchable()
-                                    ->preload()
-                                    ->reactive()
-                                    ->distinct()
-                                    ->relationship('category', 'name'),
-                            ])->columnSpan(2),
-
-                            Group::make()->schema([
-                                Select::make('status')
-                                    ->label('Status da postagem')
-                                    ->hintIcon('heroicon-m-question-mark-circle', tooltip: 'Selecione o status do seu artigo.')
-                                    ->hintColor('primary')
-                                    ->options(StatusPostEnum::class)
-                                    ->live()
-                                    ->required(),
-
-                            ])->columnSpan(6),
-                        ]),
-                    ])->columns(3),
 
                     Tab::make('Conteúdo descritivo')
                         ->icon('heroicon-m-inbox')
@@ -154,6 +104,38 @@ class PostResource extends Resource
                                 ->required()
                                 ->columnSpanFull(),
                         ]),
+
+                    Tab::make('Configurações')->icon('heroicon-m-inbox')->schema([
+                        Grid::make(8)->schema([
+                            Group::make()->schema([
+                                Select::make('category_id')
+                                    ->label('Categoria')
+                                    ->searchable()
+                                    ->preload()
+                                    ->reactive()
+                                    ->distinct()
+                                    ->relationship('category', 'name'),
+                            ])->columnSpan(4),
+
+                            Group::make()->schema([
+                                Select::make('status')
+                                    ->label('Status da postagem')
+                                    ->hintIcon('heroicon-m-question-mark-circle', tooltip: 'Selecione o status do seu artigo.')
+                                    ->hintColor('primary')
+                                    ->options(StatusPostEnum::class)
+                                    ->live()
+                                    ->required(),
+                            ])->columnSpan(4),
+                        ]),
+
+                        DatePicker::make('scheduled_for')
+                            ->label('Data programada da postagem')
+                            ->hidden(fn(Get $get) => $get('status') !== 'SCHEDULED')
+                            ->displayFormat(function () {
+                                return 'd/m/Y';
+                            })
+                            ->required()->columnSpanFull(),
+                    ])->columns(3),
 
                 ])->columnSpanFull()->activeTab(1)->persistTabInQueryString()
 
