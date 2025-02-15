@@ -251,6 +251,8 @@ class CampaingResource extends Resource
                         $record->update(['camping' => $state]);
                         return $state;
                     })
+                    ->onColor('success')
+                    ->offColor('danger')
                     ->visible(function (){
                         if(auth()->user()->panel->value == 'super-admin'){
                             return true;
