@@ -27,12 +27,11 @@ class EditChannel extends EditRecord
     {
         $channel = Channel::find($this->data['id']);
 
-
         $brandImagem = $channel->brand;
 
         if (reset($this->data['brand']) != $brandImagem) {
             if($channel->brand != 'default-brand.png'){
-                Storage::delete('public/' . $channel->brand);
+                Storage::delete('public/' . $brandImagem);
             }
         }
     }

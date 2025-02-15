@@ -33,6 +33,7 @@ use Filament\Tables\Actions\EditAction;
 use Filament\Tables\Actions\ViewAction;
 use Filament\Tables\Columns\ImageColumn;
 use Filament\Tables\Columns\TextColumn;
+use Filament\Tables\Filters\SelectFilter;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Facades\Storage;
@@ -233,9 +234,20 @@ class UserResource extends Resource
                     ->label('Publicações'),
             ])
             ->filters([
-                Tables\Filters\Filter::make('channel')
-                    ->label('Usuários com canais')
-                    ->query(fn (Builder $query): Builder => $query->whereHas('channel')),
+                SelectFilter::make('channel')
+                    ->label('Filtrar por Canal')
+                    ->options([
+                        'with' => 'Com canais',
+                        'without' => 'Sem canal',
+                    ])
+                    ->query(function (Builder $query, array $data) {
+                        if ($data['value'] === 'with') {
+                            return $query->whereHas('channel');
+                        } elseif ($data['value'] === 'without') {
+                            return $query->whereDoesntHave('channel');
+                        }
+                        return $query;
+                    }),
             ])
 
             ->actions([
