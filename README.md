@@ -106,7 +106,6 @@ permitindo uma gestão eficiente de todo o sistema, enquanto a integração com 
   - Ajustar tipo de acesso dos usuários [doc. infor](https://filamentphp.com/docs/1.x/admin/resources#authorization) | [canAccessFilament falhe](https://v2.filamentphp.com/tricks/redirect-in-case-canaccessfilament-fails)| [permissões](https://laraveldaily.com/post/laravel-roles-permissions-middleware-gates-policies?mtm_campaign=post-footer-premium)
   - Ajustar politicas de acesso geral na area administrativa.
 - Posts
-  - Criar linha marcada para post publicado. [Doc](https://www.youtube.com/watch?v=7SnzOjPV7ms)
   - ajustar imagens para remover a antiga [create/edit]
   - criar pontilhados MENU pra view COM USER normal
 - Campanhas

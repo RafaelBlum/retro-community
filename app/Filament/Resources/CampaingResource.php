@@ -237,6 +237,10 @@ class CampaingResource extends Resource
     public static function table(Table $table): Table
     {
         return $table
+            ->recordClasses(fn(Campaing $record) => match ($record->camping){
+                default => null,
+                false => 'border-1-4 bg-danger-50 border-1-danger-500'
+            })
             ->columns([
                 ImageColumn::make('image')
                     ->label('')
