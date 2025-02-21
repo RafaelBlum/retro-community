@@ -46,7 +46,15 @@ class EditPost extends EditRecord
     {
         $post = Post::find($this->data['id']);
 
-        $pathNameImage = array_values($this->data['featured_image_url'])[0];
+        if (!$post) {
+            abort(404, 'Postagem não encontrado');
+        }
+
+        $post->slug = Str::slug($this->data['title'] . '-' . $this->data['id']);
+        $post->save();
+
+
+        $pathNameImage = $post->featured_image_url;
 
         if(reset($this->data['featured_image_url']) != $pathNameImage){
             if($post->featured_image_url != 'default-post.jpg'){
@@ -55,12 +63,12 @@ class EditPost extends EditRecord
         }
     }
 
-    protected function afterSave()
-    {
-        $post = Post::find($this->data['id']);
-        $post->slug = Str::slug($this->data['title'] . '-' . $this->data['id']);
-        $post->save();
-    }
+//    protected function afterSave()
+//    {
+//        $post = Post::find($this->data['id']);
+//        $post->slug = Str::slug($this->data['title'] . '-' . $this->data['id']);
+//        $post->save();
+//    }
 
     protected function getFormActions(): array
     {
