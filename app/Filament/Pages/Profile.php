@@ -61,6 +61,7 @@ class Profile extends Page implements HasForms
             ->schema([
                 Grid::make(9)->schema([
 
+//                    3 colunas
                     Section::make()->schema([
                         FileUpload::make('avatar')
                             ->label('')
@@ -70,6 +71,7 @@ class Profile extends Page implements HasForms
                             ->columnSpanFull(),
                     ])->columnSpan(3),
 
+//                    6 colunas
                     Section::make()->schema([
                         Grid::make(3)->schema([
 
@@ -113,7 +115,11 @@ class Profile extends Page implements HasForms
 
                     ])->columnSpan(6),
 
-                    Grid::make(8)->relationship('channel')->schema([
+
+//                    GRID COLUNA
+                    Grid::make(8)
+                        ->relationship('channel')
+                        ->schema([
 
                         Section::make()->schema([
                             FileUpload::make('brand')

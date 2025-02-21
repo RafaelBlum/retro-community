@@ -53,20 +53,54 @@ class PostResource extends Resource
     {
         return $form
             ->schema([
-                FileUpload::make('featured_image_url')
-                    ->default('default-post.jpg')
-                    ->label('Imagem da postagem')
-                    ->required()
-                    ->disk('public')
-                    ->directory('image_posts')
-                    ->columnSpanFull(),
+
+                Grid::make(9)->schema([
+                    FileUpload::make('featured_image_url')
+                        ->default('default-post.jpg')
+                        ->label('')
+                        ->required()
+                        ->disk('public')
+                        ->directory('image_posts')
+                        ->columnSpan(5),
+
+                    Section::make()->schema([
+                        Select::make('category_id')
+                            ->label('Categoria')
+                            ->searchable()
+                            ->preload()
+                            ->reactive()
+                            ->distinct()
+                            ->relationship('category', 'name')
+                            ->columnSpanFull(),
+
+                        Select::make('status')
+                            ->label('Status da postagem')
+                            ->hintIcon('heroicon-m-question-mark-circle', tooltip: 'Selecione o status do seu artigo.')
+                            ->hintColor('primary')
+                            ->options(StatusPostEnum::class)
+                            ->live()
+                            ->required()
+                        ->columnSpanFull(),
+
+                        DatePicker::make('scheduled_for')
+                            ->label('Data programada da postagem')
+                            ->hidden(fn(Get $get) => $get('status') !== 'SCHEDULED')
+                            ->displayFormat(function () {
+                                return 'd/m/Y';
+                            })
+                            ->required()->columnSpanFull(),
+                    ])->columnSpan(4)
+                ]),
+
+
 
                 TextInput::make('title')
                     ->label('Título da postagem')
                     ->required()
                     ->maxLength(255)->columnSpanFull(),
 
-                Tabs::make('Create article')->tabs([
+                Tabs::make('Create article')
+                    ->tabs([
 
                     Tab::make('Conteúdo descritivo')
                         ->icon('heroicon-m-inbox')
@@ -104,39 +138,6 @@ class PostResource extends Resource
                                 ->required()
                                 ->columnSpanFull(),
                         ]),
-
-                    Tab::make('Configurações')->icon('heroicon-m-inbox')->schema([
-                        Grid::make(8)->schema([
-                            Group::make()->schema([
-                                Select::make('category_id')
-                                    ->label('Categoria')
-                                    ->searchable()
-                                    ->preload()
-                                    ->reactive()
-                                    ->distinct()
-                                    ->relationship('category', 'name'),
-                            ])->columnSpan(4),
-
-                            Group::make()->schema([
-                                Select::make('status')
-                                    ->label('Status da postagem')
-                                    ->hintIcon('heroicon-m-question-mark-circle', tooltip: 'Selecione o status do seu artigo.')
-                                    ->hintColor('primary')
-                                    ->options(StatusPostEnum::class)
-                                    ->live()
-                                    ->required(),
-                            ])->columnSpan(4),
-                        ]),
-
-                        DatePicker::make('scheduled_for')
-                            ->label('Data programada da postagem')
-                            ->hidden(fn(Get $get) => $get('status') !== 'SCHEDULED')
-                            ->displayFormat(function () {
-                                return 'd/m/Y';
-                            })
-                            ->required()->columnSpanFull(),
-                    ])->columns(3),
-
                 ])->columnSpanFull()->activeTab(1)->persistTabInQueryString()
 
             ])->columns([
