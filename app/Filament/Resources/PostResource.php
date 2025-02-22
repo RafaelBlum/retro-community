@@ -134,6 +134,9 @@ class PostResource extends Resource
                                     'underline',
                                     'undo',
                                 ])
+                                ->fileAttachmentsDisk('public')
+                                ->fileAttachmentsDirectory('attachments')
+                                ->fileAttachmentsVisibility('private')
                                 ->maxLength(65535)
                                 ->required()
                                 ->columnSpanFull(),

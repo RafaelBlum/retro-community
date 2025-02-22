@@ -134,11 +134,25 @@ class Profile extends Page implements HasForms
                         Section::make()->schema([
                             Grid::make(4)->schema([
                                 Group::make()->schema([
+
                                     TextInput::make('title')
                                         ->label('Nome do seu canal')
                                         ->hintIcon('heroicon-m-check-badge', tooltip: 'Seu canal do Youtube.')
                                         ->hintColor(Color::Green)
+                                        ->minLength(2)
+                                        ->maxLength(255)
+                                        ->reactive()
+                                        ->afterStateUpdated(function ($state, $set) {
+                                            if (strlen($state) < 2 || strlen($state) > 255) {
+                                                Notification::make()
+                                                    ->title('Erro de validação')
+                                                    ->body('O nome deve ter entre 2 e 255 caracteres.')
+                                                    ->danger()
+                                                    ->send();
+                                            }
+                                        })
                                         ->required(),
+
                                 ])->columnSpan(2),
 
                                 Group::make()->schema([
