@@ -106,21 +106,25 @@ permitindo uma gestão eficiente de todo o sistema, enquanto a integração com 
 
 > [!IMPORTANT]
 > Pendências de desenvolvimento área DASHBOARD
+- https://filamentphp.com/docs/3.x/forms/validation
+- https://filamentphp.com/docs/3.x/forms/fields/text-input#size-validation
 
 - Dashboard::
   - listar campanhas e canais 
   - Ajustar tipo de acesso dos usuários [doc. infor](https://filamentphp.com/docs/1.x/admin/resources#authorization) | [canAccessFilament falhe](https://v2.filamentphp.com/tricks/redirect-in-case-canaccessfilament-fails)| [permissões](https://laraveldaily.com/post/laravel-roles-permissions-middleware-gates-policies?mtm_campaign=post-footer-premium)
   - Ajustar politicas de acesso geral na area administrativa.
 - Posts
-  - ok
+  - validar campos
 - Campanhas
-  - ok
+  - validar campos
 - Canais
-  - OK
+  - validar campos
 - Usuários
-  - ok
+  - validar campos
+- Profile
+  - validar campos
 - Categories
-  - ok
+  - validar campos
 
 > [!IMPORTANT]
 > Pendências de desenvolvimento área FRONT-END

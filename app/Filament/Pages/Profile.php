@@ -61,17 +61,15 @@ class Profile extends Page implements HasForms
             ->schema([
                 Grid::make(9)->schema([
 
-//                    3 colunas
-                    Section::make()->schema([
-                        FileUpload::make('avatar')
-                            ->label('')
-                            ->default('default.jpg')
-                            ->disk('public')
-                            ->directory('thumbnails')
-                            ->columnSpanFull(),
-                    ])->columnSpan(3),
+                    FileUpload::make('avatar')
+                        ->label('')
+                        ->default('default.jpg')
+                        ->disk('public')
+                        ->directory('thumbnails')
+                        ->removeUploadedFileButtonPosition('right')
+                        ->openable()
+                        ->columnSpan(3),
 
-//                    6 colunas
                     Section::make()->schema([
                         Grid::make(3)->schema([
 
@@ -79,7 +77,14 @@ class Profile extends Page implements HasForms
                                 TextInput::make('name')
                                     ->label('Nome completo')
                                     ->required()
-                                    ->maxLength(150),
+                                    ->maxLength(150)
+                                    ->minLength(2)
+                                    ->reactive()
+                                    ->afterStateUpdated(function ($state, $set) {
+                                        if (strlen($state) < 2 || strlen($state) > 150) {
+                                            $this->validateCaracteres(2, 255);
+                                        }
+                                    }),
                             ])->columnSpan(1),
 
                             Group::make()->schema([
@@ -87,7 +92,17 @@ class Profile extends Page implements HasForms
                                     ->label('E-mail')
                                     ->email()
                                     ->required()
-                                    ->maxLength(255),
+                                    ->maxLength(255)
+                                    ->reactive()
+                                    ->afterStateUpdated(function ($state) {
+                                        if (!filter_var($state, FILTER_VALIDATE_EMAIL) && !empty($state)) {
+                                            Notification::make()
+                                                ->title('E-mail inválido')
+                                                ->body('O e-mail inserido não é válido. Verifique e tente novamente.')
+                                                ->danger()
+                                                ->send();
+                                        }
+                                    }),
 
                             ])->columnSpan(2),
                         ]),
@@ -108,8 +123,18 @@ class Profile extends Page implements HasForms
                                     ->revealable()
                                     ->dehydrated(fn (?string $state): bool => filled($state))
                                     ->required(fn (string $operation): bool => $operation === 'create')
-                                    ->minLength(3)
-                                    ->maxLength(255),
+                                    ->minLength(8) // Mínimo de 8 caracteres
+                                    ->maxLength(32) // Máximo de 32 caracteres
+                                    ->reactive()
+                                    ->afterStateUpdated(function ($state) {
+                                        if (!preg_match('/^(?=.*[A-Z])(?=.*\d)(?=.*[\W_]).{8,}$/', $state) && !empty($state)) {
+                                            Notification::make()
+                                                ->title('Senha inválida')
+                                                ->body('A senha deve ter pelo menos 8 caracteres, incluindo uma letra maiúscula, um número e um caractere especial.')
+                                                ->danger()
+                                                ->send();
+                                        }
+                                    }),
                             ])->columnSpan(5),
                         ]),
 
@@ -121,15 +146,15 @@ class Profile extends Page implements HasForms
                         ->relationship('channel')
                         ->schema([
 
-                        Section::make()->schema([
-                            FileUpload::make('brand')
-                                ->label('')
-                                ->disk('public')
-                                ->debounce()
-                                ->helperText('Logo do seu canal')
-                                ->directory('channel_brand')
-                                ->columnSpanFull()
-                        ])->columnSpan(3),
+                        FileUpload::make('brand')
+                            ->label('')
+                            ->disk('public')
+                            ->debounce()
+                            ->helperText('Logo do seu canal')
+                            ->directory('channel_brand')
+                            ->removeUploadedFileButtonPosition('right')
+                            ->openable()
+                            ->columnSpan(3),
 
                         Section::make()->schema([
                             Grid::make(4)->schema([
@@ -144,11 +169,7 @@ class Profile extends Page implements HasForms
                                         ->reactive()
                                         ->afterStateUpdated(function ($state, $set) {
                                             if (strlen($state) < 2 || strlen($state) > 255) {
-                                                Notification::make()
-                                                    ->title('Erro de validação')
-                                                    ->body('O nome deve ter entre 2 e 255 caracteres.')
-                                                    ->danger()
-                                                    ->send();
+                                                $this->validateCaracteres(2, 255);
                                             }
                                         })
                                         ->required(),
@@ -158,6 +179,14 @@ class Profile extends Page implements HasForms
                                 Group::make()->schema([
                                     TextInput::make('name')
                                         ->label('Seu nome')
+                                        ->minLength(2)
+                                        ->maxLength(255)
+                                        ->reactive()
+                                        ->afterStateUpdated(function ($state, $set) {
+                                            if (strlen($state) < 2 || strlen($state) > 255) {
+                                                $this->validateCaracteres(2, 255);
+                                            }
+                                        })
                                         ->required(),
                                 ])->columnSpan(2),
                             ])->columnSpanFull(),
@@ -169,6 +198,14 @@ class Profile extends Page implements HasForms
                                         ->hintIcon('heroicon-m-question-mark-circle', tooltip: 'Adicione o nome do seu canal da URL sem "@"')
                                         ->hintColor(Color::Yellow)
                                         ->prefix('https://www.youtube.com/@')->suffixIcon('heroicon-m-globe-alt')
+                                        ->minLength(2)
+                                        ->maxLength(255)
+                                        ->reactive()
+                                        ->afterStateUpdated(function ($state, $set) {
+                                            if (strlen($state) < 2 || strlen($state) > 255) {
+                                                $this->validateCaracteres(2, 255);
+                                            }
+                                        })
                                         ->required(),
                                 ])->columnSpan(3),
 
@@ -181,7 +218,7 @@ class Profile extends Page implements HasForms
                                 ->label('Descrição')
                                 ->hintIcon('heroicon-m-question-mark-circle', tooltip: 'Descreva brevemente aqui sobre seu canal.')
                                 ->hintColor(Color::Yellow)
-                                ->maxLength(255),
+                                ->required(),
                         ])->columnSpan(5),
 
 
@@ -194,6 +231,15 @@ class Profile extends Page implements HasForms
                                     ->helperText('Imagem da sua campanha, informativa.')
                                     ->directory('campaing_folder')
                                     ->image()
+                                    ->imagePreviewHeight('250')
+                                    ->loadingIndicatorPosition('left')
+                                    ->panelAspectRatio('1:1')
+                                    ->panelLayout('integrated')
+                                    ->removeUploadedFileButtonPosition('right')
+                                    ->uploadButtonPosition('left')
+                                    ->uploadProgressIndicatorPosition('left')
+                                    ->openable()
+                                    ->uploadingMessage('Uploading attachment...')
                                     ->columnSpanFull()
                             ])->columnSpan(3),
 
@@ -203,14 +249,11 @@ class Profile extends Page implements HasForms
                                         Placeholder::make('qrCode')
                                             ->label('QR Code LivePix')
                                             ->content(function (Campaing $record) {
-                                                // Obtém o valor de 'qrCode' diretamente do modelo
-                                                //$qrCode = $get('qrCode'); // A variável 'qrCode' que você deseja passar para a view
 
                                                 if (is_null($record)) {
                                                     return 'Nenhum QR Code selecionado';
                                                 }
 
-                                                // Passa os dados para a view corretamente
                                                 return new HtmlString(
                                                     view('filament.campaing.iframe', ['state' => $record])->render()
                                                 );
@@ -226,8 +269,16 @@ class Profile extends Page implements HasForms
 
                                         TextInput::make('title')
                                             ->label('Titulo')
-                                            ->required()
-                                            ->maxLength(255),
+                                            ->minLength(2)
+                                            ->maxLength(255)
+                                            ->reactive()
+                                            ->afterStateUpdated(function ($state, $set) {
+                                                if (strlen($state) < 2 || strlen($state) > 255) {
+                                                    $this->validateCaracteres(2, 255);
+                                                }
+                                            })
+                                            ->required(),
+
                                         Textarea::make('content')
                                             ->label('Descrição da campanha')
                                             ->required()
@@ -238,6 +289,17 @@ class Profile extends Page implements HasForms
                                             ->hintIcon('heroicon-m-question-mark-circle', tooltip: 'Adicione o link da campanha do seu LivePix')
                                             ->hintColor(Color::Yellow)
                                             ->prefixIcon('heroicon-m-currency-dollar')->suffixIcon('heroicon-m-chart-bar')
+                                            ->url()
+                                            ->reactive()
+                                            ->afterStateUpdated(function ($state){
+                                                if (!filter_var($state, FILTER_VALIDATE_URL) && !empty($state)) {
+                                                    Notification::make()
+                                                        ->title('URL inválida')
+                                                        ->body('O link inserido não é uma URL válida. Verifique e tente novamente.')
+                                                        ->danger()
+                                                        ->send();
+                                                }
+                                            })
                                             ->required(),
 
                                         TextInput::make('qrCode')
@@ -245,6 +307,17 @@ class Profile extends Page implements HasForms
                                             ->hintIcon('heroicon-m-question-mark-circle', tooltip: 'Adicione o link do seu QRCODE do livePix')
                                             ->hintColor(Color::Yellow)
                                             ->prefixIcon('heroicon-m-qr-code')->suffixIcon('heroicon-m-viewfinder-circle')
+                                            ->url()
+                                            ->reactive()
+                                            ->afterStateUpdated(function ($state){
+                                                if (!filter_var($state, FILTER_VALIDATE_URL) && !empty($state)) {
+                                                    Notification::make()
+                                                        ->title('URL inválida')
+                                                        ->body('O link inserido não é uma URL válida. Verifique e tente novamente.')
+                                                        ->danger()
+                                                        ->send();
+                                                }
+                                            })
                                             ->required(),
 
 
@@ -281,6 +354,15 @@ class Profile extends Page implements HasForms
                 'xl' => 2,
                 '2xl' => 2
             ]);
+    }
+
+    protected function validateCaracteres(int $min, int $max): void
+    {
+        Notification::make()
+            ->title('Erro de validação')
+            ->body('O nome deve ter entre ' . $min . ' e ' . $max .' caracteres.')
+            ->danger()
+            ->send();
     }
 
     protected function onValidationError(ValidationException $exception): void
@@ -334,17 +416,5 @@ class Profile extends Page implements HasForms
             ->body(\auth()->user()->name)
             ->success()
             ->send();
-    }
-
-    protected function mutateFormDataBeforeFill(array $data): array
-    {
-        dd("asdas");
-        //modificar os dados de um registro antes de preenchê-lo no formulário
-        //se você estiver editando registros em uma ação modal
-        return $data;
-    }
-
-    protected function mutateFormDataBeforeSave(){
-
     }
 }
