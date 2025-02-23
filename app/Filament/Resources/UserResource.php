@@ -60,14 +60,14 @@ class UserResource extends Resource
             ->schema([
                 Grid::make(3)->schema([
 
-                    Section::make()->schema([
-                        FileUpload::make('avatar')
-                            ->label('')
-                            ->default('default.jpg')
-                            ->disk('public')
-                            ->directory('thumbnails')
-                            ->columnSpanFull()
-                    ])->columnSpan(1),
+                    FileUpload::make('avatar')
+                        ->label('')
+                        ->default('default.jpg')
+                        ->disk('public')
+                        ->directory('thumbnails')
+                        ->removeUploadedFileButtonPosition('right')
+                        ->openable()
+                        ->columnSpan(1),
 
                     Section::make()->schema([
                         Grid::make(3)->schema([
@@ -76,7 +76,14 @@ class UserResource extends Resource
                                 TextInput::make('name')
                                     ->label('Nome completo')
                                     ->required()
-                                    ->maxLength(150),
+                                    ->maxLength(150)
+                                    ->minLength(2)
+                                    ->reactive()
+                                    ->afterStateUpdated(function ($state, $set) {
+                                        if (strlen($state) < 2 || strlen($state) > 150) {
+                                            self::validateCaracteres(2, 255);
+                                        }
+                                    }),
                             ])->columnSpan(1),
 
                             Group::make()->schema([
@@ -84,7 +91,26 @@ class UserResource extends Resource
                                     ->label('E-mail')
                                     ->email()
                                     ->required()
-                                    ->maxLength(255),
+                                    ->maxLength(255)
+                                    ->reactive()
+                                    ->afterStateUpdated(function ($state) {
+                                        if (!filter_var($state, FILTER_VALIDATE_EMAIL) && !empty($state)) {
+                                            Notification::make()
+                                                ->title('E-mail inválido')
+                                                ->body('O e-mail inserido não é válido. Verifique e tente novamente.')
+                                                ->danger()
+                                                ->send();
+                                        }
+
+                                        if(!self::validateEmaildatabase($state))
+                                        {
+                                            Notification::make()
+                                                ->title('E-mail inválido')
+                                                ->body('O e-mail inserido já esta em uso. Verifique e tente novamente.')
+                                                ->danger()
+                                                ->send();
+                                        }
+                                    }),
 
                             ])->columnSpan(2),
                         ]),
@@ -106,8 +132,18 @@ class UserResource extends Resource
                                     ->revealable()
                                     ->dehydrated(fn (?string $state): bool => filled($state))
                                     ->required(fn (string $operation): bool => $operation === 'create')
-                                    ->minLength(3)
-                                    ->maxLength(255),
+                                    ->minLength(8) // Mínimo de 8 caracteres
+                                    ->maxLength(32) // Máximo de 32 caracteres
+                                    ->reactive()
+                                    ->afterStateUpdated(function ($state) {
+                                        if (!preg_match('/^(?=.*[A-Z])(?=.*\d)(?=.*[\W_]).{8,}$/', $state) && !empty($state)) {
+                                            Notification::make()
+                                                ->title('Senha inválida')
+                                                ->body('A senha deve ter pelo menos 8 caracteres, incluindo uma letra maiúscula, um número e um caractere especial.')
+                                                ->danger()
+                                                ->send();
+                                        }
+                                    }),
                             ])->columnSpan(5),
                         ])
                     ])->columnSpan(2),
@@ -116,17 +152,16 @@ class UserResource extends Resource
                                     Grid::make(8)
                                         ->relationship('channel')
                                         ->schema([
-                                            Group::make()->schema([
-                                                FileUpload::make('brand')
-                                                    ->label('')
-                                                    ->disk('public')
-                                                    ->debounce()
-                                                    ->helperText('Logo do seu canal')
-                                                    ->avatar()
-                                                    ->directory('channel_brand')
-                                                    ->required()
-                                                    ->columnSpanFull()
-                                            ])->columnSpan(1),
+
+                                            FileUpload::make('brand')
+                                                ->label('')
+                                                ->disk('public')
+                                                ->debounce()
+                                                ->helperText('Logo do seu canal')
+                                                ->directory('channel_brand')
+                                                ->removeUploadedFileButtonPosition('right')
+                                                ->openable()
+                                                ->columnSpan(1),
 
                                             Group::make()->schema([
                                                 Grid::make(4)->schema([
@@ -140,6 +175,7 @@ class UserResource extends Resource
                                                             ->afterStateUpdated(fn (Set $set, ?string $state) => $set('slug', Str::slug($state))),
 
                                                         TextInput::make('slug')->disabled()->label(""),
+
                                                     ])->columnSpan(2),
 
                                                     Group::make()->schema([
@@ -186,6 +222,20 @@ class UserResource extends Resource
                 'xl' => 2,
                 '2xl' => 2
             ]);
+    }
+
+    public static function validateCaracteres(int $min, int $max): void
+    {
+        Notification::make()
+            ->title('Erro de validação')
+            ->body('O nome deve ter entre ' . $min . ' e ' . $max .' caracteres.')
+            ->danger()
+            ->send();
+    }
+
+    public static function validateEmaildatabase(string $email):bool
+    {
+        return !User::where('email', $email)->exists();
     }
 
     public static function actions(): array

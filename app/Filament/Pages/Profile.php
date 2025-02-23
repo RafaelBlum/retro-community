@@ -102,6 +102,15 @@ class Profile extends Page implements HasForms
                                                 ->danger()
                                                 ->send();
                                         }
+
+                                        if(!$this->validateEmaildatabase($state))
+                                        {
+                                            Notification::make()
+                                                ->title('E-mail inválido')
+                                                ->body('O e-mail inserido já esta em uso. Verifique e tente novamente.')
+                                                ->danger()
+                                                ->send();
+                                        }
                                     }),
 
                             ])->columnSpan(2),
@@ -363,6 +372,11 @@ class Profile extends Page implements HasForms
             ->body('O nome deve ter entre ' . $min . ' e ' . $max .' caracteres.')
             ->danger()
             ->send();
+    }
+
+    protected function validateEmaildatabase(string $email):bool
+    {
+        return !User::where('email', $email)->exists();
     }
 
     protected function onValidationError(ValidationException $exception): void
