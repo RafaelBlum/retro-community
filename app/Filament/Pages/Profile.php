@@ -5,6 +5,7 @@ namespace App\Filament\Pages;
 use App\Enums\PanelTypeEnum;
 use App\Models\Campaing;
 use App\Models\User;
+use Closure;
 use Filament\Actions\Action;
 use Filament\Forms\Components\ColorPicker;
 use Filament\Forms\Components\Fieldset;
@@ -30,6 +31,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\HtmlString;
+use Illuminate\Support\Str;
 use Illuminate\Validation\Rules\Password;
 use Illuminate\Validation\ValidationException;
 use Livewire\Features\SupportFileUploads\TemporaryUploadedFile;
@@ -121,7 +123,15 @@ class Profile extends Page implements HasForms
                                 Select::make('panel')
                                     ->label('Tipo de usuário')
                                     ->options(PanelTypeEnum::class)
-                                    ->native(false),
+                                    ->native(false)
+                                    ->rules([
+                                        fn(): Closure => function (string $attribute, $value, Closure $fail) {
+                                            if (empty($value)) {
+                                                $fail('Precisa definir o seu tipo de usuário, por favor.');
+                                            }
+                                        },
+                                    ])
+                                    ->required(),
 
                             ])->columnSpan(3),
 
@@ -149,8 +159,6 @@ class Profile extends Page implements HasForms
 
                     ])->columnSpan(6),
 
-
-//                    GRID COLUNA
                     Grid::make(8)
                         ->relationship('channel')
                         ->schema([
@@ -182,6 +190,8 @@ class Profile extends Page implements HasForms
                                             }
                                         })
                                         ->required(),
+
+                                    TextInput::make('slug')->disabled()->label(""),
 
                                 ])->columnSpan(2),
 
@@ -400,29 +410,33 @@ class Profile extends Page implements HasForms
     {
         $user = auth()->user()->load('channel.camping');
 
-        $oldImage = $user->avatar;
-        $imgChannel = $user->channel->brand;
-        $imgCamp = $user->channel->camping->image;
+        $oldImageAvatar = $user->avatar;
+        $oldImageChannel = $user->channel->brand;
+        $oldImageCamping = $user->channel->camping->image;
+
+        $user->channel->slug = Str::slug($this->data['channel']['title'] . '-' . $this->data['id']);
+
+        dd($user->channel, $this->data, $user->channel->slug);
 
         auth()->user()->load('channel.camping')->update(
             $this->form->getState()
         );
 
-        if($user->avatar != $oldImage)
+        if($user->avatar != $oldImageAvatar)
         {
             if($user->avatar != "default-post.jpg"){
-                Storage::delete('public/' . $oldImage);
+                Storage::delete('public/' . $oldImageAvatar);
             }
         }
 
-        if($user->channel->brand != $imgChannel){
+        if($user->channel->brand != $oldImageChannel){
             if($user->channel->brand != "default-brand.png"){
-                Storage::delete('public/' . $imgChannel);
+                Storage::delete('public/' . $oldImageChannel);
             }
         }
 
-        if($user->channel->camping->image != $imgCamp){
-                Storage::delete('public/' . $imgCamp);
+        if($user->channel->camping->image != $oldImageCamping){
+                Storage::delete('public/' . $oldImageCamping);
         }
 
         Notification::make()
