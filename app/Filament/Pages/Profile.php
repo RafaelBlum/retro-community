@@ -414,9 +414,12 @@ class Profile extends Page implements HasForms
         $oldImageChannel = $user->channel->brand;
         $oldImageCamping = $user->channel->camping->image;
 
-        $user->channel->slug = Str::slug($this->data['channel']['title'] . '-' . $this->data['id']);
+        auth()->user()->load('channel.camping')->update($this->form->getState());
 
-        dd($user->channel, $this->data, $user->channel->slug);
+        $user->channel->slug = Str::slug($this->data['channel']['title'] . '-' . $this->data['id']);
+        $user->channel->save();
+
+        $user->save();
 
         auth()->user()->load('channel.camping')->update(
             $this->form->getState()
