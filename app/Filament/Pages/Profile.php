@@ -191,8 +191,6 @@ class Profile extends Page implements HasForms
                                         })
                                         ->required(),
 
-                                    TextInput::make('slug')->disabled()->label(""),
-
                                 ])->columnSpan(2),
 
                                 Group::make()->schema([
