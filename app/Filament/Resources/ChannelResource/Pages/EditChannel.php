@@ -27,11 +27,20 @@ class EditChannel extends EditRecord
     {
         $channel = Channel::find($this->data['id']);
 
-        $brandImagem = $channel->brand;
+        dd($channel, $this->data, $this->form->getState(), $this->form, auth()->user());
 
-        if (reset($this->data['brand']) != $brandImagem) {
+        $oldImageChannel = $channel->brand;
+
+        $channel->slug = Str::slug($this->data['title'] . '-' . $this->data['id']);
+        //$channel->update($this->form->getState());
+        $channel->
+        $channel->save();
+
+        //dd($channel, $this->data['title'], $this->form->getState());
+
+        if (reset($this->data['brand']) != $oldImageChannel) {
             if($channel->brand != 'default-brand.png'){
-                Storage::delete('public/' . $brandImagem);
+                Storage::delete('public/' . $oldImageChannel);
             }
         }
     }
