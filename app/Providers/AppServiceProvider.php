@@ -30,7 +30,7 @@ class AppServiceProvider extends ServiceProvider
             fn(): string => <<<'HTML'
                 <div class="flex justify-end gap-1 text-sm">
                     <span class="text-gray-800 dark:text-gray-200">Precisa de ajuda?</span>
-                    <a href="/admin/contact" class="text-primary-500">
+                    <a href="/admin/contato" class="text-primary-500">
                             Fale conosco
                     </a>
                 </div>

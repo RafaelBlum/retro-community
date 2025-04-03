@@ -27,13 +27,13 @@ class EditChannel extends EditRecord
     {
         $channel = Channel::find($this->data['id']);
 
-        dd($channel, $this->data, $this->form->getState(), $this->form, auth()->user());
+        //dd($channel, $this->data, $this->form->getState(), $this->form, auth()->user());
 
         $oldImageChannel = $channel->brand;
 
         $channel->slug = Str::slug($this->data['title'] . '-' . $this->data['id']);
         //$channel->update($this->form->getState());
-        $channel->
+
         $channel->save();
 
         //dd($channel, $this->data['title'], $this->form->getState());
@@ -51,12 +51,5 @@ class EditChannel extends EditRecord
             ->success()
             ->title('Canal atualizado com sucesso!')
             ->body($this->data['title']);
-    }
-
-    protected function afterSave()
-    {
-        $channel = Channel::with('camping')->find($this->data['id']);
-        $channel->slug = Str::slug($this->data['link']) . '-' . $this->data['id'];
-        $channel->save();
     }
 }
