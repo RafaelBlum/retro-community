@@ -27,16 +27,9 @@ class EditChannel extends EditRecord
     {
         $channel = Channel::find($this->data['id']);
 
-        //dd($channel, $this->data, $this->form->getState(), $this->form, auth()->user());
-
         $oldImageChannel = $channel->brand;
-
         $channel->slug = Str::slug($this->data['title'] . '-' . $this->data['id']);
-        //$channel->update($this->form->getState());
-
         $channel->save();
-
-        //dd($channel, $this->data['title'], $this->form->getState());
 
         if (reset($this->data['brand']) != $oldImageChannel) {
             if($channel->brand != 'default-brand.png'){
