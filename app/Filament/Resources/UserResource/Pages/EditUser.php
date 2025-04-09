@@ -51,11 +51,30 @@ class EditUser extends EditRecord
             abort(404, 'Usuário não encontrado');
         }
 
-        $user->channel->slug = $this->data['channel']['slug'];
-
         $brandImagem = $user->channel->brand;
-
         $avatarImagem = $user->avatar;
+        $channel = $user->channel;
+
+        if ($channel) {
+            // Atualiza
+            $channel->slug = $this->data['channel']['slug'];
+            $channel->save();
+        } else {
+            // Cria novo
+            $user->channel()->create([
+
+                'title' => $this->data['channel']['slug'],
+                'slug' => $this->data['channel']['slug'],
+                'user_id' => $this->data['channel']['slug'],
+                'name' => $this->data['channel']['slug'],
+                'description' => $this->data['channel']['slug'],
+                'link' => $this->data['channel']['slug'],
+                'brand' => $this->data['channel']['slug'],
+                'color' => $this->data['channel']['slug'],
+            ]);
+        }
+
+
 
 
         if (reset($this->data['avatar']) != $avatarImagem) {
