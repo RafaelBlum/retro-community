@@ -38,7 +38,7 @@
                             <div class="mt-4 mr-auto mb-4 ml-auto bg-white border-gray-400 dark:border-none dark:bg-gray-900 max-w-lg">
 
                                 <div class="flex flex-col items-center pt-6 pr-6 pb-6 pl-6">
-                                    <img src="{{Storage::url($channel->user->avatar)}}" class="flex-shrink-0 object-cover object-center btn- flex w-16 h-16 mr-auto -mb-8 ml-auto rounded-full shadow-xl">
+                                    <img src="{{Storage::url($channel->user->avatar)}}" class="flex-shrink-0 object-cover object-center btn- flex w-16 h-16 mr-auto -mb-8 ml-auto rounded-full shadow-xl" style="border: {{ $channel->color }} solid 5px;">
                                     <p class="mt-8 text-2xl font-semibold leading-none tracking-tighter lg:text-3xl">{{$channel->user->name}}</p>
                                     <p class="mt-3 text-base leading-relaxed text-center">{{$channel->description}}</p>
 
