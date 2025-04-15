@@ -284,20 +284,19 @@ class UserResource extends Resource
                     ->label('Publicações'),
             ])
             ->filters([
-                SelectFilter::make('channel')
-                    ->label('Filtrar por Canal')
-                    ->options([
-                        'with' => 'Com canais',
-                        'without' => 'Sem canal',
-                    ])
-                    ->query(function (Builder $query, array $data) {
-                        if ($data['value'] === 'with') {
-                            return $query->whereHas('channel');
-                        } elseif ($data['value'] === 'without') {
-                            return $query->whereDoesntHave('channel');
+                Tables\Filters\Filter::make('User_posts')
+                    ->label('Com postagens [1]')
+                    ->query(
+                        function (Builder $query): Builder
+                        {
+                            return $query->whereHas('posts');
                         }
-                        return $query;
-                    }),
+                ),
+
+                Tables\Filters\Filter::make('has_posts')
+                ->label('Com postagens [2]')
+                ->toggle()
+                ->query(fn(Builder $query): Builder => $query->whereHas('posts'))
             ])
 
             ->actions([
