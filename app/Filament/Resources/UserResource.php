@@ -298,6 +298,7 @@ class UserResource extends Resource
                 ->toggle()
                 ->query(fn(Builder $query): Builder => $query->whereHas('posts'))
             ])
+            ->persistFiltersInSession()
 
             ->actions([
                 Tables\Actions\ActionGroup::make([
