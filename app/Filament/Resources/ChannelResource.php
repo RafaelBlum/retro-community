@@ -25,9 +25,11 @@ use Filament\Tables;
 use Filament\Tables\Actions\DeleteAction;
 use Filament\Tables\Actions\EditAction;
 use Filament\Tables\Actions\ViewAction;
+use Filament\Tables\Columns\IconColumn;
 use Filament\Tables\Columns\ImageColumn;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Facades\Storage;
 
 
@@ -131,6 +133,14 @@ class ChannelResource extends Resource
                     ->icon('heroicon-m-play-circle')
                     ->iconPosition(IconPosition::After)
                     ->iconColor(Color::Green),
+
+                IconColumn::make('campaign_exists')
+                    ->label('Campanha')
+                    ->boolean()
+                    ->getStateUsing(fn (Channel $record) => $record->camping()->exists())
+                    ->trueIcon('heroicon-o-check-circle')
+                    ->falseIcon('heroicon-o-x-circle')
+                    ->color(fn (bool $state) => $state ? 'success' : 'danger'),
 
                 TextColumn::make('user.name')
                     ->label('Usuário'),

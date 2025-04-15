@@ -9,6 +9,7 @@ use App\Filament\Resources\UserResource\RelationManagers;
 use App\Models\Post;
 use App\Models\User;
 use Filament\Actions\CreateAction;
+use Filament\Forms\Components\Actions;
 use Filament\Forms\Components\ColorPicker;
 use Filament\Forms\Components\DatePicker;
 use Filament\Forms\Components\FileUpload;
@@ -27,6 +28,7 @@ use Filament\Notifications\Notification;
 use Filament\Resources\Resource;
 use Filament\Support\Colors\Color;
 use Filament\Tables;
+use Filament\Tables\Actions\Action;
 use Filament\Tables\Actions\AttachAction;
 use Filament\Tables\Actions\DeleteAction;
 use Filament\Tables\Actions\EditAction;
@@ -299,6 +301,12 @@ class UserResource extends Resource
                 ->query(fn(Builder $query): Builder => $query->whereHas('posts'))
             ])
             ->persistFiltersInSession()
+            ->filtersTriggerAction(
+                fn(Action $action) => $action
+                ->link()
+                ->icon('heroicon-m-magnifying-glass-circle')
+                ->label('Filtros'),
+            )
 
             ->actions([
                 Tables\Actions\ActionGroup::make([
