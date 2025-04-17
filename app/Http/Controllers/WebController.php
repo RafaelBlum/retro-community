@@ -25,8 +25,6 @@ class WebController extends Controller
     {
         try{
 
-            dd(test_helper('helper'));
-
             $channels = Channel::all()->take(4);
             $grid = $channels->count();
 
