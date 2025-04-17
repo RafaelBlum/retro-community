@@ -24,6 +24,9 @@ class WebController extends Controller
     public function landing()
     {
         try{
+
+            dd(test_helper('helper'));
+
             $channels = Channel::all()->take(4);
             $grid = $channels->count();
 
