@@ -176,13 +176,4 @@ permitindo uma gestão eficiente de todo o sistema, enquanto a integração com 
 - https://github.com/filamentphp/demo
 
 
-> [!WARNING]
-> Comandos lista
 
-1. Lista de comandos geral
-```shell
-    composer update
-    npm install
-    npm run build
-    npm run dev
-```

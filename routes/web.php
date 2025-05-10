@@ -5,6 +5,7 @@ use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ChannelController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\WebController;
+use App\Models\Category;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', [WebController::class, 'landing'])->name('app.landing');
