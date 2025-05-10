@@ -9,7 +9,7 @@
         "ext-dom": "*",
         "filament/filament": "^3.2",
         "flowframe/laravel-trend": "^0.4.0",
-        "laravel/framework": "12.0",
+        "laravel/framework": "12.13.0",
         "laravel/tinker": "^2.9",
         "leandrocfe/filament-apex-charts": "^3.1"
     },
