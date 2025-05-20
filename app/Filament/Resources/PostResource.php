@@ -70,6 +70,7 @@ class PostResource extends Resource
                             ->preload()
                             ->reactive()
                             ->distinct()
+                            ->required()
                             ->relationship('category', 'name')
                             ->columnSpanFull(),
 

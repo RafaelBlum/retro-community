@@ -11,7 +11,7 @@ Mas antes de enviar sua contribuição, reserve um momento e leia as diretrizes 
 Antes de você começar:
 - Você leu este documento na íntegra?
 - Verifique se o seu ambiente atende aos requisitos mínimos estabelecidos.
-- Confira os [problemas existentes](https://github.com/icarojobs/freezer-control/issues).
+- Confira os [problemas existentes](https://github.com/RafaelBlum).
 
 <br />
 
@@ -49,5 +49,5 @@ Antes de você começar:
 
 Se você pretende propor um novo recurso, envie um problema para este repositório.
 
-Caso seja descoberta uma vulnerabilidade de segurança neste projeto, **NÃO** divulgue publicamente como um Problema, envie uma mensagem no instagran [Tio Jobs](https://www.instagram.com/tiojobsoficial/). Todas as vulnerabilidades de segurança serão resolvidas o mais rápido possível.
+Caso seja descoberta uma vulnerabilidade de segurança neste projeto, **NÃO** divulgue publicamente como um Problema, envie uma mensagem no instagran [Rafael Blum](https://www.instagram.com/rafablum_/). Todas as vulnerabilidades de segurança serão resolvidas o mais rápido possível.
 
