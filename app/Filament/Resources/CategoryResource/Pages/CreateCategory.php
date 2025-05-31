@@ -46,7 +46,7 @@ class CreateCategory extends CreateRecord
     {
         $categories = Category::all()->count();
 
-        $data['slug'] = Str::slug($data['name'] . '-' . $categories + 1);
+        //$data['slug'] = Str::slug($data['name'] . '-' . $categories + 1);
         return $data;
     }
 }

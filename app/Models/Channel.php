@@ -12,12 +12,9 @@ class Channel extends Model
 {
     use HasFactory;
 
-    protected $guarded = ['id'];
-
     protected $fillable = [
         'title',
         'slug',
-        'user_id',
         'name',
         'description',
         'link',
@@ -33,6 +30,13 @@ class Channel extends Model
 
     public function camping(): HasOne
     {
-        return $this->hasOne(Campaing::class);
+        return $this->hasOne(Campaign::class);
+    }
+
+    protected static function booted()
+    {
+        static::saving(function ($channel){
+            $channel->slug = Str::slug($channel->title) . '-' . now()->format('YmdHis'). $channel->id;
+        });
     }
 }

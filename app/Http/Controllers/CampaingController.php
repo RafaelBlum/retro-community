@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Campaing;
+use App\Models\Campaign;
 use Illuminate\Http\Request;
 
 class CampaingController extends Controller
@@ -10,7 +10,7 @@ class CampaingController extends Controller
     public function index()
     {
 
-        $campings = Campaing::all();
+        $campings = Campaign::all();
 
         return view('campaings.home-campaing', compact('campings'));
     }

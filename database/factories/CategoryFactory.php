@@ -18,10 +18,7 @@ class CategoryFactory extends Factory
     public function definition(): array
     {
         return [
-            'name' => fake()->name(),
-            'slug' => fake()->slug(),
-            'created_at' => Carbon::now(),
-            'updated_at' => Carbon::now(),
+            'title' => fake()->unique()->words(2, true),
         ];
     }
 }

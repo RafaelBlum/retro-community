@@ -3,7 +3,7 @@
 namespace App\Filament\Resources\ChannelResource\Pages;
 
 use App\Filament\Resources\ChannelResource;
-use App\Models\Campaing;
+use App\Models\Campaign;
 use App\Models\Channel;
 use App\Models\User;
 use Filament\Actions;

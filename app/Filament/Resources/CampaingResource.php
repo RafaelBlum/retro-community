@@ -5,7 +5,7 @@ namespace App\Filament\Resources;
 use App\Enums\PanelTypeEnum;
 use App\Filament\Resources\CampaingResource\Pages;
 use App\Filament\Resources\CampaingResource\RelationManagers;
-use App\Models\Campaing;
+use App\Models\Campaign;
 use App\Models\Channel;
 use Filament\Forms;
 use Filament\Forms\Components\Fieldset;
@@ -47,7 +47,7 @@ use Illuminate\Support\HtmlString;
 
 class CampaingResource extends Resource
 {
-    protected static ?string $model = Campaing::class;
+    protected static ?string $model = Campaign::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
     protected static ?string $modelLabel = "Campanha";
@@ -76,7 +76,7 @@ class CampaingResource extends Resource
 
                             Placeholder::make('linkGoal')
                                 ->label('Meta da sua campanha')
-                                ->content(function (Campaing $record) {
+                                ->content(function (Campaign $record) {
                                     if (is_null($record)) {
                                         return 'Nenhum QR Code selecionado';
                                     }
@@ -90,7 +90,7 @@ class CampaingResource extends Resource
                                 ->afterStateUpdated(function ($state, $record) {
                                     if ($state) {
                                         $record->update(['camping' => true]); // Ativa a campanha atual
-                                        Campaing::where('channel_id', $record->channel_id)
+                                        Campaign::where('channel_id', $record->channel_id)
                                             ->where('id', '!=', $record->id)
                                             ->update(['camping' => false]); // Desativa as outras campanhas do mesmo canal
                                     }
@@ -116,7 +116,7 @@ class CampaingResource extends Resource
 
                         Placeholder::make('qrCode')
                             ->label('Seu QR Code')
-                            ->content(function (Campaing $record) {
+                            ->content(function (Campaign $record) {
                                 if (is_null($record)) {
                                     return 'Nenhum QR Code selecionado';
                                 }
@@ -212,7 +212,7 @@ class CampaingResource extends Resource
         if ($instance === null) {
             $id = request()->route('record');
             if ($id) {
-                $instance = Campaing::find($id);
+                $instance = Campaign::find($id);
             }
         }
 
@@ -237,7 +237,7 @@ class CampaingResource extends Resource
     public static function table(Table $table): Table
     {
         return $table
-            ->recordClasses(fn(Campaing $record) => match ($record->camping){
+            ->recordClasses(fn(Campaign $record) => match ($record->camping){
                 default => null,
                 false => 'border-1-4 bg-danger-50 border-1-danger-500'
             })
@@ -268,7 +268,7 @@ class CampaingResource extends Resource
                 TextColumn::make('title')
                     ->label('Titulo')
                     ->limit(50)
-                    ->description(function (Campaing $record): View
+                    ->description(function (Campaign $record): View
                     {
                         return view('components.partials.icon', [
                             'state' => $record,
@@ -323,7 +323,7 @@ class CampaingResource extends Resource
                         }),
 
                     DeleteAction::make()
-                        ->action(function(Campaing $record) {
+                        ->action(function(Campaign $record) {
                             if($record->image){
                                 Storage::delete('public/' . $record->image);
                             }

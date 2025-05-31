@@ -4,7 +4,7 @@ namespace App\Filament\Resources;
 
 use App\Filament\Resources\ChannelResource\Pages;
 use App\Filament\Resources\ChannelResource\RelationManagers;
-use App\Models\Campaing;
+use App\Models\Campaign;
 use App\Models\Channel;
 use App\Models\User;
 use Filament\Forms\Components\ColorPicker;

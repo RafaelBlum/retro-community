@@ -3,7 +3,7 @@
 namespace App\Filament\Pages;
 
 use App\Enums\PanelTypeEnum;
-use App\Models\Campaing;
+use App\Models\Campaign;
 use App\Models\User;
 use Closure;
 use Filament\Actions\Action;
@@ -265,7 +265,7 @@ class Profile extends Page implements HasForms
                                     Group::make()->schema([
                                         Placeholder::make('qrCode')
                                             ->label('QR Code LivePix')
-                                            ->content(function (Campaing $record) {
+                                            ->content(function (Campaign $record) {
 
                                                 if (is_null($record)) {
                                                     return 'Nenhum QR Code selecionado';

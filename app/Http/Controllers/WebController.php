@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Campaing;
+use App\Models\Campaign;
 use App\Models\Channel;
 use App\Models\Post;
 use http\Client\Curl\User;
@@ -16,7 +16,7 @@ class WebController extends Controller
     {
         $channels = Channel::all();
 
-        $campings = Campaing::where('camping', true)->get();
+        $campings = Campaign::where('camping', true)->get();
 
         $grid = $channels->count();
         return view('campaings.template', compact('channels', 'campings', 'grid'));
@@ -61,7 +61,7 @@ class WebController extends Controller
     {
         $channels = Channel::all();
         $posts = Post::query()->where('status', '=', 'published')->get();
-        $campaings = Campaing::all();
+        $campaings = Campaign::all();
 
         return view('pages.about', compact('channels', 'posts', 'campaings'));
     }

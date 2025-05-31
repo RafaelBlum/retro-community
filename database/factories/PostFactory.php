@@ -24,17 +24,12 @@ class PostFactory extends Factory
         $categories = Category::all()->pluck('id');
 
         return [
-            'user_id'  => User::all()->random()->id,
-            'category_id'  => Category::all()->random()->id,
             'title'  => fake()->name(),
-            'slug'  => fake()->slug(),
             'subTitle' => fake()->title,
             'summary' => fake()->text(50),
             'content' => fake()->text(150),
-            'status' => StatusPostEnum::PRIVATE,
+            'status' => StatusPostEnum::PUBLISHED,
             'featured_image_url' => 'default-post.jpg',
-            'created_at' => Carbon::now(),
-            'updated_at' => Carbon::now(),
         ];
     }
 }

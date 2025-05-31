@@ -3,7 +3,7 @@
 namespace App\Filament\Resources\CampaingResource\Pages;
 
 use App\Filament\Resources\CampaingResource;
-use App\Models\Campaing;
+use App\Models\Campaign;
 use Filament\Actions;
 use Filament\Notifications\Notification;
 use Filament\Resources\Pages\EditRecord;
@@ -35,7 +35,7 @@ class EditCampaing extends EditRecord
             abort(404, 'Algo deu de errado! contate suporte.');
         }
 
-        $campaing = Campaing::find($this->data['id']);
+        $campaing = Campaign::find($this->data['id']);
 
         if(!$campaing)
         {
