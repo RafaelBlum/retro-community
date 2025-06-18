@@ -22,6 +22,61 @@
         </div>
     </section>
 
+    <section class="bg-gray-50 dark:bg-gray-800" style="border: #ce0d45 solid 2px">
+        <div class="py-8 px-4 mx-auto max-w-screen-xl text-center lg:py-16 lg:px-6 up">
+            <div class="mx-auto mb-8 max-w-screen-sm lg:mb-16">
+                <h2 class="mb-4 text-4xl tracking-tight font-extrabold text-gray-900 dark:text-white">Roleta</h2>
+                <p class="font-light text-gray-500 sm:text-xl dark:text-gray-400">Sorteios</p>
+            </div>
+
+            <div class="flex flex-col items-center justify-center space-y-6 up" style="border: #ce0d45 solid 2px">
+                <!-- Roleta -->
+                <div class="relative">
+                    <div id="wheel"
+                         class="w-96 h-96 rounded-full border-8 border-white relative overflow-hidden transition-transform duration-[4000ms] ease-out">
+                        <!-- Fatias -->
+                        <div
+                            class="absolute inset-0 bg-[conic-gradient(#f87171_0_10%,#facc15_10%_20%,#4ade80_20%_30%,#60a5fa_30%_40%,#c084fc_40%_50%,#fb923c_50%_60%,#34d399_60%_70%,#f472b6_70%_80%,#a3e635_80%_90%,#38bdf8_90%_100%)] rounded-full">
+                        </div>
+
+                        <!-- Nomes -->
+                        <div class="relative top-4 left-1/2 transform -translate-x-1/2 text-white font-semibold text-sm">João</div>
+                        <div class="relative right-6 top-14 transform rotate-36 text-white font-semibold text-sm">Maria</div>
+                        <div class="relative right-4 top-1/2 transform -translate-y-1/2 rotate-72 text-white font-semibold text-sm">Pedro</div>
+                        <div class="relative right-6 bottom-14 transform rotate-[108deg] text-white font-semibold text-sm">Ana</div>
+                        <div class="relative top-[calc(100%-16px)] left-1/2 transform -translate-x-1/2 rotate-[144deg] text-white font-semibold text-sm">Lucas</div>
+                        <div class="relative left-6 bottom-14 transform rotate-[180deg] text-white font-semibold text-sm">Carla</div>
+                        <div class="relative left-4 top-1/2 transform -translate-y-1/2 rotate-[216deg] text-white font-semibold text-sm">Fernando</div>
+                        <div class="relative left-6 top-14 transform rotate-[252deg] text-white font-semibold text-sm">Juliana</div>
+                        <div class="relative top-4 left-1/2 transform -translate-x-1/2 rotate-[288deg] text-white font-semibold text-sm">Rafael</div>
+                        <div class="relative top-4 left-1/2 transform -translate-x-1/2 rotate-[324deg] text-white font-semibold text-sm">Bianca</div>
+                    </div>
+
+                    <!-- Ponteiro -->
+                    <div class="relative top-[-20px] left-1/2 transform -translate-x-1/2">
+                        <div
+                            class="w-0 h-0 border-l-8 border-r-8 border-b-[20px] border-l-transparent border-r-transparent border-b-red-600">
+                        </div>
+                    </div>
+
+                    <!-- Botão -->
+                    <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
+                        <button onclick="spin()"
+                                class="bg-white text-slate-800 font-bold px-6 py-3 rounded-full shadow-lg border-4 border-slate-300 hover:bg-slate-100 transition">
+                            Girar
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Resultado -->
+                <div id="result"
+                     class="text-2xl font-bold text-white bg-slate-800 px-6 py-3 rounded shadow-md hidden">
+                </div>
+            </div>
+
+        </div>
+    </section>
+
     {{--  SECTION CHANNELS  --}}
     <section class="bg-gray-50 dark:bg-gray-800">
         <div class="py-8 px-4 mx-auto max-w-screen-xl text-center lg:py-16 lg:px-6 up">
@@ -196,11 +251,12 @@
         </div>
     </section>
 
+
+
+
     <x-partials.footer />
 
-    <script>
 
-    </script>
 
 
 </x-layout>
