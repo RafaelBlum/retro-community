@@ -25,8 +25,9 @@
                 </div>
             </div>
         </div>
-
     </section>
+
+    <livewire:roleta />
 
 
     <section class="bg-gray-50 dark:bg-gray-800 text-gray-900 dark:text-white">
