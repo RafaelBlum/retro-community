@@ -174,6 +174,7 @@ permitindo uma gestão eficiente de todo o sistema, enquanto a integração com 
 > Links de estudos e layouts.
 - https://astrowind.vercel.app
 - https://github.com/filamentphp/demo
+- https://app-sorteos.com/pt/apps/girar-roleta-aleatoria
 
 
 
