@@ -1,4 +1,4 @@
-<div class="flex flex-col items-center justify-center space-y-8">
+<div class="flex flex-col items-center justify-center space-y-8 bg-gray-50 dark:bg-gray-800" style="border: 1px red solid">
 
     {{-- FORM --}}
     <div class="w-full max-w-xl">
@@ -8,7 +8,7 @@
         ></textarea>
 
         @error('inputNomes')
-        <div class="text-red-500 text-sm mt-1">{{ $message }}</div>
+            <div class="text-red-500 text-sm mt-1">{{ $message }}</div>
         @enderror
 
         <div class="flex space-x-4 mt-4">
@@ -25,7 +25,7 @@
     </div>
 
     {{-- ROLETA --}}
-    @if(count($nomes) >= 2)
+    @if(count($nomes) >= 0)
         <div class="relative flex items-center justify-center">
             <div id="wheel"
                  class="w-96 h-96 rounded-full border-8 border-white relative overflow-hidden transition-transform duration-[4000ms] ease-out">

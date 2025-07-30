@@ -15,6 +15,7 @@ class Roleta extends Component
     {
         $this->reset('resultado');
         $this->nomes = array_filter(array_map('trim', explode(',', $this->inputNomes)));
+        dd($this->inputNomes);
 
         if (count($this->nomes) < 2) {
             $this->addError('inputNomes', 'Insira pelo menos 2 nomes separados por vírgula.');
