@@ -20,6 +20,10 @@ Route::fallback(function (){
     return redirect('home');
 });
 
+Route::get('/teste-livewire', function () {
+    return view('teste');
+});
+
 Route::get('/posts', [PostController::class, 'index'])->name('posts.index');
 Route::get('/posts/{slug}', [PostController::class, 'post'])->name('posts.post');
 Route::get('/category/{slug}', [CategoryController::class, 'postsForCategory'])->name('posts.category');
