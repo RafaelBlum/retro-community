@@ -7,7 +7,7 @@
     },
     "devDependencies": {
         "@tailwindcss/forms": "^0.5.10",
-        "@tailwindcss/postcss": "^4.1.10",
+        "@tailwindcss/postcss": "^4.1.11",
         "@tailwindcss/typography": "^0.5.16",
         "autoprefixer": "^10.4.21",
         "axios": "^1.10.0",
@@ -18,7 +18,7 @@
         "vite": "^7.1.1"
     },
     "dependencies": {
-        "@tailwindcss/vite": "^4.1.10",
+        "@tailwindcss/vite": "^4.1.11",
         "alpinejs": "^3.14.9",
         "js-confetti": "^0.12.0",
         "scrollreveal": "^4.0.9"
