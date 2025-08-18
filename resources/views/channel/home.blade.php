@@ -27,11 +27,156 @@
         </div>
     </section>
 
-    <section class="bg-gray-50 dark:bg-gray-800 text-gray-900 dark:text-white">
-        <livewire:roleta />
+
+    <section class="bg-gray-50 dark:bg-gray-800 space-x-8 rounded-s-lg">
+            <div class="mx-auto max-w-screen-xl max-w-screen-sm max-w-screen-md py-8 px-8">
+                <div class="grid grid-cols-5 xl:grid-cols-5 lg:grid-cols-3 md:grid-cols-3 sm:grid-cols-3 gap-x-8 gap-y-8">
+                    <div class="bg-yellow-400 rounded-lg shadow-xl min-h-[50px] col-span-3 row-span-3 card-text-center">1</div>
+                    <div class="bg-red-400 rounded-lg shadow-xl min-h-[50px] card-text-center">2</div>
+                    <div class="bg-orange-400 rounded-lg shadow-xl min-h-[50px] card-text-center">3</div>
+                    <div class="bg-green-400 rounded-lg shadow-xl min-h-[50px] card-text-center">4</div>
+                    <div class="bg-teal-400 rounded-lg shadow-xl min-h-[50px] card-text-center">5</div>
+                    <div class="bg-blue-400 rounded-lg shadow-xl min-h-[50px] card-text-center">6</div>
+                    <div class="bg-indigo-400 rounded-lg shadow-xl min-h-[50px] card-text-center">7</div>
+                    <div class="bg-purple-400 rounded-lg shadow-xl min-h-[50px] card-text-center">8</div>
+                    <div class="bg-pink-400 rounded-lg shadow-xl min-h-[50px] card-text-center">9</div>
+                    <div class="bg-slate-400 rounded-lg shadow-xl min-h-[50px] card-text-center">10</div>
+                </div>
+        </div>
     </section>
 
-    <section class="bg-gray-50 dark:bg-gray-800" style="border: #ce0d45 solid 2px">
+
+        @if(auth()->user())
+            {{-- COMPONENTE LIVEWIRE ROLLET --}}
+            <section class="bg-gray-50 dark:bg-gray-800 text-gray-900 dark:text-white xl:space-x-8 space-y-4 md:space-y-6 xl:space-y-0 px-4 py-2 lg:pb-20 lg:pt-[100px] rounded">
+
+                <div class="max-w-screen-xl px-4 pt-20 pb-8 mx-auto lg:gap-8 xl:gap-0 lg:py-16 grid grid-cols-3 gap-4 lg:pt-5 up">
+                    <div class="flex justify-center items-center col-span-2 esq">
+                        <div class="relative w-72 h-72 rounded-full border-[8px] border-gray-300 overflow-hidden">
+                            <!-- Aqui você pode colocar seu conic-gradient ou canvas -->
+                            <div class="absolute inset-0 flex items-center justify-center text-lg font-bold">
+                                🎡 Sua Roleta Aqui
+                            </div>
+                            <!-- Ponteiro -->
+                            <div class="absolute -top-4 left-1/2 transform -translate-x-1/2 w-0 h-0
+                            border-l-[10px] border-l-transparent
+                            border-r-[10px] border-r-transparent
+                            border-b-[20px] border-b-red-500">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- CONTROLES -->
+                    <div class="rounded-lg shadow-lg p-6 space-y-4 dir">
+                        <h2 class="text-2xl font-bold">🎯 Girar Roleta Aleatória</h2>
+
+                        <textarea placeholder="Digite nomes separados por vírgula..."
+                                  class="w-full border border-gray-300 rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-indigo-500"></textarea>
+
+                        <div class="flex gap-4">
+                            <button class="flex-1 px-4 py-2 bg-green-500 text-white rounded-lg hover:bg-green-600 transition">
+                                Gerar Roleta
+                            </button>
+                            <button class="flex-1 px-4 py-2 bg-red-500 text-white rounded-lg hover:bg-red-600 transition">
+                                Girar
+                            </button>
+                        </div>
+
+                        {{--  SEÇÃO OPÇÕES  --}}
+                        <div class="flex-1 overflow-y-auto p-2 space-y-6">
+
+                            <div x-data="{ open: false, closeAfterDelay() { this.open = true; setTimeout(() => this.open = false, 5000); } }" class="mb-8 w-full rounded-lg p-4 shadow-[0px_20px_95px_0px_rgba(201,203,204,0.30)] sm:p-8 lg:px-6 xl:px-8 dark:shadow-[0px_20px_95px_0px_rgba(0,0,0,0.30)]"
+                                 style="border: 2px green solid">
+
+                                <button class="faq-btn flex w-full text-left" @click="open = ! open">
+
+                                    <div
+                                        class="mr-5 flex h-10 w-full max-w-[40px] items-center justify-center rounded-lg bg-primary/5 text-primary dark:bg-white/5">
+                                        <svg :class="openFaq1 && 'rotate-180'" width="22" height="22" viewBox="0 0 22 22"
+                                             fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <path
+                                                d="M11 15.675C10.7937 15.675 10.6219 15.6062 10.45 15.4687L2.54374 7.69998C2.23436 7.3906 2.23436 6.90935 2.54374 6.59998C2.85311 6.2906 3.33436 6.2906 3.64374 6.59998L11 13.7844L18.3562 6.53123C18.6656 6.22185 19.1469 6.22185 19.4562 6.53123C19.7656 6.8406 19.7656 7.32185 19.4562 7.63123L11.55 15.4C11.3781 15.5719 11.2062 15.675 11 15.675Z"
+                                                fill="currentColor"/>
+                                        </svg>
+                                    </div>
+                                    <div class="w-full">
+                                        <h4 class="mt-1 text-lg font-semibold text-dark dark:text-white">
+                                            ⚙️ Opções
+                                        </h4>
+                                    </div>
+                                </button>
+
+                                <div x-show="open" @click.outside="open = false" x-transition class="faq-content pl-[62px]">
+
+                                <input type="checkbox" class="w-4 h-4">
+                                <span>Botão Spin</span>
+                            </label>
+                            <label class="flex items-center gap-2">
+                                <input type="checkbox" class="w-4 h-4">
+                                <span>Reproduzir Sons</span>
+                            </label>
+                            <label class="flex items-center gap-2">
+                                <input type="checkbox" class="w-4 h-4">
+                                <span>Jogar Confete</span>
+                            </label>
+                            <label class="flex items-center gap-2">
+                                <input type="checkbox" class="w-4 h-4">
+                                <span>Remover vencedores</span>
+                            </label>
+                            <label class="flex items-center gap-2">
+                                <input type="checkbox" class="w-4 h-4">
+                                <span>Multiplicar entradas</span>
+                            </label>
+
+                            <!-- Duração -->
+                            <div class="flex items-center justify-between">
+                                <label class="font-medium">Duração da Spin</label>
+                                <select class="border rounded px-2 py-1 text-sm">
+                                    <option>6 sec</option>
+                                    <option>10 sec</option>
+                                    <option>14 sec</option>
+                                </select>
+                            </div>
+
+                            <div>
+                                <label class="font-medium">Temas</label>
+                                <div class="flex gap-1 flex-wrap mt-1">
+                                    <span class="w-6 h-6 rounded-full border" style="background:#5B68BB;"></span>
+                                    <span class="w-6 h-6 rounded-full border" style="background:#A746B9;"></span>
+                                    <span class="w-6 h-6 rounded-full border" style="background:#E33F76;"></span>
+                                    <!-- ...adicione os outros -->
+                                </div>
+                            </div>
+                            <div class="flex items-center justify-between">
+                                <label class="font-medium">Cor de Fundo</label>
+                                <input type="color" value="#D1E4FF" class="w-12 h-8 border rounded">
+                            </div>
+                            <div class="flex items-center justify-between">
+                                <label class="font-medium">Cor do Texto</label>
+                                <input type="color" value="#1A1A1A" class="w-12 h-8 border rounded">
+                            </div>
+
+                            <div class="mt-3">
+                                <div class="flex gap-2 mb-2">
+                                    <button class="px-2 py-1 bg-gray-200 rounded text-sm">Ordenar</button>
+                                    <button class="px-2 py-1 bg-gray-200 rounded text-sm">Misturar</button>
+                                    <button class="px-2 py-1 bg-gray-200 rounded text-sm">Limpar</button>
+                                </div>
+
+                                <
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+{{--            <livewire:roleta />--}}
+        </div>
+
+    </section>
+
+
+    {{-- MODELO ROLLET --}}
+    <section class="bg-gray-50 dark:bg-gray-800">
         <div class="py-8 px-4 mx-auto max-w-screen-xl text-center lg:py-16 lg:px-6 up">
             <div class="mx-auto mb-8 max-w-screen-sm lg:mb-16">
                 <h2 class="mb-4 text-4xl tracking-tight font-extrabold text-gray-900 dark:text-white">Roleta</h2>
@@ -98,7 +243,7 @@
 
         </div>
     </section>
-
+    @endif
 
     <section class="bg-gray-50 dark:bg-gray-800 text-gray-900 dark:text-white">
         <div class="mx-auto w-full max-w-7xl px-5 py-16 md:px-10 md:py-20">

@@ -33,6 +33,7 @@
             </button>
         </div>
     </div>
+
     <div class="lg:col-span-5 lg:flex lg:items-end lg:justify-end">
 
         {{-- A roleta aparece somente se houver nomes --}}
@@ -101,9 +102,11 @@
 
             function renderWheel() {
                 const nomes = @json($nomes);
+                alert(nomes)
                 if (!nomes.length) return;
 
                 const slice = 360 / nomes.length;
+
                 const colors = [
                     '#f87171', '#facc15', '#4ade80', '#60a5fa', '#c084fc',
                     '#fb923c', '#34d399', '#f472b6', '#a3e635', '#38bdf8'

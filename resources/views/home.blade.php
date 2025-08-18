@@ -26,14 +26,16 @@
 
 
     {{--  SECTION CHANNELS  --}}
-    <section class="bg-gray-50 dark:bg-gray-800">
-        <div class="py-8 px-4 mx-auto max-w-screen-xl text-center lg:py-16 lg:px-6 up">
-            <div class="mx-auto mb-8 max-w-screen-sm lg:mb-16">
+    <section class="bg-gray-50 dark:bg-gray-800" style="border: 2px violet solid">
+        <div class="mx-auto max-w-screen-xl text-center py-8 px-4 lg:py-16 lg:px-6 up" style="border: 2px blue solid">
+
+            <div class="mx-auto mb-8 max-w-screen-sm lg:mb-16" style="border: 2px greenyellow solid">
                 <h2 class="mb-4 text-4xl tracking-tight font-extrabold text-gray-900 dark:text-white">Canais apoiadores</h2>
                 <p class="font-light text-gray-500 sm:text-xl dark:text-gray-400">Alguns canais parceiros que estão apoiando o projeto Retrô Community.</p>
             </div>
+
             @if($channels->count() != 0)
-                    <div class="grid gap-8 lg:gap-16 sm:grid-cols-1 md:grid-cols-{{$channels->count()}} lg:grid-cols-{{$channels->count()}}">
+                    <div class="grid gap-8 lg:gap-16 sm:grid-cols-1 md:grid-cols-{{$channels->count()}} lg:grid-cols-{{$channels->count()}}" style="border: 2px red solid">
                         @foreach($channels as $channel)
                             <div class="text-center text-gray-500 dark:text-gray-400">
                                 <img class="mx-auto mb-4 w-36 h-36 rounded-full" src="{{Storage::url($channel->brand)}}" alt="Bonnie Avatar">

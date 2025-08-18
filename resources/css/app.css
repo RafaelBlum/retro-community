@@ -78,3 +78,11 @@
         max-width: 576px; /* Largura máxima para telas grandes */
     }
 }
+
+
+
+@layer components{
+    .card-text-center{
+        @apply flex items-center justify-center
+    }
+}
