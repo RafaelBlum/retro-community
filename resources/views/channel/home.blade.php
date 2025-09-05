@@ -57,12 +57,12 @@
                         <div class="absolute inset-0 flex items-center justify-center text-lg font-bold">
                             🎡 Sua Roleta Aqui
                         </div>
+
                         <!-- Ponteiro -->
-                        <div class="absolute -top-4 left-1/2 transform -translate-x-1/2 w-0 h-0
-                        border-l-[10px] border-l-transparent
-                        border-r-[10px] border-r-transparent
-                        border-b-[20px] border-b-red-500">
+                        <div class="absolute -top-4 left-1/2 transform -translate-x-1/2 w-0 h-0 border-l-[10px] border-l-transparent border-r-[10px] border-r-transparent border-b-[20px] border-b-red-500">
+
                         </div>
+
                     </div>
                 </div>
 
@@ -169,14 +169,11 @@
                 </div>
             </div>
         </div>
-            <livewire:roleta />
-            <livewire:roletao />
-                <livewire:lista-nomes />
-
-
-    </div>
-
-</section>
+                    <livewire:roleta />
+                    <livewire:roletao />
+                    <livewire:lista-nomes />
+                </div>
+        </section>
 
 
         {{-- MODELO ROLLET --}}

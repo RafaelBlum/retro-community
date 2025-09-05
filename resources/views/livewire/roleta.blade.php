@@ -3,7 +3,7 @@
     <div class="mr-auto place-self-center lg:col-span-7">
         {{-- Textarea para entrada de nomes separados por vírgula --}}
         <textarea
-            wire:model.defer="inputNomes" rows="4" placeholder="Digite os nomes separados por vírgula"
+            wire:model.live="inputNomes" rows="4" placeholder="Digite os nomes separados por vírgula"
             class="w-full p-4 rounded border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-gray-700 dark:text-white"
         ></textarea>
         <title>{{ $title ?? 'Page Title' }}</title>
