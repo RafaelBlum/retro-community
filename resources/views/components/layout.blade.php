@@ -45,6 +45,10 @@
 
                 wheel.removeEventListener('transitionend', handler);
             });
+
+            console.log(wheel);
+            console.log(names);
+            console.log(result);
         }
 
         // const names = [

@@ -46,203 +46,207 @@
     </section>
 
 
-        @if(auth()->user())
-            {{-- COMPONENTE LIVEWIRE ROLLET --}}
-            <section class="bg-gray-50 dark:bg-gray-800 text-gray-900 dark:text-white xl:space-x-8 space-y-4 md:space-y-6 xl:space-y-0 px-4 py-2 lg:pb-20 lg:pt-[100px] rounded">
+    @if(auth()->user())
+        {{-- COMPONENTE LIVEWIRE ROLLET --}}
+        <section class="bg-gray-50 dark:bg-gray-800 text-gray-900 dark:text-white xl:space-x-8 space-y-4 md:space-y-6 xl:space-y-0 px-4 py-2 lg:pb-20 lg:pt-[100px] rounded">
 
-                <div class="max-w-screen-xl px-4 pt-20 pb-8 mx-auto lg:gap-8 xl:gap-0 lg:py-16 grid grid-cols-3 gap-4 lg:pt-5 up">
-                    <div class="flex justify-center items-center col-span-2 esq">
-                        <div class="relative w-72 h-72 rounded-full border-[8px] border-gray-300 overflow-hidden">
-                            <!-- Aqui você pode colocar seu conic-gradient ou canvas -->
-                            <div class="absolute inset-0 flex items-center justify-center text-lg font-bold">
-                                🎡 Sua Roleta Aqui
-                            </div>
-                            <!-- Ponteiro -->
-                            <div class="absolute -top-4 left-1/2 transform -translate-x-1/2 w-0 h-0
-                            border-l-[10px] border-l-transparent
-                            border-r-[10px] border-r-transparent
-                            border-b-[20px] border-b-red-500">
-                            </div>
+            <div class="max-w-screen-xl px-4 pt-20 pb-8 mx-auto lg:gap-8 xl:gap-0 lg:py-16 grid grid-cols-3 gap-4 lg:pt-5 up">
+                <div class="flex justify-center items-center col-span-2 esq">
+                    <div class="relative w-72 h-72 rounded-full border-[8px] border-gray-300 overflow-hidden">
+                        <!-- Aqui você pode colocar seu conic-gradient ou canvas -->
+                        <div class="absolute inset-0 flex items-center justify-center text-lg font-bold">
+                            🎡 Sua Roleta Aqui
                         </div>
-                    </div>
-
-                    <!-- CONTROLES -->
-                    <div class="rounded-lg shadow-lg p-6 space-y-4 dir">
-                        <h2 class="text-2xl font-bold">🎯 Girar Roleta Aleatória</h2>
-
-                        <textarea placeholder="Digite nomes separados por vírgula..."
-                                  class="w-full border border-gray-300 rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-indigo-500"></textarea>
-
-                        <div class="flex gap-4">
-                            <button class="flex-1 px-4 py-2 bg-green-500 text-white rounded-lg hover:bg-green-600 transition">
-                                Gerar Roleta
-                            </button>
-                            <button class="flex-1 px-4 py-2 bg-red-500 text-white rounded-lg hover:bg-red-600 transition">
-                                Girar
-                            </button>
-                        </div>
-
-                        {{--  SEÇÃO OPÇÕES  --}}
-                        <div class="flex-1 overflow-y-auto p-2 space-y-6">
-
-                            <div x-data="{ open: false, closeAfterDelay() { this.open = true; setTimeout(() => this.open = false, 5000); } }" class="mb-8 w-full rounded-lg p-4 shadow-[0px_20px_95px_0px_rgba(201,203,204,0.30)] sm:p-8 lg:px-6 xl:px-8 dark:shadow-[0px_20px_95px_0px_rgba(0,0,0,0.30)]"
-                                 style="border: 2px green solid">
-
-                                <button class="faq-btn flex w-full text-left" @click="open = ! open">
-
-                                    <div
-                                        class="mr-5 flex h-10 w-full max-w-[40px] items-center justify-center rounded-lg bg-primary/5 text-primary dark:bg-white/5">
-                                        <svg :class="openFaq1 && 'rotate-180'" width="22" height="22" viewBox="0 0 22 22"
-                                             fill="none" xmlns="http://www.w3.org/2000/svg">
-                                            <path
-                                                d="M11 15.675C10.7937 15.675 10.6219 15.6062 10.45 15.4687L2.54374 7.69998C2.23436 7.3906 2.23436 6.90935 2.54374 6.59998C2.85311 6.2906 3.33436 6.2906 3.64374 6.59998L11 13.7844L18.3562 6.53123C18.6656 6.22185 19.1469 6.22185 19.4562 6.53123C19.7656 6.8406 19.7656 7.32185 19.4562 7.63123L11.55 15.4C11.3781 15.5719 11.2062 15.675 11 15.675Z"
-                                                fill="currentColor"/>
-                                        </svg>
-                                    </div>
-                                    <div class="w-full">
-                                        <h4 class="mt-1 text-lg font-semibold text-dark dark:text-white">
-                                            ⚙️ Opções
-                                        </h4>
-                                    </div>
-                                </button>
-
-                                <div x-show="open" @click.outside="open = false" x-transition class="faq-content pl-[62px]">
-
-                                <input type="checkbox" class="w-4 h-4">
-                                <span>Botão Spin</span>
-                            </label>
-                            <label class="flex items-center gap-2">
-                                <input type="checkbox" class="w-4 h-4">
-                                <span>Reproduzir Sons</span>
-                            </label>
-                            <label class="flex items-center gap-2">
-                                <input type="checkbox" class="w-4 h-4">
-                                <span>Jogar Confete</span>
-                            </label>
-                            <label class="flex items-center gap-2">
-                                <input type="checkbox" class="w-4 h-4">
-                                <span>Remover vencedores</span>
-                            </label>
-                            <label class="flex items-center gap-2">
-                                <input type="checkbox" class="w-4 h-4">
-                                <span>Multiplicar entradas</span>
-                            </label>
-
-                            <!-- Duração -->
-                            <div class="flex items-center justify-between">
-                                <label class="font-medium">Duração da Spin</label>
-                                <select class="border rounded px-2 py-1 text-sm">
-                                    <option>6 sec</option>
-                                    <option>10 sec</option>
-                                    <option>14 sec</option>
-                                </select>
-                            </div>
-
-                            <div>
-                                <label class="font-medium">Temas</label>
-                                <div class="flex gap-1 flex-wrap mt-1">
-                                    <span class="w-6 h-6 rounded-full border" style="background:#5B68BB;"></span>
-                                    <span class="w-6 h-6 rounded-full border" style="background:#A746B9;"></span>
-                                    <span class="w-6 h-6 rounded-full border" style="background:#E33F76;"></span>
-                                    <!-- ...adicione os outros -->
-                                </div>
-                            </div>
-                            <div class="flex items-center justify-between">
-                                <label class="font-medium">Cor de Fundo</label>
-                                <input type="color" value="#D1E4FF" class="w-12 h-8 border rounded">
-                            </div>
-                            <div class="flex items-center justify-between">
-                                <label class="font-medium">Cor do Texto</label>
-                                <input type="color" value="#1A1A1A" class="w-12 h-8 border rounded">
-                            </div>
-
-                            <div class="mt-3">
-                                <div class="flex gap-2 mb-2">
-                                    <button class="px-2 py-1 bg-gray-200 rounded text-sm">Ordenar</button>
-                                    <button class="px-2 py-1 bg-gray-200 rounded text-sm">Misturar</button>
-                                    <button class="px-2 py-1 bg-gray-200 rounded text-sm">Limpar</button>
-                                </div>
-
-                                <
-                            </div>
+                        <!-- Ponteiro -->
+                        <div class="absolute -top-4 left-1/2 transform -translate-x-1/2 w-0 h-0
+                        border-l-[10px] border-l-transparent
+                        border-r-[10px] border-r-transparent
+                        border-b-[20px] border-b-red-500">
                         </div>
                     </div>
                 </div>
-            </div>
-{{--            <livewire:roleta />--}}
-        </div>
 
-    </section>
+                <!-- CONTROLES -->
+                <div class="rounded-lg shadow-lg p-6 space-y-4 dir">
+                    <h2 class="text-2xl font-bold">🎯 Girar Roleta Aleatória</h2>
 
+                    <textarea placeholder="Digite nomes separados por vírgula..."
+                              class="w-full border border-gray-300 rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-indigo-500"></textarea>
 
-    {{-- MODELO ROLLET --}}
-    <section class="bg-gray-50 dark:bg-gray-800">
-        <div class="py-8 px-4 mx-auto max-w-screen-xl text-center lg:py-16 lg:px-6 up">
-            <div class="mx-auto mb-8 max-w-screen-sm lg:mb-16">
-                <h2 class="mb-4 text-4xl tracking-tight font-extrabold text-gray-900 dark:text-white">Roleta</h2>
-                <p class="font-light text-gray-500 sm:text-xl dark:text-gray-400">Sorteios</p>
-            </div>
-
-            <div class="flex flex-col items-center justify-center space-y-6 up" style="border: #ce0d45 solid 2px">
-                <!-- Roleta -->
-                <div class="relative">
-
-                    <div id="wheel"
-                         class="w-96 h-96 rounded-full border-8 border-white relative overflow-hidden transition-transform duration-[4000ms] ease-out">
-
-                        <!-- Fatias -->
-                        <div class="absolute inset-0 rounded-full"
-                             style="background: conic-gradient(
-            #f87171 0% 10%,
-            #facc15 10% 20%,
-            #4ade80 20% 30%,
-            #60a5fa 30% 40%,
-            #c084fc 40% 50%,
-            #fb923c 50% 60%,
-            #34d399 60% 70%,
-            #f472b6 70% 80%,
-            #a3e635 80% 90%,
-            #38bdf8 90% 100%
-        );">
-                        </div>
-
-                        <!-- Nomes -->
-                        <div class="absolute top-4 left-1/2 transform -translate-x-1/2 rotate-[0deg] text-white font-semibold text-sm">João</div>
-                        <div class="absolute right-6 top-14 transform rotate-[36deg] text-white font-semibold text-sm">Maria</div>
-                        <div class="absolute right-4 top-1/2 transform -translate-y-1/2 rotate-[72deg] text-white font-semibold text-sm">Pedro</div>
-                        <div class="absolute right-6 bottom-14 transform rotate-[108deg] text-white font-semibold text-sm">Ana</div>
-                        <div class="absolute top-[calc(100%-16px)] left-1/2 transform -translate-x-1/2 rotate-[144deg] text-white font-semibold text-sm">Lucas</div>
-                        <div class="absolute left-6 bottom-14 transform rotate-[180deg] text-white font-semibold text-sm">Carla</div>
-                        <div class="absolute left-4 top-1/2 transform -translate-y-1/2 rotate-[216deg] text-white font-semibold text-sm">Fernando</div>
-                        <div class="absolute left-6 top-14 transform rotate-[252deg] text-white font-semibold text-sm">Juliana</div>
-                        <div class="absolute top-4 left-1/2 transform -translate-x-1/2 rotate-[288deg] text-white font-semibold text-sm">Rafael</div>
-                        <div class="absolute top-4 left-1/2 transform -translate-x-1/2 rotate-[324deg] text-white font-semibold text-sm">Bianca</div>
-                    </div>
-
-                    <!-- Ponteiro -->
-                    <div class="relative top-[-20px] left-1/2 transform -translate-x-1/2">
-                        <div
-                            class="w-0 h-0 border-l-8 border-r-8 border-b-[20px] border-l-transparent border-r-transparent border-b-red-600">
-                        </div>
-                    </div>
-
-                    <!-- Botão -->
-                    <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
-                        <button onclick="spin()"
-                                class="bg-white text-slate-800 font-bold px-6 py-3 rounded-full shadow-lg border-4 border-slate-300 hover:bg-slate-100 transition">
+                    <div class="flex gap-4">
+                        <button class="flex-1 px-4 py-2 bg-green-500 text-white rounded-lg hover:bg-green-600 transition">
+                            Gerar Roleta
+                        </button>
+                        <button class="flex-1 px-4 py-2 bg-red-500 text-white rounded-lg hover:bg-red-600 transition">
                             Girar
                         </button>
                     </div>
-                </div>
 
-                <!-- Resultado -->
-                <div id="result"
-                     class="text-2xl font-bold text-white bg-slate-800 px-6 py-3 rounded shadow-md hidden">
+                    {{--  SEÇÃO OPÇÕES  --}}
+                    <div class="flex-1 overflow-y-auto p-2 space-y-6">
+
+                        <div x-data="{ open: false, closeAfterDelay() { this.open = true; setTimeout(() => this.open = false, 5000); } }" class="mb-8 w-full rounded-lg p-4 shadow-[0px_20px_95px_0px_rgba(201,203,204,0.30)] sm:p-8 lg:px-6 xl:px-8 dark:shadow-[0px_20px_95px_0px_rgba(0,0,0,0.30)]"
+                             style="border: 2px green solid">
+
+                            <button class="faq-btn flex w-full text-left" @click="open = ! open">
+
+                                <div
+                                    class="mr-5 flex h-10 w-full max-w-[40px] items-center justify-center rounded-lg bg-primary/5 text-primary dark:bg-white/5">
+                                    <svg :class="openFaq1 && 'rotate-180'" width="22" height="22" viewBox="0 0 22 22"
+                                         fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path
+                                            d="M11 15.675C10.7937 15.675 10.6219 15.6062 10.45 15.4687L2.54374 7.69998C2.23436 7.3906 2.23436 6.90935 2.54374 6.59998C2.85311 6.2906 3.33436 6.2906 3.64374 6.59998L11 13.7844L18.3562 6.53123C18.6656 6.22185 19.1469 6.22185 19.4562 6.53123C19.7656 6.8406 19.7656 7.32185 19.4562 7.63123L11.55 15.4C11.3781 15.5719 11.2062 15.675 11 15.675Z"
+                                            fill="currentColor"/>
+                                    </svg>
+                                </div>
+                                <div class="w-full">
+                                    <h4 class="mt-1 text-lg font-semibold text-dark dark:text-white">
+                                        ⚙️ Opções
+                                    </h4>
+                                </div>
+                            </button>
+
+                            <div x-show="open" @click.outside="open = false" x-transition class="faq-content pl-[62px]">
+
+                            <input type="checkbox" class="w-4 h-4">
+                            <span>Botão Spin</span>
+                        </label>
+                        <label class="flex items-center gap-2">
+                            <input type="checkbox" class="w-4 h-4">
+                            <span>Reproduzir Sons</span>
+                        </label>
+                        <label class="flex items-center gap-2">
+                            <input type="checkbox" class="w-4 h-4">
+                            <span>Jogar Confete</span>
+                        </label>
+                        <label class="flex items-center gap-2">
+                            <input type="checkbox" class="w-4 h-4">
+                            <span>Remover vencedores</span>
+                        </label>
+                        <label class="flex items-center gap-2">
+                            <input type="checkbox" class="w-4 h-4">
+                            <span>Multiplicar entradas</span>
+                        </label>
+
+                        <!-- Duração -->
+                        <div class="flex items-center justify-between">
+                            <label class="font-medium">Duração da Spin</label>
+                            <select class="border rounded px-2 py-1 text-sm">
+                                <option>6 sec</option>
+                                <option>10 sec</option>
+                                <option>14 sec</option>
+                            </select>
+                        </div>
+
+                        <div>
+                            <label class="font-medium">Temas</label>
+                            <div class="flex gap-1 flex-wrap mt-1">
+                                <span class="w-6 h-6 rounded-full border" style="background:#5B68BB;"></span>
+                                <span class="w-6 h-6 rounded-full border" style="background:#A746B9;"></span>
+                                <span class="w-6 h-6 rounded-full border" style="background:#E33F76;"></span>
+                                <!-- ...adicione os outros -->
+                            </div>
+                        </div>
+                        <div class="flex items-center justify-between">
+                            <label class="font-medium">Cor de Fundo</label>
+                            <input type="color" value="#D1E4FF" class="w-12 h-8 border rounded">
+                        </div>
+                        <div class="flex items-center justify-between">
+                            <label class="font-medium">Cor do Texto</label>
+                            <input type="color" value="#1A1A1A" class="w-12 h-8 border rounded">
+                        </div>
+
+                        <div class="mt-3">
+                            <div class="flex gap-2 mb-2">
+                                <button class="px-2 py-1 bg-gray-200 rounded text-sm">Ordenar</button>
+                                <button class="px-2 py-1 bg-gray-200 rounded text-sm">Misturar</button>
+                                <button class="px-2 py-1 bg-gray-200 rounded text-sm">Limpar</button>
+                            </div>
+
+                            <
+                        </div>
+                    </div>
                 </div>
             </div>
-
         </div>
-    </section>
+            <livewire:roleta />
+            <livewire:roletao />
+                <livewire:lista-nomes />
+
+
+    </div>
+
+</section>
+
+
+        {{-- MODELO ROLLET --}}
+        <section class="bg-gray-50 dark:bg-gray-800">
+            <div class="py-8 px-4 mx-auto max-w-screen-xl text-center lg:py-16 lg:px-6 up">
+                <div class="mx-auto mb-8 max-w-screen-sm lg:mb-16">
+                    <h2 class="mb-4 text-4xl tracking-tight font-extrabold text-gray-900 dark:text-white">Roleta</h2>
+                    <p class="font-light text-gray-500 sm:text-xl dark:text-gray-400">Sorteios</p>
+                </div>
+
+                <div class="flex flex-col items-center justify-center space-y-6 up" style="border: #ce0d45 solid 2px">
+                    <!-- Roleta -->
+                    <div class="relative">
+
+                        <div id="wheel" class="w-96 h-96 rounded-full border-8 border-white relative overflow-hidden transition-transform duration-[4000ms] ease-out">
+
+                            <!-- Fatias -->
+                            <div class="absolute inset-0 rounded-full"
+                                 style="background: conic-gradient(
+                #f87171 0% 10%,
+                #facc15 10% 20%,
+                #4ade80 20% 30%,
+                #60a5fa 30% 40%,
+                #c084fc 40% 50%,
+                #fb923c 50% 60%,
+                #34d399 60% 70%,
+                #f472b6 70% 80%,
+                #a3e635 80% 90%,
+                #38bdf8 90% 100%
+            );">
+                            </div>
+
+
+                            <!-- Nomes -->
+                            <div class="absolute top-4 left-1/2 transform -translate-x-1/2 rotate-[0deg] text-white font-semibold text-sm">João</div>
+                            <div class="absolute right-6 top-14 transform rotate-[36deg] text-white font-semibold text-sm">Maria</div>
+                            <div class="absolute right-4 top-1/2 transform -translate-y-1/2 rotate-[72deg] text-white font-semibold text-sm">Pedro</div>
+                            <div class="absolute right-6 bottom-14 transform rotate-[108deg] text-white font-semibold text-sm">Ana</div>
+                            <div class="absolute top-[calc(100%-16px)] left-1/2 transform -translate-x-1/2 rotate-[144deg] text-white font-semibold text-sm">Lucas</div>
+                            <div class="absolute left-6 bottom-14 transform rotate-[180deg] text-white font-semibold text-sm">Carla</div>
+                            <div class="absolute left-4 top-1/2 transform -translate-y-1/2 rotate-[216deg] text-white font-semibold text-sm">Fernando</div>
+                            <div class="absolute left-6 top-14 transform rotate-[252deg] text-white font-semibold text-sm">Juliana</div>
+                            <div class="absolute top-4 left-1/2 transform -translate-x-1/2 rotate-[288deg] text-white font-semibold text-sm">Rafael</div>
+                            <div class="absolute top-4 left-1/2 transform -translate-x-1/2 rotate-[324deg] text-white font-semibold text-sm">Bianca</div>
+                        </div>
+
+                        <!-- Ponteiro -->
+                        <div class="relative top-[-20px] left-1/2 transform -translate-x-1/2">
+                            <div
+                                class="w-0 h-0 border-l-8 border-r-8 border-b-[20px] border-l-transparent border-r-transparent border-b-red-600">
+                            </div>
+                        </div>
+
+                        <!-- Botão -->
+                        <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
+                            <button onclick="spin()"
+                                    class="bg-white text-slate-800 font-bold px-6 py-3 rounded-full shadow-lg border-4 border-slate-300 hover:bg-slate-100 transition">
+                                Girar
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Resultado -->
+                    <div id="result"
+                         class="text-2xl font-bold text-white bg-slate-800 px-6 py-3 rounded shadow-md hidden">
+                    </div>
+                </div>
+
+            </div>
+        </section>
     @endif
 
     <section class="bg-gray-50 dark:bg-gray-800 text-gray-900 dark:text-white">

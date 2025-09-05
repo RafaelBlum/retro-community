@@ -6,7 +6,7 @@
             wire:model.defer="inputNomes" rows="4" placeholder="Digite os nomes separados por vírgula"
             class="w-full p-4 rounded border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-gray-700 dark:text-white"
         ></textarea>
-
+        <title>{{ $title ?? 'Page Title' }}</title>
 
         {{-- Exibição de erros de validação --}}
         @error('inputNomes')
@@ -27,8 +27,10 @@
             <button
                 wire:click="girar"
                 class="flex-1 bg-green-600 hover:bg-green-700 text-white font-semibold py-2 rounded disabled:opacity-50"
-                @if($girando) disabled @endif
-            >
+                @if($girando)
+                    disabled
+                @endif>
+
                 Girar
             </button>
         </div>

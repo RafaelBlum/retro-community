@@ -12,6 +12,7 @@ class Roleta extends Component
     public string $resultado = '';
     public bool $girando = false;
 
+    public string $title = 'ROLETÃO';
 
 //    public function gerarRoleta()
 //    {
@@ -36,7 +37,6 @@ class Roleta extends Component
 
     public function gerarRoleta()
     {
-        Log::info('Método gerarRoleta chamado');
 
         // Limpa o resultado anterior
         $this->reset('resultado');
