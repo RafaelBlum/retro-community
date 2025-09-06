@@ -28,6 +28,14 @@
 
     </section>
 
+    <section class="bg-gray-50 dark:bg-gray-800 text-gray-900 dark:text-white xl:space-x-8 space-y-4 md:space-y-6 xl:space-y-0 px-4 py-2 lg:pb-20 lg:pt-[100px] rounded">
+
+        <div class="max-w-screen-xl px-4 pt-20 pb-8 mx-auto lg:gap-8 xl:gap-0 lg:py-16 grid grid-cols-3 gap-4 lg:pt-5 up">
+            @livewire('lista-nomes')
+        </div>
+    </section>
+
+
 
     <section class="bg-gray-50 dark:bg-gray-800 text-gray-900 dark:text-white">
         <div class="mx-auto w-full max-w-7xl px-5 py-16 md:px-10 md:py-20">
