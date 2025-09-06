@@ -31,7 +31,7 @@
     @if(auth()->user())
         <section class="bg-gray-50 dark:bg-gray-800 text-gray-900 dark:text-white xl:space-x-8 space-y-4 md:space-y-6 xl:space-y-0 px-4 py-2 lg:pb-20 lg:pt-[100px] rounded">
             <div class="max-w-screen-xl px-4 pt-20 pb-8 mx-auto lg:gap-8 xl:gap-0 lg:py-16 grid grid-cols-3 gap-4 lg:pt-5 up">
-                <livewire:sorteio />
+                @livewire('sorteio')
             </div>
         </section>
     @endif
