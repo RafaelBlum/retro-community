@@ -28,6 +28,9 @@
 
     </section>
 
+    <livewire:counter />
+    <livewire:lista-nomes />
+
 
     <section class="bg-gray-50 dark:bg-gray-800 text-gray-900 dark:text-white">
         <div class="mx-auto w-full max-w-7xl px-5 py-16 md:px-10 md:py-20">

@@ -7,10 +7,12 @@
         @include('components.partials.favicon')
         <title>{{config('app.name')}}</title>
         @vite(['resources/css/app.css', 'resources/js/app.js'])
+        @livewireStyles
     </head>
 
     <body>
         {{$slot}}
+        @livewireScripts
     </body>
 
     <script>
