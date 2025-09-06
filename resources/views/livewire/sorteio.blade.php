@@ -7,7 +7,9 @@
 
     <div>
         @foreach($nomes as $nome)
-            <span class="px-3 py-1 bg-blue-500 text-white rounded-lg shadow">{{$nome}}</span>
+            <span class="px-3 py-1 bg-blue-500 text-white rounded-lg shadow">
+                {{$nome}}
+            </span>
         @endforeach
     </div>
 </div>
