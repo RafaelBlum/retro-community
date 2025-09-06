@@ -6,11 +6,15 @@
     <head>
         @include('components.partials.favicon')
         <title>{{config('app.name')}}</title>
+        @livewireStyles
         @vite(['resources/css/app.css', 'resources/js/app.js'])
     </head>
 
-    <body>
+    <body class="bg-gray-50 dark:bg-gray-800 text-gray-900 dark:text-white ">
         {{$slot}}
+
+        @livewireScripts
+        @stack('scripts')
     </body>
 
     <script>
