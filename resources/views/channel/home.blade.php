@@ -28,49 +28,13 @@
 
     </section>
 
-    <section class="bg-gray-50 dark:bg-gray-800 text-gray-900 dark:text-white xl:space-x-8 space-y-4 md:space-y-6 xl:space-y-0 px-4 py-2 lg:pb-20 lg:pt-[100px] rounded" style="border: red 1px solid">
-            <livewire:roleta/>
-    </section>
+    @auth
+        <section class="bg-gray-50 dark:bg-gray-800 text-gray-900 dark:text-white xl:space-x-8 space-y-4 md:space-y-6 xl:space-y-0 px-4 py-2 lg:pb-20 lg:pt-[100px] rounded">
+                <livewire:roleta/>
+        </section>
 
-    <script>
-        document.addEventListener('alpine:init', () => {
-            Alpine.data('roletaComponent', (names) => ({
-                names: names,
-                spin() {
-                    if (!this.names || this.names.length === 0) {
-                        alert('Digite alguns nomes primeiro!');
-                        return;
-                    }
-
-                    const wheel = document.getElementById('wheel');
-                    const result = document.getElementById('result');
-
-                    const min = 1024;
-                    const max = 9999;
-                    const spins = Math.floor(Math.random() * (max - min)) + min;
-                    const deg = spins;
-
-                    wheel.style.transition = 'transform 4s ease-out';
-                    wheel.style.transform = `rotate(${deg}deg)`;
-
-                    wheel.addEventListener('transitionend', function handler() {
-                        const normalizedDeg = deg % 360;
-                        const sectorSize = 360 / names.length;
-                        const index = Math.floor(((360 - normalizedDeg + (sectorSize / 2)) % 360) / sectorSize);
-
-                        const selectedName = names[index];
-                        result.textContent = `🎉 Sorteado: ${selectedName} 🎉`;
-                        result.classList.remove('hidden');
-
-                        if (window.confetti) window.confetti();
-
-                        wheel.removeEventListener('transitionend', handler);
-                    });
-                }
-            }))
-        })
-    </script>
-
+        @stack('roleta.js')
+    @endauth
 
     <section class="bg-gray-50 dark:bg-gray-800 text-gray-900 dark:text-white">
         <div class="mx-auto w-full max-w-7xl px-5 py-16 md:px-10 md:py-20">

@@ -12,8 +12,10 @@ class Roleta extends Component
 
     public function updatedInputNames()
     {
-        $this->names = preg_split('/[\s,]+/', $this->inputNames, -1, PREG_SPLIT_NO_EMPTY);
-        $this->inputNames = !empty($this->names);
+        $this->names = preg_split('/\r\n|\r|\n/', $this->inputNames, -1, PREG_SPLIT_NO_EMPTY);
+        $this->names = array_map('trim', $this->names);
+
+        $this->isGenerated = !empty($this->names);
     }
 
 
