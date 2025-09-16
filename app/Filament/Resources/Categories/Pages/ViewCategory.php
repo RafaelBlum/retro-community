@@ -1,0 +1,24 @@
+<?php
+
+namespace App\Filament\Resources\Categories\Pages;
+
+use App\Filament\Resources\Categories\CategoryResource;
+use Filament\Actions;
+use Filament\Resources\Pages\ViewRecord;
+
+class ViewCategory extends ViewRecord
+{
+    protected static string $resource = CategoryResource::class;
+
+    protected static ?int $navigationSort = 1;
+
+    protected static ?string $navigationLabel = "Visualizar";
+
+    protected function getHeaderActions(): array
+    {
+        return [
+            Actions\EditAction::make()
+                ->label('Editar categoria'),
+        ];
+    }
+}
