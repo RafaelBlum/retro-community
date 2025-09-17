@@ -2,29 +2,32 @@
 
 namespace App\Filament\Resources;
 
-use App\Enums\StatusPostEnum;
-use App\Filament\Clusters\Blog;
-use App\Filament\Resources\PostResource\Pages;
-use App\Filament\Resources\PostResource\RelationManagers;
-use App\Models\Post;
-use Filament\Actions\Action;
-use Filament\Forms\Components\DatePicker;
-use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\Grid;
-use Filament\Forms\Components\Group;
-use Filament\Forms\Components\RichEditor;
 use Filament\Forms\Components\Section;
-use Filament\Forms\Components\Select;
 use Filament\Forms\Components\Tabs;
 use Filament\Forms\Components\Tabs\Tab;
+use Filament\Forms\Form;
+use Filament\Actions\ActionGroup;
+use Filament\Actions\EditAction;
+use Filament\Actions\DeleteAction;
+use App\Filament\Resources\PostResource\Pages\ViewPost;
+use App\Filament\Resources\PostResource\Pages\EditPost;
+use App\Filament\Resources\PostResource\Pages\ListPosts;
+use App\Filament\Resources\PostResource\Pages\CreatePost;
+use App\Enums\StatusPostEnum;
+use App\Filament\Clusters\Blog;
+use App\Models\Post;
+use Filament\Forms\Components\DatePicker;
+use Filament\Forms\Components\FileUpload;
+use Filament\Forms\Components\RichEditor;
+use Filament\Forms\Components\Select;
 use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
-use Filament\Forms\Form;
 use Filament\Forms\Get;
-use Filament\Pages\SubNavigationPosition;
 use Filament\Resources\Pages\Page;
 use Filament\Resources\Resource;
-use Filament\Tables;
+use Filament\Tables\Actions\BulkActionGroup;
+use Filament\Tables\Actions\DeleteBulkAction;
 use Filament\Tables\Columns\ImageColumn;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Filters\Filter;
@@ -47,7 +50,7 @@ class PostResource extends Resource
     protected static ?int $navigationSort = 2;
 
     protected static ?string $cluster = Blog::class;
-    protected static SubNavigationPosition $subNavigationPosition = SubNavigationPosition::Start;
+//    protected static ?\Filament\Pages\Enums\SubNavigationPosition $subNavigationPosition = SubNavigationPosition::Start;
 
     public static function form(Form $form): Form
     {
@@ -175,7 +178,7 @@ class PostResource extends Resource
                 TextColumn::make('author.name')
                     ->label('Autor'),
 
-                Tables\Columns\TextColumn::make('status')
+                TextColumn::make('status')
                     ->badge()
                     ->searchable(),
 
@@ -191,10 +194,10 @@ class PostResource extends Resource
                     ->label('Mostrar meus posts')
                     ->query(fn(Builder $query): Builder => $query->where('user_id', auth()->id()))
             ])
-            ->actions([
-                Tables\Actions\ActionGroup::make([
-                    Tables\Actions\EditAction::make(),
-                    Tables\Actions\DeleteAction::make()
+            ->recordActions([
+                ActionGroup::make([
+                    EditAction::make(),
+                    DeleteAction::make()
                         ->action(function (Post $record) {
                             if ($record->featured_image_url != 'default-post.jpg') {
                                 Storage::delete('public/' . $record->featured_image_url);
@@ -207,9 +210,9 @@ class PostResource extends Resource
                         ->modalSubmitActionLabel('Sim, deletar!'),
                 ])->tooltip("Menu")
             ])
-            ->bulkActions([
-                Tables\Actions\BulkActionGroup::make([
-                    Tables\Actions\DeleteBulkAction::make()
+            ->toolbarActions([
+                BulkActionGroup::make([
+                    DeleteBulkAction::make()
                         ->label('Deletar todos selecionados')
                         ->requiresConfirmation()
                         ->modalHeading('Deletar ' . static::$modelLabel)
@@ -222,9 +225,9 @@ class PostResource extends Resource
     public static function getRecordSubNavigation(Page $page): array
     {
         return $page->generateNavigationItems([
-            Pages\ViewPost::class,
-            Pages\EditPost::class,
-            Pages\ListPosts::class,
+            ViewPost::class,
+            EditPost::class,
+            ListPosts::class,
         ]);
     }
 
@@ -238,10 +241,10 @@ class PostResource extends Resource
     public static function getPages(): array
     {
         return [
-            'index' => Pages\ListPosts::route('/'),
-            'create' => Pages\CreatePost::route('/create'),
-            'view' => Pages\ViewPost::route('/{record}'),
-            'edit' => Pages\EditPost::route('/{record}/edit'),
+            'index' => ListPosts::route('/'),
+            'create' => CreatePost::route('/create'),
+            'view' => ViewPost::route('/{record}'),
+            'edit' => EditPost::route('/{record}/edit'),
         ];
     }
 

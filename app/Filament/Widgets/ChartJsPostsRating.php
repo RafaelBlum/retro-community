@@ -3,7 +3,6 @@
 namespace App\Filament\Widgets;
 
 use App\Traits\ChannelsPerMonthSeries;
-use App\Traits\PostsPerMonthSeries;
 use Filament\Support\RawJs;
 use Filament\Widgets\ChartWidget;
 

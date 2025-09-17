@@ -9,11 +9,11 @@
 
 <p align="center">
 	<img src="https://img.shields.io/badge/version project-1.0-brightgreen" alt="version project">
-    <img src="https://img.shields.io/badge/Php-8.2-informational" alt="stack project">
-    <img src="https://img.shields.io/badge/Laravel-11.0-informational&color=brightgreen" alt="stack project">
+    <img src="https://img.shields.io/badge/Php-8.2.12-informational" alt="stack project">
+    <img src="https://img.shields.io/badge/Laravel-12.28.1-informational&color=brightgreen" alt="stack project">
     <img src="https://img.shields.io/badge/Livewire-3.0-informational&color=brightgreen" alt="stack project">
-    <img src="https://img.shields.io/badge/Filament-3.2-informational" alt="stack project">
-    <img src="https://img.shields.io/badge/TailwindCss-3.1-informational" alt="stack project">
+    <img src="https://img.shields.io/badge/Filament-4-informational" alt="stack project">
+    <img src="https://img.shields.io/badge/TailwindCss-4.1.13-informational" alt="stack project">
     <img src="https://img.shields.io/static/v1?label=Composer&message=2.6.5&color=brightgreen?style=for-the-badge" alt="stack project">
 	<a href="https://opensource.org/licenses/GPL-3.0">
 		<img src="https://img.shields.io/badge/license-MIT-blue.svg" alt="GPLv3 License">

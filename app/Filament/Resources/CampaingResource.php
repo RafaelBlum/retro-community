@@ -1,36 +1,28 @@
 <?php
 
 namespace App\Filament\Resources;
-
-use App\Enums\PanelTypeEnum;
-use App\Filament\Resources\CampaingResource\Pages;
-use App\Filament\Resources\CampaingResource\RelationManagers;
+use Filament\Forms\Components\Grid;
+use Filament\Forms\Components\Section;
+use Filament\Actions\ActionGroup;
+use Filament\Actions\EditAction;
+use Filament\Actions\ViewAction;
+use Filament\Actions\DeleteAction;
+use App\Filament\Resources\CampaingResource\Pages\ListCampaings;
+use App\Filament\Resources\CampaingResource\Pages\CreateCampaing;
+use App\Filament\Resources\CampaingResource\Pages\EditCampaing;
 use App\Models\Campaign;
 use App\Models\Channel;
-use Filament\Forms;
-use Filament\Forms\Components\Fieldset;
 use Filament\Forms\Components\FileUpload;
-use Filament\Forms\Components\Grid;
-use Filament\Forms\Components\Group;
-use Filament\Forms\Components\Hidden;
 use Filament\Forms\Components\Placeholder;
-use Filament\Forms\Components\Section;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Toggle;
-use Filament\Forms\Components\ViewField;
-use Filament\Forms\Form;
 use Filament\Forms\Get;
-use Filament\Notifications\Notification;
 use Filament\Resources\Resource;
 use Filament\Support\Colors\Color;
-use Filament\Support\Enums\IconPosition;
-use Filament\Tables;
-use Filament\Tables\Actions\DeleteAction;
-use Filament\Tables\Actions\EditAction;
-use Filament\Tables\Actions\ViewAction;
-use Filament\Tables\Columns\IconColumn;
+use Filament\Tables\Actions\BulkActionGroup;
+use Filament\Tables\Actions\DeleteBulkAction;
 use Filament\Tables\Columns\ImageColumn;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Columns\ToggleColumn;
@@ -39,11 +31,9 @@ use Filament\Tables\Filters\SelectFilter;
 use Filament\Tables\Table;
 use Illuminate\Contracts\View\View;
 use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\SoftDeletingScope;
-use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\HtmlString;
+use Filament\Forms\Form;
 
 class CampaingResource extends Resource
 {
@@ -284,8 +274,8 @@ class CampaingResource extends Resource
                     ->label('Minha campanha')
                     ->query(fn(Builder $query): Builder => $query->where('channel_id', auth()->id()))
             ])
-            ->actions([
-                Tables\Actions\ActionGroup::make([
+            ->recordActions([
+                ActionGroup::make([
                     EditAction::make(),
 
                     ViewAction::make()
@@ -296,7 +286,7 @@ class CampaingResource extends Resource
                         ->modalSubmitActionLabel('Fechar')
                         ->icon('heroicon-o-eye')
                         ->color('primary')
-                        ->form(fn (Form $form, $record) => $form->schema([
+                        ->schema(fn (Form $form, $record) => $form->components([
 
                             TextInput::make('title')
                                 ->label('Título'),
@@ -335,9 +325,9 @@ class CampaingResource extends Resource
                         ->modalSubmitActionLabel('Sim, deletar!'),
                 ])->tooltip("Menu")
             ])
-            ->bulkActions([
-                Tables\Actions\BulkActionGroup::make([
-                    Tables\Actions\DeleteBulkAction::make(),
+            ->toolbarActions([
+                BulkActionGroup::make([
+                    DeleteBulkAction::make(),
                 ]),
             ]);
     }
@@ -353,9 +343,9 @@ class CampaingResource extends Resource
     public static function getPages(): array
     {
         return [
-            'index' => Pages\ListCampaings::route('/'),
-            'create' => Pages\CreateCampaing::route('/create'),
-            'edit' => Pages\EditCampaing::route('/{record}/edit'),
+            'index' => ListCampaings::route('/'),
+            'create' => CreateCampaing::route('/create'),
+            'edit' => EditCampaing::route('/{record}/edit'),
         ];
     }
 }

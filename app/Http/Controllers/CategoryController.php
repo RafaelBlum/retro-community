@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Exception;
 use App\Models\Category;
 use App\Models\Post;
 use Illuminate\Database\Eloquent\Builder;
@@ -18,7 +19,7 @@ class CategoryController extends Controller
                 return $query->where('status', 'PUBLISHED')->orWhere('scheduled_for', '<=', now());
             })->paginate(2)->fragment('posts');
             return view('pages.index', compact('posts', 'category'));
-        }catch (\Exception $exception){
+        }catch (Exception $exception){
             if(env('APP_DEBUG')){
                 return redirect()->back();
             }

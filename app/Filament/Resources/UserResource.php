@@ -2,16 +2,14 @@
 
 namespace App\Filament\Resources;
 
-use App\Enums\MaritalStatusEnum;
+
 use App\Enums\PanelTypeEnum;
-use App\Filament\Resources\UserResource\Pages;
-use App\Filament\Resources\UserResource\RelationManagers;
-use App\Models\Post;
+use App\Filament\Resources\UserResource\Pages\CreateUser;
+use App\Filament\Resources\UserResource\Pages\EditUser;
+use App\Filament\Resources\UserResource\Pages\ListUsers;
 use App\Models\User;
 use Filament\Actions\CreateAction;
-use Filament\Forms\Components\Actions;
 use Filament\Forms\Components\ColorPicker;
-use Filament\Forms\Components\DatePicker;
 use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\Grid;
 use Filament\Forms\Components\Group;
@@ -22,20 +20,20 @@ use Filament\Forms\Components\Tabs\Tab;
 use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
-use Filament\Forms\Get;
 use Filament\Forms\Set;
 use Filament\Notifications\Notification;
 use Filament\Resources\Resource;
 use Filament\Support\Colors\Color;
-use Filament\Tables;
 use Filament\Tables\Actions\Action;
-use Filament\Tables\Actions\AttachAction;
+use Filament\Tables\Actions\ActionGroup;
+use Filament\Tables\Actions\BulkActionGroup;
 use Filament\Tables\Actions\DeleteAction;
+use Filament\Tables\Actions\DeleteBulkAction;
 use Filament\Tables\Actions\EditAction;
 use Filament\Tables\Actions\ViewAction;
 use Filament\Tables\Columns\ImageColumn;
 use Filament\Tables\Columns\TextColumn;
-use Filament\Tables\Filters\SelectFilter;
+use Filament\Tables\Filters\Filter;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Facades\Storage;
@@ -243,7 +241,7 @@ class UserResource extends Resource
     public static function actions(): array
     {
         return [
-            CreateAction::make()->mutateFormDataUsing(function (array $data): array {
+            CreateAction::make()->mutateDataUsing(function (array $data): array {
                 $data['user_id'] = auth()->id();
 
                 return $data;
@@ -286,7 +284,7 @@ class UserResource extends Resource
                     ->label('Publicações'),
             ])
             ->filters([
-                Tables\Filters\Filter::make('User_posts')
+                Filter::make('User_posts')
                     ->label('Com postagens [1]')
                     ->query(
                         function (Builder $query): Builder
@@ -295,7 +293,7 @@ class UserResource extends Resource
                         }
                 ),
 
-                Tables\Filters\Filter::make('has_posts')
+                Filter::make('has_posts')
                 ->label('Com postagens [2]')
                 ->toggle()
                 ->query(fn(Builder $query): Builder => $query->whereHas('posts'))
@@ -308,28 +306,7 @@ class UserResource extends Resource
                 ->label('Filtros'),
             )
 
-            ->actions([
-                Tables\Actions\ActionGroup::make([
-                    EditAction::make(),
-                    DeleteAction::make()
-                        ->action(function(User $record) {
-                            if($record->avatar != 'default.jpg'){
-                                Storage::delete('public/' . $record->avatar);
-                            }
-                            $record->delete();
-                        })
-                        ->requiresConfirmation()
-                        ->modalHeading('Deletar ' . static::$modelLabel)
-                        ->modalDescription('Tem certeza de que deseja excluir este ' . static::$modelLabel . '? Isto não pode ser desfeito.')
-                        ->modalSubmitActionLabel('Sim, deletar!'),
-                    ViewAction::make(),
-                ])->tooltip("Menu")
-            ])
-            ->bulkActions([
-                Tables\Actions\BulkActionGroup::make([
-                    Tables\Actions\DeleteBulkAction::make(),
-                ]),
-            ]);
+            ;
     }
 
     public static function getEloquentQuery(): Builder
@@ -347,9 +324,9 @@ class UserResource extends Resource
     public static function getPages(): array
     {
         return [
-            'index' => Pages\ListUsers::route('/'),
-            'create' => Pages\CreateUser::route('/create'),
-            'edit' => Pages\EditUser::route('/{record}/edit'),
+            'index' => ListUsers::route('/'),
+            'create' => CreateUser::route('/create'),
+            'edit' => EditUser::route('/{record}/edit'),
         ];
     }
 
