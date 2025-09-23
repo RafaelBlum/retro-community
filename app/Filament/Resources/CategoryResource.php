@@ -2,15 +2,23 @@
 
 namespace App\Filament\Resources;
 
+use Filament\Pages\Enums\SubNavigationPosition;
+use Filament\Schemas\Schema;
+use Filament\Schemas\Components\Utilities\Set;
+use Filament\Actions\ActionGroup;
+use Filament\Actions\EditAction;
+use Filament\Actions\BulkActionGroup;
+use Filament\Actions\DeleteBulkAction;
+use App\Filament\Resources\CategoryResource\Pages\ViewCategory;
+use App\Filament\Resources\CategoryResource\Pages\EditCategory;
+use App\Filament\Resources\CategoryResource\Pages\ListCategories;
+use App\Filament\Resources\CategoryResource\Pages\CreateCategory;
 use App\Filament\Clusters\Blog;
 use App\Filament\Resources\CategoryResource\Pages;
 use App\Filament\Resources\CategoryResource\RelationManagers;
 use App\Models\Category;
 use Filament\Actions\DeleteAction;
 use Filament\Forms\Components\TextInput;
-use Filament\Forms\Form;
-use Filament\Forms\Set;
-use Filament\Pages\SubNavigationPosition;
 use Filament\Resources\Pages\Page;
 use Filament\Resources\Resource;
 use Filament\Tables;
@@ -23,8 +31,8 @@ class CategoryResource extends Resource
 {
     protected static ?string $model = Category::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-bookmark';
-    protected static ?string $activeNavigationIcon = 'heroicon-o-book-open';
+    protected static string | \BackedEnum | null $navigationIcon = 'heroicon-o-bookmark';
+    protected static string | \BackedEnum | null $activeNavigationIcon = 'heroicon-o-book-open';
 
     protected static ?string $slug = 'categorias';
     protected static ?string $modelLabel = "Categoria";
@@ -32,12 +40,12 @@ class CategoryResource extends Resource
     protected static ?string $cluster = Blog::class;
 
     protected static ?int $navigationSort = 3;
-    protected static SubNavigationPosition $subNavigationPosition = SubNavigationPosition::Start;
+    protected static ?\Filament\Pages\Enums\SubNavigationPosition $subNavigationPosition = SubNavigationPosition::Start;
 
-    public static function form(Form $form): Form
+    public static function form(Schema $schema): Schema
     {
-        return $form
-            ->schema([
+        return $schema
+            ->components([
                 TextInput::make('name')
                     ->label('Título da categoria')
                     ->required()
@@ -74,10 +82,10 @@ class CategoryResource extends Resource
             ->filters([
                 //
             ])
-            ->actions([
-                Tables\Actions\ActionGroup::make([
-                    Tables\Actions\EditAction::make()->slideOver(),
-                    Tables\Actions\DeleteAction::make()
+            ->recordActions([
+                ActionGroup::make([
+                    EditAction::make()->slideOver(),
+                    DeleteAction::make()
                         ->action(function(Category $record) {
                             $record->delete();
                         })
@@ -87,9 +95,9 @@ class CategoryResource extends Resource
                         ->modalSubmitActionLabel('Sim, deletar!'),
                 ])->tooltip("Menu")
             ])
-            ->bulkActions([
-                Tables\Actions\BulkActionGroup::make([
-                    Tables\Actions\DeleteBulkAction::make()
+            ->toolbarActions([
+                BulkActionGroup::make([
+                    DeleteBulkAction::make()
                         ->requiresConfirmation()
                         ->modalHeading('Deletar ' . static::$modelLabel)
                         ->modalDescription('Tem certeza de que deseja excluir esta ' . static::$modelLabel . '? Isto não pode ser desfeito.')
@@ -101,9 +109,9 @@ class CategoryResource extends Resource
     public static function getRecordSubNavigation(Page $page): array
     {
         return $page->generateNavigationItems([
-            Pages\ViewCategory::class,
-            Pages\EditCategory::class,
-            Pages\ListCategories::class,
+            ViewCategory::class,
+            EditCategory::class,
+            ListCategories::class,
         ]);
     }
 
@@ -117,10 +125,10 @@ class CategoryResource extends Resource
     public static function getPages(): array
     {
         return [
-            'index' => Pages\ListCategories::route('/'),
-            'create' => Pages\CreateCategory::route('/create'),
-            'view' => Pages\ViewCategory::route('/{record}'),
-            'edit' => Pages\EditCategory::route('/{record}/edit'),
+            'index' => ListCategories::route('/'),
+            'create' => CreateCategory::route('/create'),
+            'view' => ViewCategory::route('/{record}'),
+            'edit' => EditCategory::route('/{record}/edit'),
         ];
     }
 

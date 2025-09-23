@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Exception;
 use App\Models\Campaign;
 use App\Models\Channel;
 use App\Models\Post;
@@ -31,7 +32,7 @@ class WebController extends Controller
 
             return view('landing', compact('channels',  'grid'));
 
-        }catch (\Exception $exception){
+        }catch (Exception $exception){
             if(env('APP_DEBUG')){
                 return redirect()->back();
             }
@@ -49,7 +50,7 @@ class WebController extends Controller
             $posts = Post::query()->where('status', '=', 'published')->get()->take(6);
 
             return view('home', compact('posts', 'section', 'channels', 'grid'));
-        }catch (\Exception $exception){
+        }catch (Exception $exception){
             if(env('APP_DEBUG')){
                 return redirect()->back();
             }

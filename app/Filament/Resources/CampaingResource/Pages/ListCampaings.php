@@ -2,6 +2,7 @@
 
 namespace App\Filament\Resources\CampaingResource\Pages;
 
+use Filament\Actions\CreateAction;
 use App\Filament\Resources\CampaingResource;
 use App\Models\Campaign;
 use App\Models\Channel;
@@ -18,7 +19,7 @@ class ListCampaings extends ListRecords
 
         if(!$camping->isEmpty()){
             return [
-                Actions\CreateAction::make(),
+                CreateAction::make(),
             ];
         }
         return [];

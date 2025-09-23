@@ -2,6 +2,7 @@
 
 namespace App\Filament\Resources\UserResource\Pages;
 
+use Filament\Actions\DeleteAction;
 use App\Filament\Resources\UserResource;
 use App\Models\Channel;
 use App\Models\User;
@@ -28,7 +29,7 @@ class EditUser extends EditRecord
     protected function getHeaderActions(): array
     {
         return [
-            Actions\DeleteAction::make()
+            DeleteAction::make()
                 ->label('Deletar usuário')
                 ->action(function(User $record) {
                     if($record->avatar !== 'default.jpg'){

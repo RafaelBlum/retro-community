@@ -9,7 +9,7 @@ use Filament\Widgets\ChartWidget;
 
 class ChartJsPostsRating extends ChartWidget
 {
-    protected static ?string $heading = 'Canais criados por mês (ChartJS)';
+    protected ?string $heading = 'Canais criados por mês (ChartJS)';
     protected static ?int $sort = 2;
 
     use ChannelsPerMonthSeries;

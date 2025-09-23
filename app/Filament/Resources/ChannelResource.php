@@ -2,6 +2,16 @@
 
 namespace App\Filament\Resources;
 
+use Filament\Schemas\Schema;
+use Filament\Schemas\Components\Group;
+use Filament\Schemas\Components\Section;
+use Filament\Actions\ActionGroup;
+use Filament\Actions\EditAction;
+use Filament\Actions\ViewAction;
+use Filament\Actions\DeleteAction;
+use App\Filament\Resources\ChannelResource\Pages\ListChannels;
+use App\Filament\Resources\ChannelResource\Pages\CreateChannel;
+use App\Filament\Resources\ChannelResource\Pages\EditChannel;
 use App\Filament\Resources\ChannelResource\Pages;
 use App\Filament\Resources\ChannelResource\RelationManagers;
 use App\Models\Campaign;
@@ -10,21 +20,15 @@ use App\Models\User;
 use Filament\Forms\Components\ColorPicker;
 use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\Grid;
-use Filament\Forms\Components\Group;
 use Filament\Forms\Components\Placeholder;
-use Filament\Forms\Components\Section;
 use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Toggle;
-use Filament\Forms\Form;
 use Filament\Forms\Get;
 use Filament\Resources\Resource;
 use Filament\Support\Colors\Color;
 use Filament\Support\Enums\IconPosition;
 use Filament\Tables;
-use Filament\Tables\Actions\DeleteAction;
-use Filament\Tables\Actions\EditAction;
-use Filament\Tables\Actions\ViewAction;
 use Filament\Tables\Columns\IconColumn;
 use Filament\Tables\Columns\ImageColumn;
 use Filament\Tables\Columns\TextColumn;
@@ -37,16 +41,16 @@ class ChannelResource extends Resource
 {
     protected static ?string $model = Channel::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static string | \BackedEnum | null $navigationIcon = 'heroicon-o-rectangle-stack';
 
     protected static ?string $slug = 'canais';
     protected static ?string $pluralModelLabel = "Canais";
     protected static ?string $modelLabel = "Canal";
 
-    public static function form(Form $form): Form
+    public static function form(Schema $schema): Schema
     {
-        return $form
-            ->schema([
+        return $schema
+            ->components([
                 Group::make()->schema([
                     Section::make()->schema([
                         TextInput::make('title')
@@ -155,8 +159,8 @@ class ChannelResource extends Resource
             ->filters([
                 //
             ])
-            ->actions([
-                Tables\Actions\ActionGroup::make([
+            ->recordActions([
+                ActionGroup::make([
                     EditAction::make(),
                     ViewAction::make(),
                     DeleteAction::make()
@@ -172,7 +176,7 @@ class ChannelResource extends Resource
                         ->modalSubmitActionLabel('Sim, deletar!'),
                 ])->tooltip("Menu")
             ])
-            ->bulkActions([
+            ->toolbarActions([
                 //
             ]);
     }
@@ -187,9 +191,9 @@ class ChannelResource extends Resource
     public static function getPages(): array
     {
         return [
-            'index' => Pages\ListChannels::route('/'),
-            'create' => Pages\CreateChannel::route('/create'),
-            'edit' => Pages\EditChannel::route('/{record}/edit'),
+            'index' => ListChannels::route('/'),
+            'create' => CreateChannel::route('/create'),
+            'edit' => EditChannel::route('/{record}/edit'),
         ];
     }
 }

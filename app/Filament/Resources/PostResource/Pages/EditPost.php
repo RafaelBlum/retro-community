@@ -2,6 +2,7 @@
 
 namespace App\Filament\Resources\PostResource\Pages;
 
+use Filament\Actions\DeleteAction;
 use App\Filament\Resources\PostResource;
 use App\Models\Post;
 use Filament\Actions;
@@ -27,7 +28,7 @@ class EditPost extends EditRecord
     protected function getHeaderActions(): array
     {
         return [
-            Actions\DeleteAction::make()
+            DeleteAction::make()
                 ->label('Deletar postagem')
                 ->action(function(Post $record) {
                     if($record->featured_image_url !== 'default-post.jpg'){

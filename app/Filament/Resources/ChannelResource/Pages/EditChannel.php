@@ -2,6 +2,7 @@
 
 namespace App\Filament\Resources\ChannelResource\Pages;
 
+use Filament\Actions\DeleteAction;
 use App\Filament\Resources\ChannelResource;
 use App\Models\Campaign;
 use App\Models\Channel;
@@ -19,7 +20,7 @@ class EditChannel extends EditRecord
     protected function getHeaderActions(): array
     {
         return [
-            Actions\DeleteAction::make()->label("Deletar canal"),
+            DeleteAction::make()->label("Deletar canal"),
         ];
     }
 

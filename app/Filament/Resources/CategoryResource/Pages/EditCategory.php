@@ -2,6 +2,7 @@
 
 namespace App\Filament\Resources\CategoryResource\Pages;
 
+use Filament\Actions\DeleteAction;
 use App\Filament\Resources\CategoryResource;
 use App\Models\Category;
 use Filament\Actions;
@@ -22,7 +23,7 @@ class EditCategory extends EditRecord
     protected function getHeaderActions(): array
     {
         return [
-            Actions\DeleteAction::make()
+            DeleteAction::make()
                 ->label('Deletar categoria')
                 ->action(function(Category $record) {
                 $record->delete();

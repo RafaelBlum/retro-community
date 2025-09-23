@@ -2,6 +2,7 @@
 
 namespace App\Filament\Resources\CampaingResource\Pages;
 
+use Filament\Actions\DeleteAction;
 use App\Filament\Resources\CampaingResource;
 use App\Models\Campaign;
 use Filament\Actions;
@@ -16,7 +17,7 @@ class EditCampaing extends EditRecord
     protected function getHeaderActions(): array
     {
         return [
-            Actions\DeleteAction::make(),
+            DeleteAction::make(),
         ];
     }
 

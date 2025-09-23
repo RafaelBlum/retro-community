@@ -9,54 +9,87 @@
 
 <p align="center">
 	<img src="https://img.shields.io/badge/version project-1.0-brightgreen" alt="version project">
-    <img src="https://img.shields.io/badge/Php-8.2-informational" alt="stack project">
-    <img src="https://img.shields.io/badge/Laravel-11.0-informational&color=brightgreen" alt="stack project">
-    <img src="https://img.shields.io/badge/Livewire-3.0-informational&color=brightgreen" alt="stack project">
-    <img src="https://img.shields.io/badge/Filament-3.2-informational" alt="stack project">
-    <img src="https://img.shields.io/badge/TailwindCss-3.1-informational" alt="stack project">
-    <img src="https://img.shields.io/static/v1?label=Composer&message=2.6.5&color=brightgreen?style=for-the-badge" alt="stack project">
+    <img src="https://img.shields.io/badge/Php-8.2.12-informational" alt="stack project">
+    <img src="https://img.shields.io/badge/Laravel-12.30.1-informational&color=brightgreen" alt="stack project">
+    <img src="https://img.shields.io/badge/Livewire-3.6.4-informational&color=brightgreen" alt="stack project">
+    <img src="https://img.shields.io/badge/Filament-4.0.18-informational" alt="stack project">
+    <img src="https://img.shields.io/badge/TailwindCss-4.1.13 -informational" alt="stack project">
+    <img src="https://img.shields.io/static/v1?label=Composer&message=2.8.4&color=brightgreen?style=for-the-badge" alt="stack project">
 	<a href="https://opensource.org/licenses/GPL-3.0">
 		<img src="https://img.shields.io/badge/license-MIT-blue.svg" alt="GPLv3 License">
 	</a>
 </p>
 
-## Sobre Retro Community
+# 🎮 Retro Community
 
-Este projeto tem como objetivo potencializar a forma como as informações dos canais de streamers do YouTube são apresentadas, 
-fornecendo dados detalhados sobre seus posts, incluindo imagens, vídeos e formatação avançada de texto. A ideia é criar uma 
-plataforma mais rica e imersiva para os seguidores, bem como para os administradores dos canais, com funcionalidades 
-personalizadas de interação e gerenciamento.
+O **Retro Community** é um projeto que busca potencializar a forma como as informações dos canais de streamers do **YouTube** são apresentadas, fornecendo uma plataforma rica, interativa e imersiva tanto para seguidores quanto para administradores dos canais.
 
-##### Funcionalidades
-Páginas de Perfil Personalizado para Canais: Cada usuário terá uma página exclusiva para seu canal, exibindo informações detalhadas, como dados sobre o canal, campanhas em andamento, formas de doação (incluindo PIX) e um link direto para o canal na plataforma do YouTube.
+Ele reúne recursos de gerenciamento, personalização e interação, permitindo que streamers tenham maior controle sobre seus conteúdos e que seguidores desfrutem de uma experiência mais completa.
 
-Sistema de Postagens e Formatação Avançada: O sistema permite aos streamers criar e gerenciar postagens com imagens, vídeos e formatação de texto avançada, proporcionando uma comunicação mais eficaz e atraente com sua audiência.
+---
 
-##### Frontend Completo:
+## 🚀 Funcionalidades
 
-- Landing Page: Página inicial de apresentação, com informações sobre o projeto e os benefícios para streamers e seus seguidores.
-- Home Page: Exibição de canais populares, campanhas ativas e postagens recentes, criando um ambiente dinâmico para os usuários explorarem.
-- Blog: Área para exibição de artigos, atualizações e conteúdos relacionados ao universo dos streamers e do YouTube.
-- Canais e Campanhas: Página dedicada à visualização de todos os canais e campanhas, com filtros e detalhes de cada um.
-- Sobre e Fale Conosco: Páginas institucionais para fornecer mais informações sobre o projeto e oferecer suporte aos usuários.
+### 🔹 Páginas de Perfil Personalizado
+- Cada canal terá uma página exclusiva, exibindo:
+    - Informações detalhadas sobre o canal.
+    - Campanhas em andamento.
+    - Formas de doação (incluindo **PIX**).
+    - Link direto para o canal no YouTube.
 
-##### Área Administrativa:
+### 🔹 Sistema de Postagens Avançado
+- Criação e gerenciamento de posts com:
+    - **Imagens**.
+    - **Vídeos**.
+    - **Formatação avançada de texto**.
+- Comunicação mais atraente e eficaz entre streamers e audiência.
 
-A área administrativa será construída com Filament PHP, fornecendo um painel de controle robusto e intuitivo para gerenciar dados do sistema, campanhas, postagens e usuários.
-O acesso à administração será controlado com base nos níveis de permissão do usuário, garantindo a segurança e integridade das informações.
+---
 
-##### Tecnologias Utilizadas
-- Backend: Laravel (PHP)
-- Frontend: TailwindCSS para construção de layouts modernos e responsivos.
-- Área Administrativa: Filament PHP, utilizado para o gerenciamento do sistema, campanhas, postagens e usuários.
-- Banco de Dados: MySQL, com gerenciamento e visualização via phpMyAdmin.
-- Autenticação: A autenticação será gerenciada pelo próprio Laravel, garantindo segurança e controle de acesso. O login e a área administrativa serão feitos por meio do Filament PHP.
-- Design Responsivo: A plataforma será totalmente responsiva, garantindo uma experiência de usuário excelente em dispositivos móveis e desktop.
+## 🌐 Frontend
 
-#### Objetivo
-O projeto busca melhorar a interação entre streamers e seus seguidores, proporcionando uma plataforma que combina funcionalidades 
-práticas e design moderno. A área administrativa, construída com Filament PHP, oferece uma experiência intuitiva para os administradores, 
-permitindo uma gestão eficiente de todo o sistema, enquanto a integração com Laravel e TailwindCSS garante uma plataforma robusta, segura e escalável.
+- **Landing Page** → Página inicial com informações do projeto e benefícios.
+- **Home Page** → Destaque para canais populares, campanhas ativas e posts recentes.
+- **Blog** → Artigos, atualizações e conteúdos sobre o universo dos streamers.
+- **Canais e Campanhas** → Visualização completa, com filtros e detalhes.
+- **Sobre & Fale Conosco** → Páginas institucionais para suporte e informações adicionais.
+
+---
+
+## 🛠️ Área Administrativa
+
+- Desenvolvida com **Filament PHP**.
+- Painel intuitivo para gerenciar:
+    - Usuários.
+    - Campanhas.
+    - Postagens.
+    - Demais dados do sistema.
+- Controle de acesso por **perfis e permissões**, garantindo segurança e integridade.
+
+---
+
+## 💻 Tecnologias Utilizadas
+
+- **Backend:** [Laravel](https://laravel.com/) (PHP).
+- **Frontend:** [TailwindCSS](https://tailwindcss.com/) para layouts modernos e responsivos.
+- **Admin Panel:** [Filament PHP](https://filamentphp.com/).
+- **Banco de Dados:** MySQL (gerenciado via phpMyAdmin).
+- **Autenticação:** Nativa do Laravel, integrada ao Filament.
+- **Design Responsivo:** Compatível com dispositivos móveis e desktop.
+
+---
+
+## 🎯 Objetivo
+
+O Retro Community tem como propósito **aproximar streamers e seguidores**, fornecendo uma plataforma:
+
+✔️ Moderna.  
+✔️ Segura.  
+✔️ Escalável.  
+✔️ Fácil de gerenciar.
+
+A integração de **Laravel, Filament PHP e TailwindCSS** garante robustez no backend, praticidade no gerenciamento administrativo e uma experiência de usuário fluida no frontend.
+
 
 
 ## :books: `DER` Diagramação base do projeto
@@ -102,6 +135,7 @@ permitindo uma gestão eficiente de todo o sistema, enquanto a integração com 
 
 ```
     composer update filament/filament livewire/livewire
+    php artisan about
 ```
 
 > [!IMPORTANT]

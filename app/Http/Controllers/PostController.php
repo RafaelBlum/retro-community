@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Exception;
 use App\Models\Category;
 use App\Models\Post;
 use Illuminate\Http\Request;
@@ -20,7 +21,7 @@ class PostController extends Controller
             })->get();
 
             return view('pages.index', compact('posts', 'categories'));
-        }catch (\Exception $exception){
+        }catch (Exception $exception){
             if(env('APP_DEBUG')){
                 return redirect()->back();
             }
@@ -37,7 +38,7 @@ class PostController extends Controller
             $post->views += 1;
             $post->save();
             return view('pages.post', compact('post'));
-        }catch (\Exception $exception){
+        }catch (Exception $exception){
             if(env('APP_DEBUG')){
                 return redirect()->back();
             }

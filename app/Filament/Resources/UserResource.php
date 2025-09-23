@@ -2,64 +2,65 @@
 
 namespace App\Filament\Resources;
 
-use App\Enums\MaritalStatusEnum;
 use App\Enums\PanelTypeEnum;
-use App\Filament\Resources\UserResource\Pages;
-use App\Filament\Resources\UserResource\RelationManagers;
-use App\Models\Post;
+use App\Filament\Resources\UserResource\Pages\CreateUser;
+use App\Filament\Resources\UserResource\Pages\EditUser;
+use App\Filament\Resources\UserResource\Pages\ListUsers;
 use App\Models\User;
+use Filament\Actions\Action;
+use Filament\Actions\ActionGroup;
+use Filament\Actions\BulkActionGroup;
 use Filament\Actions\CreateAction;
-use Filament\Forms\Components\Actions;
+use Filament\Actions\DeleteAction;
+use Filament\Actions\DeleteBulkAction;
+use Filament\Actions\EditAction;
+use Filament\Actions\ViewAction;
 use Filament\Forms\Components\ColorPicker;
-use Filament\Forms\Components\DatePicker;
 use Filament\Forms\Components\FileUpload;
-use Filament\Forms\Components\Grid;
-use Filament\Forms\Components\Group;
-use Filament\Forms\Components\Section;
 use Filament\Forms\Components\Select;
-use Filament\Forms\Components\Tabs;
-use Filament\Forms\Components\Tabs\Tab;
 use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
-use Filament\Forms\Form;
-use Filament\Forms\Get;
-use Filament\Forms\Set;
 use Filament\Notifications\Notification;
 use Filament\Resources\Resource;
+use Filament\Schemas\Components\Grid;
+use Filament\Schemas\Components\Group;
+use Filament\Schemas\Components\Section;
+use Filament\Schemas\Components\Tabs;
+use Filament\Schemas\Components\Tabs\Tab;
+use Filament\Schemas\Components\Utilities\Set;
+use Filament\Schemas\Schema;
 use Filament\Support\Colors\Color;
-use Filament\Tables;
-use Filament\Tables\Actions\Action;
-use Filament\Tables\Actions\AttachAction;
-use Filament\Tables\Actions\DeleteAction;
-use Filament\Tables\Actions\EditAction;
-use Filament\Tables\Actions\ViewAction;
+use Filament\Support\Icons\Heroicon;
 use Filament\Tables\Columns\ImageColumn;
 use Filament\Tables\Columns\TextColumn;
-use Filament\Tables\Filters\SelectFilter;
+use Filament\Tables\Filters\Filter;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 
 class UserResource extends Resource
+
 {
     protected static ?string $model = User::class;
 
     protected static ?string $slug = 'usuarios';
     protected static ?int $navigationSort = 1;
     protected static ?string $navigationBadgeTooltip = "Total de usuários";
-    protected static ?string $navigationGroup = "Admin Usuários";
-    protected static ?string $activeNavigationIcon = 'heroicon-o-users';
+    protected static string | \UnitEnum | null $navigationGroup = "Admin Usuários";
+
+    protected static ?string $recordTitleAttribute = 'name';
+    protected static string | \BackedEnum | null $activeNavigationIcon = 'heroicon-o-users';
 
     protected static ?string $modelLabel = "Usuário";
 
-    protected static ?string $navigationIcon = 'heroicon-o-user-circle';
+    protected static string | \BackedEnum | null $navigationIcon = 'heroicon-o-user-circle';
 
 
-    public static function form(Form $form): Form
+    public static function form(Schema $schema): Schema
     {
-        return $form
-            ->schema([
+        return $schema
+            ->components([
                 Grid::make(3)->schema([
 
                     FileUpload::make('avatar')
@@ -71,7 +72,7 @@ class UserResource extends Resource
                         ->openable()
                         ->columnSpan(1),
 
-                    Section::make()->schema([
+                    Section::make()->icon(Heroicon::Star)->schema([
                         Grid::make(3)->schema([
 
                             Group::make()->schema([
@@ -243,7 +244,7 @@ class UserResource extends Resource
     public static function actions(): array
     {
         return [
-            CreateAction::make()->mutateFormDataUsing(function (array $data): array {
+            CreateAction::make()->mutateDataUsing(function (array $data): array {
                 $data['user_id'] = auth()->id();
 
                 return $data;
@@ -261,7 +262,7 @@ class UserResource extends Resource
             ->columns([
                 ImageColumn::make('avatar')
                     ->circular()
-                    ->label(''),
+                    ->label('image'),
 
                 TextColumn::make('name')
                     ->label('Nome')
@@ -286,7 +287,7 @@ class UserResource extends Resource
                     ->label('Publicações'),
             ])
             ->filters([
-                Tables\Filters\Filter::make('User_posts')
+                Filter::make('User_posts')
                     ->label('Com postagens [1]')
                     ->query(
                         function (Builder $query): Builder
@@ -295,7 +296,7 @@ class UserResource extends Resource
                         }
                 ),
 
-                Tables\Filters\Filter::make('has_posts')
+                Filter::make('has_posts')
                 ->label('Com postagens [2]')
                 ->toggle()
                 ->query(fn(Builder $query): Builder => $query->whereHas('posts'))
@@ -308,8 +309,8 @@ class UserResource extends Resource
                 ->label('Filtros'),
             )
 
-            ->actions([
-                Tables\Actions\ActionGroup::make([
+            ->recordActions([
+                ActionGroup::make([
                     EditAction::make(),
                     DeleteAction::make()
                         ->action(function(User $record) {
@@ -325,9 +326,9 @@ class UserResource extends Resource
                     ViewAction::make(),
                 ])->tooltip("Menu")
             ])
-            ->bulkActions([
-                Tables\Actions\BulkActionGroup::make([
-                    Tables\Actions\DeleteBulkAction::make(),
+            ->toolbarActions([
+                BulkActionGroup::make([
+                    DeleteBulkAction::make(),
                 ]),
             ]);
     }
@@ -347,9 +348,9 @@ class UserResource extends Resource
     public static function getPages(): array
     {
         return [
-            'index' => Pages\ListUsers::route('/'),
-            'create' => Pages\CreateUser::route('/create'),
-            'edit' => Pages\EditUser::route('/{record}/edit'),
+            'index' => ListUsers::route('/'),
+            'create' => CreateUser::route('/create'),
+            'edit' => EditUser::route('/{record}/edit'),
         ];
     }
 
