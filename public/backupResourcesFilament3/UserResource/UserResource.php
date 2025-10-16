@@ -1,6 +1,7 @@
 <?php
 
-namespace App\Filament\Resources;
+
+namespace UserResource;
 
 use App\Enums\PanelTypeEnum;
 use App\Filament\Resources\UserResource\Pages\CreateUser;
@@ -47,14 +48,14 @@ class UserResource extends Resource
     protected static ?string $slug = 'usuarios';
     protected static ?int $navigationSort = 1;
     protected static ?string $navigationBadgeTooltip = "Total de usuários";
-    protected static string | \UnitEnum | null $navigationGroup = "Admin Usuários";
+    protected static string|\UnitEnum|null $navigationGroup = "Admin Usuários";
 
     protected static ?string $recordTitleAttribute = 'name';
-    protected static string | \BackedEnum | null $activeNavigationIcon = 'heroicon-o-users';
+    protected static string|\BackedEnum|null $activeNavigationIcon = 'heroicon-o-users';
 
     protected static ?string $modelLabel = "Usuário";
 
-    protected static string | \BackedEnum | null $navigationIcon = 'heroicon-o-user-circle';
+    protected static string|\BackedEnum|null $navigationIcon = 'heroicon-o-user-circle';
 
 
     public static function form(Schema $schema): Schema
@@ -105,8 +106,7 @@ class UserResource extends Resource
                                                 ->send();
                                         }
 
-                                        if(!self::validateEmaildatabase($state))
-                                        {
+                                        if (!self::validateEmaildatabase($state)) {
                                             Notification::make()
                                                 ->title('E-mail inválido')
                                                 ->body('O e-mail inserido já esta em uso. Verifique e tente novamente.')
@@ -133,16 +133,16 @@ class UserResource extends Resource
                                     ->label('Senha')
                                     ->password()
                                     ->revealable()
-                                    ->dehydrated(fn (?string $state): bool => filled($state))
-                                    ->required(fn (string $operation): bool => $operation === 'create')
-                                    ->minLength(8) // Mínimo de 8 caracteres
-                                    ->maxLength(32) // Máximo de 32 caracteres
-                                    ->reactive()
+                                    ->dehydrated(fn(?string $state): bool => filled($state))
+                                    ->required(fn(string $operation): bool => $operation === 'create')
+                                    ->minLength(8)
+                                    ->maxLength(32)
+                                    ->lazy()
                                     ->afterStateUpdated(function ($state) {
-                                        if (!preg_match('/^(?=.*[A-Z])(?=.*\d)(?=.*[\W_]).{8,}$/', $state) && !empty($state)) {
+                                        if (!empty($state) && !preg_match('/^(?=.*[A-Z])(?=.*\d)(?=.*[\W_]).{8,32}$/', $state)) {
                                             Notification::make()
                                                 ->title('Senha inválida')
-                                                ->body('A senha deve ter pelo menos 8 caracteres, incluindo uma letra maiúscula, um número e um caractere especial.')
+                                                ->body('A senha deve ter entre 8 e 32 caracteres, e maior segurança, incluir pelo menos uma letra maiúscula, um número e um caractere especial.')
                                                 ->danger()
                                                 ->send();
                                         }
@@ -150,80 +150,73 @@ class UserResource extends Resource
                             ])->columnSpan(5),
                         ])
                     ])->columnSpan(2),
-                            Tabs::make('informations')->tabs([
-                                Tab::make('Meu Canal')->icon('heroicon-m-identification')->schema([
-                                    Grid::make(8)
-                                        ->relationship('channel')
-                                        ->schema([
 
-                                            FileUpload::make('brand')
-                                                ->label('')
-                                                ->disk('public')
-                                                ->debounce()
-                                                ->helperText('Logo do seu canal')
-                                                ->directory('channel_brand')
-                                                ->removeUploadedFileButtonPosition('right')
-                                                ->openable()
-                                                ->columnSpan(1),
+                    Tabs::make('informations')->tabs([
+                        Tab::make('Meu Canal')->icon('heroicon-m-identification')->schema([
+                            Grid::make(8)
+                                ->relationship('channel')
+                                ->schema([
+
+                                    FileUpload::make('brand')
+                                        ->label('')
+                                        ->disk('public')
+                                        ->debounce()
+                                        ->helperText('Logo do seu canal')
+                                        ->directory('channel_brand')
+                                        ->removeUploadedFileButtonPosition('right')
+                                        ->openable()
+                                        ->columnSpan(1),
+
+                                    Group::make()->schema([
+                                        Grid::make(4)->schema([
+                                            Group::make()->schema([
+                                                TextInput::make('title')
+                                                    ->label('Nome do seu canal')
+                                                    ->hintIcon('heroicon-m-check-badge', tooltip: 'Seu canal do Youtube.')
+                                                    ->hintColor(Color::Green)
+                                                    ->required()
+                                                    ->live(onBlur: true)
+                                                    ->afterStateUpdated(fn(Set $set, ?string $state) => $set('slug', Str::slug($state))),
+
+                                                TextInput::make('slug')->disabled()->label(""),
+
+                                            ])->columnSpan(2),
 
                                             Group::make()->schema([
-                                                Grid::make(4)->schema([
-                                                    Group::make()->schema([
-                                                        TextInput::make('title')
-                                                            ->label('Nome do seu canal')
-                                                            ->hintIcon('heroicon-m-check-badge', tooltip: 'Seu canal do Youtube.')
-                                                            ->hintColor(Color::Green)
-                                                            ->required()
-                                                            ->live(onBlur: true)
-                                                            ->afterStateUpdated(fn (Set $set, ?string $state) => $set('slug', Str::slug($state))),
-
-                                                        TextInput::make('slug')->disabled()->label(""),
-
-                                                    ])->columnSpan(2),
-
-                                                    Group::make()->schema([
-                                                        TextInput::make('name')
-                                                            ->label('Seu nome')
-                                                            ->required(),
-                                                    ])->columnSpan(2),
-                                                ])->columnSpanFull(),
+                                                TextInput::make('name')
+                                                    ->label('Seu nome')
+                                                    ->required(),
+                                            ])->columnSpan(2),
+                                        ])->columnSpanFull(),
 
 
-
-                                                Grid::make(4)->schema([
-                                                    Group::make()->schema([
-                                                        TextInput::make('link')
-                                                            ->label('Link canal do Youtube')
-                                                            ->hintIcon('heroicon-m-question-mark-circle', tooltip: 'Adicione o nome do seu canal da URL sem "@"')
-                                                            ->hintColor(Color::Yellow)
-                                                            ->prefix('https://www.youtube.com/@')->suffixIcon('heroicon-m-globe-alt')
-                                                            ->required(),
-                                                    ])->columnSpan(3),
-
-                                                    Group::make()->schema([
-                                                        ColorPicker::make('color')->label('Cor base do canal'),
-                                                    ])->columnSpan(1),
-                                                ])->columnSpanFull(),
-
-                                                Textarea::make('description')
-                                                    ->label('Descrição')
-                                                    ->hintIcon('heroicon-m-question-mark-circle', tooltip: 'Descreva brevemente aqui sobre seu canal.')
+                                        Grid::make(4)->schema([
+                                            Group::make()->schema([
+                                                TextInput::make('link')
+                                                    ->label('Link canal do Youtube')
+                                                    ->hintIcon('heroicon-m-question-mark-circle', tooltip: 'Adicione o nome do seu canal da URL sem "@"')
                                                     ->hintColor(Color::Yellow)
-                                                    ->maxLength(255),
+                                                    ->prefix('https://www.youtube.com/@')->suffixIcon('heroicon-m-globe-alt')
+                                                    ->required(),
+                                            ])->columnSpan(3),
 
-                                            ])->columnSpan(7),
-                                        ]),
+                                            Group::make()->schema([
+                                                ColorPicker::make('color')->label('Cor base do canal'),
+                                            ])->columnSpan(1),
+                                        ])->columnSpanFull(),
+
+                                        Textarea::make('description')
+                                            ->label('Descrição')
+                                            ->hintIcon('heroicon-m-question-mark-circle', tooltip: 'Descreva brevemente aqui sobre seu canal.')
+                                            ->hintColor(Color::Yellow)
+                                            ->maxLength(255),
+
+                                    ])->columnSpan(7),
                                 ]),
+                        ]),
 
-                            ])->columnSpanFull()->activeTab(1)->persistTabInQueryString(),
+                    ])->columnSpanFull()->activeTab(1)->persistTabInQueryString(),
                 ]),
-            ])->columns([
-                'default' => 2,
-                'sm' => 1,
-                'md' => 2,
-                'lg' => 2,
-                'xl' => 2,
-                '2xl' => 2
             ]);
     }
 
@@ -231,12 +224,12 @@ class UserResource extends Resource
     {
         Notification::make()
             ->title('Erro de validação')
-            ->body('O nome deve ter entre ' . $min . ' e ' . $max .' caracteres.')
+            ->body('O nome deve ter entre ' . $min . ' e ' . $max . ' caracteres.')
             ->danger()
             ->send();
     }
 
-    public static function validateEmaildatabase(string $email):bool
+    public static function validateEmaildatabase(string $email): bool
     {
         return !User::where('email', $email)->exists();
     }
@@ -275,7 +268,7 @@ class UserResource extends Resource
                     ->limit(3),
 
                 TextColumn::make('channel.title')
-                ->label('Canal'),
+                    ->label('Canal'),
 
                 TextColumn::make('panel')
                     ->label('Acesso')
@@ -290,31 +283,29 @@ class UserResource extends Resource
                 Filter::make('User_posts')
                     ->label('Com postagens [1]')
                     ->query(
-                        function (Builder $query): Builder
-                        {
+                        function (Builder $query): Builder {
                             return $query->whereHas('posts');
                         }
-                ),
+                    ),
 
                 Filter::make('has_posts')
-                ->label('Com postagens [2]')
-                ->toggle()
-                ->query(fn(Builder $query): Builder => $query->whereHas('posts'))
+                    ->label('Com postagens [2]')
+                    ->toggle()
+                    ->query(fn(Builder $query): Builder => $query->whereHas('posts'))
             ])
             ->persistFiltersInSession()
             ->filtersTriggerAction(
                 fn(Action $action) => $action
-                ->link()
-                ->icon('heroicon-m-magnifying-glass-circle')
-                ->label('Filtros'),
+                    ->link()
+                    ->icon('heroicon-m-magnifying-glass-circle')
+                    ->label('Filtros'),
             )
-
             ->recordActions([
                 ActionGroup::make([
                     EditAction::make(),
                     DeleteAction::make()
-                        ->action(function(User $record) {
-                            if($record->avatar != 'default.jpg'){
+                        ->action(function (User $record) {
+                            if ($record->avatar != 'default.jpg') {
                                 Storage::delete('public/' . $record->avatar);
                             }
                             $record->delete();

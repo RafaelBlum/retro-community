@@ -2,18 +2,11 @@
 
 namespace App\Filament\Resources\UserResource\Pages;
 
-use Filament\Actions\DeleteAction;
 use App\Filament\Resources\UserResource;
-use App\Models\Channel;
 use App\Models\User;
-use Filament\Actions;
-use Filament\Actions\RestoreAction;
-use Filament\Facades\Filament;
+use Filament\Actions\DeleteAction;
 use Filament\Notifications\Notification;
 use Filament\Resources\Pages\EditRecord;
-use Illuminate\Http\Client\Request;
-use Illuminate\Http\RedirectResponse;
-use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 
