@@ -89,18 +89,18 @@ Seu objetivo é conectar canais, inscritos e comunidades em um ambiente interati
 - [X] [RNF009] ScrollReveal para animar elementos nas páginas.
 - [X] [RNF010] Javascript para personalização de efeitos e interação.
 
-| ID             | Tecnologia / Ferramenta | Descrição                                                                                                                                      |
-|----------------| ----------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------- |
-| ✅ **RNF001**   | **Laravel**             | O sistema deve utilizar o framework **Laravel** como base backend, adotando a arquitetura **MVC** e fornecendo **APIs RESTful**.               |
-| ✅ **RNF002**   | **Filament PHP v4.18**  | O painel administrativo deve ser desenvolvido com **Filament PHP**, garantindo um ambiente moderno, personalizável e seguro.                   |
-| ✅ **RNF003**   | **Tailwind CSS v4**     | O frontend deve utilizar **Tailwind CSS** para assegurar uma interface moderna, responsiva e consistente.                                      |
-| ✅ **RNF004**   | **Alpine.js**           | O sistema deve adotar **Alpine.js** para prover interatividade leve e reativa no frontend.                                                     |
-| ✅ **RNF005**   | **Livewire v3**         | Deve ser utilizado **Livewire v3** para criação de componentes dinâmicos e reativos, reduzindo a necessidade de scripts JavaScript manuais.    |
-| ✅ **RNF006**   | **MySQL**               | O sistema deve utilizar **MySQL** como banco de dados relacional principal, garantindo integridade e desempenho nas transações.                |
-| ✅ **RNF007**   | **Vite**                | O processo de build deve ser gerenciado por **Vite**, proporcionando empacotamento rápido de assets e integração eficiente com o Tailwind CSS. |
-| ✅ **RNF008**   | **JSConfetti**          | O frontend deve integrar a biblioteca **JSConfetti** para prover efeitos visuais e feedback animado em eventos específicos.                    |
-| ✅ **RNF009**   | **ScrollReveal**        | Deve ser utilizado **ScrollReveal** para animações de entrada de elementos, aprimorando a experiência visual e a usabilidade.                  |
-| ✅ **RNF010**   | **JavaScript (nativo)** | O sistema deve utilizar **JavaScript nativo** para personalizações adicionais de efeitos e interações no frontend.                             |
+| ID               | Tecnologia / Ferramenta | Descrição                                                                                                                                      |
+|------------------| ----------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------- |
+| ✅ **RNF001**     | **Laravel**             | O sistema deve utilizar o framework **Laravel** como base backend, adotando a arquitetura **MVC** e fornecendo **APIs RESTful**.               |
+| ✅ **RNF002**     | **Filament PHP v4.18**  | O painel administrativo deve ser desenvolvido com **Filament PHP**, garantindo um ambiente moderno, personalizável e seguro.                   |
+| ✅ **RNF003**     | **Tailwind CSS v4**     | O frontend deve utilizar **Tailwind CSS** para assegurar uma interface moderna, responsiva e consistente.                                      |
+| ✅ **RNF004**     | **Alpine.js**           | O sistema deve adotar **Alpine.js** para prover interatividade leve e reativa no frontend.                                                     |
+| ✅ **RNF005**     | **Livewire v3**         | Deve ser utilizado **Livewire v3** para criação de componentes dinâmicos e reativos, reduzindo a necessidade de scripts JavaScript manuais.    |
+| ✅ **RNF006**     | **MySQL**               | O sistema deve utilizar **MySQL** como banco de dados relacional principal, garantindo integridade e desempenho nas transações.                |
+| ✅ **RNF007**     | **Vite**                | O processo de build deve ser gerenciado por **Vite**, proporcionando empacotamento rápido de assets e integração eficiente com o Tailwind CSS. |
+| ✅ **RNF008**     | **JSConfetti**          | O frontend deve integrar a biblioteca **JSConfetti** para prover efeitos visuais e feedback animado em eventos específicos.                    |
+| ✅ **RNF009**     | **ScrollReveal**        | Deve ser utilizado **ScrollReveal** para animações de entrada de elementos, aprimorando a experiência visual e a usabilidade.                  |
+| ✅ **RNF010**     | **JavaScript (nativo)** | O sistema deve utilizar **JavaScript nativo** para personalizações adicionais de efeitos e interações no frontend.                             |
 
 
 ![PHP](https://img.shields.io/badge/PHP-777BB4?logo=php&logoColor=white)
