@@ -75,7 +75,7 @@ Seu objetivo é conectar canais, inscritos e comunidades em um ambiente interati
     - Usuários, Campanhas, Postagens, Demais dados do sistema.
 - Controle de acesso por **perfis e permissões**, garantindo segurança e integridade.
 
-## :books: `DER` Diagramação base do projeto
+## :books: `DER` Diagramação base do projeto Prototipagem
 > As classes do sistema estão claramente definidas em um diagrama de classes.
 
 <p align="center" style="margin-top: 30px">
@@ -113,9 +113,11 @@ O projeto é desenvolvido com a TALL Stack, aliando a produtividade do Laravel �
 
 
 ## ⚙️ Requisitos funcionais
+> Avaliação das especificações do software durante o desenvolvimento para verificar se os requisitos de qualidade estão
+sendo atendidos.
 
 - [x] Diagrama de classes
-    - [x] User
+    - [x] [RF001] User
     - [x] Post
     - [x] Category
     - [x] Channel
