@@ -30,50 +30,39 @@ Seu objetivo é conectar canais, inscritos e comunidades em um ambiente interati
 
 ## 🌟 **Proposta** dos principais Recursos
 
-##### 🏠 Páginas (**Descrição inicial**)
-- Ter uma Home destacando principais dos streamers, como: **postagens, canais, campanhas, página sobre a plataforma e perfil de cada criador de conteúdo**.
+- Páginas destacando conteúdos principais, como: **postagens, canais, campanhas, página sobre a plataforma e perfil de cada criador de conteúdo**.
 
-- Cada criador de conteúdo possui uma **página de perfil completa**, onde pode exibir:
+- **Página de perfil completa**, onde pode exibir:
   - Informações do canal (título, descrição, logo e etc).
   - Inserir sua Campanhas e QRcode do livePix.
   - Links para redes sociais e um vídeo.
   - Seção de “Canais Parceiros”, fortalecendo a rede entre criadores.
   - Dados dos seus Seguidores da plataforma.
-  - Integração com a API do YouTube para sincronização de número real de inscritos e vídeos;
+  - Integração com a API do YouTube para sincronização de número real de inscritos e vídeos.
+  - Ao logar o usuário tem a possibilidade de inciar sorteio com roleta.
 
-#### 📰 Sistema de Postagens (**Descrição inicial**)
+- Controle de acesso
+  - Os usuários terão perfil de acesso
+  - Seguidores devem criar cadastro simples para seguir canal e ter acesso a comentários.
 
-- Criação e gerenciamento de posts com suporte a texto, views, imagens e tags.
-- Comentários de seguidores.
-- Possibilidade de criar enquetes.
-- Organização por categorias e tags.
+- Notificações
+  - Notificações por e-mail para os seguidores quando o canal postar algo.
+  - Notificação por e-mail para confirmar o acesso do streamer ou seguidor.
 
-#### 🎯 Destaques do Perfil (**Descrição inicial**)
+- 📰 Sistema de Postagens
+  - Criação e gerenciamento de posts com suporte a um editor avançado permitindo editar e visualizar conteúdo.
+  - Comentários de seguidores.
+  - Organização por categorias e tags.
+  
+- Recursos Especiais
+  - Ranking de Canais Mais Seguidos;
+  - Validação de e-mail e controle de limite de interações por usuário (ex: 1 comentário por post/dia).
+  - Criação de enquetes simples.
 
-- Cada canal pode destacar sua campanha do livePix.
-- Destacar seu QRcode do LivePix;
-- As campanhas aparecem na página principal e no perfil do canal.
-- Dados do Youtube, logo, nome e descrição.
-- Rolata para sorteios ao se logar.
-- Planejada 
+- 🛠️ Área Administrativa
 
-#### 🧑‍🤝‍🧑 Sistema de Inscritos (**Descrição inicial**)
-
-- Usuários podem seguir canais, interagir com postagens realizando seu cadastro;
-- Sistema de notificações para alertar sobre novos posts dos canais seguidos.
-
-#### 🪩 Recursos Especiais (**Descrição inicial**)
-
-- Roleta de Sorteios: recurso interativo que permite realizar sorteios visuais com nomes dos inscritos;
-- Ranking de Canais Mais Seguidos;
-- Validação de e-mail e controle de limite de interações por usuário (ex: 1 comentário por post/dia).
-
-
-#### 🛠️ Área Administrativa (**Descrição inicial**)
-
-- Desenvolvimento de área especial para administradores.
-- Painel intuitivo para gerenciar:
-    - Usuários, Campanhas, Postagens, Demais dados do sistema.
+- Área especial para administradores.
+- Painel intuitivo para gerenciar seus conteúdos e dados.
 - Controle de acesso por **perfis e permissões**, garantindo segurança e integridade.
 
 ## :books: `DER` Diagramação base do projeto Prototipagem
