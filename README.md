@@ -60,10 +60,9 @@ Seu objetivo é conectar canais, inscritos e comunidades em um ambiente interati
   - Criação de enquetes simples.
 
 - 🛠️ Área Administrativa
-
-- Área especial para administradores.
-- Painel intuitivo para gerenciar seus conteúdos e dados.
-- Controle de acesso por **perfis e permissões**, garantindo segurança e integridade.
+  - Área especial para administradores.
+  - Painel intuitivo para gerenciar seus conteúdos e dados.
+  - Controle de acesso por **perfis e permissões**, garantindo segurança e integridade.
 
 ## :books: `DER` Diagramação base do projeto Prototipagem
 > As classes do sistema estão claramente definidas em um diagrama de classes.
