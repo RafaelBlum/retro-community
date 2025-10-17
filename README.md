@@ -30,15 +30,16 @@ Seu objetivo é conectar canais, inscritos e comunidades em um ambiente interati
 
 ## 🌟 **Proposta** dos principais Recursos
 
-#### 🏠 Páginas (**Descrição inicial**)
+##### 🏠 Páginas (**Descrição inicial**)
+- Ter uma Home destacando principais dos streamers, como: **postagens, canais, campanhas, página sobre a plataforma e perfil de cada criador de conteúdo**.
 
-- Cada criador de conteúdo possui uma ** página de perfil completa **, onde pode exibir:
+- Cada criador de conteúdo possui uma **página de perfil completa**, onde pode exibir:
   - Informações do canal (título, descrição, logo e etc).
-  - Campanhas de livePix, QR code e posts exclusivos da plataforma.
-  - Links para redes sociais e vídeos mais recentes.
+  - Inserir sua Campanhas e QRcode do livePix.
+  - Links para redes sociais e um vídeo.
   - Seção de “Canais Parceiros”, fortalecendo a rede entre criadores.
-  - Seguidores de seu canal, e estatísticas do YouTube.
-- Página Inicial, Home destacando principais conteúdos, postagens, canais, sobre.
+  - Dados dos seus Seguidores da plataforma.
+  - Integração com a API do YouTube para sincronização de número real de inscritos e vídeos;
 
 #### 📰 Sistema de Postagens (**Descrição inicial**)
 
@@ -54,7 +55,7 @@ Seu objetivo é conectar canais, inscritos e comunidades em um ambiente interati
 - As campanhas aparecem na página principal e no perfil do canal.
 - Dados do Youtube, logo, nome e descrição.
 - Rolata para sorteios ao se logar.
-- Planejada integração com a API do YouTube para sincronização de número real de inscritos e vídeos;
+- Planejada 
 
 #### 🧑‍🤝‍🧑 Sistema de Inscritos (**Descrição inicial**)
 
