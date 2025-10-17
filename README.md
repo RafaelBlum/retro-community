@@ -28,6 +28,10 @@ O Retro Community é uma plataforma inovadora criada para potencializar a presen
 
 Seu objetivo é conectar canais, inscritos e comunidades em um ambiente interativo, imersivo e totalmente voltado à experiência retrô — com recursos que integram dados do YouTube e funcionalidades exclusivas dentro da própria plataforma.
 
+> [!IMPORTANT]
+> Este projeto esta em desenvolvimento
+> Versão 1.0
+
 ## 🌟 **Proposta** dos principais Recursos
 
 #### 🏠 Páginas (**Descrição inicial**)

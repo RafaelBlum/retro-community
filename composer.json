@@ -38,6 +38,9 @@
         }
     },
     "scripts": {
+        "setup": [
+            "php artisan serve --port=8001"
+        ],
         "post-autoload-dump": [
             "Illuminate\\Foundation\\ComposerScripts::postAutoloadDump",
             "@php artisan package:discover --ansi",
