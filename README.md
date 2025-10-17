@@ -75,19 +75,19 @@ Seu objetivo é conectar canais, inscritos e comunidades em um ambiente interati
 
 
 
-## ⚙️ Requisitos não funcionais
+## ⚙️  `RNF` Requisitos não funcionais
 
-##### Tecnologia	Função
-- Laravel, um framework backend principal, responsável pela estrutura MVC e APIs.
-- Filament PHP na última versão 4.18 para a área administrativa, trazendo ambiente moderno, personalizável e seguro.
-- Tailwind CSS v4 para o frontend e trazer uma estilização moderna e responsiva.
-- Alpine.js	para interatividade no frontend de forma leve.
-- Livewire v3 para componentes dinâmicos reativos sem utilizar o JavaScript manual em alguns casos.
-- MySQL	Banco de dados relacional principal.
-- Vite	Build rápido e integração com Tailwind.
-- JSConfetti (frontend)	Efeitos visuais para animações.
-- ScrollReveal para animar elementos nas páginas.
-- Javascript para personalização de efeitos e interação.
+##### Tecnologia  Função
+- [X] [RNF001] Laravel, um framework backend principal, responsável pela estrutura MVC e APIs.
+- [X] [RNF002] Filament PHP na última versão 4.18 para a área administrativa, trazendo ambiente moderno, personalizável e seguro.
+- [X] [RNF003] Tailwind CSS v4 para o frontend e trazer uma estilização moderna e responsiva.
+- [X] [RNF004] Alpine.js	para interatividade no frontend de forma leve.
+- [X] [RNF005] Livewire v3 para componentes dinâmicos reativos sem utilizar o JavaScript manual em alguns casos.
+- [X] [RNF006] MySQL	Banco de dados relacional principal.
+- [X] [RNF007] Vite	Build rápido e integração com Tailwind.
+- [X] [RNF008] JSConfetti (frontend)	Efeitos visuais para animações.
+- [X] [RNF009] ScrollReveal para animar elementos nas páginas.
+- [X] [RNF010] Javascript para personalização de efeitos e interação.
 
 ![PHP](https://img.shields.io/badge/PHP-777BB4?logo=php&logoColor=white)
 ![Laravel](https://img.shields.io/badge/Laravel-FF2D20?logo=laravel&logoColor=white)
@@ -105,17 +105,10 @@ Seu objetivo é conectar canais, inscritos e comunidades em um ambiente interati
 > Avaliação das especificações do software durante o desenvolvimento para verificar se os requisitos de qualidade estão
 sendo atendidos.
 
-- [x] Diagrama de classes
-    - [x] [RF001] User
-    - [x] Post
-    - [x] Category
-    - [x] Channel
-    - [ ] 
-    - [ ] 
-    - [ ] 
-- [x] 
-- [ ] 
-- [ ] 
-- [ ] 
-    - [ ] 
-    - [ ] 
+- [ ] [RF000] Diagrama de classes
+- [ ] [RF000] Criação de projeto laravel
+- [ ] [RF000] Configurações iniciais laravel e instalações bibliotecas.
+- [ ] [RF000] Criação banco de dados
+- [ ] [RF000]
+    - [ ] [RF000-0]
+    - [ ] [RF000-0]
