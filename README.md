@@ -64,30 +64,30 @@ Seu objetivo é conectar canais, inscritos e comunidades em um ambiente interati
   - Painel intuitivo para gerenciar seus conteúdos e dados.
   - Controle de acesso por **perfis e permissões**, garantindo segurança e integridade.
 
-## :books: `DER` Diagramação base do projeto Prototipagem
-> As classes do sistema estão claramente definidas em um diagrama de classes.
+## :books: `DER` Diagramação do projeto | Prototipagem
+> As classes do sistema estão claramente definidas em um diagrama de classes **(em analise)**.
 
 <p align="center" style="margin-top: 30px">
 	<a href="#"  target="_blank" title="Sistema Retro Community">
-		<img src="public/docs/diagram-class-RetroCommunity.png" alt="diagram class" width="50%">
+		<img src="public/docs/diagram-class-RetroCommunity.png" alt="diagram class" width="60%">
 	</a>
 </p>
 
 
 
-## ⚙️ Stack Requisitos não funcionais
-O projeto é desenvolvido com a TALL Stack, aliando a produtividade do Laravel à reatividade do Livewire e Alpine.js:
+## ⚙️ Requisitos não funcionais
 
-#### Tecnologia	Função
-- Laravel 12.15	Framework backend principal, responsável pela estrutura MVC e APIs
-- Filament PHP v4	Painel administrativo moderno e personalizável
-- Tailwind CSS v4	Estilização moderna e responsiva
-- Alpine.js	Interatividade no frontend de forma leve
-- Livewire v3	Componentes dinâmicos reativos sem JavaScript manual
-- MySQL	Banco de dados relacional principal
-- Vite	Build rápido e integração com Tailwind
-- JSConfetti (frontend)	Efeitos visuais para sorteios e animações da roleta
-- ScrollReveal uma biblioteca JavaScript para animar elementos facilmente conforme eles entram/saem da janela de visualização
+##### Tecnologia	Função
+- Laravel, um framework backend principal, responsável pela estrutura MVC e APIs.
+- Filament PHP na última versão 4.18 para a área administrativa, trazendo ambiente moderno, personalizável e seguro.
+- Tailwind CSS v4 para o frontend e trazer uma estilização moderna e responsiva.
+- Alpine.js	para interatividade no frontend de forma leve.
+- Livewire v3 para componentes dinâmicos reativos sem utilizar o JavaScript manual em alguns casos.
+- MySQL	Banco de dados relacional principal.
+- Vite	Build rápido e integração com Tailwind.
+- JSConfetti (frontend)	Efeitos visuais para animações.
+- ScrollReveal para animar elementos nas páginas.
+- Javascript para personalização de efeitos e interação.
 
 ![PHP](https://img.shields.io/badge/PHP-777BB4?logo=php&logoColor=white)
 ![Laravel](https://img.shields.io/badge/Laravel-FF2D20?logo=laravel&logoColor=white)
