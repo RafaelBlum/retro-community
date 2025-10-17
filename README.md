@@ -30,7 +30,7 @@ Seu objetivo é conectar canais, inscritos e comunidades em um ambiente interati
 
 > [!IMPORTANT]
 > Este projeto esta em desenvolvimento <br/>
-> **Versão 1.0**
+> ##### **Versão 1.0**
 
 ## 🌟 **Proposta** dos principais Recursos
 
