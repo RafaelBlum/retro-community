@@ -64,14 +64,13 @@ Seu objetivo é conectar canais, inscritos e comunidades em um ambiente interati
   - Painel intuitivo para gerenciar seus conteúdos e dados.
   - Controle de acesso por **perfis e permissões**, garantindo segurança e integridade.
 
-## :books: `DER` Diagramação do projeto | Prototipagem
-> As classes do sistema estão claramente definidas em um diagrama de classes **(em analise)**.
 
 <p align="center" style="margin-top: 30px">
 	<a href="#"  target="_blank" title="Sistema Retro Community">
-		<img src="public/docs/diagram-class-RetroCommunity.png" alt="diagram class" width="60%">
+		<img src="public/docs/mapa.png" alt="diagram class" width="60%">
 	</a>
 </p>
+
 
 
 ## 🧩 Especificação de Requisitos do Sistema
@@ -129,7 +128,14 @@ Os **requisitos não funcionais** especificam **como** o sistema deve ser desenv
 | ✅ **RNF009** | **ScrollReveal** | Deve ser utilizado **ScrollReveal** para animações de entrada de elementos, aprimorando a experiência visual e a usabilidade. |
 | ✅ **RNF010** | **JavaScript (nativo)** | O sistema deve utilizar **JavaScript nativo** para personalizações adicionais de efeitos e interações no frontend. |
 
----
+## :books: `DER` Diagramação do projeto | Prototipagem
+> As classes do sistema estão claramente definidas em um diagrama de classes **(em analise)**.
+
+<p align="center" style="margin-top: 30px">
+	<a href="#"  target="_blank" title="Sistema Retro Community">
+		<img src="public/docs/diagram-class-RetroCommunity.png" alt="diagram class" width="60%">
+	</a>
+</p>
 
 ### 🧱 Observações Gerais
 
