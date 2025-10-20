@@ -67,7 +67,7 @@ Seu objetivo é conectar canais, inscritos e comunidades em um ambiente interati
 
 <p align="center" style="margin-top: 30px">
 	<a href="#"  target="_blank" title="Sistema Retro Community">
-		<img src="public/docs/mapa.png" alt="diagram class" width="60%">
+		<img src="public/docs/mapa.png" alt="diagram class" width="75%">
 	</a>
 </p>
 
