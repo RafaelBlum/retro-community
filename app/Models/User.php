@@ -20,11 +20,6 @@ class User extends Authenticatable implements HasAvatar, FilamentUser
 
     protected $guarded = ['id'];
 
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array<int, string>
-     */
     protected $fillable = [
         'name',
         'email',
@@ -33,11 +28,6 @@ class User extends Authenticatable implements HasAvatar, FilamentUser
         'avatar'
     ];
 
-    /**
-     * The attributes that should be hidden for serialization.
-     *
-     * @var array<int, string>
-     */
     protected $hidden = ['password', 'remember_token'];
 
     protected $casts = [
@@ -61,11 +51,6 @@ class User extends Authenticatable implements HasAvatar, FilamentUser
         return $this->hasOne(Channel::class)->with('camping');
     }
 
-    /**
-     * Get the attributes that should be cast.
-     *
-     * @return array<string, string>
-     */
     protected function casts(): array
     {
         return [
@@ -82,11 +67,11 @@ class User extends Authenticatable implements HasAvatar, FilamentUser
 
     public function canAccessPanel(Panel $panel): bool
     {
-        //dd($this->panel, PanelTypeEnum::APP, $panel->getId(), PanelTypeEnum::ADMIN->value);
-        if ($this->panel === PanelTypeEnum::APP && $panel->getId() === PanelTypeEnum::ADMIN->value) {
-
+        if ($this->panel === PanelTypeEnum::APP && $panel->getId() === PanelTypeEnum::ADMIN->value)
+        {
             return false;
         }
+        
         return true;
 
     }
