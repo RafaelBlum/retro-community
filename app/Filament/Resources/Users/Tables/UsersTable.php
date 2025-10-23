@@ -11,6 +11,7 @@ use Filament\Actions\DeleteAction;
 use Filament\Actions\DeleteBulkAction;
 use Filament\Actions\EditAction;
 use Filament\Actions\ViewAction;
+use Filament\Forms\Components\Toggle;
 use Filament\Tables\Columns\ImageColumn;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Filters\Filter;
@@ -35,6 +36,7 @@ class UsersTable
                     ->searchable(),
 
                 ImageColumn::make('channel.brand')
+                    ->label('')
                     ->circular()
                     ->disk('public')
                     ->stacked()
@@ -43,7 +45,13 @@ class UsersTable
                 TextColumn::make('channel.title')
                     ->label('Canal')->description(function (User $record){
                         return $record->channel->name;
-                    }),
+                    })
+                    ->tooltip('Canal no YouTube'),
+
+                TextColumn::make('created_at')
+                    ->label('')
+                    ->since()
+                    ->dateTooltip('M / Y'),
 
                 TextColumn::make('panel')
                     ->label('Acesso')

@@ -8,6 +8,7 @@ use Filament\Forms\Components\ColorPicker;
 use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
+use Filament\Forms\Components\Toggle;
 use Filament\Notifications\Notification;
 use Filament\Schemas\Components\Grid;
 use Filament\Schemas\Components\Group;
@@ -125,9 +126,11 @@ class UserForm
                                         $regex = '/^(?=.*[A-Z])(?=.*\d)(?=.*[\W_]).{8,32}$/';
                                         $set('password_strength', preg_match($regex, $state) ? 'Forte' : 'Fraca');
                                     }),
+
                             ])->columnSpan(2),
                             Group::make()->schema([
-
+                                Toggle::make('email_verifed_at')
+                                    ->helperText('Verificação de email de usuário.')->label('E-mail verificado'),
                             ])->columnSpan(2),
                         ])->columnSpanFull(),
 
