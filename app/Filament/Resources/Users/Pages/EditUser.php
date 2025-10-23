@@ -44,17 +44,11 @@ class EditUser extends EditRecord
     protected function beforeSave()
     {
         $user = User::with('channel.camping')->findOrFail($this->data['id']);
-
+        $channel = $user->channel;
 
         if (!$user) {
             abort(404, 'Usuário não encontrado');
         }
-
-
-
-
-        $avatarImagem = $user->avatar;
-        $channel = $user->channel;
 
         $channel->update([
             'title' => $this->data['channel']['title'] ?? $channel->title ,
@@ -64,39 +58,37 @@ class EditUser extends EditRecord
             'color' => $this->data['channel']['color'] ?? $channel->color ,
         ]);
 
-//        $campingData = $this->data['channel']['camping'] ?? null;
+        $campingData = $this->data['channel']['camping'] ?? null;
+        dd($campingData);
 //
 //        if($campingData && !empty($campingData['title']))
 //        {
 //            dd("camping", $campingData);
 //        }
 
+        $avatarImagem = $user->avatar;
+        $newAvatar = reset($this->data['avatar']);
 
-        if (reset($this->data['avatar']) != $avatarImagem) {
-            if($user->avatar != 'default.jpg'){
-                Storage::delete('public/' . $avatarImagem);
+        if ($avatarImagem !== $newAvatar) {
+            if($avatarImagem != 'default.jpg'){
+                $oldAvatar = 'public/' . $avatarImagem;
+
+                if(Storage::exists($oldAvatar))
+                {
+                    Storage::delete($oldAvatar);
+                }
             }
+            $user->update([
+                'avatar' => $newAvatar
+            ]);
         }
-
-
-//        $newBrand = $this->data['channel']['brand'] ?? null;
-//
-//        if($newBrand)
-//        {
-//            dd($newBrand, is_array($newBrand), reset($newBrand));
-//            $newBrand = is_array($newBrand) ? reset($newBrand) : $newBrand;
-//
-//
-//        }
 
 
         $brandImage = $user->channel->brand;
         $newImage = reset($this->data['channel']['brand']);
 
-        dd($brandImage, $newImage);
-
         if ($newImage !== $brandImage) {
-            if($user->channel->brand != 'default-brand.png'){
+            if($brandImage != 'default-brand.png'){
                 $oldPath = 'public/' . $brandImage;
 
                 if(Storage::exists($oldPath))

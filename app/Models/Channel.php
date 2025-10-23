@@ -33,6 +33,11 @@ class Channel extends Model
         return $this->hasOne(Campaign::class);
     }
 
+    public function getFilamentAvatarUrl(): ?string
+    {
+        return asset('storage/' . $this->brand);
+    }
+
     protected static function booted()
     {
         static::saving(function ($channel){

@@ -6,6 +6,7 @@ use App\Models\User;
 use Filament\Actions\CreateAction;
 use Filament\Forms\Components\ColorPicker;
 use Filament\Forms\Components\FileUpload;
+use Filament\Forms\Components\RichEditor;
 use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Toggle;
@@ -288,12 +289,25 @@ class UserForm
                                 ->label('Título da Campanha')
                                 ->placeholder('Digite o título da campanha')
                                 ->maxLength(100),
-                            Textarea::make('channel.camping.description')
+                            RichEditor::make('channel.camping.content')
                                 ->label('Descrição')
-                                ->rows(4)
-                                ->maxLength(300),
-                            TextInput::make('channel.camping.link')
+                                ->toolbarButtons([
+                                    ['bold', 'italic', 'underline', 'strike', 'subscript', 'superscript', 'link'],
+                                    ['h2', 'h3', 'alignStart', 'alignCenter', 'alignEnd'],
+                                    ['blockquote', 'codeBlock', 'bulletList', 'orderedList'],
+                                    ['table', 'attachFiles'],
+                                    ['undo', 'redo'],
+                                ])
+                                ->maxLength(300)
+                                ->fileAttachmentsAcceptedFileTypes(['image/png', 'image/jpeg']),
+                            TextInput::make('channel.camping.qr_code')
+                                ->label('Link ou URL do QRcODE')
+                                ->placeholder('https://...'),
+                            TextInput::make('channel.camping.goal_link')
                                 ->label('Link ou URL da Campanha')
+                                ->placeholder('https://...'),
+                            TextInput::make('channel.camping.pix_page_link')
+                                ->label('Link da página de pix')
                                 ->placeholder('https://...'),
                             FileUpload::make('channel.camping.image')
                                 ->label('Imagem da Campanha')

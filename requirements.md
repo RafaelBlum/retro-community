@@ -1,42 +1,24 @@
-# metodologias ágeis
+## 📘 Metodologias ágeis
+#### Tabela de desenvolvimento dos Requisitos funcionais fracionadas no decorrer do desenvolvimento. Tabela de apoio as etapas.
 
-## US002 — Cadastro de Seguidores
+### 🧩 RF001 — Edição de usuário, Canal e campanha
+🔹 Sub-Requisitos Funcionais
 
-**Como** seguidor  
-**Quero** me cadastrar na plataforma  
-**Para** poder seguir canais e comentar publicações
-
-### Critérios de Aceitação
-- [x] O formulário deve validar e-mail e senha.
-- [x] Enviar e-mail de confirmação com token.
-- [x] Bloquear login até ativação.  
+| Código      | Nome                                           | Descrição                                                                                             | Prioridade |         Status        | Critérios de Aceitação                       |
+|:------------|:-----------------------------------------------| :---------------------------------------------------------------------------------------------------- | :--------: | :-------------------: |:---------------------------------------------|
+| **RF001.1** | **Formulário de edição**                       | Imagens devem ser deletada ou substituida ao se editar ou deletar user. |   🔺 Alta  |      🟢 Concluído     | Remover images anteriores, menos a padrão.   |
+| **RF001.2** | **Formulário de edição**   | Campanha não é obrigatória ter, mas se adicionar dados em algum campo, precisa adicionar todos e remover.              |   🔺 Alta  | 🟡 Em desenvolvimento | Se for um campo preenchido, não deve salvar. |
 
 
+### 🧩 RF002 — Cadastro de Seguidores
 
-Veja como ficaria:
+#### Observações de Implementação (para o desenvolvedor)
 
-💡 Observações de Implementação (para o desenvolvedor)
-
-Criar Model Follower ou utilizar User com papel follower.
-
-Implementar verificação por Laravel Breeze ou Laravel Fortify.
-
-Configurar Mailtrap, Postmark ou Resend em ambiente de testes.
-
-Usar Jobs e Queues para envio de e-mail assíncrono.
-
-Testes: Feature Test (Cadastro, Login, Confirmação de E-mail) e Unit Test (Token, Expiração).
-
-ID	Funcionalidade	Descrição
-✅ RF002	Cadastro de Seguidores	O seguidor deve poder realizar um cadastro simples para seguir canais, comentar e receber notificações.
-└── RF002.1	Formulário de Cadastro	O sistema deve disponibilizar um formulário com campos essenciais (nome, e-mail, senha) para cadastro do seguidor.
-└── RF002.2	Validação de E-mail	Após o cadastro, o sistema deve enviar um e-mail com link de verificação (token) para confirmação da conta.
-└── RF002.3	Ativação de Conta	A conta do seguidor deve ser ativada apenas após a validação do token enviado por e-mail.
-└── RF002.4	Notificação de Boas-Vindas	Após a validação, o sistema deve enviar uma mensagem de boas-vindas confirmando o registro e orientações iniciais.
-└── RF002.5	Associação a Canal	O seguidor deve poder seguir canais específicos após o cadastro, vinculando sua conta ao canal escolhido.
-
-
-🧩 RF002 — Cadastro de Seguidores
+- [ ] Criar Model Follower ou utilizar User com papel follower.
+- [ ] Implementar verificação por Laravel Breeze ou Laravel Fortify.
+- [ ] Configurar Mailtrap, Postmark ou Resend em ambiente de testes.
+- [ ] Usar Jobs e Queues para envio de e-mail assíncrono.
+- Testes: Feature Test (Cadastro, Login, Confirmação de E-mail) e Unit Test (Token, Expiração).
 
 | Código    | Nome                       | Descrição                                                                                               | Prioridade |         Status        | Critérios de Aceitação                                              |
 | :-------- | :------------------------- | :------------------------------------------------------------------------------------------------------ | :--------: | :-------------------: | :------------------------------------------------------------------ |
@@ -60,21 +42,3 @@ ID	Funcionalidade	Descrição
 | **RNF002.2** | Performance    | O envio de e-mail de confirmação deve ocorrer em menos de 5 segundos.       |    ⚡ Desempenho   | 🟡 Monitoramento |
 | **RNF002.3** | Usabilidade    | Interface com feedback visual, mensagens claras e responsividade.           |      🎨 UX/UI     |     🟢 Ativo     |
 | **RNF002.4** | Escalabilidade | Sistema deve suportar 10.000 seguidores simultâneos sem degradação.         | ☁️ Infraestrutura |   🔴 Planejado   |
-
-
-💡 Observações Técnicas
-
-Modelos: User (com papel follower) ou Follower dedicado.
-
-Autenticação: Usar Laravel Breeze ou Fortify.
-
-Envio de e-mails: Configurar Mailtrap, Postmark ou Resend (em produção).
-
-Tarefas assíncronas: Implementar via Jobs + Queues.
-
-Testes:
-
-Feature tests: Cadastro, Login, Confirmação de e-mail.
-
-Unit tests: Validação de token e expiração.
-
