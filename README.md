@@ -1,9 +1,9 @@
 <p align="center">
   <a href="https://github.com/RafaelBlum/retro-community" target="_blank" title="Visite Retrô Community">
-    <img src="docs/logo-retrocommunity-dark.png" alt="Sistema Retrô Community" width="340px">
+    <img src="docs/images/logo-retrocommunity-dark.png" alt="Sistema Retrô Community" width="340px">
   </a>
 </p>
-
+![Logo Retrô Community (dark)](docs/images/logo-retrocommunity-dark.png#gh-dark-mode-only)
 <h3 align="center">✨ Plataforma Retro Community ✨</h3>
 <p align="center"><strong>Mais do que uma rede de canais, é um ponto de encontro para apaixonados por jogos, cultura retrô e streaming independente.</strong></p>
 
