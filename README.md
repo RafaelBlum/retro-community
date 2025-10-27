@@ -1,6 +1,6 @@
 <p align="center">
   <a href="#" target="_blank" title="Visite Retro Community">
-    <img src="/public/images/brandname/logo-retrocommunity-dark.png" alt="Sistema Retro Community" width="340px">
+    <img src="https://raw.githubusercontent.com/RafaelBlum/retro-community/main/public/images/brandname/logo-retrocommunity-dark.png" alt="Sistema Retro Community" width="340px">
   </a>
 </p>
 
@@ -67,7 +67,7 @@ Seu objetivo é conectar canais, inscritos e comunidades em um ambiente interati
 
 <p align="center" style="margin-top: 30px">
 	<a href="#"  target="_blank" title="Sistema Retro Community">
-		<img src="/public/docs/mapa.png" alt="diagram class" width="75%">
+		<img src="public/docs/mapa.png" alt="diagram class" width="75%">
 	</a>
 </p>
 
@@ -133,7 +133,7 @@ Os **requisitos não funcionais** especificam **como** o sistema deve ser desenv
 
 <p align="center" style="margin-top: 30px">
 	<a href="#"  target="_blank" title="Sistema Retro Community">
-		<img src="/public/docs/diagram-class-RetroCommunity.png" alt="diagram class" width="60%">
+		<img src="public/docs/diagram-class-RetroCommunity.png" alt="diagram class" width="60%">
 	</a>
 </p>
 
