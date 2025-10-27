@@ -68,7 +68,7 @@ Seu objetivo é conectar canais, inscritos e comunidades em um ambiente interati
 
 <p align="center" style="margin-top: 30px">
 	<a href="#"  target="_blank" title="Sistema Retro Community">
-		<img src="public/docs/mapa.png" alt="diagram class" width="75%">
+		<img src="public/images/docs/mapa.png" alt="diagram class" width="75%">
 	</a>
 </p>
 
@@ -134,7 +134,7 @@ Os **requisitos não funcionais** especificam **como** o sistema deve ser desenv
 
 <p align="center" style="margin-top: 30px">
 	<a href="#"  target="_blank" title="Sistema Retro Community">
-		<img src="public/docs/diagram-class-RetroCommunity.png" alt="diagram class" width="60%">
+		<img src="public/images/docs/diagram-class-RetroCommunity.png" alt="diagram class" width="60%">
 	</a>
 </p>
 
