@@ -1,6 +1,6 @@
 <p align="center">
-  <a href="#" target="_blank" title="Visite Retro Community">
-    <img src="/docs/logo-retrocommunity-dark.png" alt="Sistema Retro Community">
+  <a href="https://github.com/RafaelBlum/retro-community" target="_blank" title="Visite Retrô Community">
+    <img src="docs/logo-retrocommunity-dark.png" alt="Sistema Retrô Community" width="340px">
   </a>
 </p>
 
