@@ -66,10 +66,11 @@ Seu objetivo é conectar canais, inscritos e comunidades em um ambiente interati
   - Controle de acesso por **perfis e permissões**, garantindo segurança e integridade.
 
 
-<p align="center" style="margin-top: 30px">
-	<a href="#"  target="_blank" title="Sistema Retro Community">
-		<img src="public/images/brandname/mapa.png" alt="diagram class" width="75%">
-	</a>
+
+<p align="center">
+  <a href="https://github.com/RafaelBlum/retro-community" target="_blank" title="Visite Retrô Community">
+    <img src="public/images/brandname/mapa.png" alt="Sistema Retrô Community" width="340px">
+  </a>
 </p>
 
 
@@ -132,10 +133,11 @@ Os **requisitos não funcionais** especificam **como** o sistema deve ser desenv
 ## :books: `DER` Diagramação do projeto | Prototipagem
 > As classes do sistema estão claramente definidas em um diagrama de classes **(em analise)**.
 
-<p align="center" style="margin-top: 30px">
-	<a href="#"  target="_blank" title="Sistema Retro Community">
-		<img src="public/images/docs/diagram.png" alt="diagram class" width="60%">
-	</a>
+
+<p align="center">
+  <a href="https://github.com/RafaelBlum/retro-community" target="_blank" title="Visite Retrô Community">
+    <img src="public/images/brandname/diagram.png" alt="Sistema Retrô Community" width="340px">
+  </a>
 </p>
 
 ### 🧱 Observações Gerais
