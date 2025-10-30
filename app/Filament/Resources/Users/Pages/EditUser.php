@@ -60,11 +60,11 @@ class EditUser extends EditRecord
 
         $campingData = $this->data['channel']['camping'] ?? null;
         dd($campingData);
-//
-//        if($campingData && !empty($campingData['title']))
-//        {
-//            dd("camping", $campingData);
-//        }
+
+        if($campingData && !empty($campingData['title']))
+        {
+            dd("camping", $campingData);
+        }
 
         $avatarImagem = $user->avatar;
         $newAvatar = reset($this->data['avatar']);
