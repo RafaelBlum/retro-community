@@ -19,7 +19,7 @@
         "vite": "^7.1.10"
     },
     "dependencies": {
-        "alpinejs": "^3.15.0",
+        "alpinejs": "^3.15.1",
         "js-confetti": "^0.13.1",
         "scrollreveal": "^4.0.9"
     }
