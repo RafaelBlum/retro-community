@@ -4,6 +4,7 @@ namespace App\Filament\Resources\Users\Pages;
 
 use App\Filament\Resources\Users\UserResource;
 use App\Models\User;
+use App\Traits\DetectsIncompleteData;
 use Filament\Actions\DeleteAction;
 use Filament\Notifications\Notification;
 use Filament\Resources\Pages\EditRecord;
@@ -17,6 +18,8 @@ class EditUser extends EditRecord
     protected static ?string $breadcrumb = 'Edição de usuário';
     protected static ?string $title = "Editar";
     protected static ?string $navigationLabel = "Editar Usuário";
+
+    use DetectsIncompleteData;
 
     protected function getHeaderActions(): array
     {
@@ -59,11 +62,18 @@ class EditUser extends EditRecord
         ]);
 
         $campingData = $this->data['channel']['camping'] ?? null;
-        dd($campingData);
+        $status = $this->detectCompletion($campingData);
 
-        if($campingData && !empty($campingData['title']))
+        if($status['empty'])
         {
-            dd("camping", $campingData);
+            dd('vazio');
+
+        }elseif($status['partial'])
+        {
+            dd('imcompleto', $status);
+        }elseif($status['complete'])
+        {
+            dd('completo');
         }
 
         $avatarImagem = $user->avatar;
