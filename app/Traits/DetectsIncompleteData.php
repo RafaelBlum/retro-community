@@ -18,15 +18,6 @@ trait DetectsIncompleteData
             return !is_null($value) && $value !== '';
         });
 
-        dd($filled->count() > 0 && $filled->count() < count($data),
-            $filled->count(),
-            $filled->count() > 0,
-            $filled->count() < count($data),
-            count($data),
-            $filled->count(),
-
-
-        );
 
         return [
             'filled' => $filled->count(),

@@ -4,10 +4,10 @@
 ### 🧩 RF001 — Edição de usuário, Canal e campanha
 🔹 Sub-Requisitos Funcionais
 
-| Código      | Nome                                           | Descrição                                                                                             | Prioridade |         Status        | Critérios de Aceitação                       |
-|:------------|:-----------------------------------------------| :---------------------------------------------------------------------------------------------------- | :--------: | :-------------------: |:---------------------------------------------|
-| **RF001.1** | **Formulário de edição**                       | Imagens devem ser deletada ou substituida ao se editar ou deletar user. |   🔺 Alta  |      🟢 Concluído     | Remover images anteriores, menos a padrão.   |
-| **RF001.2** | **Formulário de edição**   | Campanha não é obrigatória ter, mas se adicionar dados em algum campo, precisa adicionar todos e remover.              |   🔺 Alta  | 🟡 Em desenvolvimento | Se for um campo preenchido, não deve salvar. |
+| Código      | Nome                                           | Descrição                                                                                             | Prioridade |    Status     | Critérios de Aceitação                       |
+|:------------|:-----------------------------------------------| :---------------------------------------------------------------------------------------------------- | :--------: |:-------------:|:---------------------------------------------|
+| **RF001.1** | **Formulário de edição**                       | Imagens devem ser deletada ou substituida ao se editar ou deletar user. |   🔺 Alta  | 🟢 Concluído  | Remover images anteriores, menos a padrão.   |
+| **RF001.2** | **Formulário de edição**   | Campanha não é obrigatória ter, mas se adicionar dados em algum campo, precisa adicionar todos e remover.              |   🔺 Alta  | 🟢 Concluído  | Se for um campo preenchido, não deve salvar. |
 
 ##### RF001.2
 - [ ] setar campos no form ['title', 'content', 'goal_link', 'pix_page_link', 'is_active', 'image'];

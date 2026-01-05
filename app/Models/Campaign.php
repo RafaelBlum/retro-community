@@ -11,6 +11,7 @@ class Campaign extends Model
     use HasFactory;
 
     protected $fillable = [
+        'channel_id',
         'title',
         'content',
         'goal_link',
