@@ -1,8 +1,8 @@
-<p align="center">
-  <a href="#" target="_blank" title="Visite Retro Community">
-    <img src="public/images/brandname/logo-retrocommunity-dark.png" alt="Sistema Retro Community" width="340px">
-  </a>
-</p>
+<div align="center">
+
+![Logo Retrô Community (dark)](public/images/brandname/horizontal-retrocommunity.png#gh-dark-mode-only)
+
+</div>
 
 <h3 align="center">✨ Plataforma Retro Community ✨</h3>
 <p align="center"><strong>Mais do que uma rede de canais, é um ponto de encontro para apaixonados por jogos, cultura retrô e streaming independente.</strong></p>
@@ -65,13 +65,11 @@ Seu objetivo é conectar canais, inscritos e comunidades em um ambiente interati
   - Controle de acesso por **perfis e permissões**, garantindo segurança e integridade.
 
 
-<p align="center" style="margin-top: 30px">
-	<a href="#"  target="_blank" title="Sistema Retro Community">
-		<img src="public/docs/mapa.png" alt="diagram class" width="75%">
-	</a>
-</p>
+<div align="center">
 
+![Logo Retrô Community (dark)](public/images/docs/mapa.png#gh-dark-mode-only)
 
+</div>
 
 ## 🧩 Especificação de Requisitos do Sistema
 
@@ -131,11 +129,12 @@ Os **requisitos não funcionais** especificam **como** o sistema deve ser desenv
 ## :books: `DER` Diagramação do projeto | Prototipagem
 > As classes do sistema estão claramente definidas em um diagrama de classes **(em analise)**.
 
-<p align="center" style="margin-top: 30px">
-	<a href="#"  target="_blank" title="Sistema Retro Community">
-		<img src="public/docs/diagram-class-RetroCommunity.png" alt="diagram class" width="60%">
-	</a>
-</p>
+
+<div align="center">
+
+![Logo Retrô Community (dark)](public/images/docs/diagram.png#gh-dark-mode-only)
+
+</div>
 
 ### 🧱 Observações Gerais
 

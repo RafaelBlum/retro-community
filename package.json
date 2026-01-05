@@ -7,7 +7,7 @@
     },
     "devDependencies": {
         "@tailwindcss/forms": "^0.5.10",
-        "@tailwindcss/postcss": "^4.1.13",
+        "@tailwindcss/postcss": "^4.1.16",
         "@tailwindcss/typography": "^0.5.19",
         "@tailwindcss/vite": "^4.1.13",
         "autoprefixer": "^10.4.21",
@@ -15,11 +15,11 @@
         "laravel-vite-plugin": "^2.0",
         "postcss": "^8.5.6",
         "postcss-nesting": "^13.0.2",
-        "tailwindcss": "^4.1.14",
         "vite": "^7.1.12"
+        "tailwindcss": "^4.1.16",
     },
     "dependencies": {
-        "alpinejs": "^3.15.0",
+        "alpinejs": "^3.15.1",
         "js-confetti": "^0.13.1",
         "scrollreveal": "^4.0.9"
     }

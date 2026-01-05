@@ -13,6 +13,7 @@ class Channel extends Model
     use HasFactory;
 
     protected $fillable = [
+        'user_id',
         'title',
         'slug',
         'name',
@@ -40,8 +41,10 @@ class Channel extends Model
 
     protected static function booted()
     {
-        static::saving(function ($channel){
-            $channel->slug = Str::slug($channel->title) . '-' . now()->format('YmdHis'). $channel->id;
+        static::saving(function ($channel) {
+            if ($channel->isDirty('title') || !$channel->slug) {
+                $channel->slug = Str::slug($channel->title) . '-' . now()->format('YmdHis');
+            }
         });
     }
 }

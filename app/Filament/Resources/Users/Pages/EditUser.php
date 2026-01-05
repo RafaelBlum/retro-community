@@ -4,6 +4,7 @@ namespace App\Filament\Resources\Users\Pages;
 
 use App\Filament\Resources\Users\UserResource;
 use App\Models\User;
+use App\Traits\DetectsIncompleteData;
 use Filament\Actions\DeleteAction;
 use Filament\Notifications\Notification;
 use Filament\Resources\Pages\EditRecord;
@@ -18,110 +19,73 @@ class EditUser extends EditRecord
     protected static ?string $title = "Editar";
     protected static ?string $navigationLabel = "Editar Usuário";
 
+    use DetectsIncompleteData;
+
     protected function getHeaderActions(): array
     {
         return [
             DeleteAction::make()
                 ->label('Deletar usuário')
-                ->action(function(User $record) {
-                    if($record->avatar !== 'default.jpg'){
-                        Storage::delete('public/' . $record->avatar);
-                    }
-                    Notification::make()
-                        ->title('Usuário excluído com sucesso!')
-                        ->success()
-                        ->send();
-
-                    $record->delete();
-                })
+                ->before(function(User $record) {
+                      if($record->avatar && $record->avatar !== 'default.jpg'){
+                           $this->deleteFileFromStorage($record->avatar);
+                      }
+                      if($record->channel?->brand && $record->channel->brand !== 'default-brand.png'){
+                          $this->deleteFileFromStorage($record->channel->brand);
+                      }
+              })
                 ->requiresConfirmation()
-                ->modalHeading('Deletar Usuário')
-                ->modalDescription('Tem certeza de que deseja excluir este usuário? Isto não pode ser desfeito.')
-                ->modalSubmitActionLabel('Sim, deletar!'),
+                ->modalHeading('Deletar Usuário adasdas'),
         ];
     }
 
-    protected function beforeSave()
+    protected function beforeSave(): void
     {
-        $user = User::with('channel.camping')->findOrFail($this->data['id']);
-        $channel = $user->channel;
+        $user = $this->record;
 
-        if (!$user) {
-            abort(404, 'Usuário não encontrado');
+        if (isset($this->data['avatar']) && is_array($this->data['avatar'])) {
+            $newAvatar = reset($this->data['avatar']);
+            $oldAvatar = $user->avatar;
+
+            if ($oldAvatar !== $newAvatar && $oldAvatar !== 'default.jpg') {
+                $this->deleteFileFromStorage($oldAvatar);
+            }
+
         }
 
-        $channel->update([
-            'title' => $this->data['channel']['title'] ?? $channel->title ,
-            'slug' => $this->data['channel']['slug'] ?? $channel->slug ,
-            'description' => $this->data['channel']['description'] ?? $channel->description ,
-            'link' => $this->data['channel']['link'] ?? $channel->link ,
-            'color' => $this->data['channel']['color'] ?? $channel->color ,
-        ]);
+        $brandData = data_get($this->data, 'channel.brand');
 
-        $campingData = $this->data['channel']['camping'] ?? null;
-        dd($campingData);
-//
-//        if($campingData && !empty($campingData['title']))
-//        {
-//            dd("camping", $campingData);
-//        }
+        if ($brandData && is_array($brandData)) {
+            $newBrand = reset($brandData);
+            $oldBrand = $user->channel?->brand;
 
-        $avatarImagem = $user->avatar;
-        $newAvatar = reset($this->data['avatar']);
-
-        if ($avatarImagem !== $newAvatar) {
-            if($avatarImagem != 'default.jpg'){
-                $oldAvatar = 'public/' . $avatarImagem;
-
-                if(Storage::exists($oldAvatar))
-                {
-                    Storage::delete($oldAvatar);
-                }
+            if ($oldBrand !== $newBrand && $oldBrand !== 'default-brand.png') {
+                $this->deleteFileFromStorage($oldBrand);
             }
-            $user->update([
-                'avatar' => $newAvatar
-            ]);
-        }
-
-
-        $brandImage = $user->channel->brand;
-        $newImage = reset($this->data['channel']['brand']);
-
-        if ($newImage !== $brandImage) {
-            if($brandImage != 'default-brand.png'){
-                $oldPath = 'public/' . $brandImage;
-
-                if(Storage::exists($oldPath))
-                {
-                    Storage::delete($oldPath);
-                }
-            }
-            $user->channel->update([
-                'brand' => $newImage,
-            ]);
         }
 
         if (!empty($this->data['password'])) {
             $this->getSavedNotification();
-            return redirect(route('filament.admin.auth.login'));
         }
     }
 
-    protected function afterSave()
+
+
+    private function deleteFileFromStorage(?string $path): void
     {
-        $user = User::with('channel')->findOrFail($this->data['id']);
-        $channel = $user->channel;
-        $user->channel->slug = Str::slug($this->data['channel']['link']) . '-' . $this->data['id'];
-        $user->channel()->save($channel);
+        if ($path && Storage::disk('public')->exists($path)) {
+            Storage::disk('public')->delete($path);
+        }
     }
 
-    /**
-     * modificar os dados de um registro antes de preenchê-lo no formulário
-    */
-    protected function mutateFormDataBeforeFill(array $data): array
+    protected function afterSave(): void
     {
-        return $data;
+        if (!empty($this->data['password'])) {
+            $this->getSavedNotification();
+            $this->redirect(route('filament.admin.auth.login'));
+        }
     }
+
 
     protected function getFormActions(): array
     {

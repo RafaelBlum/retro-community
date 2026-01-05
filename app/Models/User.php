@@ -46,10 +46,10 @@ class User extends Authenticatable implements HasAvatar, FilamentUser
         return $this->hasOne(Channel::class);
     }
 
-    public function channelCamping(): HasOne
-    {
-        return $this->hasOne(Channel::class)->with('camping');
-    }
+//    public function channelCamping(): HasOne
+//    {
+//        return $this->hasOne(Channel::class)->with('camping');
+//    }
 
     protected function casts(): array
     {
@@ -71,7 +71,7 @@ class User extends Authenticatable implements HasAvatar, FilamentUser
         {
             return false;
         }
-        
+
         return true;
 
     }
