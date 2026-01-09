@@ -4,6 +4,8 @@ namespace App\Filament\Clusters;
 
 use App\Models\Post;
 use Filament\Clusters\Cluster;
+use Illuminate\Contracts\Support\Htmlable;
+use Illuminate\Support\Facades\Cache;
 
 class Blog extends Cluster
 {
@@ -12,9 +14,9 @@ class Blog extends Cluster
 
     public static function getNavigationBadge(): ?string
     {
-        $posts = Post::all();
-        return $posts->count();
+        return Cache::remember('blog_posts_count', 60, function (){
+            return (string) Post::count();
+        });
     }
 
-    protected static ?string $navigationBadgeTooltip = "Total de postagens";
-}
+    protected static string | Htmlable | null $navigationBadgeTooltip = "Total de postagens";}

@@ -23,7 +23,7 @@ class UserResource extends Resource
     protected static ?string $modelLabel = "Usuários";
 
     protected static ?int $navigationSort = 1;
-    protected static ?string $navigationBadgeTooltip = 'Total usuários';
+//    protected static ?string $navigationBadgeTooltip = 'Total usuários';
 
     protected static string | \UnitEnum | null $navigationGroup = 'Streamers';
 

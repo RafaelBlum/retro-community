@@ -84,29 +84,29 @@ Para analise e desenvolvimento dos requisitos, terá a **[documentação ágil](
 
 Os **requisitos funcionais** descrevem as **funcionalidades e comportamentos esperados** do sistema — ou seja, o que a plataforma deve fazer.
 
-|  Status  | ID          | Funcionalidade                           | Descrição                                                                                                                                            |
-|----|-------------|------------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------|
-| 🟡 | **RF001**   | **Autenticação e Perfis de Acesso**      | O sistema deve permitir autenticação de usuários (streamers e seguidores), com controle de acesso baseado em perfis e permissões.                    |
-| 🔴 | **RF002**   | **Cadastro de Seguidores**               | O seguidor deve poder realizar um cadastro simples para seguir canais, comentar e receber notificações.                                              |
-| 🟡 | **RF003**   | **Página Inicial (Home)**                | O sistema deve exibir conteúdos principais como postagens em destaque, canais e campanhas ativas.                                                    |
-| 🟡 | **RF004**   | **Gestão de Canais**                     | Cada criador deve poder gerenciar as informações do seu canal (nome, descrição, logo, links, vídeo de apresentação e QR Code do LivePix).            |
-| 🟡 | **RF005**   | **Página de Perfil do Canal**            | O sistema deve disponibilizar uma página personalizada por canal, exibindo informações do criador, campanhas, vídeos, seguidores e canais parceiros. |
-| 🔴 | **RF006**   | **Integração com a API do YouTube**      | O sistema deve integrar-se à API do YouTube para sincronizar dados do canal, como número de inscritos e vídeos.                                      |
-| 🟢 | **RF007**   | **Sistema de Postagens**                 | O sistema deve permitir a criação, edição e exclusão de postagens, com suporte a editor avançado e visualização prévia.                              |
-| 🟡 | **RF008**   | **Categorias e Tags**                    | O sistema deve permitir a organização das postagens por categorias e tags para facilitar a navegação e busca.                                        |
-| 🔴 | **RF009**   | **Comentários em Postagens**             | O sistema deve permitir que seguidores comentem nas postagens, respeitando limitações definidas (ex: 1 comentário por dia).                          |
-| 🔴 | **RF010**   | **Validação de E-mail**                  | O sistema deve enviar e-mails de verificação para confirmar o cadastro de novos usuários (streamers e seguidores).                                   |
-| 🔴 | **RF011**   | **Notificações por E-mail**              | O sistema deve enviar notificações automáticas para seguidores quando um canal que seguem publicar um novo post.                                     |
-| 🟡 | **RF012**   | **Campanhas de Canais**                  | Os criadores devem poder criar e gerenciar campanhas associadas aos seus canais, incluindo imagens, descrições e QR Code de doação.                  |
-| 🟡 | **RF013**   | **Roleta de Sorteio**                    | O sistema deve disponibilizar uma roleta interativa para sorteios, acessível apenas para criadores logados.                                          |
-| 🔴 | **RF014**   | **Ranking de Canais Mais Seguidos**      | O sistema deve exibir um ranking atualizado dos canais com maior número de seguidores na plataforma.                                                 |
-| 🔴 | **RF015**   | **Enquetes Simples**                     | O sistema deve permitir a criação de enquetes básicas para engajamento dos seguidores.                                                               |
-| 🔴 | **RF016**   | **Sistema de Notificações Internas**     | O sistema deve exibir notificações dentro da plataforma (no painel do usuário) relacionadas a novos posts, campanhas ou interações.                  |
-| 🟡 | **RF017**   | **Painel Administrativo (Filament PHP)** | O sistema deve possuir uma área administrativa para controle completo de usuários, posts, campanhas, enquetes, permissões e configurações.           |
-| 🟡 | **RF018**   | **Controle de Permissões e Papéis**      | Deve haver controle granular de acesso, garantindo que apenas usuários autorizados possam alterar ou excluir determinados conteúdos.                 |
-| 🟡 | **RF019**   | **Dashboard Analítica**                  | O painel administrativo deve apresentar dados estatísticos, como número de canais, posts, seguidores e interações.                                   |
-| 🟡 | **RF020**   | **Segurança e Integridade dos Dados**    | O sistema deve assegurar a proteção dos dados de usuários e canais, evitando acessos não autorizados ou manipulações indevidas.                      |
-
+|  Status  | ID        | Funcionalidade                               | Descrição                                                                                                                                            |
+|----|-----------|----------------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------|
+| 🟡 | **RF001** | **Autenticação e Perfis de Acesso**          | O sistema deve permitir autenticação de usuários (streamers e seguidores), com controle de acesso baseado em perfis e permissões.                    |
+| 🔴 | **RF002** | **Cadastro de Seguidores**                   | O seguidor deve poder realizar um cadastro simples para seguir canais, comentar e receber notificações.                                              |
+| 🟡 | **RF003** | **Página Inicial (Home)**                    | O sistema deve exibir conteúdos principais como postagens em destaque, canais e campanhas ativas.                                                    |
+| 🟡 | **RF004** | **Gestão de Canais**                         | Cada criador deve poder gerenciar as informações do seu canal (nome, descrição, logo, links, vídeo de apresentação e QR Code do LivePix).            |
+| 🟡 | **RF005** | **Página de Perfil do Canal**                | O sistema deve disponibilizar uma página personalizada por canal, exibindo informações do criador, campanhas, vídeos, seguidores e canais parceiros. |
+| 🔴 | **RF006** | **Integração com a API do YouTube**          | O sistema deve integrar-se à API do YouTube para sincronizar dados do canal, como número de inscritos e vídeos.                                      |
+| 🟢 | **RF007** | **Sistema de Postagens**                     | O sistema deve permitir a criação, edição e exclusão de postagens, com suporte a editor avançado e visualização prévia.                              |
+| 🟡 | **RF008** | **Categorias e Tags**                        | O sistema deve permitir a organização das postagens por categorias e tags para facilitar a navegação e busca.                                        |
+| 🔴 | **RF009** | **Comentários em Postagens**                 | O sistema deve permitir que seguidores comentem nas postagens, respeitando limitações definidas (ex: 1 comentário por dia).                          |
+| 🔴 | **RF010** | **Validação de E-mail**                      | O sistema deve enviar e-mails de verificação para confirmar o cadastro de novos usuários (streamers e seguidores).                                   |
+| 🔴 | **RF011** | **Notificações por E-mail**                  | O sistema deve enviar notificações automáticas para seguidores quando um canal que seguem publicar um novo post.                                     |
+| 🟡 | **RF012** | **Campanhas de Canais**                      | Os criadores devem poder criar e gerenciar campanhas associadas aos seus canais, incluindo imagens, descrições e QR Code de doação.                  |
+| 🟡 | **RF013** | **Roleta de Sorteio**                        | O sistema deve disponibilizar uma roleta interativa para sorteios, acessível apenas para criadores logados.                                          |
+| 🔴 | **RF014** | **Ranking de Canais Mais Seguidos**          | O sistema deve exibir um ranking atualizado dos canais com maior número de seguidores na plataforma.                                                 |
+| 🔴 | **RF015** | **Enquetes Simples**                         | O sistema deve permitir a criação de enquetes básicas para engajamento dos seguidores.                                                               |
+| 🔴 | **RF016** | **Sistema de Notificações Internas**         | O sistema deve exibir notificações dentro da plataforma (no painel do usuário) relacionadas a novos posts, campanhas ou interações.                  |
+| 🟡 | **RF017** | **Painel Administrativo (Filament PHP)**     | O sistema deve possuir uma área administrativa para controle completo de usuários, posts, campanhas, enquetes, permissões e configurações.           |
+| 🟡 | **RF018** | **Controle de Permissões e Papéis**          | Deve haver controle granular de acesso, garantindo que apenas usuários autorizados possam alterar ou excluir determinados conteúdos.                 |
+| 🟡 | **RF019** | **Dashboard Analítica**                      | O painel administrativo deve apresentar dados estatísticos, como número de canais, posts, seguidores e interações.                                   |
+| 🟡 | **RF020** | **Segurança e Integridade dos Dados**        | O sistema deve assegurar a proteção dos dados de usuários e canais, evitando acessos não autorizados ou manipulações indevidas.                      |
+| 🟡 | **RF021** | **Integração com a API do Retroachivements** | O sistema deve assegurar a proteção dos dados de usuários e canais, evitando acessos não autorizados ou manipulações indevidas.                      |
 ---
 
 ## ⚙️ `RNF` Requisitos Não Funcionais
