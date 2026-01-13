@@ -4,11 +4,11 @@
     <x-partials.navbar-section/>
 
     {{--  HEADER HOME  --}}
-    <section class="bg-white dark:bg-gray-900">
+    <section class="bg-white dark:bg-black text-black dark:text-white">
         <div class="grid max-w-screen-xl px-4 pt-20 pb-8 mx-auto lg:gap-8 xl:gap-0 lg:py-16 lg:grid-cols-12 lg:pt-28">
             <div class="mr-auto place-self-center lg:col-span-7">
-                <h1 class="dir max-w-2xl mb-4 text-4xl font-extrabold leading-none tracking-tight md:text-5xl xl:text-6xl dark:text-white">{{ config('app.name') }}</h1>
-                <p class="max-w-2xl mb-6 font-light text-gray-500 lg:mb-8 md:text-lg lg:text-xl dark:text-gray-400">
+                <h1 class="dir max-w-2xl mb-4 text-4xl font-extrabold leading-none tracking-tight md:text-5xl xl:text-6xl">{{ config('app.name') }}</h1>
+                <p class="max-w-2xl mb-6 font-light text-gray-500 lg:mb-8 md:text-lg lg:text-xl">
                     Bem-vindo à sua comunidade retrô! Aqui você descobrirá todas as informações sobre canais retrô e muito mais.
                     Nosso objetivo é fortalecer e ampliar a visibilidade do incrível trabalho da comunidade retrô.
             </div>
@@ -23,18 +23,21 @@
     </section>
 
     {{--  SECTION CHANNELS  --}}
-    <section class="bg-gray-50 dark:bg-gray-800">
+    <section class="bg-gray-50">
         <div class="py-8 px-4 mx-auto max-w-screen-xl text-center lg:py-16 lg:px-6 up">
             <div class="mx-auto mb-8 max-w-screen-sm lg:mb-16">
-                <h2 class="mb-4 text-4xl tracking-tight font-extrabold text-gray-900 dark:text-white">Canais apoiadores</h2>
-                <p class="font-light text-gray-500 sm:text-xl dark:text-gray-400">Alguns canais parceiros que estão apoiando o projeto Retrô Community.</p>
+                <h2 class="mb-4 text-4xl tracking-tight font-extrabold text-gray-900">Canais apoiadores</h2>
+                <p class="font-light text-gray-500 sm:text-xl">Alguns canais parceiros que estão apoiando o projeto Retrô Community.</p>
+                <div class="bg-white dark:bg-black text-black dark:text-white">
+                    Se este texto estiver branco e o fundo preto, o Dark Mode voltou!
+                </div>
             </div>
             @if($channels->count() != 0)
                     <div class="grid gap-8 lg:gap-16 sm:grid-cols-1 md:grid-cols-{{$channels->count()}} lg:grid-cols-{{$channels->count()}}">
                         @foreach($channels as $channel)
-                            <div class="text-center text-gray-500 dark:text-gray-400">
+                            <div class="text-center text-gray-500">
                                 <img class="mx-auto mb-4 w-36 h-36 rounded-full" src="{{Storage::url($channel->brand)}}" alt="Bonnie Avatar">
-                                <h3 class="mb-1 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
+                                <h3 class="mb-1 text-2xl font-bold tracking-tight text-gray-900">
                                     <a href="{{route('my.channel', ['slug'=> $channel->slug])}}">{{$channel->title}}</a>
                                 </h3>
 
@@ -42,7 +45,7 @@
 
                                 <ul class="flex justify-center mt-4 space-x-4">
                                     <li>
-                                        <a href="{{'https://www.youtube.com/@' . $channel->link}}" class="text-[#ea4c89] hover:text-gray-900 dark:hover:text-white">
+                                        <a href="{{'https://www.youtube.com/@' . $channel->link}}" class="text-[#ea4c89] hover:text-gray-900">
                                             <svg class="h-4 mt-1" viewBox="0 0 132 29" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                                                 <path d="M39.4555 5.17846C38.9976 3.47767 37.6566 2.13667 35.9558 1.67876C32.8486 0.828369 20.4198 0.828369 20.4198 0.828369C20.4198 0.828369 7.99099 0.828369 4.88379 1.64606C3.21571 2.10396 1.842 3.47767 1.38409 5.17846C0.566406 8.28567 0.566406 14.729 0.566406 14.729C0.566406 14.729 0.566406 21.2051 1.38409 24.2796C1.842 25.9804 3.183 27.3214 4.88379 27.7793C8.0237 28.6297 20.4198 28.6297 20.4198 28.6297C20.4198 28.6297 32.8486 28.6297 35.9558 27.812C37.6566 27.3541 38.9976 26.0131 39.4555 24.3123C40.2732 21.2051 40.2732 14.7618 40.2732 14.7618C40.2732 14.7618 40.3059 8.28567 39.4555 5.17846Z" fill="currentColor"/>
                                                 <path d="M16.4609 8.77612V20.6816L26.7966 14.7289L16.4609 8.77612Z" fill="white"/>
@@ -64,8 +67,10 @@
         </div>
     </section>
 
+
+
     {{--  SECTION POSTS  --}}
-    <section class="bg-white dark:bg-gray-900">
+    <section class="bg-white">
         <div class="mx-auto w-full max-w-7xl px-5 py-16 md:px-10 md:py-20">
             <div class="flex flex-col items-center">
                 <x-partials.title-section
@@ -78,19 +83,19 @@
                             <div class="max-w-screen-xl px-4 py-8 mx-auto space-y-12 lg:space-y-20 lg:py-24 lg:px-6 up">
                                 @foreach($posts as $post)
                                     <div class="items-center gap-8 lg:grid lg:grid-cols-2 xl:gap-16">
-                                        <div class="text-gray-500 sm:text-lg dark:text-gray-400">
-                                            <a href="{{route('posts.post', ['slug'=>$post->slug])}}" class="mb-4 text-3xl font-extrabold tracking-tight text-gray-900 dark:text-white">{{$post->title}}</a>
-                                            <p class="mb-8 font-light lg:text-xl text-gray-900 dark:text-white"> {!!$post->content!!} </p>
+                                        <div class="text-gray-500 sm:text-lg">
+                                            <a href="{{route('posts.post', ['slug'=>$post->slug])}}" class="mb-4 text-3xl font-extrabold tracking-tight text-gray-900">{{$post->title}}</a>
+                                            <p class="mb-8 font-light lg:text-xl text-gray-900"> {!!$post->content!!} </p>
 
-                                            <ul role="list" class="pt-8 space-y-5 border-t border-gray-200 my-7 dark:border-gray-700">
+                                            <ul role="list" class="pt-8 space-y-5 border-t border-gray-200 my-7">
                                                 <li class="flex space-x-3">
-                                                    <svg class="flex-shrink-0 w-5 h-5 text-purple-500 dark:text-purple-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
-                                                    <span class="text-base font-medium leading-tight text-gray-900 dark:text-white">{{$post->category->name}}</span>
+                                                    <svg class="flex-shrink-0 w-5 h-5 text-purple-500" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
+                                                    <span class="text-base font-medium leading-tight text-gray-900">{{$post->category->name}}</span>
                                                 </li>
                                             </ul>
 
                                             <div class="flex">
-                                                <img src="{{Storage::url($post->author->channel->brand)}}" alt="" class="mr-4 h-10 w-10 p-[0.1875rem] rounded-full ring-1 ring-slate-900/10 shadow overflow-hidden flex-none dark:bg-indigo-500 dark:highlight-white/20" />
+                                                <img src="{{Storage::url($post->author->channel->brand)}}" alt="" class="mr-4 h-10 w-10 p-[0.1875rem] rounded-full ring-1 ring-slate-900/10 shadow overflow-hidden flex-none" />
                                                 <div class="flex flex-col">
                                                     <h6 class="text-base font-bold">Canal {{$post->author->channel->title}}</h6>
                                                     <div class="flex flex-col lg:flex-row">
@@ -110,12 +115,12 @@
                                 @foreach($posts as $post)
                                     <a href="{{route('posts.post', ['slug'=>$post->slug])}}" class="flex flex-col gap-4 rounded-md border border-solid border-gray-300 px-4 py-8 md:p-0">
                                         <img src="{{Storage::url($post->featured_image_url)}}" alt="" class="h-60 object-cover rounded-tl-md rounded-tr-md" />
-                                        <div class="px-6 py-4 dark:text-white   ">
-                                            <p class="mb-4 text-sm font-semibold uppercase text-fuchsia-700 dark:text-amber-400"> {{$post->category->name}} </p>
-                                            <p class="mb-4 text-xl font-semibold text-gray-900 dark:text-white"> {{$post->title}} </p>
-                                            <p class="mb-6 text-sm text-gray-900 dark:text-white sm:text-base lg:mb-8"> {!!$post->content!!} </p>
+                                        <div class="px-6 py-4   ">
+                                            <p class="mb-4 text-sm font-semibold uppercase text-fuchsia-700"> {{$post->category->name}} </p>
+                                            <p class="mb-4 text-xl font-semibold text-gray-900"> {{$post->title}} </p>
+                                            <p class="mb-6 text-sm text-gray-900 sm:text-base lg:mb-8"> {!!$post->content!!} </p>
                                             <div class="flex">
-                                                <img src="{{Storage::url($post->author->channel->brand)}}" alt="" class="mr-4 h-10 w-10 p-[0.1875rem] rounded-full ring-1 ring-slate-900/10 shadow overflow-hidden flex-none dark:bg-indigo-500 dark:highlight-white/20" />
+                                                <img src="{{Storage::url($post->author->channel->brand)}}" alt="" class="mr-4 h-10 w-10 p-[0.1875rem] rounded-full ring-1 ring-slate-900/10 shadow overflow-hidden flex-none" />
                                                 <div class="flex flex-col">
                                                     <h6 class="text-base font-bold">Canal {{$post->author->channel->title}}</h6>
                                                     <div class="flex flex-col lg:flex-row">
@@ -134,9 +139,9 @@
                                         <a href="{{route('posts.post', ['slug'=>$post->slug])}}">
                                             <img src="{{Storage::url($post->featured_image_url)}}" alt="" class="h-auto object-cover rounded-tl-md rounded-tr-md" />
                                         </a>
-                                        <div class="px-6 py-4 dark:text-white">
+                                        <div class="px-6 py-4">
 
-                                            <a href="{{route('posts.category', ['slug'=> $post->category->slug])}}" class="text-sm font-semibold uppercase text-fuchsia-700 dark:text-amber-400">
+                                            <a href="{{route('posts.category', ['slug'=> $post->category->slug])}}" class="text-sm font-semibold uppercase text-fuchsia-700">
                                                 {{$post->category->name}}
                                             </a>
 
@@ -150,14 +155,14 @@
 
 
                                             <div class="flex">
-                                                <a href="{{'https://www.youtube.com/@' . $post->author->channel->link}}" target="_blank" class="font-light text-white dark:text-white hover:underline">
-                                                    <img src="{{Storage::url($post->author->channel->brand)}}" alt="" class="mr-4 h-10 w-10 p-[0.1875rem] rounded-full ring-1 ring-slate-900/10 shadow overflow-hidden flex-none dark:bg-indigo-500 dark:highlight-white/20" />
+                                                <a href="{{'https://www.youtube.com/@' . $post->author->channel->link}}" target="_blank" class="font-light text-white hover:underline">
+                                                    <img src="{{Storage::url($post->author->channel->brand)}}" alt="" class="mr-4 h-10 w-10 p-[0.1875rem] rounded-full ring-1 ring-slate-900/10 shadow overflow-hidden flex-none" />
                                                 </a>
                                                 <div class="flex flex-col">
-                                                    <a href="{{route('my.channel', ['slug'=> $post->author->channel->slug])}}" class="text-purple-600 dark:text-purple-500 hover:underline">
+                                                    <a href="{{route('my.channel', ['slug'=> $post->author->channel->slug])}}" class="text-purple-600 hover:underline">
                                                         {{$post->author->channel->title}}
                                                     </a>
-                                                    <a href="{{'https://www.youtube.com/@' . $post->author->channel->link}}" target="_blank" class="font-light text-white dark:text-white hover:underline">
+                                                    <a href="{{'https://www.youtube.com/@' . $post->author->channel->link}}" target="_blank" class="font-light text-white hover:underline">
                                                         {{$post->author->channel->name}}
                                                     </a>
                                                 </div>
@@ -179,13 +184,13 @@
                     <div class="max-w-screen-xl px-4 py-8 mx-auto text-center lg:py-24 lg:px-6">
                         <figure class="max-w-screen-md mx-auto">
                             <blockquote>
-                                <p class="text-xl font-medium text-gray-900 md:text-2xl dark:text-white">
+                                <p class="text-xl font-medium text-gray-900 md:text-2xl">
                                     "Desculpe o transtorno, mas estamos trabalhando novas notícias e conteúdos para melhor informar a todos."</p>
                             </blockquote>
                             <figcaption class="flex items-center justify-center mt-6 space-x-3">
                                 <img class="w-6 h-6" src="/images/brandname/favicon-retrocommunity.png" alt="profile picture">
-                                <div class="flex items-center divide-x-2 divide-gray-500 dark:divide-gray-700">
-                                    <div class="pr-3 font-medium text-gray-900 dark:text-white">{{config('app.name')}}</div>
+                                <div class="flex items-center divide-x-2 divide-gray-500">
+                                    <div class="pr-3 font-medium text-gray-900">{{config('app.name')}}</div>
                                 </div>
                             </figcaption>
                         </figure>

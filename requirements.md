@@ -139,6 +139,38 @@ Route::post('/follow/{channel}', [ChannelController::class, 'toggleFollow'])->na
 - Ativar MustVerifyEmail no Model User.
 - Configurar o Middleware de redirecionamento: Se o usuário logado for app, ele não pode digitar /admin na URL (redirecionar para home).
 
+```
+    # 1. Instala o pacote do Breeze
+    composer require laravel/breeze --dev
+    
+    # 2. Instala a stack Blade (que combina com seu projeto)
+    # Escolha "Blade" quando perguntado
+    php artisan breeze:install blade
+    
+    # 3. Sincroniza o banco de dados (Breeze cria tabelas de reset de senha)
+    php artisan migrate
+    
+    # 4. Compila os assets (CSS/JS) para o novo login
+    npm install && npm run dev
+```
+
+##### 1. Recuperando suas Rotas (web.php)
+   - O Breeze limpou seu arquivo para colocar a rota /dashboard dele. Como você tem o Git, você não perdeu nada.
+
+**_O que fazer:_**
+
+- Abra o terminal e use este comando para ver o que mudou: git diff routes/web.php.
+
+- Para restaurar seu arquivo original e apenas adicionar o que o Breeze precisa, você pode usar:
+
+- git checkout routes/web.php (Isso volta o arquivo ao estado antes da instalação).
+
+
+```
+    // Agora, abra o routes/web.php manualmente e adicione apenas esta linha no final do arquivo:
+    require __DIR__.'/auth.php';
+```
+
 ### Fase 3: Funcionalidades Sociais (Interação)
 - Lógica do Follow:
 - Criar uma rota POST /follow/{channel}.

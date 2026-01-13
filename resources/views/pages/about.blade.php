@@ -4,19 +4,19 @@
     <x-partials.navbar-section/>
 
     <main>
-        <section class="bg-white dark:bg-gray-900">
+        <section class="bg-white">
                 <div class="absolute inset-0 pointer-events-none" aria-hidden="true"></div>
                 <div class="mx-auto px-4 max-w-7xl sm:px-6">
                     <div class="pointer-events-none md:pt-[76px] pt-0"></div>
                     <div class="md:py-20 py-12 up">
                         <div class="mx-auto max-w-5xl md:pb-16 pb-10 text-center">
-                            <p class="font-bold dark:text-blue-200 text-base text-secondary tracking-wide uppercase">Sobre nós</p>
-                            <h1 class="font-bold font-heading leading-tighter tracking-tighter mb-4 dark:text-gray-200 md:text-6xl text-5xl">
+                            <p class="font-bold text-base text-secondary tracking-wide uppercase">Sobre nós</p>
+                            <h1 class="font-bold font-heading leading-tighter tracking-tighter mb-4 md:text-6xl text-5xl">
                                 Eleve sua presença online na<br>
-                                <span class="highlight dark:text-white text-accent">Retrô Community</span></h1>
+                                <span class="highlight text-accent">Retrô Community</span></h1>
                             <div class="mx-auto max-w-3xl">
-                                <p class="text-muted text-xl dark:text-slate-300 mb-6">
-                                    Bem-vindo à <a href="{{route('app.home')}}" class="text-purple-600 dark:text-purple-500 hover:underline">Retrô Community</a>,
+                                <p class="text-muted text-xl mb-6">
+                                    Bem-vindo à <a href="{{route('app.home')}}" class="text-purple-600 hover:underline">Retrô Community</a>,
                                     sua comunidade dedicada aos clássicos dos games retrô! A nostalgia dos anos 80 e 90, uma época de ouro que foi incrível para muitas pessoas. Explore nosso blog repleto de
                                     artigos atualizados sobre lives, gameplays, eventos entre outros conteúdos magnificos.
                                 </p>
@@ -31,15 +31,15 @@
                             </div>
                         </div>
 
-                        <div class="mx-auto max-w-5xl md:pb-16 pb-10 mt-16 text-center up text-gray-900 dark:text-white">
+                        <div class="mx-auto max-w-5xl md:pb-16 pb-10 mt-16 text-center up text-gray-900">
                             <p class="mb-8 font-light lg:text-xl">
-                                Na <a href="{{route('app.home')}}" class="text-purple-600 dark:text-purple-500 hover:underline">Retrô Community</a>, celebramos não apenas os jogos que marcaram época, mas também fortalecemos a comunidade através do apoio a nossos parceiros do YouTube. Trabalhamos com criadores apaixonados que compartilham histórias, dicas valiosas e momentos inesquecíveis em vídeos envolventes. Aqui, o bate-papo é tão importante quanto a jogatina, proporcionando uma plataforma onde os fãs de games retrô podem se reunir para discutir seus títulos favoritos, bate-papo, criar amizades, descobrir novos clássicos e viver momentos de felicidade e nosltagia como quando eramos criança jogando entre amigos na sala de casa ou locadoras.
+                                Na <a href="{{route('app.home')}}" class="text-purple-600 hover:underline">Retrô Community</a>, celebramos não apenas os jogos que marcaram época, mas também fortalecemos a comunidade através do apoio a nossos parceiros do YouTube. Trabalhamos com criadores apaixonados que compartilham histórias, dicas valiosas e momentos inesquecíveis em vídeos envolventes. Aqui, o bate-papo é tão importante quanto a jogatina, proporcionando uma plataforma onde os fãs de games retrô podem se reunir para discutir seus títulos favoritos, bate-papo, criar amizades, descobrir novos clássicos e viver momentos de felicidade e nosltagia como quando eramos criança jogando entre amigos na sala de casa ou locadoras.
                             </p>
                             <p class="mb-8 font-light lg:text-xl">
                                 Nosso blog oferece atualizações regulares sobre eventos de gaming, análises de gameplays icônicos e previews de novos lançamentos imperdíveis. Além disso, exploramos a história dos videogames e as tendências atuais da indústria em artigos informativos e cativantes.
                             </p>
                             <p class="mb-8 font-light lg:text-xl">
-                                Prepare-se para uma viagem no tempo através dos mundos pixelizados que capturaram nossa imaginação, enquanto celebramos a magia duradoura dos games retrô. Junte-se à <a href="{{route('app.home')}}" class="text-purple-600 dark:text-purple-500 hover:underline">Retrô Community</a>, onde o passado e o presente se encontram em uma comunidade apaixonada por videogames clássicos.
+                                Prepare-se para uma viagem no tempo através dos mundos pixelizados que capturaram nossa imaginação, enquanto celebramos a magia duradoura dos games retrô. Junte-se à <a href="{{route('app.home')}}" class="text-purple-600 hover:underline">Retrô Community</a>, onde o passado e o presente se encontram em uma comunidade apaixonada por videogames clássicos.
                             </p>
                         </div>
                     </div>
@@ -47,7 +47,7 @@
         </section>
 
         {{-- Estatisticas--}}
-        <section class="relative not-prose scroll-mt-[72px] bg-white dark:bg-gray-900">
+        <section class="relative not-prose scroll-mt-[72px] bg-white">
             <div class="absolute inset-0 pointer-events-none -z-[1]" aria-hidden="true">
                 <div class="absolute inset-0"></div>
             </div>
@@ -56,42 +56,42 @@
                     <h2 class="font-bold font-heading leading-tighter tracking-tighter text-3xl text-heading md:text-4xl">Estatísticas</h2>
                 </div>
                 <div class="flex justify-center -m-4 flex-wrap text-center">
-                    <div class="w-full text-center dark:md:border-slate-500 md:border-r md:last:border-none md:w-1/4 min-w-[220px] p-4 sm:w-1/2">
-                        <div class="font-bold font-heading dark:text-white lg:text-5xl text-[2.6rem] text-primary xl:text-6xl">{{$posts->count()}}</div>
-                        <div class="text-sm dark:text-slate-400 font-medium lg:text-base text-gray-800 tracking-widest uppercase">Postagens</div>
+                    <div class="w-full text-center md:border-r md:last:border-none md:w-1/4 min-w-[220px] p-4 sm:w-1/2">
+                        <div class="font-bold font-heading lg:text-5xl text-[2.6rem] text-primary xl:text-6xl">{{$posts->count()}}</div>
+                        <div class="text-sm font-medium lg:text-base text-gray-800 tracking-widest uppercase">Postagens</div>
                     </div>
-                    <div class="w-full text-center dark:md:border-slate-500 md:border-r md:last:border-none md:w-1/4 min-w-[220px] p-4 sm:w-1/2">
-                        <div class="font-bold font-heading dark:text-white lg:text-5xl text-[2.6rem] text-primary xl:text-6xl">{{$channels->count()}}</div>
-                        <div class="text-sm dark:text-slate-400 font-medium lg:text-base text-gray-800 tracking-widest uppercase">Canais</div>
+                    <div class="w-full text-center md:border-r md:last:border-none md:w-1/4 min-w-[220px] p-4 sm:w-1/2">
+                        <div class="font-bold font-heading lg:text-5xl text-[2.6rem] text-primary xl:text-6xl">{{$channels->count()}}</div>
+                        <div class="text-sm font-medium lg:text-base text-gray-800 tracking-widest uppercase">Canais</div>
                     </div>
-                    <div class="w-full text-center dark:md:border-slate-500 md:border-r md:last:border-none md:w-1/4 min-w-[220px] p-4 sm:w-1/2">
-                        <div class="font-bold font-heading dark:text-white lg:text-5xl text-[2.6rem] text-primary xl:text-6xl">{{$campaings->count()}}</div>
-                        <div class="text-sm dark:text-slate-400 font-medium lg:text-base text-gray-800 tracking-widest uppercase">campanhas</div>
+                    <div class="w-full text-center md:border-r md:last:border-none md:w-1/4 min-w-[220px] p-4 sm:w-1/2">
+                        <div class="font-bold font-heading lg:text-5xl text-[2.6rem] text-primary xl:text-6xl">{{$campaings->count()}}</div>
+                        <div class="text-sm font-medium lg:text-base text-gray-800 tracking-widest uppercase">campanhas</div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <section class="bg-white dark:bg-gray-900">
+        <section class="bg-white">
             <div class="py-8 px-4 mx-auto max-w-screen-xl text-center lg:py-16 lg:px-6 up">
                 <div class="mx-auto mb-8 max-w-screen-sm lg:mb-16">
-                    <h2 class="mb-4 text-4xl tracking-tight font-extrabold text-gray-900 dark:text-white">Canais apoiadores</h2>
-                    <p class="font-light text-gray-500 sm:text-xl dark:text-gray-400">Alguns canais parceiros que estão apoiando o projeto Retrô Community.</p>
+                    <h2 class="mb-4 text-4xl tracking-tight font-extrabold text-gray-900">Canais apoiadores</h2>
+                    <p class="font-light text-gray-500 sm:text-xl">Alguns canais parceiros que estão apoiando o projeto Retrô Community.</p>
                 </div>
 
                 <div class="grid gap-8 lg:gap-16 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
                     @foreach($channels as $channel)
-                        <div class="text-center text-gray-500 dark:text-gray-400">
+                        <div class="text-center text-gray-500">
                             <img class="mx-auto mb-4 w-36 h-36 rounded-full"
                                  src="{{Storage::url($channel->brand)}}" alt="Bonnie Avatar">
-                            <h3 class="mb-1 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
+                            <h3 class="mb-1 text-2xl font-bold tracking-tight text-gray-900">
                                 <a href="#">{{$channel->title}}</a>
                             </h3>
                             <p>{{$channel->name}}</p>
 
                             <ul class="flex justify-center mt-4 space-x-4">
                                 <li>
-                                    <a href="{{'https://www.youtube.com/@' . $channel->link}}" class="text-[#ea4c89] hover:text-gray-900 dark:hover:text-white">
+                                    <a href="{{'https://www.youtube.com/@' . $channel->link}}" class="text-[#ea4c89] hover:text-gray-900">
                                         <svg class="h-4 mt-1" viewBox="0 0 132 29" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                                             <path d="M39.4555 5.17846C38.9976 3.47767 37.6566 2.13667 35.9558 1.67876C32.8486 0.828369 20.4198 0.828369 20.4198 0.828369C20.4198 0.828369 7.99099 0.828369 4.88379 1.64606C3.21571 2.10396 1.842 3.47767 1.38409 5.17846C0.566406 8.28567 0.566406 14.729 0.566406 14.729C0.566406 14.729 0.566406 21.2051 1.38409 24.2796C1.842 25.9804 3.183 27.3214 4.88379 27.7793C8.0237 28.6297 20.4198 28.6297 20.4198 28.6297C20.4198 28.6297 32.8486 28.6297 35.9558 27.812C37.6566 27.3541 38.9976 26.0131 39.4555 24.3123C40.2732 21.2051 40.2732 14.7618 40.2732 14.7618C40.2732 14.7618 40.3059 8.28567 39.4555 5.17846Z" fill="currentColor"/>
                                             <path d="M16.4609 8.77612V20.6816L26.7966 14.7289L16.4609 8.77612Z" fill="white"/>

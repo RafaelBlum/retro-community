@@ -5,10 +5,10 @@
         <title>{{config('app.name')}}</title>
         @vite(['resources/css/app.css', 'resources/js/app.js'])
     </head>
-    <body id="bg-cover" class="font-sans antialiased bg-white dark:bg-slate-800 text-gray-900 dark:text-white bg-no-repeat bg-cover bg-opacity-200" style="overflow: hidden;"> <!-- Adição: Adicionando overflow: hidden para remover a barra de rolagem -->
+    <body id="bg-cover" class="font-sans antialiased bg-white text-gray-900 bg-no-repeat bg-cover bg-opacity-200" style="overflow: hidden;"> <!-- Adição: Adicionando overflow: hidden para remover a barra de rolagem -->
 
 
-    <div class="relative isolate px-6 pt-14 lg:px-8 text-white dark:text-white">
+    <div class="relative isolate px-6 pt-14 lg:px-8 text-white">
 
         <div class="mx-auto max-w-screen-md py-30 sm:py-10 md:py-28 lg:py-28">
 
@@ -34,10 +34,10 @@
                     <ul class="grid gap-8 lg:gap-4 sm:grid-cols-2 md:grid-cols-{{$grid}} lg:grid-cols-{{$grid}}">
                         @foreach($channels as $channel)
                             <li class="flex flex-col items-center gap-1 text-center up">
-                                <a href="{{'https://www.youtube.com/@' . $channel->link}}" target="_blank" class="font-light text-white dark:text-white hover:underline">
-                                    <img src="{{Storage::url($channel->brand)}}" alt="{{$channel->title}}" class="w-28 h-28 p-[0.1875rem] rounded-full ring-1 ring-slate-900/10 shadow overflow-hidden flex-none dark:bg-indigo-500 dark:highlight-white/20" />
+                                <a href="{{'https://www.youtube.com/@' . $channel->link}}" target="_blank" class="font-light text-white hover:underline">
+                                    <img src="{{Storage::url($channel->brand)}}" alt="{{$channel->title}}" class="w-28 h-28 p-[0.1875rem] rounded-full ring-1 ring-slate-900/10 shadow overflow-hidden flex-none" />
                                 </a>
-                                <a href="{{'https://www.youtube.com/@' . $channel->link}}" target="_blank" class="text-sm font-light text-white dark:text-white">
+                                <a href="{{'https://www.youtube.com/@' . $channel->link}}" target="_blank" class="text-sm font-light text-white">
                                     {{$channel->title}}
                                 </a>
                             </li>
@@ -46,7 +46,7 @@
                     </ul>
                 </div>
 
-                <footer class="py-16 text-center text-sm text-black dark:text-white/95">
+                <footer class="py-16 text-center text-sm text-black">
                     Laravel v{{ Illuminate\Foundation\Application::VERSION }} (PHP v{{ PHP_VERSION }})
                 </footer>
             </section>

@@ -6,6 +6,8 @@
 @source '../**/*.blade.php';
 @source '../**/*.js';
 
+
+
 @theme {
     --font-sans: 'Montserrat', sans-serif;
     --color-dark: #1d2144;

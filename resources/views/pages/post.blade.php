@@ -4,11 +4,11 @@
     <x-partials.navbar-section/>
 
     {{--  HEADER HOME  --}}
-    <section class="bg-white dark:bg-gray-900">
+    <section class="bg-white">
         <div class="grid max-w-screen-xl px-4 pt-20 pb-8 mx-auto lg:gap-8 xl:gap-0 lg:py-16 lg:grid-cols-12 lg:pt-28">
             <div class="mr-auto place-self-center lg:col-span-7">
-                <h1 class="dir max-w-2xl mb-4 text-4xl font-extrabold leading-none tracking-tight md:text-5xl xl:text-6xl dark:text-white">{{ config('app.name') }}</h1>
-                <p class="max-w-2xl mb-6 font-light text-gray-500 lg:mb-8 md:text-lg lg:text-xl dark:text-gray-400">
+                <h1 class="dir max-w-2xl mb-4 text-4xl font-extrabold leading-none tracking-tight md:text-5xl xl:text-6xl">{{ config('app.name') }}</h1>
+                <p class="max-w-2xl mb-6 font-light text-gray-500 lg:mb-8 md:text-lg lg:text-xl">
                     Bem-vindo à sua comunidade retrô! Aqui você descobrirá todas as informações sobre canais retrô e muito mais.
                     Nosso objetivo é fortalecer e ampliar a visibilidade do incrível trabalho da comunidade retrô.
             </div>
@@ -22,14 +22,14 @@
         </div>
     </section>
 
-    <section class="bg-gray-50 dark:bg-gray-800">
-        <div class="mx-auto w-full max-w-7xl px-5 py-16 md:px-10 md:py-20 text-gray-900 dark:text-white">
+    <section class="bg-gray-50">
+        <div class="mx-auto w-full max-w-7xl px-5 py-16 md:px-10 md:py-20 text-gray-900">
 
             <div class="mx-auto w-fit p-2">
 
 
                 <div class="space-y-4 up">
-                    <h1 class="text-center text-3xl font-extrabold leading-none tracking-normal text-gray-900 dark:text-white md:text-4xl lg:text-4xl md:tracking-tight">
+                    <h1 class="text-center text-3xl font-extrabold leading-none tracking-normal text-gray-900 md:text-4xl lg:text-4xl md:tracking-tight">
                         {{$post->title}}
                     </h1>
 
@@ -84,8 +84,8 @@
             <div class="px-12 md:px-12 lg:px-28 mx-auto">
                 <div class="flex flex-col lg:flex-row lg:space-x-12">
 
-                    <div class="px-4 lg:px-0 mt-12 text-gray-900 dark:text-white text-lg leading-relaxed w-full lg:w-3/4">
-                        <h2 class="text-2xl md:text-2xl lg:text-2xl md:tracking-tight mb-4 font-semibold text-gray-900 dark:text-white leading-tight">
+                    <div class="px-4 lg:px-0 mt-12 text-gray-900 text-lg leading-relaxed w-full lg:w-3/4">
+                        <h2 class="text-2xl md:text-2xl lg:text-2xl md:tracking-tight mb-4 font-semibold text-gray-900 leading-tight">
                             {{$post->subTitle}}
                         </h2>
 
@@ -101,10 +101,10 @@
                                 <img src="{{Storage::url($post->author->channel->brand)}}"
                                      class="h-10 w-10 rounded-full mr-2 object-cover" />
                                 <div class="flex flex-col text-sm">
-                                    <a href="{{route('my.channel', ['slug'=> $post->author->channel->slug])}}" class="text-purple-600 dark:text-purple-500 hover:underline">
+                                    <a href="{{route('my.channel', ['slug'=> $post->author->channel->slug])}}" class="text-purple-600 hover:underline">
                                         {{$post->author->channel->title}}
                                     </a>
-                                    <a href="{{'https://www.youtube.com/@' . $post->author->channel->link}}" target="_blank" class="font-light text-white dark:text-white hover:underline">
+                                    <a href="{{'https://www.youtube.com/@' . $post->author->channel->link}}" target="_blank" class="font-light text-white hover:underline">
                                         {{$post->author->channel->name}}
                                     </a>
                                 </div>
@@ -129,7 +129,7 @@
 
 
 
-                                <a href="{{route('posts.category', ['slug'=> $post->category->slug])}}" class="text-sm text-center w-full px-3 py-1 mt-8 bg-blue-500 text-gray-100 dark:text-white rounded-md no-underline">
+                                <a href="{{route('posts.category', ['slug'=> $post->category->slug])}}" class="text-sm text-center w-full px-3 py-1 mt-8 bg-blue-500 text-gray-100 rounded-md no-underline">
                                     {{$post->category->name}}
                                 </a>
                             </div>
@@ -138,11 +138,11 @@
 
                 </div>
 
-                <hr class="my-6 border-gray-200 sm:mx-auto dark:border-gray-700 lg:my-8 up">
+                <hr class="my-6 border-gray-200 sm:mx-auto lg:my-8 up">
             </div>
 
             <div class="p-24 flex flex-wrap items-center justify-center up">
-                <a href="{{route('my.channel', ['slug'=> $post->author->channel->slug])}}" class="flex-shrink-0 m-6 relative overflow-hidden bg-teal-500 dark:bg-purple-500 rounded-lg max-w-xs shadow-lg">
+                <a href="{{route('my.channel', ['slug'=> $post->author->channel->slug])}}" class="flex-shrink-0 m-6 relative overflow-hidden bg-teal-500 rounded-lg max-w-xs shadow-lg">
                     <svg class="absolute bottom-0 left-0 mb-8" viewBox="0 0 375 283" fill="none" style="transform: scale(1.5); opacity: 0.1;">
                         <rect x="159.52" y="175" width="152" height="152" rx="8" transform="rotate(-45 159.52 175)" fill="white"/>
                         <rect y="107.48" width="152" height="152" rx="8" transform="rotate(-45 0 107.48)" fill="white"/>

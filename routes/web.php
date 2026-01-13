@@ -35,3 +35,5 @@ Route::get('/login', function () {
 Route::middleware('auth')->group(function (){
     Route::post('/logout', [WebController::class, 'logout'])->name('app.logout');
 });
+
+require __DIR__.'/auth.php';
