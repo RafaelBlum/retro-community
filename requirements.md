@@ -197,6 +197,47 @@ Route::post('/follow/{channel}', [ChannelController::class, 'toggleFollow'])->na
 | **RNF002.4** | Escalabilidade | Sistema deve suportar 10.000 seguidores simultâneos sem degradação.         | ☁️ Infraestrutura |   🔴 Planejado   |
 
 
+# desenvolvido RF002:
+
+- Install Breeze e ajuste de layout e rotas
+
+```
+    # 1. Instala o pacote do Breeze
+    composer require laravel/breeze --dev
+    
+    # 2. Instala a stack Blade (que combina com seu projeto)
+    # Escolha "Blade" quando perguntado
+    php artisan breeze:install blade
+    
+    # 3. Sincroniza o banco de dados (Breeze cria tabelas de reset de senha)
+    php artisan migrate
+    
+    # 4. Compila os assets (CSS/JS) para o novo login
+    npm install && npm run dev
+    
+```
+
+- **`ajuste`** | Configurar o Cadastro de Seguidor (RF002.1)
+  - `app/Http/Controllers/Auth/RegisteredUserController.php`
+
+- **`ajuste`** | Configurar o Cadastro de Seguidor (RF002.1)
+    - `app/Http/Controllers/Auth/AuthenticatedSessionController.php`
+
+- Ajuste no Models
+  - USER `**following(): BelongsToMany**`
+  - CHANNEL **`followers(): BelongsToMany`**
+
+- Cadastros de seguidores e posteriormente todos
+  - `app/Http/Controllers/Auth/RegisteredUserController.php`
+
+- Organizando rotas no web.php
+
+- A Tabela de Seguidores (Migration)
+  - **`php artisan make:migration create_channel_follower_table** `
+
+- O Componente Livewire (O Botão "Seguir")
+    - **`php artisan make:livewire FollowButton`**
+
 
 
 

@@ -9,6 +9,7 @@ use Filament\Models\Contracts\FilamentUser;
 use Filament\Models\Contracts\HasAvatar;
 use Filament\Panel;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -46,10 +47,10 @@ class User extends Authenticatable implements HasAvatar, FilamentUser
         return $this->hasOne(Channel::class);
     }
 
-//    public function channelCamping(): HasOne
-//    {
-//        return $this->hasOne(Channel::class)->with('camping');
-//    }
+    public function following(): BelongsToMany
+    {
+        return $this->belongsToMany(Channel::class, 'channel_follower')->withTimestamps();
+    }
 
     protected function casts(): array
     {

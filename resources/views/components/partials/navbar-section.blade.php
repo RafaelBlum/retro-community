@@ -14,12 +14,21 @@
                 @endguest
                 @auth
                     <ul class="flex flex-col mt-4 font-medium lg:flex-row lg:space-x-8 lg:mt-0">
+                        @if(auth()->user()->channel)
                         <x-partials.link href="{{route('my.channel', ['slug'=> auth()->user()->channel->slug])}}">
                             <div class="flex justify-center text-center items-center">
                                 <img src="{{Storage::url(auth()->user()->channel->brand)}}" class="w-8 h-8 mr-3 rounded-full">
                                 <p class="text-center">{{auth()->user()->channel->name}}</p>
                             </div>
                         </x-partials.link>
+                        @else
+                            {{-- Se for apenas um seguidor, mostra o nome ou link para o perfil dele --}}
+{{--                            <x-partials.link href="{{ route('profile.edit') }}">--}}
+                                <div class="flex justify-center text-center items-center">
+                                    <p class="text-center">Meu Perfil ({{ auth()->user()->name }})</p>
+                                </div>
+{{--                            </x-partials.link>--}}
+                        @endif
                     </ul>
                 @endauth
                 <button data-collapse-toggle="mobile-menu-2" type="button" class="inline-flex items-center p-2 ml-1 text-sm text-gray-500 rounded-lg lg:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200" aria-controls="mobile-menu-2" aria-expanded="false">
@@ -57,9 +66,9 @@
                             <x-partials.link href="{{route('filament.admin.pages.dashboard')}}">
                                 Admin
                             </x-partials.link>
-                            <form method="POST" action="{{route('logout')}}">
+                            <form method="POST" action="{{ route('logout') }}">
                                 @csrf
-                                <x-partials.link href="{{route('logout')}}" onclick="event.preventDefault(); this.closest('form').submit();">
+                                <x-partials.link href="#" onclick="event.preventDefault(); this.closest('form').submit();">
                                     Logout
                                 </x-partials.link>
                             </form>

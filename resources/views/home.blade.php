@@ -22,6 +22,11 @@
         </div>
     </section>
 
+    @guest
+        <a href="{{ route('login') }}" class="text-white">Entrar</a>
+        <a href="{{ route('register') }}" class="bg-primary p-2 rounded">Criar Conta</a>
+    @endguest
+
     {{--  SECTION CHANNELS  --}}
     <section class="bg-white dark:bg-dark text-gray-900 dark:text-white">
         <div class="py-8 px-4 mx-auto max-w-screen-xl text-center lg:py-16 lg:px-6 up">
@@ -36,9 +41,13 @@
                                 <img class="mx-auto mb-4 w-36 h-36 rounded-full" src="{{Storage::url($channel->brand)}}" alt="Bonnie Avatar">
                                 <h3 class="mb-1 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
                                     <a href="{{route('my.channel', ['slug'=> $channel->slug])}}">{{$channel->title}}</a>
+
                                 </h3>
 
                                 <p>{{$channel->name}}</p>
+
+                                {{-- total followiings channel --}}
+                                <p>seguidores {{$channel->followers()->count()}}</p>
 
                                 <ul class="flex justify-center mt-4 space-x-4">
                                     <li>

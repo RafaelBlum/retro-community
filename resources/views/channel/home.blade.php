@@ -36,6 +36,7 @@
         @stack('roleta.js')
     @endauth
 
+    <livewire:follow-button :channel="$channel" />
 
     <section class="bg-gray-50 text-gray-900">
         <div class="mx-auto w-full max-w-7xl px-5 py-16 md:px-10 md:py-20">

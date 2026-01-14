@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Support\Str;
 
@@ -34,6 +35,10 @@ class Channel extends Model
         return $this->hasOne(Campaign::class);
     }
 
+    public function followers(): BelongsToMany
+    {
+        return $this->belongsToMany(User::class, 'channel_follower')->withTimestamps();
+    }
     public function getFilamentAvatarUrl(): ?string
     {
         return asset('storage/' . $this->brand);
