@@ -1,16 +1,16 @@
-<footer class="bg-white">
+<footer class="bg-white dark:bg-dark text-gray-900 dark:text-white">
     <div class="max-w-screen-xl p-4 py-6 mx-auto lg:py-16 md:p-8 lg:p-10">
         <div class="grid grid-cols-2 gap-8 md:grid-cols-3 lg:grid-cols-5">
             <div>
                 <a href="{{route('app.landing')}}" class="flex items-center mb-6">
                     <img src="/images/brandname/favicon-retrocommunity.png" alt="" class="h-4 w-4 mr-2" />
-                    <h3 class="text-sm font-semibold text-gray-900 uppercase">{{config('app.name')}}</h3>
+                    <h3 class="text-sm font-semibold text-gray-900 dark:text-white uppercase">{{config('app.name')}}</h3>
                 </a>
-                <ul class="text-gray-500">
-                    <li class="mb-4">
+                <ul class="text-gray-900 dark:text-white">
+                    <li class="mb-4 text-gray-500">
                         <a href="{{route('app.about')}}" class=" hover:underline">Sobre</a>
                     </li>
-                    <li class="mb-4">
+                    <li class="mb-4 text-gray-500">
                         <a href="{{route('app.policy')}}" class="hover:underline">Política de privacidade</a>
                     </li>
                 </ul>
@@ -19,7 +19,7 @@
 
             </div>
             <div>
-                <h3 class="mb-6 text-sm font-semibold text-gray-900 uppercase">Ajuda</h3>
+                <h3 class="mb-6 text-sm font-semibold text-gray-900 dark:text-white uppercase">Ajuda</h3>
                 <ul class="text-gray-500">
                     <li class="mb-4">
                         <a href="{{route('app.support')}}" class="hover:underline">Suporte</a>
@@ -28,20 +28,20 @@
                 </ul>
             </div>
             <div>
-                <h3 class="mb-6 text-sm font-semibold text-gray-900 uppercase">Blog</h3>
-                <ul class="text-gray-500">
-                    <li class="mb-4">
+                <h3 class="mb-6 text-sm font-semibold text-gray-900 dark:text-white uppercase">Blog</h3>
+                <ul class="text-gray-900 dark:text-white0">
+                    <li class="mb-4 text-gray-500">
                         <a href="{{route('posts.index')}}" class=" hover:underline">Blog</a>
                     </li>
-                    <li class="mb-4">
+                    <li class="mb-4 text-gray-500">
                         <a href="{{route('app.campaings')}}" class="hover:underline">Campanhas</a>
                     </li>
                 </ul>
             </div>
             <div>
-                <h3 class="mb-6 text-sm font-semibold text-gray-900 uppercase">Download</h3>
-                <ul class="text-gray-500">
-                    <li class="mb-4">
+                <h3 class="mb-6 text-sm font-semibold text-gray-900 dark:text-white uppercase">Download</h3>
+                <ul class="text-gray-900 dark:text-white">
+                    <li class="mb-4 text-gray-500">
                         <a href="#" class="hover:underline">Breve</a>
                     </li>
                 </ul>
@@ -51,7 +51,7 @@
         <hr class="my-6 border-gray-200 sm:mx-auto lg:my-8">
 
         <div class="text-center down">
-            <a href="#" class="flex items-center justify-center mb-5 text-2xl font-semibold text-gray-900">
+            <a href="#" class="flex items-center justify-center mb-5 text-2xl font-semibold text-gray-900 dark:text-white">
                 <img src="./images/logo.svg" class="h-6 mr-3 sm:h-9" alt="" />
                 {{config('app.name')}}
             </a>

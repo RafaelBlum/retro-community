@@ -4,11 +4,11 @@
     <x-partials.navbar-section/>
 
     {{--  HEADER HOME  --}}
-    <section class="bg-white dark:bg-black text-black dark:text-white">
+    <section class="bg-white dark:bg-dark text-gray-900 dark:text-white">
         <div class="grid max-w-screen-xl px-4 pt-20 pb-8 mx-auto lg:gap-8 xl:gap-0 lg:py-16 lg:grid-cols-12 lg:pt-28">
             <div class="mr-auto place-self-center lg:col-span-7">
                 <h1 class="dir max-w-2xl mb-4 text-4xl font-extrabold leading-none tracking-tight md:text-5xl xl:text-6xl">{{ config('app.name') }}</h1>
-                <p class="max-w-2xl mb-6 font-light text-gray-500 lg:mb-8 md:text-lg lg:text-xl">
+                <p class="max-w-2xl mb-6 font-light lg:mb-8 md:text-lg lg:text-xl text-gray-500 ">
                     Bem-vindo à sua comunidade retrô! Aqui você descobrirá todas as informações sobre canais retrô e muito mais.
                     Nosso objetivo é fortalecer e ampliar a visibilidade do incrível trabalho da comunidade retrô.
             </div>
@@ -23,21 +23,18 @@
     </section>
 
     {{--  SECTION CHANNELS  --}}
-    <section class="bg-gray-50">
+    <section class="bg-white dark:bg-dark text-gray-900 dark:text-white">
         <div class="py-8 px-4 mx-auto max-w-screen-xl text-center lg:py-16 lg:px-6 up">
             <div class="mx-auto mb-8 max-w-screen-sm lg:mb-16">
-                <h2 class="mb-4 text-4xl tracking-tight font-extrabold text-gray-900">Canais apoiadores</h2>
+                <h2 class="mb-4 text-4xl tracking-tight font-extrabold">Canais apoiadores</h2>
                 <p class="font-light text-gray-500 sm:text-xl">Alguns canais parceiros que estão apoiando o projeto Retrô Community.</p>
-                <div class="bg-white dark:bg-black text-black dark:text-white">
-                    Se este texto estiver branco e o fundo preto, o Dark Mode voltou!
-                </div>
             </div>
             @if($channels->count() != 0)
                     <div class="grid gap-8 lg:gap-16 sm:grid-cols-1 md:grid-cols-{{$channels->count()}} lg:grid-cols-{{$channels->count()}}">
                         @foreach($channels as $channel)
                             <div class="text-center text-gray-500">
                                 <img class="mx-auto mb-4 w-36 h-36 rounded-full" src="{{Storage::url($channel->brand)}}" alt="Bonnie Avatar">
-                                <h3 class="mb-1 text-2xl font-bold tracking-tight text-gray-900">
+                                <h3 class="mb-1 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
                                     <a href="{{route('my.channel', ['slug'=> $channel->slug])}}">{{$channel->title}}</a>
                                 </h3>
 
@@ -70,7 +67,7 @@
 
 
     {{--  SECTION POSTS  --}}
-    <section class="bg-white">
+    <section class="bg-white dark:bg-dark text-gray-900 dark:text-white">
         <div class="mx-auto w-full max-w-7xl px-5 py-16 md:px-10 md:py-20">
             <div class="flex flex-col items-center">
                 <x-partials.title-section
