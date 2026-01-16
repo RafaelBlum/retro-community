@@ -1,4 +1,5 @@
 import './bootstrap';
+import './retro-animation.js';
 import Alpine from 'alpinejs';
 import ScrollReveal from "scrollreveal";
 import JSConfetti from 'js-confetti';
