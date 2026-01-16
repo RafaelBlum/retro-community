@@ -2,6 +2,7 @@
 
 namespace App\Filament\Resources\Users;
 
+use App\Enums\PanelTypeEnum;
 use App\Filament\Resources\Users\Pages\CreateUser;
 use App\Filament\Resources\Users\Pages\EditUser;
 use App\Filament\Resources\Users\Pages\ListUsers;
@@ -48,9 +49,9 @@ class UserResource extends Resource
      */
     public static function getEloquentQuery(): Builder
     {
-        return parent::getModel()::query()
+        return parent::getEloquentQuery()
             ->where('id', '!=', auth()->id())
-            ->where('panel', '!=', 'super-admin');
+            ->where('panel', '!=', PanelTypeEnum::SUPER_ADMIN);
     }
 
     public static function getRelations(): array
@@ -58,6 +59,11 @@ class UserResource extends Resource
         return [
             //
         ];
+    }
+
+    public static function getGloballySearchableAttributes(): array
+    {
+        return ['name', 'email'];
     }
 
     public static function getPages(): array
@@ -76,6 +82,6 @@ class UserResource extends Resource
 
     public static function getNavigationBadgeColor(): string|array|null
     {
-        return static::getModel()::count() > 10 ? 'warning' : 'success';
+        return (int) static::getNavigationBadge() > 10 ? 'warning' : 'success';
     }
 }

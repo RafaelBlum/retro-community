@@ -458,7 +458,7 @@ class UserForm
 
                                         Section::make('Minha Campanha')
                                             ->description('Configure sua campanha de arrecadação')
-                                            ->relationship('camping') // RELAÇÃO DENTRO DE CHANNEL
+                                            ->relationship('campaign') // RELAÇÃO DENTRO DE CHANNEL
                                             ->collapsed() // Pode deixar colapsado para economizar espaço
                                             ->schema([
                                                 TextInput::make('title')
