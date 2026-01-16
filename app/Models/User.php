@@ -31,12 +31,6 @@ class User extends Authenticatable implements HasAvatar, FilamentUser
 
     protected $hidden = ['password', 'remember_token'];
 
-    protected $casts = [
-        'email_verified_at' => 'datetime',
-        'password' => 'hashed',
-        'panel' => PanelTypeEnum::class,
-    ];
-
     public function posts(): HasMany
     {
         return $this->hasMany(Post::class);
@@ -63,18 +57,14 @@ class User extends Authenticatable implements HasAvatar, FilamentUser
 
     public function getFilamentAvatarUrl(): ?string
     {
-        return asset('storage/' . $this->avatar);
+        return $this->avatar ? asset('storage/' . $this->avatar) : null;
     }
 
     public function canAccessPanel(Panel $panel): bool
     {
-        if ($panel->getId() === 'admin')
-        {
-            return in_array($this->panel, [
-                PanelTypeEnum::ADMIN,
-                PanelTypeEnum::SUPER_ADMIN
-            ]);
-        }
-        return true;
+        return in_array($this->panel, [
+            PanelTypeEnum::ADMIN,
+            PanelTypeEnum::SUPER_ADMIN
+        ]);
     }
 }

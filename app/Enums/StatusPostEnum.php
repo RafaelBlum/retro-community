@@ -42,11 +42,11 @@ enum StatusPostEnum: string implements HasLabel, HasColor, HasIcon
     {
         return match($this)
         {
-            self::DRAFT => 'heroicon-o-bell-alert',
-            self::PUBLISHED => 'heroicon-o-bell-alert',
-            self::PENDING_REVIEW => 'heroicon-o-bell-alert',
-            self::SCHEDULED => 'heroicon-o-bell-alert',
-            self::PRIVATE => 'heroicon-o-bell-alert',
+            self::DRAFT => 'heroicon-o-pencil-square',
+            self::PUBLISHED => 'heroicon-o-check-circle',
+            self::PENDING_REVIEW => 'heroicon-o-clock',
+            self::SCHEDULED => 'heroicon-o-calendar',
+            self::PRIVATE => 'heroicon-o-lock-closed',
         };
     }
 }

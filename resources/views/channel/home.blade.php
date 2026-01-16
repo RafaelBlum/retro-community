@@ -36,7 +36,32 @@
         @stack('roleta.js')
     @endauth
 
-    <livewire:follow-button :channel="$channel" />
+    {{--  HEADER HOME  --}}
+    <section class="bg-white">
+        <div class="grid max-w-screen-xl px-4 pt-20 pb-8 mx-auto lg:gap-8 xl:gap-0 lg:py-16 lg:grid-cols-12 lg:pt-28">
+            <div class="flex items-center gap-4">
+                <h1 class="text-3xl font-pixel">{{ $channel->name }}</h1>
+
+                @auth
+                    @if(auth()->user()->channel && auth()->user()->channel->id === $channel->id)
+                        {{-- Se o usuário é o DONO do canal, mostra link de gestão --}}
+                        <a href="{{ route('filament.admin.pages.dashboard') }}" class="bg-gray-700 text-white px-4 py-2 rounded-lg text-sm font-bold hover:bg-gray-600 transition">
+                            Gerenciar Meu Canal
+                        </a>
+                    @else
+                        {{-- Se for outro usuário, mostra o botão de seguir --}}
+                        <livewire:follow-button :channel="$channel" />
+                    @endif
+                @endauth
+
+                @guest
+                    {{-- Se for visitante, mostra o botão de seguir (que levará ao login) --}}
+                    <livewire:follow-button :channel="$channel" />
+                @endguest
+            </div>
+        </div>
+    </section>
+
 
     <section class="bg-gray-50 text-gray-900">
         <div class="mx-auto w-full max-w-7xl px-5 py-16 md:px-10 md:py-20">

@@ -24,8 +24,10 @@ class Category extends Model
 
     protected static function booted()
     {
-        static::saving(function ($category){
-            $category->slug = Str::slug($category->title) . '-' . now()->format('YmdHis'). $category->id;
+        static::saving(function ($category) {
+            if (empty($category->slug) || $category->isDirty('title')) {
+                $category->slug = Str::slug($category->title);
+            }
         });
     }
 }

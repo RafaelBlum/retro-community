@@ -24,13 +24,19 @@ class Channel extends Model
         'color'
     ];
 
+    protected function casts(): array
+    {
+        return [
+            'user_id' => 'integer',
+        ];
+    }
 
     public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);
     }
 
-    public function camping(): HasOne
+    public function campaign(): HasOne
     {
         return $this->hasOne(Campaign::class);
     }
@@ -39,9 +45,10 @@ class Channel extends Model
     {
         return $this->belongsToMany(User::class, 'channel_follower')->withTimestamps();
     }
-    public function getFilamentAvatarUrl(): ?string
+
+    public function getBrandUrl(): ?string
     {
-        return asset('storage/' . $this->brand);
+        return $this->brand ? asset('storage/' . $this->brand) : null;
     }
 
     protected static function booted()

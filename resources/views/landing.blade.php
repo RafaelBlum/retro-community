@@ -40,6 +40,11 @@
                                 <a href="{{'https://www.youtube.com/@' . $channel->link}}" target="_blank" class="text-sm font-light text-white">
                                     {{$channel->title}}
                                 </a>
+
+                                <p class="text-sm font-pixel text-secondary">
+                                    {{ $channel->followers_count }}
+                                    {{ $channel->followers_count == 1 ? 'inscrito' : 'inscritos' }}
+                                </p>
                             </li>
                         @endforeach
 

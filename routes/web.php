@@ -14,7 +14,7 @@ Route::get('/sobre', [WebController::class, 'about'])->name('app.about');
 Route::get('/politicas', [WebController::class, 'policy'])->name('app.policy');
 Route::get('/suporte', [WebController::class, 'support'])->name('app.support');
 Route::get('/campanhas', [CampaingController::class, 'index'])->name('app.campaings');
-Route::get('/Canais', [ChannelController::class, 'channels'])->name('app.channels');
+Route::get('/canais', [ChannelController::class, 'channels'])->name('app.channels');
 Route::get('/teste', [WebController::class, 'templateTest'])->name('app.test');
 
 // 2. POSTS E CATEGORIAS

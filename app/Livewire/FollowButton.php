@@ -16,6 +16,13 @@ class FollowButton extends Component
             return redirect()->route('login');
         }
 
+        $user = auth()->user();
+
+        if($user->channel && $user->channel->id === $this->channel->id)
+        {
+            return;
+        }
+
         auth()->user()->following()->toggle($this->channel->id);
     }
 

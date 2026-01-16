@@ -238,12 +238,18 @@ Route::post('/follow/{channel}', [ChannelController::class, 'toggleFollow'])->na
 - O Componente Livewire (O Botão "Seguir")
     - **`php artisan make:livewire FollowButton`**
 
+- UX de alto nível: O usuário não perde o que está assistindo/lendo para seguir.
+- Código Limpo: A lógica de "seguir" está isolada em um componente só dela.
+- Escalabilidade: Você pode usar esse mesmo botão em qualquer lugar do site (lista de canais, posts, etc).
 
+- desativamos o login do Filament?
+    - `app/Providers/Filament/AdminPanelProvider.php` | **Basta comentar ou remover a linha ->login()**
+o Filament vai perceber que ele é um "visitante", vai ver que o login do painel está desativado e vai redirecionar ele automaticamente para o /login do Breeze.
 
+# **passo que você gostaria de dar?**
 
+- [] **Criar uma seção "Canais que eu sigo" na Home do usuário.**
 
+- [] Começar a planejar a RF003 (aquela da API que você mencionou antes).
 
-
-
-
-
+- [] Estilizar as páginas de Login/Registro do Breeze com o seu CSS Dark/Retro.
