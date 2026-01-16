@@ -30,8 +30,8 @@ class AuthenticatedSessionController extends Controller
             return redirect()->intended(route('filament.admin.pages.dashboard'));
         }
 
-//        return redirect()->route('app.home');
-        return redirect()->intended(route('app.home'));
+        return redirect()->route('app.home');
+//        return redirect()->intended(route('app.home'));
     }
 
     public function destroy(Request $request): RedirectResponse
