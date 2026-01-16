@@ -15,7 +15,7 @@ class ListCampaings extends ListRecords
 
     protected function getHeaderActions(): array
     {
-        $camping = Channel::query()->doesntHave('camping')->get();
+        $camping = Channel::query()->doesntHave('campaign')->get();
 
         if(!$camping->isEmpty()){
             return [
