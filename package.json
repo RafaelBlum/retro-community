@@ -10,7 +10,7 @@
         "@tailwindcss/postcss": "^4.1.16",
         "@tailwindcss/typography": "^0.5.19",
         "@tailwindcss/vite": "^4.1.18",
-        "alpinejs": "^3.4.2",
+        "alpinejs": "^3.15.4",
         "autoprefixer": "^10.4.2",
         "axios": "^1.12.2",
         "laravel-vite-plugin": "^2.0",
@@ -20,7 +20,7 @@
         "vite": "^7.1.12"
     },
     "dependencies": {
-        "alpinejs": "^3.15.1",
+        "alpinejs": "^3.15.4",
         "js-confetti": "^0.13.1",
         "scrollreveal": "^4.0.9"
     }
