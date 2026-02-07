@@ -49,9 +49,21 @@ class UserResource extends Resource
      */
     public static function getEloquentQuery(): Builder
     {
-        return parent::getEloquentQuery()
-            ->where('id', '!=', auth()->id())
-            ->where('panel', '!=', PanelTypeEnum::SUPER_ADMIN);
+        $user = auth()->user();
+        $query = parent::getEloquentQuery()
+            ->where('id', '!=', $user->id);
+
+        // Se NÃO for Super Admin, ele não pode ver ninguém que seja do tipo APP
+        if ($user->panel !== \App\Enums\PanelTypeEnum::SUPER_ADMIN) {
+            $query->where('panel', '!=', \App\Enums\PanelTypeEnum::APP);
+        }
+
+        // Mantém a proteção de não mostrar outros Super Admins para quem não é Super
+        if ($user->panel !== \App\Enums\PanelTypeEnum::SUPER_ADMIN) {
+            $query->where('panel', '!=', \App\Enums\PanelTypeEnum::SUPER_ADMIN);
+        }
+
+        return $query;
     }
 
     public static function getRelations(): array

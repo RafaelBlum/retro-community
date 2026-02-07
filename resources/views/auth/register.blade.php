@@ -1,5 +1,14 @@
 <x-guest-layout>
     <form method="POST" action="{{ route('register') }}">
+        @if ($errors->any())
+            <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
         @csrf
 
         <!-- Name -->
@@ -47,6 +56,10 @@
             <x-primary-button class="w-full justify-center btn-gamer py-3">
                 {{ __('Criar conta seguidor') }}
             </x-primary-button>
+
+            <div class="mt-4 flex justify-center">
+                <div class="cf-turnstile" data-sitekey="SUA_SITE_KEY_AQUI" data-theme="dark"></div>
+            </div>
         </div>
     </form>
 </x-guest-layout>

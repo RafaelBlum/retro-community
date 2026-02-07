@@ -138,6 +138,16 @@
 
                 </div>
 
+                @auth
+                    @if(auth()->user()->hasVerifiedEmail())
+                        <button wire:click="like" class="text-indigo-500">❤️ Curtir</button>
+                    @else
+                        <a href="{{ route('verification.notice') }}" class="text-gray-400">⚠️ Verifique seu e-mail para curtir</a>
+                    @endif
+                @else
+                    <a href="{{ route('login') }}" class="text-gray-400">🔒 Faça login para interagir</a>
+                @endauth
+
                 <hr class="my-6 border-gray-200 sm:mx-auto lg:my-8 up">
             </div>
 

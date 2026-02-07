@@ -25,13 +25,23 @@ class AuthenticatedSessionController extends Controller
 
         $user = $request->user();
 
+        if(!$user->hasVerifiedEmail())
+        {
+            Auth::guard('web')->logout();
+            $request->session()->invalidate();
+            $request->session()->regenerateToken();
+
+            return redirect()->route('login')
+                ->withErrors(['email'=> 'Você precisa verificar seu e-mail antes de acessar a plataforma.'])
+                ->withInput();
+        }
+
         if($user->panel === PanelTypeEnum::ADMIN || $user->panel === PanelTypeEnum::SUPER_ADMIN)
         {
             return redirect()->intended(route('filament.admin.pages.dashboard'));
         }
 
         return redirect()->route('app.home');
-//        return redirect()->intended(route('app.home'));
     }
 
     public function destroy(Request $request): RedirectResponse

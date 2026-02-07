@@ -7,15 +7,17 @@
     <title>{{ config('app.name', 'Laravel') }}</title>
     <link rel="preconnect" href="https://fonts.bunny.net">
     <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
+    <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 <body
     x-data="{
             isNight: new Date().getHours() >= 18 || new Date().getHours() < 6
         }"
-    :class="isNight ? 'bg-[#0f172a]' : 'bg-[#38bdf8]'"
+    :class="isNight ? 'bg-[#0f172a]' : 'bg-[#0f172a]'"
     class="auth-page-gamer min-h-screen flex items-center justify-center font-sans antialiased overflow-hidden transition-colors duration-1000"
 >
+      {{--Alterada cor do dia #38bdf8--}}
 <div class="absolute top-20 right-20 z-50 cursor-pointer transition-all duration-1000"
      @click="isNight = !isNight"
      :class="isNight ? 'translate-y-0 opacity-100 scale-110' : 'translate-y-20 opacity-0 scale-50 pointer-events-none'">

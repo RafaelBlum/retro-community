@@ -1,5 +1,5 @@
 ### 🧩 RF002 — Cadastro de Seguidores
-
+    - Branch: RF002.1
 
 | Código    | Nome                       | Descrição                                                                                               | Prioridade |         Status        | Critérios de Aceitação                                              |
 | :-------- | :------------------------- | :------------------------------------------------------------------------------------------------------ | :--------: | :-------------------: | :------------------------------------------------------------------ |
@@ -18,69 +18,43 @@
 
 # Estratégia Técnica de Implementação (RF002)
 
-### RF002.1 — Formulário de Cadastro
+### RF002.1 — Formulário de Cadastro Inscrito
 - Ação: Instalar o Laravel Breeze (versão Blade ou Livewire).
 - Técnica: O Breeze já traz a validação de unique:users,email e o Hash::make para a senha.
 - Personalização: Alterar a RegisterUserController para injetar o type => 'follower' automaticamente no momento da criação do usuário.
-- **`Login`**: O seguidor loga pelas telas do Breeze. Se um Admin tentar logar pela tela do seguidor, ele também consegue (já que é a mesma tabela), mas o redirecionamento pós-login deve ser inteligente:
+- **`Login`**: O inscrito loga pelas telas do Breeze. Se um Admin tentar logar, o redirecionamento leva a area admin (filament):
     - **`APP`** -> redireciona para **`home`**.
     - **`ADMIN/SUPER_ADMIN`** -> redireciona para **`/admin`**.
 
-##### Separação de Rotas (routes/web.php)
+###### Rotas (routes/web.php) Rotas de Autenticação (Breeze instalará estas)
 - Divida seu arquivo de rotas em grupos claros:
 
 ```
-// Grupo 1: Público (Qualquer um vê)
-Route::get('/', [LandingController::class, 'index']);
-Route::get('/canal/{slug}', [ChannelController::class, 'show']);
-
-// Grupo 2: Autenticação do Seguidor (Breeze)
-// O Breeze criará rotas como /login e /register automaticamente
-
-// Grupo 3: Interação do Seguidor (Logado e Verificado)
-Route::middleware(['auth', 'verified'])->group(function () {
-Route::post('/follow/{channel}', [FollowController::class, 'store']);
-Route::post('/comment', [CommentController::class, 'store']);
-});
+    // Grupo 1: Público (Qualquer um vê)
+    Route::get('/', [LandingController::class, 'index']);
+    Route::get('/canal/{slug}', [ChannelController::class, 'show']);
+    
+    // Isso define as rotas: login, register, logout, password.request, etc.
+    require __DIR__.'/auth.php';
+    
+    // Grupo 3: Interação do Seguidor (Logado e Verificado)
+    Route::middleware(['auth', 'verified'])->group(function () {
+        Route::post('/follow/{channel}', [FollowController::class, 'store']);
+        Route::post('/comment', [CommentController::class, 'store']);
+        Route::post('/follow/{channel}', [ChannelController::class, 'toggleFollow'])->name('channel.follow');
+        // Futuros comentários ou interações...
+    });
 ```
 
-- Ajuste de Rotas (web.php)
-- Vamos organizar suas rotas para que o "Seguir" e "Notificações" fiquem protegidos:
-
-
-```// Rotas de Autenticação (Breeze instalará estas)
-// Ex: /register, /login, /forgot-password
-
-// Rotas Interativas (Somente logados e verificados)
-Route::middleware(['auth', 'verified'])->group(function () {
-// RF002.4 - Seguir Canal
-Route::post('/follow/{channel}', [ChannelController::class, 'toggleFollow'])->name('channel.follow');
-
-    // Futuros comentários ou interações
-});```
-
-- No seu AdminPanelProvider.php (configuração do Filament), você deve garantir que um "Seguidor" não consiga entrar no /admin:
-
-```php
-    // No seu User.php, adicione um método de verificação
-    public function canAccessPanel(Panel $panel): bool
-    {
-        if ($panel->getId() === 'admin') {
-            return $this->type === self::TYPE_CREATOR || $this->type === self::TYPE_ADMIN;
-        }
-        return true;
-    }
-```
-
-
-
-### RF002.2 — Validação de E-mail
+### RF002.2 — Validação de E-mail (Documentação: https://laravel.com/docs/12.x/verification)
 - Ação: Implementar a interface **`MustVerifyEmail.`** no Model User.
 - Técnica: Habilitar o middleware ['auth', 'verified'] nas rotas protegidas.
 - Configuração: No .env, configurar o Mailtrap para capturar os e-mails de teste e verificar o layout da mensagem em AuthServiceProvider.
 - O Laravel já traz toda a lógica de tokens e expiração pronta. Você só precisa implementar a interface no seu Model **User** e proteger as rotas com o middleware **verified**. Isso economiza dias de trabalho e é mais seguro.
 
-
+## ANALISAR
+- Se logou mesmo NÃO VERIFICADO
+- ajustar mensagens de erro no login, cadastro
 
 
 ### RF002.3 — Login e Sessão de Seguidor
@@ -248,8 +222,12 @@ o Filament vai perceber que ele é um "visitante", vai ver que o login do painel
 
 # **passo que você gostaria de dar?**
 
-- [] **Criar uma seção "Canais que eu sigo" na Home do usuário.**
-
-- [] Começar a planejar a RF003 (aquela da API que você mencionou antes).
-
-- [] Estilizar as páginas de Login/Registro do Breeze com o seu CSS Dark/Retro.
+- [🟡] **Criar uma seção "Canais que eu sigo" na Home do usuário.**
+- [🟡] Começar a planejar a RF003 (aquela da API que você mencionou antes).
+- [🟢] Estilizar as páginas de Login/Registro do Breeze com o seu CSS Dark/Retro.
+- [🟡] Ajustar o getTabs da ListUser
+- [🟡] Ver niveis dos usuário e mudar nomes PanelType (MUDAR: ADMIN = Streamer cor verde | APP = Seguidor cor laranja|)
+- [🟡] Listagem de seguidores em separado
+- [🟡] seguidor o form é simples e edit simples e deleção e somente super-admin visualiza lista
+- [  ] Perfil master user logado ADMIN/FILAMENT
+- [  ] Perfil seguidor web
