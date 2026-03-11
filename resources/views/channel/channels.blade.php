@@ -4,19 +4,19 @@
     <x-partials.navbar-section/>
 
     <main>
-        <section class="bg-white dark:bg-gray-900">
+        <section class="bg-white">
                 <div class="absolute inset-0 pointer-events-none" aria-hidden="true"></div>
                 <div class="mx-auto px-4 max-w-7xl sm:px-6">
                     <div class="pointer-events-none md:pt-[76px] pt-0"></div>
                     <div class="md:py-20 py-12 up">
                         <div class="mx-auto max-w-5xl md:pb-16 pb-10 text-center">
-                            <p class="font-bold dark:text-blue-200 text-base text-secondary tracking-wide uppercase">Canais Parceiros</p>
-                            <h1 class="font-bold font-heading leading-tighter tracking-tighter mb-4 dark:text-gray-200 md:text-6xl text-5xl">
+                            <p class="font-bold text-base text-secondary tracking-wide uppercase">Canais Parceiros</p>
+                            <h1 class="font-bold font-heading leading-tighter tracking-tighter mb-4 md:text-6xl text-5xl">
                                 Streamers parceiros da <br>
-                                <span class="highlight dark:text-white text-accent">Retrô Community</span></h1>
+                                <span class="highlight text-accent">Retrô Community</span></h1>
                             <div class="mx-auto max-w-3xl">
-                                <p class="text-muted text-xl dark:text-slate-300 mb-6">
-                                    Bem-vindo à <a href="{{route('app.home')}}" class="text-purple-600 dark:text-purple-500 hover:underline">Retrô Community</a>,
+                                <p class="text-muted text-xl mb-6">
+                                    Bem-vindo à <a href="{{route('app.home')}}" class="text-purple-600 hover:underline">Retrô Community</a>,
                                     sua comunidade dedicada aos clássicos dos games retrô! A nostalgia dos anos 80 e 90, uma época de ouro que foi incrível para muitas pessoas.
                                     Explore nosso blog repleto de artigos atualizados sobre lives, gameplays, eventos entre outros conteúdos magnificos.
                                 </p>
@@ -27,26 +27,26 @@
                 </div>
         </section>
 
-        <section class="bg-white dark:bg-gray-900">
+        <section class="bg-white">
             <div class="py-8 px-4 mx-auto max-w-screen-xl text-center lg:py-16 lg:px-6 up">
                 <div class="mx-auto mb-8 max-w-screen-sm lg:mb-16">
-                    <h2 class="mb-4 text-4xl tracking-tight font-extrabold text-gray-900 dark:text-white">Canais apoiadores</h2>
-                    <p class="font-light text-gray-500 sm:text-xl dark:text-gray-400">Vejam todos canais que estão na comunidade</p>
+                    <h2 class="mb-4 text-4xl tracking-tight font-extrabold text-gray-900">Canais apoiadores</h2>
+                    <p class="font-light text-gray-500 sm:text-xl">Vejam todos canais que estão na comunidade</p>
                 </div>
 
                 <div class="grid gap-8 lg:gap-16 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
                     @foreach($channels as $channel)
-                        <div class="text-center text-gray-500 dark:text-gray-400">
+                        <div class="text-center text-gray-500">
                             <img class="mx-auto mb-4 w-36 h-36 rounded-full"
                                  src="{{Storage::url($channel->brand)}}" alt="Bonnie Avatar">
-                            <h3 class="mb-1 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
+                            <h3 class="mb-1 text-2xl font-bold tracking-tight text-gray-900">
                                 <a href="#">{{$channel->title}}</a>
                             </h3>
                             <p>{{$channel->name}}</p>
 
                             <ul class="flex justify-center mt-4 space-x-4">
                                 <li>
-                                    <a href="{{'https://www.youtube.com/@' . $channel->link}}" class="text-[#ea4c89] hover:text-gray-900 dark:hover:text-white">
+                                    <a href="{{'https://www.youtube.com/@' . $channel->link}}" class="text-[#ea4c89] hover:text-gray-900">
                                         <svg class="h-4 mt-1" viewBox="0 0 132 29" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                                             <path d="M39.4555 5.17846C38.9976 3.47767 37.6566 2.13667 35.9558 1.67876C32.8486 0.828369 20.4198 0.828369 20.4198 0.828369C20.4198 0.828369 7.99099 0.828369 4.88379 1.64606C3.21571 2.10396 1.842 3.47767 1.38409 5.17846C0.566406 8.28567 0.566406 14.729 0.566406 14.729C0.566406 14.729 0.566406 21.2051 1.38409 24.2796C1.842 25.9804 3.183 27.3214 4.88379 27.7793C8.0237 28.6297 20.4198 28.6297 20.4198 28.6297C20.4198 28.6297 32.8486 28.6297 35.9558 27.812C37.6566 27.3541 38.9976 26.0131 39.4555 24.3123C40.2732 21.2051 40.2732 14.7618 40.2732 14.7618C40.2732 14.7618 40.3059 8.28567 39.4555 5.17846Z" fill="currentColor"/>
                                             <path d="M16.4609 8.77612V20.6816L26.7966 14.7289L16.4609 8.77612Z" fill="white"/>

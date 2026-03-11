@@ -139,6 +139,38 @@ Route::post('/follow/{channel}', [ChannelController::class, 'toggleFollow'])->na
 - Ativar MustVerifyEmail no Model User.
 - Configurar o Middleware de redirecionamento: Se o usuário logado for app, ele não pode digitar /admin na URL (redirecionar para home).
 
+```
+    # 1. Instala o pacote do Breeze
+    composer require laravel/breeze --dev
+    
+    # 2. Instala a stack Blade (que combina com seu projeto)
+    # Escolha "Blade" quando perguntado
+    php artisan breeze:install blade
+    
+    # 3. Sincroniza o banco de dados (Breeze cria tabelas de reset de senha)
+    php artisan migrate
+    
+    # 4. Compila os assets (CSS/JS) para o novo login
+    npm install && npm run dev
+```
+
+##### 1. Recuperando suas Rotas (web.php)
+   - O Breeze limpou seu arquivo para colocar a rota /dashboard dele. Como você tem o Git, você não perdeu nada.
+
+**_O que fazer:_**
+
+- Abra o terminal e use este comando para ver o que mudou: git diff routes/web.php.
+
+- Para restaurar seu arquivo original e apenas adicionar o que o Breeze precisa, você pode usar:
+
+- git checkout routes/web.php (Isso volta o arquivo ao estado antes da instalação).
+
+
+```
+    // Agora, abra o routes/web.php manualmente e adicione apenas esta linha no final do arquivo:
+    require __DIR__.'/auth.php';
+```
+
 ### Fase 3: Funcionalidades Sociais (Interação)
 - Lógica do Follow:
 - Criar uma rota POST /follow/{channel}.
@@ -165,12 +197,59 @@ Route::post('/follow/{channel}', [ChannelController::class, 'toggleFollow'])->na
 | **RNF002.4** | Escalabilidade | Sistema deve suportar 10.000 seguidores simultâneos sem degradação.         | ☁️ Infraestrutura |   🔴 Planejado   |
 
 
+# desenvolvido RF002:
 
+- Install Breeze e ajuste de layout e rotas
 
+```
+    # 1. Instala o pacote do Breeze
+    composer require laravel/breeze --dev
+    
+    # 2. Instala a stack Blade (que combina com seu projeto)
+    # Escolha "Blade" quando perguntado
+    php artisan breeze:install blade
+    
+    # 3. Sincroniza o banco de dados (Breeze cria tabelas de reset de senha)
+    php artisan migrate
+    
+    # 4. Compila os assets (CSS/JS) para o novo login
+    npm install && npm run dev
+    
+```
 
+- **`ajuste`** | Configurar o Cadastro de Seguidor (RF002.1)
+  - `app/Http/Controllers/Auth/RegisteredUserController.php`
 
+- **`ajuste`** | Configurar o Cadastro de Seguidor (RF002.1)
+    - `app/Http/Controllers/Auth/AuthenticatedSessionController.php`
 
+- Ajuste no Models
+  - USER `**following(): BelongsToMany**`
+  - CHANNEL **`followers(): BelongsToMany`**
 
+- Cadastros de seguidores e posteriormente todos
+  - `app/Http/Controllers/Auth/RegisteredUserController.php`
 
+- Organizando rotas no web.php
 
+- A Tabela de Seguidores (Migration)
+  - **`php artisan make:migration create_channel_follower_table** `
 
+- O Componente Livewire (O Botão "Seguir")
+    - **`php artisan make:livewire FollowButton`**
+
+- UX de alto nível: O usuário não perde o que está assistindo/lendo para seguir.
+- Código Limpo: A lógica de "seguir" está isolada em um componente só dela.
+- Escalabilidade: Você pode usar esse mesmo botão em qualquer lugar do site (lista de canais, posts, etc).
+
+- desativamos o login do Filament?
+    - `app/Providers/Filament/AdminPanelProvider.php` | **Basta comentar ou remover a linha ->login()**
+o Filament vai perceber que ele é um "visitante", vai ver que o login do painel está desativado e vai redirecionar ele automaticamente para o /login do Breeze.
+
+# **passo que você gostaria de dar?**
+
+- [] **Criar uma seção "Canais que eu sigo" na Home do usuário.**
+
+- [] Começar a planejar a RF003 (aquela da API que você mencionou antes).
+
+- [] Estilizar as páginas de Login/Registro do Breeze com o seu CSS Dark/Retro.

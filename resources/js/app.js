@@ -1,6 +1,11 @@
 import './bootstrap';
+import Alpine from 'alpinejs';
 import ScrollReveal from "scrollreveal";
 import JSConfetti from 'js-confetti';
+
+
+window.Alpine = Alpine;
+Alpine.start();
 
 const sr = ScrollReveal({
     origin: 'top',

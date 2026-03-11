@@ -9,6 +9,7 @@ use Filament\Models\Contracts\FilamentUser;
 use Filament\Models\Contracts\HasAvatar;
 use Filament\Panel;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -30,12 +31,6 @@ class User extends Authenticatable implements HasAvatar, FilamentUser
 
     protected $hidden = ['password', 'remember_token'];
 
-    protected $casts = [
-        'email_verified_at' => 'datetime',
-        'password' => 'hashed',
-        'panel' => PanelTypeEnum::class,
-    ];
-
     public function posts(): HasMany
     {
         return $this->hasMany(Post::class);
@@ -46,10 +41,10 @@ class User extends Authenticatable implements HasAvatar, FilamentUser
         return $this->hasOne(Channel::class);
     }
 
-//    public function channelCamping(): HasOne
-//    {
-//        return $this->hasOne(Channel::class)->with('camping');
-//    }
+    public function following(): BelongsToMany
+    {
+        return $this->belongsToMany(Channel::class, 'channel_follower')->withTimestamps();
+    }
 
     protected function casts(): array
     {
@@ -62,17 +57,14 @@ class User extends Authenticatable implements HasAvatar, FilamentUser
 
     public function getFilamentAvatarUrl(): ?string
     {
-        return asset('storage/' . $this->avatar);
+        return $this->avatar ? asset('storage/' . $this->avatar) : null;
     }
 
     public function canAccessPanel(Panel $panel): bool
     {
-        if ($this->panel === PanelTypeEnum::APP && $panel->getId() === PanelTypeEnum::ADMIN->value)
-        {
-            return false;
-        }
-
-        return true;
-
+        return in_array($this->panel, [
+            PanelTypeEnum::ADMIN,
+            PanelTypeEnum::SUPER_ADMIN
+        ]);
     }
 }

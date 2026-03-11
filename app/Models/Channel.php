@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Support\Str;
 
@@ -23,20 +24,31 @@ class Channel extends Model
         'color'
     ];
 
+    protected function casts(): array
+    {
+        return [
+            'user_id' => 'integer',
+        ];
+    }
 
     public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);
     }
 
-    public function camping(): HasOne
+    public function campaign(): HasOne
     {
         return $this->hasOne(Campaign::class);
     }
 
-    public function getFilamentAvatarUrl(): ?string
+    public function followers(): BelongsToMany
     {
-        return asset('storage/' . $this->brand);
+        return $this->belongsToMany(User::class, 'channel_follower')->withTimestamps();
+    }
+
+    public function getBrandUrl(): ?string
+    {
+        return $this->brand ? asset('storage/' . $this->brand) : null;
     }
 
     protected static function booted()
