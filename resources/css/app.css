@@ -16,7 +16,7 @@
 /*Dark mode*/
 @custom-variant dark (&:where(.dark, .dark *));
 
-#bg-cover{
+#bg-cover {
     @apply h-screen pb-14 bg-right bg-cover;
     background-image: url('/public/images/landing/background2.jpg');
 }
@@ -28,9 +28,11 @@
     0% {
         transform: translateY(0);
     }
+
     50% {
         transform: translateY(-50px);
     }
+
     100% {
         transform: translateY(0);
     }
@@ -40,12 +42,15 @@
     0% {
         transform: translateY(0);
     }
+
     40% {
         transform: translateY(-40px);
     }
+
     70% {
         transform: translateY(-70px);
     }
+
     100% {
         transform: translateY(0);
     }
@@ -60,23 +65,27 @@
 }
 
 .filament-modal {
-    width: 100% !important; /* Largura completa em telas pequenas */
+    width: 100% !important;
+    /* Largura completa em telas pequenas */
 }
 
 @media (min-width: 640px) {
     .filament-modal {
-        max-width: 448px; /* Largura máxima em telas pequenas */
+        max-width: 448px;
+        /* Largura máxima em telas pequenas */
     }
 }
 
 @media (min-width: 768px) {
     .filament-modal {
-        max-width: 512px; /* Largura máxima para telas médias */
+        max-width: 512px;
+        /* Largura máxima para telas médias */
     }
 }
 
 @media (min-width: 1024px) {
     .filament-modal {
-        max-width: 576px; /* Largura máxima para telas grandes */
+        max-width: 576px;
+        /* Largura máxima para telas grandes */
     }
 }
