@@ -45,7 +45,7 @@ class AdminPanelProvider extends PanelProvider
             ->brandName(config('app.name'))
             ->brandLogo(fn () => view('filament.logo'))
             ->favicon(asset('images/brandname/favicon-retrocommunity.png'))
-            ->login()
+//            ->login()
             ->sidebarCollapsibleOnDesktop()
             ->colors([
                 'primary' => Color::Amber,

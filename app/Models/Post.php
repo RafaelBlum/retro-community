@@ -14,6 +14,8 @@ class Post extends Model
     use HasFactory;
 
     protected $fillable = [
+        'user_id',
+        'category_id',
         'title',
         'slug',
         'subTitle',
@@ -26,15 +28,19 @@ class Post extends Model
         'featured_image_url'
     ];
 
-    protected $casts = [
-        'published_at' => 'date',
-        'scheduled_for' => 'date',
-        'status' => StatusPostEnum::class
-    ];
+    protected function casts(): array
+    {
+        return [
+            'published_at' => 'datetime',
+            'scheduled_for' => 'datetime',
+            'status' => StatusPostEnum::class,
+            'views' => 'integer',
+        ];
+    }
 
     public function author(): BelongsTo
     {
-        return $this->belongsTo(User::class, 'user_id', 'id');
+        return $this->belongsTo(User::class, 'user_id');
     }
 
     public function category(): BelongsTo
@@ -45,7 +51,10 @@ class Post extends Model
     protected static function booted()
     {
         static::saving(function ($post){
-            $post->slug = Str::slug($post->title) . '-' . now()->format('YmdHis'). $post->id;
+            if(empty($post->slug) || $post->isDirty('title'))
+            {
+                $post->slug = Str::slug($post->title) . '-' . now()->format('YmdHis');
+            }
         });
     }
 }

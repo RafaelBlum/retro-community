@@ -141,7 +141,7 @@ class ChannelResource extends Resource
                 IconColumn::make('campaign_exists')
                     ->label('Campanha')
                     ->boolean()
-                    ->getStateUsing(fn (Channel $record) => $record->camping()->exists())
+                    ->getStateUsing(fn (Channel $record) => $record->campaign()->exists())
                     ->trueIcon('heroicon-o-check-circle')
                     ->falseIcon('heroicon-o-x-circle')
                     ->color(fn (bool $state) => $state ? 'success' : 'danger'),
