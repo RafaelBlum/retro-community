@@ -7,6 +7,7 @@ use Filament\Actions\CreateAction;
 use Filament\Forms\Components\ColorPicker;
 use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\RichEditor;
+use Filament\Forms\Components\Select;
 use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Toggle;
@@ -34,7 +35,7 @@ class UserForm
                         ->label('')
                         ->default('default.jpg')
                         ->disk('public')
-                        ->directory('thumbnails')
+                        ->directory('users/avatars')
                         ->openable()
                         ->imageEditor()
                         ->required()
@@ -100,19 +101,15 @@ class UserForm
                                     ->required(fn(string $operation) => $operation === 'create')
                                     ->dehydrateStateUsing(fn($state) => filled($state) ? Hash::make($state) : null)
                                     ->dehydrated(fn($state) => filled($state))
-                                    ->rules(function ($get, string $operation) {
-                                        if ($operation === 'edit' && blank($get('password'))) {
-                                            return [];
-                                        }
-
-                                        return [
-                                            'required',
-                                            'string',
-                                            'min:8',
-                                            'max:32',
-                                            'regex:/^(?=.*[A-Z])(?=.*\d)(?=.*[\W_]).{8,32}$/',
-                                        ];
-                                    })
+                                    ->rule('confirmed')
+                                    ->rules([
+                                        'nullable',
+                                        'string',
+                                        'min:8',
+                                        'regex:/[A-Z]/',
+                                        'regex:/[0-9]/',
+                                        'regex:/[\W_]/',
+                                    ])
                                     ->validationMessages([
                                         'min' => 'A senha deve ter pelo menos :min caracteres.',
                                         'max' => 'A senha não pode ter mais de :max caracteres.',
@@ -129,11 +126,31 @@ class UserForm
                                         $set('password_strength', preg_match($regex, $state) ? 'Forte' : 'Fraca');
                                     }),
 
+                                TextInput::make('password_confirmation')
+                                    ->password()
+                                    ->label('Confirmar Senha')
+                                    ->required(fn($get) => filled($get('password')))
+                                    ->visible(fn($get) => filled($get('password'))),
+
                             ])->columnSpan(2),
                             Group::make()->schema([
-                                Toggle::make('email_verifed_at')
-                                    ->helperText('Verificação de email de usuário.')->label('E-mail verificado'),
+                                Toggle::make('email_verified_at')
+                                    ->label('E-mail Verificado')
+                                    ->dehydrateStateUsing(fn ($state) => $state ? now() : null)
+                                    ->afterStateHydrated(fn ($component, $state) => $component->state(filled($state))),
                             ])->columnSpan(2),
+                        ])->columnSpanFull(),
+
+                        Grid::make(4)->schema([
+                            // ... Campos de Nome e Email ...
+
+                            \Filament\Forms\Components\Select::make('panel')
+                                ->label('Nível de Acesso')
+                                ->options(\App\Enums\PanelTypeEnum::class)
+                                ->required()
+                                ->live() // Essencial: faz o formulário "reagir" à mudança na hora
+                                ->columnSpanFull()
+                                ->native(false), // Estilo moderno do Filament
                         ])->columnSpanFull(),
 
                     ])->columnSpan(6)
@@ -142,187 +159,11 @@ class UserForm
 
                 Tabs::make('informations')
                     ->tabs([
-
-//                    Tab::make('Meu Canal')
-//                        ->icon('heroicon-m-identification')
-//                        ->schema([
-//
-//                        Grid::make(8)
-//                            ->relationship('channel')
-//                            ->schema([
-//
-//                                FileUpload::make('brand')
-//                                    ->label('')
-//                                    ->helperText('Envie a logo do seu canal. Formatos aceitos: JPG, PNG ou AVIF (máx. 1MB).')
-//                                    ->disk('public')
-//                                    ->directory('channel_brand')
-//                                    ->visibility('public')
-//                                    ->default('default-brand.png')
-//                                    ->panelLayout('integrated')
-//                                    ->openable()
-//                                    ->required()
-//                                    ->validationMessages([
-//                                        'required' => 'Envie uma imagem ou mantenha a padrão do canal.',
-//                                    ])
-//                                    ->image()
-//                                    ->loadingIndicatorPosition('left')
-//                                    ->uploadButtonPosition('left')
-//                                    ->removeUploadedFileButtonPosition('right')
-//                                    ->uploadProgressIndicatorPosition('left')
-//                                    ->maxSize(1024)
-//                                    ->imageEditor()
-//                                    ->acceptedFileTypes(['image/jpeg', 'image/png', 'image/jpg', 'image/avif'])
-//                                    ->preserveFilenames()
-//                                    ->dehydrateStateUsing(fn ($state) => $state)
-//                                    ->columnSpan(2),
-//
-//                                Group::make()->schema([
-//
-//                                    Grid::make(4)->schema([
-//                                        Group::make()->schema([
-//                                            TextInput::make('title')
-//                                                ->label('Canal')
-//                                                ->hintIcon('heroicon-m-check-badge', tooltip: 'Seu canal do Youtube.')
-//                                                ->hintColor(Color::Green)
-//                                                ->required()
-//                                                ->afterStateUpdated(fn(Set $set, ?string $state) => $set('slug', Str::slug($state)))
-//                                                ->rule(['min:2', 'max:150'])
-//                                                ->validationMessages([
-//                                                    'required' => 'O nome do canal é obrigatório',
-//                                                    'min' => 'O nome deve ter pelo menos :min caracteres',
-//                                                    'max' => 'O nome não pode ter mais de :max caracteres',
-//                                                ])
-//                                                ->helperText(fn($get) => $get('title_error') ?? 'Informe o nome do seu Canal.')
-//                                                ->live(onBlur: true),
-//                                        ])->columnSpan(2),
-//
-//                                        Group::make()->schema([
-//                                            TextInput::make('name')
-//                                                ->label('Nome ou nick')
-//                                                ->required()
-//                                                ->rule(['min:2', 'max:150'])
-//                                                ->validationMessages([
-//                                                    'required' => 'O nome ou nick é obrigatório',
-//                                                    'min' => 'O nome deve ter pelo menos :min caracteres',
-//                                                    'max' => 'O nome não pode ter mais de :max caracteres',
-//                                                ])
-//                                                ->helperText(fn($get) => $get('nick_error') ?? 'Informe seu nome ou nick name.')
-//                                                ->live(onBlur: true),
-//                                        ])->columnSpan(2),
-//                                    ])->columnSpanFull(),
-//
-//                                    Grid::make(4)->schema([
-//                                        Group::make()->schema([
-//                                            TextInput::make('link')
-//                                                ->label('Canal do YouTube')
-//                                                ->hintIcon('heroicon-m-question-mark-circle', tooltip: 'Digite apenas o nome do canal, sem incluir o "@" ou o link completo.')
-//                                                ->hintColor(Color::Yellow)
-//                                                ->prefix('https://www.youtube.com/@')
-//                                                ->suffixIcon('heroicon-m-globe-alt')
-//                                                ->required()
-//                                                ->rules([
-//                                                    'min:2',
-//                                                    'max:150',
-//                                                ])
-//                                                ->validationMessages([
-//                                                    'required' => 'O link do canal é obrigatório.',
-//                                                    'min' => 'O link deve ter pelo menos :min caracteres.',
-//                                                    'max' => 'O link não pode ter mais de :max caracteres.',
-//                                                    'regex' => 'Use apenas letras, números e os símbolos ".", "-", "_".',
-//                                                ])
-//                                                ->helperText('Informe apenas o identificador do canal, sem "@" nem espaços. Ex: "MeuCanal123".')
-//                                                ->live(onBlur: true)
-//                                                ->afterStateUpdated(function (callable $set, $state){
-//                                                    $username = str($state)
-//                                                        ->remove(['https://www.youtube.com/', '@'])
-//                                                        ->trim();
-//                                                    $set('link', $username);
-//                                                }),
-//                                        ])->columnSpan(3),
-//
-//                                        Group::make()->schema([
-//                                            ColorPicker::make('color')
-//                                                ->label('Cor base do canal')
-//                                                ->hintIcon('heroicon-m-swatch', tooltip: 'Selecione a cor principal do seu canal. Ela será usada em botões, banners e destaques.')
-//                                                ->hintColor('info')
-//                                                ->required()
-//                                                ->default('#ff0000')
-//                                                ->rgb()
-//                                                ->helperText('Identidade visual do canal.')
-//                                                ->columnSpanFull()
-//                                                ->reactive()
-//                                                ->live(onBlur: true)
-//                                                ->afterStateUpdated(function ($state, callable $set) {
-//                                                    if (is_string($state) && !str_starts_with($state, '#')) {
-//                                                        $set('color', '#' . ltrim($state, '#'));
-//                                                    }
-//                                                }),
-//                                        ])->columnSpan(1),
-//
-//                                    ])->columnSpanFull(),
-//
-//                                    Textarea::make('description')
-//                                        ->label('Descrição do canal')
-//                                        ->placeholder('Ex: Canal dedicado a reviews de jogos retrô e curiosidades do mundo gamer.')
-//                                        ->hintIcon('heroicon-m-question-mark-circle', tooltip: 'Descreva brevemente sobre o conteúdo do seu canal. Isso ajuda outros usuários a entenderem seu foco.')
-//                                        ->hintColor('info')
-//                                        ->rows(8)
-//                                        ->maxLength(300)
-//                                        ->reactive()
-//                                        ->helperText(function ($get) {
-//                                            $length = strlen((string) $get('description'));
-//                                            return "Limite: {$length}/300 caracteres.";
-//                                        })
-//                                        ->validationMessages([
-//                                            'required' => 'A descrição é obrigatória.',
-//                                            'max' => 'A descrição não pode ter mais de :max caracteres.',
-//                                        ])
-//                                        ->live(onBlur: true),
-//                                ])->columnSpan(6),
-//                            ]),
-//                    ]),
-//
-//
-//
-//                    Tab::make('Campanha')
-//                        ->icon('heroicon-m-identification')
-//                        ->schema([
-//
-//                            Group::make()
-//                                ->relationship('channel')
-//                                ->schema([
-//                                Group::make()
-//                                    ->relationship('camping')
-//                                    ->schema([
-//                                        TextInput::make('title')
-//                                            ->label('Título da Campanha')
-//                                            ->placeholder('Digite o título da campanha')
-//                                            ->maxLength(100),
-//
-//                                        Textarea::make('content')
-//                                            ->label('Descrição')
-//                                            ->rows(10)
-//                                            ->cols(10)
-//                                            ->autosize(),
-//
-//                                        TextInput::make('qr_code')
-//                                            ->label('Link ou URL do QRcODE')
-//                                            ->placeholder('https://...'),
-//
-//                                        TextInput::make('goal_link')
-//                                            ->label('Link ou URL da Campanha')
-//                                            ->placeholder('https://...'),
-//
-//                                        TextInput::make('pix_page_link')
-//                                            ->label('Link da página de pix')
-//                                            ->placeholder('https://...'),
-//                                ])->columns(1)
-//                            ]),
-//                        ]),
-
-
                         Tab::make('Dados do Canal')
                             ->icon('heroicon-m-identification')
+                            ->visible(fn ($get, $record) =>
+                                $get('panel') !== \App\Enums\PanelTypeEnum::APP->value
+                            )
                             ->schema([
                                 Group::make()
                                     ->relationship('channel')
@@ -331,7 +172,7 @@ class UserForm
                                             ->label('')
                                             ->helperText('Envie a logo do seu canal. Formatos aceitos: JPG, PNG ou AVIF (máx. 1MB).')
                                             ->disk('public')
-                                            ->directory('channel_brand')
+                                            ->directory('channel/brand')
                                             ->visibility('public')
                                             ->default('default-brand.png')
                                             ->panelLayout('integrated')
@@ -458,7 +299,7 @@ class UserForm
 
                                         Section::make('Minha Campanha')
                                             ->description('Configure sua campanha de arrecadação')
-                                            ->relationship('camping') // RELAÇÃO DENTRO DE CHANNEL
+                                            ->relationship('campaign') // RELAÇÃO DENTRO DE CHANNEL
                                             ->collapsed() // Pode deixar colapsado para economizar espaço
                                             ->schema([
                                                 TextInput::make('title')

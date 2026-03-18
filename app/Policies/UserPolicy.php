@@ -2,6 +2,7 @@
 
 namespace App\Policies;
 
+use App\Enums\PanelTypeEnum;
 use App\Models\User;
 use Illuminate\Auth\Access\Response;
 
@@ -9,25 +10,11 @@ class UserPolicy
 {
 
     /**
-     * before
-     * O beforemétodo será executado antes de qualquer outro método na política, dando a você a oportunidade de
-     * autorizar a ação antes que o método de política pretendido seja realmente chamado.
-     */
-//    public function before(User $user, string $ability): bool|null
-//    {
-//        if ($user->panel->value === 'admin' || $user->panel->value === 'super-admin') {
-//            return true;
-//        }
-//
-//        return null;
-//    }
-
-    /**
      * Determine whether the user can view any models.
      */
     public function viewAny(User $user): bool
     {
-        return true;
+        return in_array($user->panel, [PanelTypeEnum::ADMIN, PanelTypeEnum::SUPER_ADMIN]);
     }
 
     /**
@@ -35,6 +22,8 @@ class UserPolicy
      */
     public function view(User $user, User $model): bool
     {
+
+
         return true;
     }
 
@@ -43,7 +32,7 @@ class UserPolicy
      */
     public function create(User $user): bool
     {
-        return $user->panel->value === 'super-admin';
+        return in_array($user->panel, [PanelTypeEnum::ADMIN, PanelTypeEnum::SUPER_ADMIN]);
     }
 
     /**
@@ -51,7 +40,16 @@ class UserPolicy
      */
     public function update(User $user, User $model): bool
     {
-        return ($user->id === $model->id || $user->panel->value === 'super-admin');
+        if($model->panel === PanelTypeEnum::SUPER_ADMIN && $user->id !== $model->id)
+        {
+            return false;
+        }
+
+        if ($model->panel === PanelTypeEnum::APP) {
+            return $user->panel === PanelTypeEnum::SUPER_ADMIN;
+        }
+
+        return true;
     }
 
     /**

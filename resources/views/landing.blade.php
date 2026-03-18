@@ -3,7 +3,14 @@
     <head>
         @include('components.partials.favicon')
         <title>{{config('app.name')}}</title>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&family=Silkscreen:wght@400;700&display=swap" rel="stylesheet">
         @vite(['resources/css/app.css', 'resources/js/app.js'])
+        <style>
+            body { font-family: 'Outfit', sans-serif; }
+            .font-pixel { font-family: 'Silkscreen', cursive; }
+        </style>
     </head>
     <body id="bg-cover" class="font-sans antialiased bg-white text-gray-900 bg-no-repeat bg-cover bg-opacity-200" style="overflow: hidden;"> <!-- Adição: Adicionando overflow: hidden para remover a barra de rolagem -->
 
@@ -15,7 +22,7 @@
             <div class="flex flex-col items-center text-center">
                 <img src="{{asset('images/brandname/horizontal-retrocommunity.png')}}" alt="" class="up" />
 
-                <h3 class="text-4xl font-bold tracking-tight dir">Games e informações</h3>
+                <h3 class="text-4xl font-bold tracking-tight font-pixel dir">Games e informações</h3>
                 <p class="mt-6 text-lg leading-8 esq">
                     Com uma comunidade unida, você encontrará uma vasta coleção de <em class="text-blue-400 bold">informações sobre jogos clássicos</em>, <em class="text-blue-400 bold">lives da galera no YouTube</em>, análises detalhadas
                     e até histórias curiosas e guias de gameplay. Além disso, o <em class="text-blue-400 bold">Retrô Community</em> mantém você atualizado
@@ -23,7 +30,7 @@
                 </p>
 
                 <div class="mt-10 flex items-center justify-center gap-x-6 up">
-                    <a href="{{route('app.home')}}" class="rounded-md animate-bounce bg-indigo-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
+                    <a href="{{route('app.home')}}" class="rounded-md animate-bounce font-pixel bg-indigo-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
                         Acesse agora!
                     </a>
                 </div>
@@ -51,7 +58,7 @@
                     </ul>
                 </div>
 
-                <footer class="py-16 text-center text-sm text-black">
+                <footer class="py-16 text-center text-sm text-black font-pixel">
                     Laravel v{{ Illuminate\Foundation\Application::VERSION }} (PHP v{{ PHP_VERSION }})
                 </footer>
             </section>

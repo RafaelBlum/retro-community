@@ -2,6 +2,7 @@
 
 namespace App\Filament\Resources\Users\Tables;
 
+use App\Enums\PanelTypeEnum;
 use App\Filament\Resources\Users\UserResource;
 use App\Models\User;
 use Filament\Actions\Action;
@@ -15,6 +16,7 @@ use Filament\Forms\Components\Toggle;
 use Filament\Tables\Columns\ImageColumn;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Filters\Filter;
+use Filament\Tables\Filters\SelectFilter;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Facades\Storage;
@@ -40,7 +42,8 @@ class UsersTable
                     ->circular()
                     ->disk('public')
                     ->stacked()
-                    ->limit(3),
+                    ->limit(3)
+                    ->defaultImageUrl(asset('default-brand.png')),
 
                 TextColumn::make('channel.title')
                     ->label('Canal')->description(function (User $record){
@@ -67,7 +70,15 @@ class UsersTable
                 Filter::make('has_posts')
                     ->label('Usuários com postagens')
                     ->toggle()
-                    ->query(fn(Builder $query): Builder => $query->whereHas('posts'))
+                    ->query(fn(Builder $query): Builder => $query->whereHas('posts')),
+
+                SelectFilter::make('panel')
+                    ->options(PanelTypeEnum::class)
+                    ->label('Nível de Acesso'),
+
+                Filter::make('email_verified')
+                    ->label('E-mail verificado')
+                    ->query(fn (Builder $query) => $query->whereNotNull('email_verified_at'))
             ])
             ->filtersTriggerAction(
                 fn(Action $action) => $action
@@ -80,8 +91,8 @@ class UsersTable
                     EditAction::make(),
                     DeleteAction::make()
                         ->action(function (User $record) {
-                            if ($record->avatar != 'default.jpg') {
-                                Storage::delete('public/' . $record->avatar);
+                            if ($record->avatar && $record->avatar != 'default.jpg') {
+                                Storage::disk('public')->delete('users/avatars/' . $record->avatar);
                             }
                             $record->delete();
                         })
@@ -92,10 +103,9 @@ class UsersTable
                     ViewAction::make(),
                 ])->tooltip("Menu")
             ])
-            ->toolbarActions([
-                BulkActionGroup::make([
-                    DeleteBulkAction::make(),
-                ]),
+            ->groupedBulkActions([
+                DeleteBulkAction::make()
+                    ->requiresConfirmation(),
             ]);
     }
 }

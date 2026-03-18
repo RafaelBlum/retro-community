@@ -5,6 +5,8 @@ use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ChannelController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\WebController;
+use Illuminate\Foundation\Auth\EmailVerificationRequest;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 // 1. PÁGINAS PÚBLICAS ESTÁTICAS
@@ -22,9 +24,34 @@ Route::get('/posts', [PostController::class, 'index'])->name('posts.index');
 Route::get('/posts/{slug}', [PostController::class, 'post'])->name('posts.post');
 Route::get('/category/{slug}', [CategoryController::class, 'postsForCategory'])->name('posts.category');
 
+
 // 3. AUTENTICAÇÃO (BREEZE)
 // Isso define as rotas: login, register, logout, password.request, etc.
 require __DIR__.'/auth.php';
+
+Route::middleware('auth')->group(function () {
+
+    // 1. A TELA DE AVISO (View que diz "Verifique seu email")
+    Route::get('verify-email', function () {
+        return view('auth.verify-email');
+    })->name('verification.notice');
+
+    // 2. A AÇÃO DE VERIFICAR (O link do email aponta aqui)
+    Route::get('verify-email/{id}/{hash}', function (EmailVerificationRequest $request) {
+        $request->fulfill();
+
+        // Depois de clicar no link, para onde ele vai?
+        // Aqui você manda para a home logada ou pede login novamente
+        return redirect()->route('app.home')->with('status', 'E-mail verificado!');
+    })->middleware(['signed', 'throttle:6,1'])->name('verification.verify');
+
+    // 3. REENVIAR E-MAIL (Botão "Reenviar" na tela de aviso)
+    Route::post('email/verification-notification', function (Request $request) {
+        $request->user()->sendEmailVerificationNotification();
+        return back()->with('status', 'verification-link-sent');
+    })->middleware('throttle:6,1')->name('verification.send');
+});
+
 
 // 4. ROTA DINÂMICA DE CANAIS (CATCH-ALL SLUG)
 // Deve vir depois das rotas estáticas e de auth para não dar conflito.

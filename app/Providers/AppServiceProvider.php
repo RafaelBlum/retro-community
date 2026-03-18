@@ -2,8 +2,10 @@
 
 namespace App\Providers;
 
+use Filament\Auth\Notifications\VerifyEmail;
 use Filament\Support\Facades\FilamentView;
 use Filament\View\PanelsRenderHook;
+use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -15,10 +17,6 @@ class AppServiceProvider extends ServiceProvider
     {
         //
     }
-
-
-
-
 
     /**
      * Bootstrap any application services.
@@ -37,5 +35,16 @@ class AppServiceProvider extends ServiceProvider
             HTML
 
         );
+
+        VerifyEmail::toMailUsing(function (object $notifiable, string $url) {
+            return (new MailMessage)
+                ->subject('Retrô community: Verifique seu endereço de e-mail')
+                ->greeting('Olá, ' . $notifiable->name . '!')
+                ->line('Obrigado por se cadastrar na nossa comunidade!')
+                ->line('Para começar a curtir, comentar e seguir canais, clique no botão abaixo:')
+                ->action('Verificar E-mail', $url)
+                ->line('Se você não criou esta conta, ignore este e-mail.')
+                ->salutation('Atenciosamente, Equipe Retro Community');
+        });
     }
 }

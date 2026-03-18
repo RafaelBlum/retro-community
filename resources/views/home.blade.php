@@ -22,11 +22,6 @@
         </div>
     </section>
 
-    @guest
-        <a href="{{ route('login') }}" class="text-white">Entrar</a>
-        <a href="{{ route('register') }}" class="bg-primary p-2 rounded">Criar Conta</a>
-    @endguest
-
     @auth
         @if($followedChannels->isNotEmpty())
             <section class="bg-white">
