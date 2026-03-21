@@ -24,12 +24,13 @@ class WebController extends Controller
 
     public function landing()
     {
-        try{
+        try {
             $channels = Channel::withCount('followers')->limit(4)->get();
             $grid = $channels->count();
 
-            return view('landing', compact('channels',  'grid'));
-        }catch (Exception $exception){
+            return view('landing', compact('channels', 'grid'));
+        }
+        catch (Exception $exception) {
             report($exception);
             return redirect()->back();
         }
@@ -37,16 +38,15 @@ class WebController extends Controller
 
     public function home()
     {
-        try{
+        try {
             $followedChannels = [];
 
-            if(auth()->check())
-            {
+            if (auth()->check()) {
                 $followedChannels = auth()->user()->following()->withCount('followers')->get();
             }
 
             $suggestedChannels = Channel::withCount('followers')
-                ->whereDoesntHave('followers', function ($query){
+                ->whereDoesntHave('followers', function ($query) {
                 $query->where('user_id', \auth()->id());
             })
                 ->limit(5)
@@ -57,9 +57,9 @@ class WebController extends Controller
             $grid = $channels->count();
 
             $posts = Post::where('status', 'published')
-            ->latest()
-            ->limit(6)
-            ->get();
+                ->latest()
+                ->limit(6)
+                ->get();
 
             return view('home', compact(
                 'posts',
@@ -69,7 +69,8 @@ class WebController extends Controller
                 'followedChannels',
                 'suggestedChannels'
             ));
-        }catch (Exception $exception){
+        }
+        catch (Exception $exception) {
             report($exception);
             return redirect()->back();
         }

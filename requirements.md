@@ -66,10 +66,12 @@ Route::middleware(['auth', 'verified'])->group(function () {
 - **Configuração:** No `.env`, configurar o **Mailtrap** para capturar os e-mails de teste.
 - O Laravel já traz toda a lógica de tokens e expiração pronta. Basta implementar a interface no Model `User` e proteger as rotas com o middleware `verified`.
 
-#### ⚠️ Pontos a Analisar
+#### ⚠️ Pontos a Analisar|desenvolvimento
 
-- [ ] Verificar se é possível logar mesmo **NÃO VERIFICADO**.
+- [x] Após cadastro e-mail é enviado com token e ao clicar usuário é validado;
 - [ ] Ajustar mensagens de erro no login e cadastro.
+- [ ] Após cadastro mesmo usuário não validando cadastro no e-mail, o sistema o deixa logado.
+- [ ] Após cadastro, se usuário não validar e-mail no tempo que expira o link de validação, como usuário solicita outro?
 
 ---
 

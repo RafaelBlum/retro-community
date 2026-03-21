@@ -3,69 +3,78 @@
     <head>
         @include('components.partials.favicon')
         <title>{{config('app.name')}}</title>
-        <link rel="preconnect" href="https://fonts.googleapis.com">
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&family=Silkscreen:wght@400;700&display=swap" rel="stylesheet">
-        @vite(['resources/css/app.css', 'resources/js/app.js'])
-        <style>
-            body { font-family: 'Outfit', sans-serif; }
-            .font-pixel { font-family: 'Silkscreen', cursive; }
-        </style>
+        @vite(['resources/css/landing.css', 'resources/js/app.js'])
     </head>
-    <body id="bg-cover" class="font-sans antialiased bg-white text-gray-900 bg-no-repeat bg-cover bg-opacity-200" style="overflow: hidden;"> <!-- Adição: Adicionando overflow: hidden para remover a barra de rolagem -->
+    <body class="antialiased bg-[#0a0a1a] text-white" style="overflow-x: hidden;">
 
+        <section class="hero-wrapper">
+            <video class="hero-video" autoplay muted loop playsinline>
+                <source src="{{ asset('videos/hero-bg.mp4') }}" type="video/mp4">
+            </video>
+            <div class="hero-overlay"></div>
 
-    <div class="relative isolate px-6 pt-14 lg:px-8 text-white">
+            <div class="particles">
+                @for($i = 0; $i < 30; $i++)
+                    <div class="particle" style="
+                        left: {{ rand(0, 100) }}%;
+                        width: {{ rand(2, 6) }}px;
+                        height: {{ rand(2, 6) }}px;
+                        animation-duration: {{ rand(5, 15) }}s;
+                        animation-delay: {{ rand(0, 10) }}s;
+                        background: rgba({{ rand(100, 200) }}, {{ rand(50, 120) }}, {{ rand(200, 255) }}, 0.5);
+                    "></div>
+                @endfor
+            </div>
 
-        <div class="mx-auto max-w-screen-md py-30 sm:py-10 md:py-28 lg:py-28">
-
-            <div class="flex flex-col items-center text-center">
-                <img src="{{asset('images/brandname/horizontal-retrocommunity.png')}}" alt="" class="up" />
-
-                <h3 class="text-4xl font-bold tracking-tight font-pixel dir">Games e informações</h3>
-                <p class="mt-6 text-lg leading-8 esq">
-                    Com uma comunidade unida, você encontrará uma vasta coleção de <em class="text-blue-400 bold">informações sobre jogos clássicos</em>, <em class="text-blue-400 bold">lives da galera no YouTube</em>, análises detalhadas
-                    e até histórias curiosas e guias de gameplay. Além disso, o <em class="text-blue-400 bold">Retrô Community</em> mantém você atualizado
+            <div class="hero-content">
+                <img src="{{asset('images/brandname/horizontal-retrocommunity.png')}}" alt="Retrô Community" class="hero-logo w-72 md:w-96 mb-6" />
+                <h1 class="hero-title font-pixel">Games e Informações</h1>
+                <p class="hero-subtitle">
+                    Com uma comunidade unida, você encontrará uma vasta coleção de
+                    <span class="text-violet-400 font-semibold">informações sobre jogos clássicos</span>,
+                    <span class="text-violet-400 font-semibold">lives da galera no YouTube</span>,
+                    análises detalhadas, histórias curiosas e guias de gameplay.
+                    O <span class="text-violet-400 font-semibold">Retrô Community</span> mantém você atualizado
                     sobre campanhas, lançamentos, eventos e tendências.
                 </p>
-
-                <div class="mt-10 flex items-center justify-center gap-x-6 up">
-                    <a href="{{route('app.home')}}" class="rounded-md animate-bounce font-pixel bg-indigo-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
-                        Acesse agora!
+                <div class="hero-cta">
+                    <a href="{{route('app.home')}}" class="btn-hero">
+                        Acesse agora
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
                     </a>
                 </div>
             </div>
 
-            <section class="mt-20">
-                <div class="max-w-screen-xl mx-auto">
-                    <ul class="grid gap-8 lg:gap-4 sm:grid-cols-2 md:grid-cols-{{$grid}} lg:grid-cols-{{$grid}}">
-                        @foreach($channels as $channel)
-                            <li class="flex flex-col items-center gap-1 text-center up">
-                                <a href="{{'https://www.youtube.com/@' . $channel->link}}" target="_blank" class="font-light text-white hover:underline">
-                                    <img src="{{Storage::url($channel->brand)}}" alt="{{$channel->title}}" class="w-28 h-28 p-[0.1875rem] rounded-full ring-1 ring-slate-900/10 shadow overflow-hidden flex-none" />
-                                </a>
-                                <a href="{{'https://www.youtube.com/@' . $channel->link}}" target="_blank" class="text-sm font-light text-white">
-                                    {{$channel->title}}
-                                </a>
+            <div class="scroll-indicator">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="7 13 12 18 17 13"/><polyline points="7 6 12 11 17 6"/>
+                </svg>
+            </div>
+        </section>
 
-                                <p class="text-sm font-pixel text-secondary">
-                                    {{ $channel->followers_count }}
-                                    {{ $channel->followers_count == 1 ? 'inscrito' : 'inscritos' }}
-                                </p>
-                            </li>
-                        @endforeach
+        <section class="channels-section">
+            <div class="channels-header">
+                <h2 class="font-pixel">Canais da Comunidade</h2>
+                <p>Acompanhe os criadores de conteúdo</p>
+            </div>
 
-                    </ul>
-                </div>
+            <div class="channels-grid" style="grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));">
+                @foreach($channels as $channel)
+                    <a href="{{'https://www.youtube.com/@' . $channel->link}}" target="_blank" class="channel-card">
+                        <img src="{{Storage::url($channel->brand)}}" alt="{{$channel->title}}" />
+                        <span class="name">{{$channel->title}}</span>
+                        <span class="subs">
+                            {{ $channel->followers_count }}
+                            {{ $channel->followers_count == 1 ? 'inscrito' : 'inscritos' }}
+                        </span>
+                    </a>
+                @endforeach
+            </div>
+        </section>
 
-                <footer class="py-16 text-center text-sm text-black font-pixel">
-                    Laravel v{{ Illuminate\Foundation\Application::VERSION }} (PHP v{{ PHP_VERSION }})
-                </footer>
-            </section>
-        </div>
-
-    </div>
+        <footer class="site-footer">
+            <span>Laravel v{{ Illuminate\Foundation\Application::VERSION }} (PHP v{{ PHP_VERSION }})</span>
+        </footer>
 
     </body>
-
 </html>
