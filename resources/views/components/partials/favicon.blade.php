@@ -9,12 +9,11 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 {{--Meta SEO--}}
-<meta name="Retrô Community" content="Retrô Community - Blog community">
+<meta name="keywords" content="retrô, community, blog, canais retrô, comunidade retrô">
 <meta name="description" content="Aqui você descobrirá todas as informações sobre canais retrô e muito mais. Nosso objetivo é fortalecer e ampliar a visibilidade do incrível trabalho da comunidade retrô.">
 <meta name="robots" content="index, follow">
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <meta name="language" content="Português - Brasil">
-    <meta name="author" content="Rafael Blum">
+<meta name="author" content="Rafael Blum">
 
 {{--Social media share--}}
 <meta property="og:title" content="Retrô Community - Blog community">
