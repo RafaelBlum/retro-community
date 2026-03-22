@@ -18,6 +18,7 @@ Route::get('/suporte', [WebController::class, 'support'])->name('app.support');
 Route::get('/campanhas', [CampaingController::class, 'index'])->name('app.campaings');
 Route::get('/canais', [ChannelController::class, 'channels'])->name('app.channels');
 Route::get('/teste', [WebController::class, 'templateTest'])->name('app.test');
+Route::get('/posts-retro', [PostController::class, 'indexRetro'])->name('posts.index.retro');
 
 // 2. POSTS E CATEGORIAS
 Route::get('/posts', [PostController::class, 'index'])->name('posts.index');

@@ -14,7 +14,7 @@ class PostController extends Controller
     public function index()
     {
         try {
-            $posts = Post::where('status', '=', 'PUBLISHED')->orWhere('scheduled_for', '<', now())->paginate(2)->fragment('posts');
+            $posts = Post::where('status', '=', 'PUBLISHED')->orWhere('scheduled_for', '<', now())->paginate(6)->fragment('posts');
 
             $categories = Category::whereHas('posts', function ($query) {
                 $query->where('status', '=', 'PUBLISHED')->orWhere('scheduled_for', '<', now());
@@ -26,6 +26,21 @@ class PostController extends Controller
                 return redirect()->back();
             }
 
+            return redirect()->back();
+        }
+    }
+
+    public function indexRetro()
+    {
+        try {
+            $posts = Post::where('status', '=', 'PUBLISHED')->orWhere('scheduled_for', '<', now())->paginate(6)->fragment('posts');
+
+            $categories = Category::whereHas('posts', function ($query) {
+                $query->where('status', '=', 'PUBLISHED')->orWhere('scheduled_for', '<', now());
+            })->get();
+
+            return view('pages.index-retro', compact('posts', 'categories'));
+        }catch (Exception $exception){
             return redirect()->back();
         }
     }
