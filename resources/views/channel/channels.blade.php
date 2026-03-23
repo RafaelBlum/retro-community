@@ -1,7 +1,7 @@
 <x-layout>
 
 
-    <x-partials.navbar-section/>
+    <x-partials.navbar/>
 
     <main>
         <section class="bg-white">

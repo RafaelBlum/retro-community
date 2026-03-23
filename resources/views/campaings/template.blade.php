@@ -1,7 +1,7 @@
 <x-layout>
 
     {{-- :: NAVBAR :: --}}
-    <x-partials.navbar-section/>
+    <x-partials.navbar/>
 
     {{-- :: HEADER :: --}}
     <div class="relative isolate px-6 pt lg:px-8 bg-white text-white">

@@ -1,6 +1,6 @@
 <x-layout>
 
-    <x-partials.navbar-v2/>
+    <x-partials.navbar/>
 
     {{-- HERO SECTION - SOFT FADE TRANSITION --}}
     <section class="relative overflow-hidden text-white bg-gradient-to-br from-slate-700 via-violet-600 to-slate-700 dark:from-slate-900 dark:via-purple-900 dark:to-slate-900">
@@ -165,6 +165,6 @@
     </section>
 
     {{-- FOOTER --}}
-    <x-partials.footer-v2 />
+    <x-partials.footer />
 
 </x-layout>

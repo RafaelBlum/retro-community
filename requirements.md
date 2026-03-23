@@ -18,7 +18,7 @@
 | Código      | Nome                                           | Descrição                                                                                                                            | Prioridade | Status                | Critérios de Aceitação                                                                            |
 | :---------- | :--------------------------------------------- | :----------------------------------------------------------------------------------------------------------------------------------- | :--------: | :-------------------: | :------------------------------------------------------------------------------------------------ |
 | **RF002.1** | **Formulário híbrido — login/cadastro**        | Deve existir um formulário com e-mail e senha e de cadastro de follower (seguidor). O e-mail deve ser único e a senha criptografada. | 🔺 Alta    | 🟢 Concluído          | Campos obrigatórios validados, erro amigável exibido e redirecionamento para tela de confirmação. |
-| **RF002.2** | **Validação de E-mail (Token de Confirmação)** | Após o cadastro, o sistema envia um e-mail com token de confirmação para ativar a conta.                                             | 🔺 Alta    | 🟡 Em desenvolvimento | Token expira em 24h; link confirma conta; login bloqueado antes da confirmação.                   |
+| **RF002.2** | **Validação de E-mail (Token de Confirmação)** | Após o cadastro, o sistema envia um e-mail com token de confirmação para ativar a conta.                                             | 🔺 Alta    | 🟢 Concluído  | Token expira em 24h; link confirma conta; login bloqueado antes da confirmação.                   |
 | **RF002.3** | **Login e Sessão de Seguidor**                 | O seguidor faz login com e-mail/senha após confirmação de e-mail.                                                                    | 🟠 Média   | 🔴 Pendente           | Somente usuários confirmados podem acessar; sessão expira em 2h.                                  |
 | **RF002.4** | **Seguir Canais**                              | O seguidor autenticado pode seguir e deixar de seguir canais.                                                                        | 🟢 Média   | 🔴 Pendente           | Botão alterna "Seguir/Seguindo"; relação persistida (`followers`).                                |
 | **RF002.5** | **Notificações**                               | Seguidores podem receber notificações de novos posts/campanhas dos canais que seguem.                                                | 🟡 Média   | 🔴 Pendente           | Seguidor pode ativar/desativar notificações; e-mails enviados automaticamente.                    |
@@ -69,9 +69,9 @@ Route::middleware(['auth', 'verified'])->group(function () {
 #### ⚠️ Pontos a Analisar|desenvolvimento
 
 - [x] Após cadastro e-mail é enviado com token e ao clicar usuário é validado;
-- [ ] Ajustar mensagens de erro no login e cadastro.
-- [ ] Após cadastro mesmo usuário não validando cadastro no e-mail, o sistema o deixa logado.
-- [ ] Após cadastro, se usuário não validar e-mail no tempo que expira o link de validação, como usuário solicita outro?
+- [x] Ajustar mensagens de erro no login e cadastro.
+- [x] Após cadastro mesmo usuário não validando cadastro no e-mail, o sistema o deixa logado.
+- [x] Após cadastro, se usuário não validar e-mail no tempo que expira o link de validação, como usuário solicita outro?
 
 ---
 

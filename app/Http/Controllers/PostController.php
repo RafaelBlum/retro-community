@@ -14,6 +14,7 @@ class PostController extends Controller
     public function index()
     {
         try {
+
             $posts = Post::where('status', '=', 'PUBLISHED')->orWhere('scheduled_for', '<', now())->paginate(6)->fragment('posts');
 
             $categories = Category::whereHas('posts', function ($query) {
@@ -21,8 +22,8 @@ class PostController extends Controller
             })->get();
 
             return view('pages.index', compact('posts', 'categories'));
-        }catch (Exception $exception){
-            if(env('APP_DEBUG')){
+        } catch (Exception $exception) {
+            if (env('APP_DEBUG')) {
                 return redirect()->back();
             }
 
@@ -30,31 +31,15 @@ class PostController extends Controller
         }
     }
 
-    public function indexRetro()
-    {
-        try {
-            $posts = Post::where('status', '=', 'PUBLISHED')->orWhere('scheduled_for', '<', now())->paginate(6)->fragment('posts');
-
-            $categories = Category::whereHas('posts', function ($query) {
-                $query->where('status', '=', 'PUBLISHED')->orWhere('scheduled_for', '<', now());
-            })->get();
-
-            return view('pages.index-retro', compact('posts', 'categories'));
-        }catch (Exception $exception){
-            return redirect()->back();
-        }
-    }
-
-
     public function post($slug)
     {
-        try{
+        try {
             $post = Post::where('slug', $slug)->firstOrFail();
             $post->views += 1;
             $post->save();
             return view('pages.post', compact('post'));
-        }catch (Exception $exception){
-            if(env('APP_DEBUG')){
+        } catch (Exception $exception) {
+            if (env('APP_DEBUG')) {
                 return redirect()->back();
             }
             return redirect()->back();

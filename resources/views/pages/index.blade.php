@@ -1,6 +1,6 @@
 <x-layout>
 
-    <x-partials.navbar-v2 />
+    <x-partials.navbar />
 
     {{-- HERO SECTION --}}
     <section
@@ -120,6 +120,6 @@
     </section>
 
     {{-- FOOTER --}}
-    <x-partials.footer-v2 />
+    <x-partials.footer />
 
 </x-layout>
