@@ -29,4 +29,24 @@ class ChannelController extends Controller
         $channels = Channel::all();
         return view('channel.channels', compact('channels'));
     }
+
+    public function dashboard($slug)
+    {
+        try {
+            $channel = Channel::where('slug', $slug)->firstOrFail();
+            
+            if (!auth()->check() || auth()->user()->channel->id !== $channel->id) {
+                return redirect()->route('my.channel', $slug);
+            }
+
+            $posts = Post::where('user_id', '=', $channel->user_id)->get();
+
+            return view('channel.dashboard', compact('channel', 'posts'));
+        } catch (Exception $exception) {
+            if (env('APP_DEBUG')) {
+                return redirect()->back();
+            }
+            return redirect()->back();
+        }
+    }
 }

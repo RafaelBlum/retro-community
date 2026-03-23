@@ -1,160 +1,327 @@
 <x-layout>
-    <x-partials.navbar/>
+    <x-partials.navbar />
 
-    {{--  HEADER HOME  --}}
-    <section class="bg-white">
-        <div class="grid max-w-screen-xl px-4 pt-20 pb-8 mx-auto lg:gap-8 xl:gap-0 lg:py-16 lg:grid-cols-12 lg:pt-28">
-            <div class="mr-auto place-self-center lg:col-span-7">
-                <h1 class="dir max-w-2xl mb-4 text-4xl font-extrabold leading-none tracking-tight md:text-5xl xl:text-6xl">{{ $channel->name }}</h1>
-                <p class="max-w-2xl mb-4 text-sm text-gray-500 lg:mb-8 md:text-base lg:text-base">
-                    Bem-vindo ao meu perfil <em class="text-purple-600">{{$channel->name}}</em> na {{config('app.name')}}!
-                    <span>{{PHP_EOL . $channel->description}}</span>
-                </p>
-                <a href="{{'https://www.youtube.com/@' . $channel->link}}" target="_blank" class="inline-flex justify-center items-center px-3 text-base font-medium text-center text-gray-900 rounded-lg border border-gray-300 hover:bg-gray-100 focus:ring-4 focus:ring-gray-100">
-                    <svg class="w-10 h-10 mt-3 mx-auto" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                        <path fill="red" d="M14.712 4.633a1.754 1.754 0 00-1.234-1.234C12.382 3.11 8 3.11 8 3.11s-4.382 0-5.478.289c-.6.161-1.072.634-1.234 1.234C1 5.728 1 8 1 8s0 2.283.288 3.367c.162.6.635 1.073 1.234 1.234C3.618 12.89 8 12.89 8 12.89s4.382 0 5.478-.289a1.754 1.754 0 001.234-1.234C15 10.272 15 8 15 8s0-2.272-.288-3.367z"/>
-                        <path fill="#ffffff" d="M6.593 10.11l3.644-2.098-3.644-2.11v4.208z"/>
-                    </svg>
-                    Acesse agora
-                </a>
+    {{-- HERO SECTION - CHANNEL PROFILE --}}
+    <section
+        class="relative overflow-hidden text-white bg-gradient-to-br from-slate-700 via-violet-600 to-slate-700 dark:from-slate-900 dark:via-purple-900 dark:to-slate-900">
+        <div class="absolute inset-0 opacity-15 dark:opacity-20">
+            <div class="absolute top-20 left-10 w-96 h-96 bg-violet-400 dark:bg-purple-500 rounded-full blur-3xl"></div>
+            <div
+                class="absolute bottom-10 right-20 w-[500px] h-[500px] bg-sky-400 dark:bg-blue-500 rounded-full blur-3xl">
             </div>
-            <div class="lg:col-span-5 lg:flex lg:items-end lg:justify-end">
-                <div class="relative text-center">
-                    <img src="{{ asset('images/hero-9.png') }}" alt="hero image" class="up vertical-loop-animation relative inset-0 object-cover z-10 mx-auto" width="600">
-                    <img src="{{Storage::url($channel->brand)}}" alt="hero image" class="header_img_2 rounded-full absolute inset-0 z-20 mx-auto" width="400">
+        </div>
+        <div class="relative max-w-screen-xl px-4 pt-32 pb-56 mx-auto lg:pt-44">
+            <div class="grid lg:grid-cols-2 gap-12 items-center">
+                <div>
+                    <span
+                        class="inline-block px-4 py-1 mb-6 text-sm font-medium rounded-full bg-white/10 text-white/90 border border-white/20">
+                        Perfil do Canal
+                    </span>
+                    <h1
+                        class="text-5xl lg:text-6xl font-extrabold leading-tight mb-6 bg-gradient-to-r from-white via-violet-200 to-violet-300 dark:from-white dark:via-purple-200 dark:to-purple-400 bg-clip-text text-transparent">
+                        {{ $channel->name }}
+                    </h1>
+                    <p class="text-lg text-white/80 dark:text-gray-300 mb-8 leading-relaxed max-w-lg">
+                        {{ $channel->description ?? 'Bem-vindo ao meu canal na ' . config('app.name') . '!' }}
+                    </p>
+                    <div class="flex flex-wrap gap-4">
+                        @auth
+                            @if(auth()->user()->channel && auth()->user()->channel->id === $channel->id)
+                                <a href="{{ route('filament.admin.pages.dashboard') }}"
+                                    class="px-8 py-3 bg-white/15 hover:bg-white/25 backdrop-blur rounded-lg font-semibold transition-all border border-white/20 flex items-center gap-2">
+                                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.066 2.573c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.573 1.066c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.066-2.573c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                                    </svg>
+                                    Gerenciar Canal
+                                </a>
+                            @else
+                                <livewire:follow-button :channel="$channel" />
+                            @endif
+                        @endauth
+
+                        @guest
+                            <livewire:follow-button :channel="$channel" />
+                        @endguest
+
+                        <a href="{{ 'https://www.youtube.com/@' . $channel->link }}" target="_blank"
+                            class="px-8 py-3 bg-red-500/80 hover:bg-red-500 backdrop-blur rounded-lg font-semibold transition-all border border-red-400/20 flex items-center gap-2">
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                                <path
+                                    d="M23.5 6.2c-.3-1-1-1.8-2-2.1C19.6 3.5 12 3.5 12 3.5s-7.6 0-9.5.6c-1 .3-1.7 1.1-2 2.1C0 8.1 0 12 0 12s0 3.9.5 5.8c.3 1 1 1.8 2 2.1 1.9.6 9.5.6 9.5.6s7.6 0 9.5-.6c1-.3 1.7-1.1 2-2.1.5-1.9.5-5.8.5-5.8s0-3.9-.5-5.8zM9.5 15.6V8.4l6.3 3.6-6.3 3.6z" />
+                            </svg>
+                            YouTube
+                        </a>
+                    </div>
+                </div>
+                <div class="relative flex justify-center">
+                    <div
+                        class="absolute w-[450px] h-[450px] bg-violet-400/30 dark:bg-purple-500/30 rounded-full blur-3xl">
+                    </div>
+                    @if($channel->brand)
+                        <img src="{{ Storage::url($channel->brand) }}" alt="{{ $channel->name }}"
+                            class="up relative w-[300px] h-[300px] rounded-full object-cover ring-4 ring-white/20 dark:ring-purple-500/30 shadow-2xl z-10">
+                    @else
+                        <div
+                            class="up relative w-[300px] h-[300px] rounded-full bg-white/10 dark:bg-purple-500/20 flex items-center justify-center ring-4 ring-white/20 dark:ring-purple-500/30 shadow-2xl z-10">
+                            <span class="text-8xl font-bold text-white/50">{{ substr($channel->name, 0, 1) }}</span>
+                        </div>
+                    @endif
                 </div>
             </div>
         </div>
-
+        {{-- SOFT FADE TRANSITION --}}
+        <div
+            class="absolute bottom-0 left-0 right-0 h-56 bg-gradient-to-b from-transparent via-slate-700/40 to-white dark:via-slate-900/40 dark:to-slate-900">
+        </div>
     </section>
 
-    @auth
-        <section class="bg-gray-50 text-gray-900 xl:space-x-8 space-y-4 md:space-y-6 xl:space-y-0 px-4 py-2 lg:pb-20 lg:pt-[100px] rounded">
-                <livewire:roleta/>
-        </section>
-
-        @stack('roleta.js')
-    @endauth
-
-    {{--  HEADER HOME  --}}
-    <section class="bg-white">
-        <div class="grid max-w-screen-xl px-4 pt-20 pb-8 mx-auto lg:gap-8 xl:gap-0 lg:py-16 lg:grid-cols-12 lg:pt-28">
-            <div class="flex items-center gap-4">
-                <h1 class="text-3xl font-pixel">{{ $channel->name }}</h1>
-
-                @auth
-                    @if(auth()->user()->channel && auth()->user()->channel->id === $channel->id)
-                        {{-- Se o usuário é o DONO do canal, mostra link de gestão --}}
-                        <a href="{{ route('filament.admin.pages.dashboard') }}" class="bg-gray-700 text-white px-4 py-2 rounded-lg text-sm font-bold hover:bg-gray-600 transition">
-                            Gerenciar Meu Canal
-                        </a>
+    {{-- CHANNEL OWNER CARD SECTION --}}
+    <section class="bg-white dark:bg-slate-900 py-16">
+        <div class="max-w-screen-xl px-4 mx-auto">
+            <div
+                class="flex flex-col md:flex-row items-center gap-8 p-8 rounded-3xl bg-gray-50 dark:bg-slate-800/50 border border-gray-100 dark:border-slate-700/50">
+                <div class="flex-shrink-0">
+                    @if($channel->user->avatar)
+                        <img src="{{ Storage::url($channel->user->avatar) }}" alt="{{ $channel->user->name }}"
+                            class="w-24 h-24 rounded-full object-cover ring-4 ring-purple-500 shadow-xl"
+                            @if($channel->color) style="ring-color: {{ $channel->color }}" @endif>
                     @else
-                        {{-- Se for outro usuário, mostra o botão de seguir --}}
-                        <livewire:follow-button :channel="$channel" />
+                        <div
+                            class="w-24 h-24 rounded-full bg-gradient-to-br from-purple-500 to-violet-600 flex items-center justify-center shadow-xl">
+                            <span class="text-3xl font-bold text-white">{{ substr($channel->user->name, 0, 1) }}</span>
+                        </div>
                     @endif
-                @endauth
-
-                @guest
-                    {{-- Se for visitante, mostra o botão de seguir (que levará ao login) --}}
-                    <livewire:follow-button :channel="$channel" />
-                @endguest
+                </div>
+                <div class="text-center md:text-left flex-1">
+                    <h3 class="text-2xl font-bold text-gray-900 dark:text-white mb-2">{{ $channel->user->name }}</h3>
+                    <p class="text-gray-500 dark:text-gray-400 mb-4">
+                        {{ $channel->description ?? 'Criador de conteúdo' }}</p>
+                    <div class="flex flex-wrap gap-3 justify-center md:justify-start">
+                        <a href="{{ 'https://www.youtube.com/@' . $channel->link }}" target="_blank"
+                            class="inline-flex items-center gap-2 px-4 py-2 text-sm font-medium text-white bg-red-500 hover:bg-red-600 rounded-full transition-colors">
+                            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+                                <path
+                                    d="M23.5 6.2c-.3-1-1-1.8-2-2.1C19.6 3.5 12 3.5 12 3.5s-7.6 0-9.5.6c-1 .3-1.7 1.1-2 2.1C0 8.1 0 12 0 12s0 3.9.5 5.8c.3 1 1 1.8 2 2.1 1.9.6 9.5.6 9.5.6s7.6 0 9.5-.6c1-.3 1.7-1.1 2-2.1.5-1.9.5-5.8.5-5.8s0-3.9-.5-5.8zM9.5 15.6V8.4l6.3 3.6-6.3 3.6z" />
+                            </svg>
+                            Inscrever-se
+                        </a>
+                        <span
+                            class="inline-flex items-center gap-2 px-4 py-2 text-sm font-medium text-purple-600 dark:text-purple-400 bg-purple-100 dark:bg-purple-900/30 rounded-full">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
+                            </svg>
+                            {{ $channel->followers_count ?? 0 }} seguidores
+                        </span>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
 
+    {{-- ROULETTE SECTION - PLACEHOLDER --}}
+    @auth
+        <section class="bg-gray-100 dark:bg-slate-950 py-20">
+            <div class="max-w-screen-xl px-4 mx-auto">
+                <div class="text-center mb-12">
+                    <span
+                        class="inline-block px-4 py-1 mb-4 text-sm font-medium rounded-full bg-amber-500/10 text-amber-600 dark:text-amber-400">
+                        Em breve
+                    </span>
+                    <h2 class="text-4xl font-extrabold text-gray-900 dark:text-white mb-4">Roleta de Sorteios</h2>
+                    <p class="text-gray-500 dark:text-gray-400 max-w-lg mx-auto">Sistema de sorteios interativo para seus
+                        seguidores.</p>
+                </div>
 
-    <section class="bg-gray-50 text-gray-900">
-        <div class="mx-auto w-full max-w-7xl px-5 py-16 md:px-10 md:py-20">
-            <div class="flex justify-center items-end text-center">
-                <div class= "inline-block text-left bg-white border-gray-400 rounded-lg overflow-hidden align-bottom transition-all transform shadow-2xl sm:align-middle sm:max-w-xl sm:w-full">
-                    <div class="items-center w-full mr-auto ml-auto relative max-w-7xl md:px-12 lg:px-12 up">
-                        <div class="grid grid-cols-1">
-                            <div class="mt-4 mr-auto mb-4 ml-auto bg-white border-gray-400 max-w-lg">
-
-                                <div class="flex flex-col items-center pt-6 pr-6 pb-6 pl-6">
-                                    <img src="{{Storage::url($channel->user->avatar)}}" class="flex-shrink-0 object-cover object-center btn- flex w-16 h-16 mr-auto -mb-8 ml-auto rounded-full shadow-xl" style="border: {{ $channel->color }} solid 5px;">
-                                    <p class="mt-8 text-2xl font-semibold leading-none tracking-tighter lg:text-3xl">{{$channel->user->name}}</p>
-                                    <p class="mt-3 text-base leading-relaxed text-center">{{$channel->description}}</p>
-
-                                    <div class="w-full mt-6">
-                                        <a href="{{'https://www.youtube.com/@' . $channel->link}}" class="flex text-center items-center justify-center w-full pt-4 pr-10 pb-4 pl-10 text-base font-medium {{($channel->color != null ? 'bg-['.$channel->color.']' : 'bg-indigo-600')}} text-gray-900 rounded-xl transition duration-500 ease-in-out transform hover:bg-indigo-700 hover:text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
-                                            Acesse e inscreva-se no canal
-                                            <svg class="w-5 ml-3 text-green-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M10.0073 2.10365C8.60568 1.64993 7.08206 2.28104 6.41181 3.59294L5.60603 5.17011C5.51029 5.35751 5.35787 5.50992 5.17048 5.60566L3.5933 6.41144C2.2814 7.08169 1.6503 8.60532 2.10401 10.0069L2.64947 11.6919C2.71428 11.8921 2.71428 12.1077 2.64947 12.3079L2.10401 13.9929C1.6503 15.3945 2.28141 16.9181 3.5933 17.5883L5.17048 18.3941C5.35787 18.4899 5.51029 18.6423 5.60603 18.8297L6.41181 20.4068C7.08206 21.7187 8.60569 22.3498 10.0073 21.8961L11.6923 21.3507C11.8925 21.2859 12.108 21.2859 12.3082 21.3507L13.9932 21.8961C15.3948 22.3498 16.9185 21.7187 17.5887 20.4068L18.3945 18.8297C18.4902 18.6423 18.6426 18.4899 18.83 18.3941L20.4072 17.5883C21.7191 16.9181 22.3502 15.3945 21.8965 13.9929L21.351 12.3079C21.2862 12.1077 21.2862 11.8921 21.351 11.6919L21.8965 10.0069C22.3502 8.60531 21.7191 7.08169 20.4072 6.41144L18.83 5.60566C18.6426 5.50992 18.4902 5.3575 18.3945 5.17011L17.5887 3.59294C16.9185 2.28104 15.3948 1.64993 13.9932 2.10365L12.3082 2.6491C12.108 2.71391 11.8925 2.71391 11.6923 2.6491L10.0073 2.10365ZM8.19283 4.50286C8.41624 4.06556 8.92412 3.8552 9.39132 4.00643L11.0763 4.55189C11.6769 4.74632 12.3236 4.74632 12.9242 4.55189L14.6092 4.00643C15.0764 3.8552 15.5843 4.06556 15.8077 4.50286L16.6135 6.08004C16.9007 6.64222 17.3579 7.09946 17.9201 7.38668L19.4973 8.19246C19.9346 8.41588 20.145 8.92375 19.9937 9.39095L19.4483 11.076C19.2538 11.6766 19.2538 12.3232 19.4483 12.9238L19.9937 14.6088C20.145 15.076 19.9346 15.5839 19.4973 15.8073L17.9201 16.6131C17.3579 16.9003 16.9007 17.3576 16.6135 17.9197L15.8077 19.4969C15.5843 19.9342 15.0764 20.1446 14.6092 19.9933L12.9242 19.4479C12.3236 19.2535 11.6769 19.2535 11.0763 19.4479L9.39132 19.9933C8.92412 20.1446 8.41624 19.9342 8.19283 19.4969L7.38705 17.9197C7.09983 17.3576 6.64258 16.9003 6.08041 16.6131L4.50323 15.8073C4.06593 15.5839 3.85556 15.076 4.0068 14.6088L4.55226 12.9238C4.74668 12.3232 4.74668 11.6766 4.55226 11.076L4.0068 9.39095C3.85556 8.92375 4.06593 8.41588 4.50323 8.19246L6.0804 7.38668C6.64258 7.09946 7.09983 6.64222 7.38705 6.08004L8.19283 4.50286ZM6.75984 11.7573L11.0025 15.9999L18.0736 8.92885L16.6594 7.51464L11.0025 13.1715L8.17406 10.343L6.75984 11.7573Z"></path></svg>
-                                        </a>
-
-                                    </div>
+                <div class="grid lg:grid-cols-2 gap-8 items-center">
+                    {{-- Roulette Visual Placeholder --}}
+                    <div class="relative flex justify-center">
+                        <div class="relative w-80 h-80">
+                            {{-- Outer ring --}}
+                            <div
+                                class="absolute inset-0 rounded-full border-8 border-dashed border-purple-300 dark:border-purple-700 animate-spin-slow">
+                            </div>
+                            {{-- Inner circle --}}
+                            <div
+                                class="absolute inset-8 rounded-full bg-gradient-to-br from-purple-500 to-violet-600 shadow-2xl flex items-center justify-center">
+                                <div class="text-center text-white">
+                                    <svg class="w-16 h-16 mx-auto mb-4 animate-pulse" fill="none" stroke="currentColor"
+                                        viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z" />
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                    </svg>
+                                    <p class="text-lg font-bold">Em desenvolvimento</p>
+                                    <p class="text-sm opacity-80">Aguarde!</p>
                                 </div>
-
+                            </div>
+                            {{-- Decorative dots --}}
+                            <div
+                                class="absolute w-4 h-4 rounded-full bg-amber-400 shadow-lg top-0 left-1/2 -translate-x-1/2 -translate-y-1/2">
+                            </div>
+                            <div
+                                class="absolute w-4 h-4 rounded-full bg-amber-400 shadow-lg top-[14%] right-[14%] -translate-x-1/2 -translate-y-1/2">
+                            </div>
+                            <div
+                                class="absolute w-4 h-4 rounded-full bg-amber-400 shadow-lg top-1/2 right-0 -translate-x-1/2 -translate-y-1/2">
+                            </div>
+                            <div
+                                class="absolute w-4 h-4 rounded-full bg-amber-400 shadow-lg bottom-[14%] right-[14%] -translate-x-1/2 -translate-y-1/2">
+                            </div>
+                            <div
+                                class="absolute w-4 h-4 rounded-full bg-amber-400 shadow-lg bottom-0 left-1/2 -translate-x-1/2 -translate-y-1/2">
+                            </div>
+                            <div
+                                class="absolute w-4 h-4 rounded-full bg-amber-400 shadow-lg bottom-[14%] left-[14%] -translate-x-1/2 -translate-y-1/2">
+                            </div>
+                            <div
+                                class="absolute w-4 h-4 rounded-full bg-amber-400 shadow-lg top-1/2 left-0 -translate-x-1/2 -translate-y-1/2">
+                            </div>
+                            <div
+                                class="absolute w-4 h-4 rounded-full bg-amber-400 shadow-lg top-[14%] left-[14%] -translate-x-1/2 -translate-y-1/2">
                             </div>
                         </div>
                     </div>
-                </div>
-            </div>
-        </div>
-    </section>
 
-    @if($channel->camping)
-        <section class="bg-gray-50" id="campaind_id">
-            <div class="max-w-screen-xl px-4 py-8 mx-auto space-y-12 lg:space-y-20 lg:py-24 lg:px-6">
-                <!-- Row -->
-                <div class="items-center gap-8 flex justify-center xl:gap-16">
-                    <div class="text-gray-500 sm:text-lg">
-                        <h2 class="mb-4 text-4xl font-extrabold tracking-tight text-gray-900">{{$channel->camping->title}}</h2>
-                        <p class="mb-8 font-light lg:text-xl">
-                            {{$channel->camping->content}}</p>
-
-                        <div class="pt-8 space-y-5 border-t border-gray-200 my-7">
-                            <iframe class="w-[620px] h-[200px] mt-3 border-none" src="{{$channel->camping->linkGoal}}" frameborder="0"></iframe>
+                    {{-- Participants List Placeholder --}}
+                    <div
+                        class="p-8 rounded-3xl bg-white dark:bg-slate-800/50 border border-gray-100 dark:border-slate-700/50">
+                        <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-6 flex items-center gap-2">
+                            <svg class="w-5 h-5 text-purple-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
+                            </svg>
+                            Participantes
+                        </h3>
+                        <div class="space-y-3">
+                            @for($i = 1; $i <= 5; $i++)
+                                <div class="flex items-center gap-3 p-3 rounded-xl bg-gray-50 dark:bg-slate-700/50">
+                                    <div
+                                        class="w-10 h-10 rounded-full bg-gradient-to-br from-purple-400 to-violet-500 flex items-center justify-center text-white font-bold text-sm">
+                                        {{ $i }}
+                                    </div>
+                                    <div class="flex-1">
+                                        <div class="h-4 bg-gray-200 dark:bg-slate-600 rounded-full w-3/4 animate-pulse"></div>
+                                    </div>
+                                </div>
+                            @endfor
+                            <p class="text-center text-sm text-gray-400 dark:text-gray-500 mt-4">
+                                Lista de participantes aparecerá aqui
+                            </p>
                         </div>
                     </div>
-                    <div class="flex justify-center">
+                </div>
+            </div>
+        </section>
+    @endauth
 
-                        <iframe class="w-[220px] h-[300px] mt-3 border-none" src="{{$channel->camping->qrCode}}" frameborder="0"></iframe>
+    {{-- CAMPAIGN SECTION --}}
+    @if($channel->camping)
+        <section class="bg-white dark:bg-slate-900 py-20" id="campaind_id">
+            <div class="max-w-screen-xl px-4 mx-auto">
+                <div class="text-center mb-12">
+                    <span
+                        class="inline-block px-4 py-1 mb-4 text-sm font-medium rounded-full bg-green-500/10 text-green-600 dark:text-green-400">
+                        Campanha ativa
+                    </span>
+                    <h2 class="text-4xl font-extrabold text-gray-900 dark:text-white mb-4">{{ $channel->camping->title }}
+                    </h2>
+                    <p class="text-gray-500 dark:text-gray-400 max-w-2xl mx-auto">{{ $channel->camping->content }}</p>
+                </div>
+
+                <div class="grid lg:grid-cols-2 gap-8 items-center">
+                    <div
+                        class="p-8 rounded-3xl bg-gray-50 dark:bg-slate-800/50 border border-gray-100 dark:border-slate-700/50">
+                        <iframe class="w-full h-[200px] rounded-xl" src="{{ $channel->camping->linkGoal }}"
+                            frameborder="0"></iframe>
+                    </div>
+                    <div class="flex justify-center">
+                        <iframe class="w-[220px] h-[300px] rounded-xl" src="{{ $channel->camping->qrCode }}"
+                            frameborder="0"></iframe>
                     </div>
                 </div>
 
-                <div class="w-full mt-20 text-gray-900">
-                    <p class="flex text-center items-center justify-center w-full text-base font-medium">
-                        Ajude o canal acessando o nosso QR code
-                        <svg class="w-8 ml-3" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M16 17V16H13V13H16V15H18V17H17V19H15V21H13V18H15V17H16ZM21 21H17V19H19V17H21V21ZM3 3H11V11H3V3ZM5 5V9H9V5H5ZM13 3H21V11H13V3ZM15 5V9H19V5H15ZM3 13H11V21H3V13ZM5 15V19H9V15H5ZM18 13H21V15H18V13ZM6 6H8V8H6V6ZM6 16H8V18H6V16ZM16 6H18V8H16V6Z"></path></svg>
-                    </p>
-                </div>
-
-                <div class="items-center gap-8 lg:grid lg:grid-cols xl:gap-16">
-                    <img class="hidden w-full mb-4 rounded-lg lg:mb-0 m-10 lg:flex" src="{{Storage::url($channel->camping->image)}}" alt="dashboard feature image">
-                </div>
+                @if($channel->camping->image)
+                    <div class="mt-12">
+                        <img class="w-full max-w-3xl mx-auto rounded-2xl shadow-xl"
+                            src="{{ Storage::url($channel->camping->image) }}" alt="Campaign image">
+                    </div>
+                @endif
             </div>
         </section>
     @endif
 
-
-    <section class="bg-gray-50">
-        <div class="mx-auto w-full max-w-7xl px-5 py-16 md:px-10 md:py-20">
-
-            <div class="flex flex-row items-center justify-center mb-10">
-                <x-partials.title-section title="Postadas recentemente" description=""/>
+    {{-- POSTS SECTION --}}
+    <section class="bg-gray-100 dark:bg-slate-950 py-20">
+        <div class="max-w-screen-xl px-4 mx-auto">
+            <div class="text-center mb-12">
+                <span
+                    class="inline-block px-4 py-1 mb-4 text-sm font-medium rounded-full bg-blue-500/10 text-blue-600 dark:text-blue-400">
+                    Conteúdo
+                </span>
+                <h2 class="text-4xl font-extrabold text-gray-900 dark:text-white mb-4">
+                    {{ $posts->count() > 0 ? 'Postagens recentes' : 'Em breve novos conteúdos' }}
+                </h2>
+                @if($posts->count() > 0)
+                    <p class="text-gray-500 dark:text-gray-400 max-w-lg mx-auto">Confira as últimas postagens deste canal.
+                    </p>
+                @endif
             </div>
 
-            <div class="flex items-center justify-center mt-2">
-                @foreach($posts as $post)
-                    <a href="{{route('posts.post', ['slug'=>$post->slug])}}" class="relative w-full h-60 bg-cover bg-center border-[5px] border-red-200 border-opacity-80 bg-no-repeat" style="background-image: url('{{Storage::url($post->featured_image_url)}}');">
-                        <div class="absolute bottom-1 left-1 flex gap-1 text-white text-xs items-center">
-                            <svg class="ml-4 mr-1 justify-center" style="width:20px;height:20px" viewBox="0 0 24 24">
-                                <path fill="currentColor" d="M12,9A3,3 0 0,0 9,12A3,3 0 0,0 12,15A3,3 0 0,0 15,12A3,3 0 0,0 12,9M12,17A5,5 0 0,1 7,12A5,5 0 0,1 12,7A5,5 0 0,1 17,12A5,5 0 0,1 12,17M12,4.5C7,4.5 2.73,7.61 1,12C2.73,16.39 7,19.5 12,19.5C17,19.5 21.27,16.39 23,12C21.27,7.61 17,4.5 12,4.5Z" />
-                            </svg>
-                            <span>{{$post->views}}</span>
-                        </div>
-                    </a>
-                @endforeach
-            </div>
+            @if($posts->count() > 0)
+                <div class="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
+                    @foreach($posts as $post)
+                        <article
+                            class="group bg-white dark:bg-slate-900 rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
+                            <a href="{{ route('posts.post', ['slug' => $post->slug]) }}" class="block overflow-hidden">
+                                <img src="{{ Storage::url($post->featured_image_url) }}" alt="{{ $post->title }}"
+                                    class="w-full h-52 object-cover group-hover:scale-105 transition-transform duration-500">
+                            </a>
+                            <div class="p-6">
+                                <div class="flex items-center gap-2 mb-3">
+                                    <span
+                                        class="inline-flex items-center gap-1 px-3 py-1 text-xs font-semibold uppercase rounded-full bg-gray-100 dark:bg-slate-800 text-gray-600 dark:text-gray-400">
+                                        <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+                                        </svg>
+                                        {{ $post->views }}
+                                    </span>
+                                </div>
+                                <a href="{{ route('posts.post', ['slug' => $post->slug]) }}">
+                                    <h3
+                                        class="text-lg font-bold text-gray-900 dark:text-white mb-2 group-hover:text-purple-600 transition-colors line-clamp-2">
+                                        {{ Str::limit($post->title, 50) }}
+                                    </h3>
+                                </a>
+                                <p class="text-sm text-gray-500 dark:text-gray-400 line-clamp-2 mb-4">
+                                    {!! Str::limit($post->summary, 100) !!}</p>
+                            </div>
+                        </article>
+                    @endforeach
+                </div>
+            @else
+                <div class="text-center py-16">
+                    <div
+                        class="w-20 h-20 mx-auto mb-6 rounded-full bg-gray-200 dark:bg-slate-700 flex items-center justify-center">
+                        <svg class="w-10 h-10 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9a2 2 0 00-2-2h-2m-4-3H9M7 16h6M7 8h6v4H7V8z" />
+                        </svg>
+                    </div>
+                    <p class="text-lg text-gray-600 dark:text-gray-400 max-w-md mx-auto">
+                        Este canal ainda não possui postagens.
+                    </p>
+                </div>
+            @endif
         </div>
     </section>
 
     <x-partials.footer />
-
-    <script>
-
-    </script>
-
-
 </x-layout>

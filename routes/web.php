@@ -27,7 +27,7 @@ Route::get('/category/{slug}', [CategoryController::class, 'postsForCategory'])-
 
 // 3. AUTENTICAÇÃO (BREEZE)
 // Isso define as rotas: login, register, logout, password.request, etc.
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';
 
 Route::middleware('auth')->group(function () {
 
@@ -53,11 +53,14 @@ Route::middleware('auth')->group(function () {
 });
 
 
-// 4. ROTA DINÂMICA DE CANAIS (CATCH-ALL SLUG)
+// 4. DASHBOARD DO CANAL (LOGADO)
+Route::get('/canal/{slug}/dashboard', [ChannelController::class, 'dashboard'])->name('my.channel.dashboard');
+
+// 5. ROTA DINÂMICA DE CANAIS (CATCH-ALL SLUG)
 // Deve vir depois das rotas estáticas e de auth para não dar conflito.
 Route::get('/{slug}', [ChannelController::class, 'index'])->name('my.channel');
 
 // 5. FALLBACK (A ÚLTIMA LINHA SEMPRE!)
-Route::fallback(function (){
+Route::fallback(function () {
     return redirect()->route('app.home');
 });
