@@ -10,17 +10,17 @@
         "@tailwindcss/postcss": "^4.1.16",
         "@tailwindcss/typography": "^0.5.19",
         "@tailwindcss/vite": "^4.1.18",
-        "alpinejs": "^3.4.2",
-        "autoprefixer": "^10.4.2",
-        "axios": "^1.12.2",
-        "laravel-vite-plugin": "^2.0",
+        "alpinejs": "^3.15.8",
+        "autoprefixer": "^10.4.27",
+        "axios": "^1.13.6",
+        "laravel-vite-plugin": "^2.1",
         "postcss": "^8.4.31",
-        "postcss-nesting": "^13.0.2",
-        "tailwindcss": "^4.1.18",
+        "postcss-nesting": "^14.0.0",
+        "tailwindcss": "^4.2.1",
         "vite": "^7.1.12"
     },
     "dependencies": {
-        "alpinejs": "^3.15.1",
+        "alpinejs": "^3.15.8",
         "js-confetti": "^0.13.1",
         "scrollreveal": "^4.0.9"
     }
