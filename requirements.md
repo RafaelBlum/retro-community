@@ -23,6 +23,96 @@
 
 ---
 
+### 📋 RF002.3 — Passo a Passo Detalhado
+
+#### 1. Seguir Canal ✅ Concluído
+
+| Item | Status | Detalhes |
+|------|--------|----------|
+| Migration `channel_follower` | ✅ | `user_id`, `channel_id`, unique |
+| Model `User` → `following()` | ✅ | BelongsToMany |
+| Model `Channel` → `followers()` | ✅ | BelongsToMany |
+| Componente `FollowButton` | ✅ | Livewire com toggle |
+| Contador seguidores em tempo real | ✅ | `$followersCount` atualizado |
+| Impedir dono de seguir próprio canal | ✅ | Validação no `toggleFollow()` |
+
+---
+
+#### 2. Like em Posts 🔄 Pendente
+
+| Item | Detalhes |
+|------|----------|
+| Migration `post_likes` | `id`, `user_id`, `post_id`, `timestamps`, unique `[user_id, post_id]` |
+| Model `PostLike` | belongsTo User, belongsTo Post |
+| Model `Post` | `likes()` → HasMany, `likes_count` via withCount |
+| Componente `LikeButton` | Recebe `$postId`, `toggleLike()` com insert/delete |
+| View | Botão coração (preenchido/outline) + contador |
+
+---
+
+#### 3. Comentar em Posts 🔄 Pendente
+
+| Item | Detalhes |
+|------|----------|
+| Migration `comments` | `id`, `user_id`, `post_id`, `parent_id` (nullable), `content`, `timestamps` |
+| Model `Comment` | belongsTo User, belongsTo Post, belongsTo Comment (parent) |
+| Model `Post` | `comments()` → HasMany |
+| Componente `CommentSection` | Lista + formulário, `$replyTo` para replies |
+| Métodos | `addComment()`, `reply($id)`, `deleteComment($id)` |
+| View | Formulário (textarea + botão), lista com avatar/nome/data, replies indentadas |
+
+---
+
+#### 4. Notificações (Sininho) 🔄 Pendente
+
+| Item | Detalhes |
+|------|----------|
+| Migration `notifications` | `id`, `user_id`, `type`, `data` (json), `read_at` (nullable), `timestamps` |
+| Model `Notification` | belongsTo User, cast data como array, cast read_at como datetime |
+| Notification Class | `NewPostPublished` — salva na tabela com post_id, post_title, channel_name |
+| Trigger | Observer no Post (evento `created`) → busca seguidores com 🔔 → cria notificação |
+| Componente `NotificationCenter` | `$notifications`, `$unreadCount`, `markAsRead()`, `markAllAsRead()` |
+| View (Navbar) | Sininho com badge, dropdown com últimas notificações, link para post |
+
+**Fluxo:**
+```
+Usuário segue canal com 🔔 habilitado
+    ↓
+Canal publica post
+    ↓
+Post Observer dispara
+    ↓
+Busca seguidores com notificação ativa
+    ↓
+Cria registro na tabela notifications
+    ↓
+Badge aparece no sininho do navbar
+```
+
+---
+
+#### 5. Navbar Atualizado 🔄 Pendente
+
+| Item | Detalhes |
+|------|----------|
+| Sininho | Ícone com badge de notificações não lidas |
+| Dropdown | Últimas notificações com avatar, texto, data, link |
+| Botão | "Marcar todas como lida" |
+
+---
+
+#### Resumo Técnico
+
+| Feature | Tecnologia | Tabela | Componente |
+|---------|------------|--------|------------|
+| Seguir | Livewire | `channel_follower` | `FollowButton` ✅ |
+| Like | Livewire | `post_likes` | `LikeButton` |
+| Comentar | Livewire | `comments` | `CommentSection` |
+| Notificações | Livewire + Observer | `notifications` | `NotificationCenter` |
+| Trigger | Post Observer | — | `PostObserver` |
+
+---
+
 ## ⚙️ Estratégia Técnica de Implementação (RF002)
 
 ### RF002.1 — Formulário de Cadastro Inscrito

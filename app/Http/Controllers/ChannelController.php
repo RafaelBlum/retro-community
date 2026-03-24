@@ -11,13 +11,13 @@ class ChannelController extends Controller
 {
     public function index($slug)
     {
-        try{
-            $channel = Channel::where('slug', $slug)->firstOrFail();
+        try {
+            $channel = Channel::withCount('followers')->where('slug', $slug)->firstOrFail();
             $posts = Post::where('user_id', '=', $channel->id)->get();
 
             return view('channel.home', compact('channel', 'posts'));
-        }catch (Exception $exception){
-            if(env('APP_DEBUG')){
+        } catch (Exception $exception) {
+            if (env('APP_DEBUG')) {
                 return redirect()->back();
             }
             return redirect()->back();
@@ -33,8 +33,8 @@ class ChannelController extends Controller
     public function dashboard($slug)
     {
         try {
-            $channel = Channel::where('slug', $slug)->firstOrFail();
-            
+            $channel = Channel::withCount('followers')->where('slug', $slug)->firstOrFail();
+
             if (!auth()->check() || auth()->user()->channel->id !== $channel->id) {
                 return redirect()->route('my.channel', $slug);
             }

@@ -218,11 +218,29 @@ O dashboard está preparado para receber:
 
 ## 3. Botão de Seguir (Livewire)
 
+### Componente Livewire
+
 ```php
 // app/Livewire/FollowButton.php
 class FollowButton extends Component
 {
-    public Channel $channel;
+    public $channelId;
+    public $channelName;
+    public $isFollowing = false;
+
+    public function mount(Channel $channel)
+    {
+        $this->channelId = $channel->id;
+        $this->channelName = $channel->name;
+        $this->checkFollowing();
+    }
+
+    public function checkFollowing()
+    {
+        $this->isFollowing = auth()->check()
+            ? auth()->user()->following()->where('channel_id', $this->channelId)->exists()
+            : false;
+    }
 
     public function toggleFollow()
     {
@@ -232,38 +250,117 @@ class FollowButton extends Component
 
         $user = auth()->user();
 
-        if ($user->channel && $user->channel->id === $this->channel->id) {
+        if ($user->channel && $user->channel->id === $this->channelId) {
             return; // Dono não pode seguir próprio canal
         }
 
-        auth()->user()->following()->toggle($this->channel->id);
+        auth()->user()->following()->toggle($this->channelId);
+        $this->checkFollowing();
     }
 
     public function render()
     {
-        $isFollowing = auth()->check()
-            ? auth()->user()->following()->where('channel_id', $this->channel->id)->exists()
-            : false;
-
-        return view('livewire.follow-button', ['isFollowing' => $isFollowing]);
+        return view('livewire.follow-button');
     }
 }
 ```
+
+**Por que usar `mount()` em vez de propriedade pública com modelo?**
+
+O Livewire 3 serializa modelos Eloquent passados como propriedades públicas, o que pode causar problemas. A abordagem correta é:
+1. Receber o modelo no `mount()`
+2. Extrair apenas os dados necessários (`channelId`, `channelName`)
+3. Usar `checkFollowing()` para atualizar o estado
+
+### View do Componente
 
 ```blade
 {{-- resources/views/livewire/follow-button.blade.php --}}
 <div>
     <button
         wire:click="toggleFollow"
+        wire:loading.attr="disabled"
         @class([
-            'px-4 py-2 rounded-lg font-bold transition-colors',
-            'bg-white text-dark hover:bg-gray-200' => !$isFollowing,
+            'px-4 py-2 rounded-lg font-bold transition-all duration-200 flex items-center gap-2',
+            'bg-white text-gray-900 hover:bg-gray-200 shadow-sm' => !$isFollowing,
             'bg-gray-700 text-white hover:bg-red-600' => $isFollowing,
         ])
     >
-        {{ $isFollowing ? 'Seguindo' : 'Seguir' }}
+        <span wire:loading.remove wire:target="toggleFollow">
+            @if($isFollowing)
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                </svg>
+                Seguindo
+            @else
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
+                </svg>
+                Seguir
+            @endif
+        </span>
+        <span wire:loading wire:target="toggleFollow">
+            <svg class="animate-spin w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
+            </svg>
+        </span>
     </button>
 </div>
+```
+
+### Chamada na View
+
+```blade
+{{-- Usar wire:key para garantir unicidade --}}
+<livewire:follow-button :channel="$channel" :wire:key="'follow-' . $channel->id" />
+```
+
+### Tabela Pivô
+
+```php
+// database/migrations/2026_01_14_080341_create_channel_follower_table.php
+Schema::create('channel_follower', function (Blueprint $table) {
+    $table->id();
+    $table->foreignId('user_id')->constrained()->cascadeOnDelete();
+    $table->foreignId('channel_id')->constrained()->cascadeOnDelete();
+    $table->unique(['user_id', 'channel_id']); // Evita duplicatas
+    $table->timestamps();
+});
+```
+
+### Relacionamentos nos Models
+
+```php
+// User.php
+public function following(): BelongsToMany
+{
+    return $this->belongsToMany(Channel::class, 'channel_follower')->withTimestamps();
+}
+
+// Channel.php
+public function followers(): BelongsToMany
+{
+    return $this->belongsToMany(User::class, 'channel_follower')->withTimestamps();
+}
+```
+
+### Fluxo de Funcionamento
+
+```
+Usuário clica "Seguir"
+        ↓
+Livewire: wire:click="toggleFollow"
+        ↓
+FollowButton@toggleFollow()
+├── É guest? → Redireciona para login
+├── É dono do canal? → Retorna (não faz nada)
+└── É outro usuário? → auth()->user()->following()->toggle($channelId)
+        ↓
+Eloquent faz INSERT ou DELETE na tabela pivô channel_follower
+        ↓
+checkFollowing() atualiza $isFollowing
+        ↓
+Livewire re-renderiza o botão (AJAX, sem recarregar página)
 ```
 
 ## 4. Estilos CSS
@@ -394,3 +491,54 @@ $raData = [
 - Layout principal: `resources/views/components/layout.blade.php`
 - Navbar: `resources/views/components/partials/navbar.blade.php`
 - CSS global: `resources/css/app.css`
+
+## Troubleshooting
+
+### Erro: "Detected multiple instances of Alpine running"
+
+**Causa:** O Livewire 3 já inclui o Alpine.js internamente. Importar o Alpine novamente no `app.js` gera conflito.
+
+**Solução:** Remover do `resources/js/app.js`:
+```js
+// REMOVER se existir:
+import Alpine from 'alpinejs';
+Alpine.start();
+```
+
+Manter apenas:
+```js
+import './bootstrap';
+```
+
+O Livewire já injeta o Alpine automaticamente via `@livewireStyles` e `@livewireScripts` no layout.
+
+---
+
+## Log de Desenvolvimento
+
+### 23/03/2026 — Perfil do Canal e Dashboard
+
+**Páginas criadas/modificadas:**
+- `resources/views/channel/home.blade.php` — Reescrito com layout moderno (hero, card dono, roleta placeholder, posts)
+- `resources/views/channel/dashboard.blade.php` — Nova página com stats, placeholders para YouTube/RA APIs
+
+**Botão de Seguir (FollowButton):**
+- Problema: Componente não funcionava corretamente
+- Solução: Recriado com `mount()` em vez de propriedade pública com modelo
+- Motivo: Livewire 3 serializa modelos Eloquent passados como propriedades, causando problemas
+- Abordagem: Extrair `channelId` e `channelName` no `mount()`, usar `checkFollowing()` para estado
+
+**Bug Alpine.js:**
+- Erro: "Detected multiple instances of Alpine running"
+- Causa: `app.js` importava Alpine que o Livewire já inclui
+- Solução: Remover imports do Alpine do `app.js`
+
+**Arquivos modificados:**
+- `app/Livewire/FollowButton.php`
+- `resources/views/livewire/follow-button.blade.php`
+- `resources/views/channel/home.blade.php`
+- `resources/views/channel/dashboard.blade.php`
+- `resources/views/components/partials/navbar.blade.php` (link dashboard)
+- `resources/css/app.css` (animação spin-slow)
+- `routes/web.php` (rota dashboard)
+- `app/Http/Controllers/ChannelController.php` (método dashboard)
