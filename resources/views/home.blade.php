@@ -118,31 +118,7 @@
             @if($posts->count() > 0)
                 <div class="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
                     @foreach($posts as $post)
-                        <article class="group bg-gray-50 dark:bg-slate-900 rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
-                            <a href="{{ route('posts.post', ['slug' => $post->slug]) }}" class="block overflow-hidden">
-                                <img src="{{ Storage::url($post->featured_image_url) }}" alt="" class="w-full h-52 object-cover group-hover:scale-105 transition-transform duration-500">
-                            </a>
-                            <div class="p-6">
-                                <span class="inline-block px-3 py-1 text-xs font-semibold uppercase rounded-full bg-purple-100 text-purple-700 dark:bg-purple-900/50 dark:text-purple-300 mb-3">
-                                    {{ $post->category->name }}
-                                </span>
-                                <a href="{{ route('posts.post', ['slug' => $post->slug]) }}">
-                                    <h3 class="text-lg font-bold text-gray-900 dark:text-white mb-2 group-hover:text-purple-600 transition-colors line-clamp-2">
-                                        {{ Str::limit($post->title, 50) }}
-                                    </h3>
-                                </a>
-                                <p class="text-sm text-gray-500 line-clamp-2 mb-4">{!! $post->summary !!}</p>
-                                <div class="flex items-center gap-3 pt-4 border-t border-gray-200 dark:border-slate-700">
-                                    <img src="{{ Storage::url($post->author->channel->brand) }}" class="w-9 h-9 rounded-full object-cover ring-2 ring-gray-200 dark:ring-slate-600">
-                                    <div>
-                                        <a href="{{ route('my.channel', ['slug' => $post->author->channel->slug]) }}" class="text-sm font-semibold text-purple-600 hover:underline">
-                                            {{ $post->author->channel->title }}
-                                        </a>
-                                        <p class="text-xs text-gray-400">{{ $post->author->channel->name }}</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </article>
+                        <x-post-card :post="$post" />
                     @endforeach
                 </div>
                 <div class="mt-12 text-center">

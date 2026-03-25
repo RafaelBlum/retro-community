@@ -1,106 +1,96 @@
 <x-layout>
 
-
     <x-partials.navbar/>
 
-    {{--  HEADER HOME  --}}
-    <section class="bg-white">
-        <div class="grid max-w-screen-xl px-4 pt-20 pb-8 mx-auto lg:gap-8 xl:gap-0 lg:py-16 lg:grid-cols-12 lg:pt-28">
-            <div class="mr-auto place-self-center lg:col-span-7">
-                <h1 class="dir max-w-2xl mb-4 text-4xl font-extrabold leading-none tracking-tight md:text-5xl xl:text-6xl">{{ config('app.name') }}</h1>
-                <p class="max-w-2xl mb-6 font-light text-gray-500 lg:mb-8 md:text-lg lg:text-xl">
-                    Bem-vindo à sua comunidade retrô! Aqui você descobrirá todas as informações sobre canais retrô e muito mais.
-                    Nosso objetivo é fortalecer e ampliar a visibilidade do incrível trabalho da comunidade retrô.
-            </div>
-            <div class="lg:col-span-5 lg:flex lg:items-end lg:justify-end">
-                <div class="relative">
-                    <img src="{{ asset('images/hero-3.png') }}" alt="hero image" class="up relative inset-0 w-full h-full object-cover z-10">
-                    <img src="{{ asset('images/hero-7.png') }}" alt="hero image" class="vertical-loop-animation m-4 header_img_2 absolute inset-0 w-auto object-cover z-20">
-                    <img src="{{ asset('images/hero-9.png') }}" alt="hero image" class="vertical-loop-animation-img m-4 header_img_2 absolute inset-0 w-auto object-cover z-15">
+    {{-- HERO SECTION --}}
+    <section class="relative overflow-hidden text-white bg-gradient-to-br from-slate-700 via-violet-600 to-slate-700 dark:from-slate-900 dark:via-purple-900 dark:to-slate-900">
+        <div class="absolute inset-0 opacity-15 dark:opacity-20">
+            <div class="absolute top-20 left-10 w-96 h-96 bg-violet-400 dark:bg-purple-500 rounded-full blur-3xl"></div>
+            <div class="absolute bottom-10 right-20 w-[500px] h-[500px] bg-sky-400 dark:bg-blue-500 rounded-full blur-3xl"></div>
+        </div>
+        <div class="relative max-w-screen-xl px-4 pt-32 pb-24 mx-auto lg:pt-44">
+            <div class="grid lg:grid-cols-2 gap-12 items-center">
+                <div>
+                    <span class="inline-block px-4 py-1 mb-6 text-sm font-medium rounded-full bg-white/10 text-white/90 border border-white/20">
+                        Campanhas
+                    </span>
+                    <h1 class="text-5xl lg:text-6xl font-extrabold leading-tight mb-6 bg-gradient-to-r from-white via-violet-200 to-violet-300 dark:from-white dark:via-purple-200 dark:to-purple-400 bg-clip-text text-transparent">
+                        {{ config('app.name') }}
+                    </h1>
+                    <p class="text-lg text-white/80 dark:text-gray-300 mb-8 leading-relaxed max-w-lg">
+                        Bem-vindo à sua comunidade retrô! Descubra canais incríveis, conteúdos exclusivos e fortaleça a visibilidade da comunidade retrô.
+                    </p>
+                    <div class="flex flex-wrap gap-4">
+                        <a href="{{ route('app.channels') }}" class="px-8 py-3 bg-white/15 hover:bg-white/25 backdrop-blur rounded-lg font-semibold transition-all border border-white/20">
+                            Explorar canais
+                        </a>
+                    </div>
+                </div>
+                <div class="relative flex justify-center">
+                    <div class="absolute w-[450px] h-[450px] bg-violet-400/30 dark:bg-purple-500/30 rounded-full blur-3xl"></div>
+                    <img src="{{ asset('images/hero-3.png') }}" alt="hero" class="up relative w-[400px] h-auto z-10">
+                    <img src="{{ asset('images/hero-7.png') }}" alt="hero" class="vertical-loop-animation absolute inset-0 w-[400px] h-auto mx-auto z-20">
                 </div>
             </div>
         </div>
+        <div class="absolute bottom-0 left-0 right-0 h-56 bg-gradient-to-b from-transparent via-slate-700/40 to-white dark:via-slate-900/40 dark:to-slate-900"></div>
     </section>
 
+    {{-- CAMPAIGNS SECTION --}}
+    <section class="bg-white dark:bg-slate-900 py-20">
+        <div class="max-w-screen-xl px-4 mx-auto">
+            <div class="text-center mb-12">
+                <span class="inline-block px-4 py-1 mb-4 text-sm font-medium rounded-full bg-green-500/10 text-green-600">
+                    Ativas
+                </span>
+                <h2 class="text-4xl font-extrabold text-gray-900 dark:text-white mb-4">Campanhas</h2>
+                <p class="text-gray-500 dark:text-gray-400 max-w-lg mx-auto">Apoie os canais parceiros através das campanhas ativas.</p>
+            </div>
 
-    <section class="bg-white">
-        <div class="mx-auto w-full max-w-7xl px-5 py-16 md:px-10 md:py-20">
-            <div class="flex flex-col items-center">
-                @if($campings)
+            @if($campings)
+                <div class="space-y-12">
                     @foreach($campings as $campaing)
-                        <div class="swiper-slide mb-20 pb-10">
-                            <div class="w-full md:flex">
-
-                                <div class="relative mb-12 w-full max-w-[310px] md:mr-12 md:mb-0 md:max-w-[250px] lg:mr-14 lg:max-w-[280px] xl:max-w-[310px] 2xl:mr-16">
-                                    <div class="p-24 flex flex-wrap items-center justify-center up">
-                                        <a href="{{route('my.channel', ['slug'=> $campaing->channel->slug])}}" class="flex-shrink-0 m-6 relative overflow-hidden bg-teal-500 rounded-lg max-w-xs shadow-lg">
-                                            <svg class="absolute bottom-0 left-0 mb-8" viewBox="0 0 375 283" fill="none" style="transform: scale(1.5); opacity: 0.1;">
-                                                <rect x="159.52" y="175" width="152" height="152" rx="8" transform="rotate(-45 159.52 175)" fill="white"/>
-                                                <rect y="107.48" width="152" height="152" rx="8" transform="rotate(-45 0 107.48)" fill="white"/>
-                                            </svg>
-                                            <div class="relative pt-10 px-10 flex items-center justify-center">
-                                                <div class="block absolute w-48 h-48 bottom-0 left-0 -mb-24 ml-3" style="background: radial-gradient(black, transparent 60%); transform: rotate3d(0, 0, 1, 20deg) scale3d(1, 0.6, 1); opacity: 0.2;"></div>
-                                                <img class="relative w-40 rounded-full" src="{{Storage::url($campaing->channel->brand)}}" alt="">
-                                            </div>
-                                            <div class="relative text-white px-6 pb-6 mt-6">
-                                                <span class="block opacity-75 -mb-1">{{$campaing->channel->title}}</span>
-                                                <div class="flex justify-between">
-                                                    <span class="block font-semibold text-xl">{{$campaing->channel->name}}</span>
-                                                </div>
-                                            </div>
-                                        </a>
+                        <div class="group flex flex-col lg:flex-row gap-8 p-8 rounded-2xl bg-gray-50 dark:bg-slate-800 hover:shadow-xl transition-all duration-300">
+                            <div class="flex-shrink-0 flex items-center justify-center">
+                                <a href="{{route('my.channel', ['slug'=> $campaing->channel->slug])}}" class="block">
+                                    <div class="w-40 h-40 rounded-2xl overflow-hidden ring-4 ring-gray-200 dark:ring-slate-700 group-hover:ring-purple-500 transition-all">
+                                        <img src="{{Storage::url($campaing->channel->brand)}}" alt="{{$campaing->channel->title}}" class="w-full h-full object-cover">
                                     </div>
-                                </div>
-
-                                <div class="w-full">
-                                    <div>
-                                        <div class="pt-8 space-y-5 my-7">
-                                            <iframe class="w-[620px] h-[200px] mt-3 border-none" src="{{$campaing->linkGoal}}" frameborder="0"></iframe>
-                                        </div>
-                                        <p class="text-dark mb-2 text-base leading-[1.81] font-normal italic sm:text-[22px]">
-                                            {{$campaing->title}}
-                                        </p>
-
-                                        <div>
-                                            <a href="{{route('my.channel', ['slug'=> $campaing->channel->slug . '#campaind_id'])}}" class="inline-flex items-center text-base font-medium text-purple-600 hover:text-purple-800">
-                                                Acesse e saiba mais sobre
-                                                <svg class="w-5 h-5 ml-1" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M12.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-2.293-2.293a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
-                                            </a>
-                                        </div>
-                                    </div>
+                                </a>
+                            </div>
+                            <div class="flex-1 flex flex-col justify-center">
+                                <a href="{{route('my.channel', ['slug'=> $campaing->channel->slug])}}" class="text-lg font-bold text-gray-900 dark:text-white hover:text-purple-600 transition-colors">
+                                    {{$campaing->channel->title}}
+                                </a>
+                                <p class="text-sm text-gray-500 dark:text-gray-400 mt-1">{{$campaing->channel->name}}</p>
+                                <p class="text-gray-600 dark:text-gray-300 mt-4 leading-relaxed">{{$campaing->title}}</p>
+                                <div class="mt-4">
+                                    <a href="{{route('my.channel', ['slug'=> $campaing->channel->slug . '#campaind_id'])}}" class="inline-flex items-center gap-2 text-sm font-medium text-purple-600 hover:text-purple-700 transition-colors group/link">
+                                        Acesse e saiba mais
+                                        <svg class="w-4 h-4 group-hover/link:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+                                    </a>
                                 </div>
                             </div>
                         </div>
                     @endforeach
-
-                @else
-                    <div class="swiper-slide mb-20 pb-10">
-                        <div class="w-full md:flex">
-                            <div class="flex flex-col items-center text-center">
-                                <span class="text-dark mb-2 block text-lg font-semibold">
-                                   Campanhas dos canais parceiros
-                                </span>
-                                <p class="text-dark mb-6 text-xl leading-[1.2] font-bold sm:text-sm md:text-2xl">
-                                    Desculpe, mas no momento não existem campanhas criadas pelos canais.
-                                </p>
-                                <p class="text-indigo-400 font-semibold">
-                                    Em breve as campanhas estaram disponiveis para que todos possam fortalecer e ajudar seu canal favorito!
-                                </p>
-                            </div>
-                        </div>
+                </div>
+            @else
+                <div class="text-center py-16">
+                    <div class="w-20 h-20 mx-auto mb-6 rounded-full bg-gray-200 dark:bg-slate-700 flex items-center justify-center">
+                        <svg class="w-10 h-10 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5.882V19.24a1.76 1.76 0 01-3.417.592l-2.147-6.15M18 13a3 3 0 100-6M5.436 13.683A4.001 4.001 0 017 6h1.832c4.1 0 7.625-1.234 9.168-3v14c-1.543-1.766-5.067-3-9.168-3H7a3.988 3.988 0 01-1.564-.317z"/></svg>
                     </div>
-                @endif
-            </div>
+                    <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-2">Campanhas dos canais parceiros</h3>
+                    <p class="text-gray-600 dark:text-gray-400 max-w-md mx-auto mb-4">
+                        Desculpe, mas no momento não existem campanhas criadas pelos canais.
+                    </p>
+                    <p class="text-purple-600 dark:text-purple-400 font-semibold">
+                        Em breve as campanhas estarão disponíveis para que todos possam fortalecer e ajudar seu canal favorito!
+                    </p>
+                </div>
+            @endif
         </div>
     </section>
 
-
     <x-partials.footer />
 
-    <script>
-
-    </script>
-
-
 </x-layout>
-

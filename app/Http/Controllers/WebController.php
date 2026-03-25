@@ -57,6 +57,8 @@ class WebController extends Controller
             $grid = $channels->count();
 
             $posts = Post::where('status', 'published')
+                ->with(['author', 'author.channel', 'category'])
+                ->withCount(['likes', 'allComments'])
                 ->latest()
                 ->limit(6)
                 ->get();
