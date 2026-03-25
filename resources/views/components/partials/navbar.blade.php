@@ -4,7 +4,7 @@
         <div class="flex flex-wrap items-center justify-between max-w-screen-xl px-4 mx-auto">
             <a href="{{ route('app.landing') }}" class="flex items-center gap-2">
                 <div class="w-8 h-8 rounded-lg overflow-hidden">
-                    <img src="/images/brandname/favicon-retrocommunity.png" alt="" class="w-full h-full object-cover">
+                    <img src="/images/brandname/favicon-hall-dos-conquistadores.png" alt="" class="w-full h-full object-cover">
                 </div>
                 <span class="self-center text-lg font-bold whitespace-nowrap">{{ config('app.name') }}</span>
             </a>

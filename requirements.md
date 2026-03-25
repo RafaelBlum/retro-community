@@ -1,6 +1,6 @@
-# 📋 Requisitos — Retro Community
+# 📋 Requisitos — Hall dos Conquistadores
 
-> Documentação ágil de desenvolvimento do projeto **Retro Community**.
+> Documentação ágil de desenvolvimento do projeto **Hall dos Conquistadores**.
 > Para a visão geral dos requisitos funcionais e não funcionais, consulte o [README.md](README.md).
 
 > **Legenda de Status:** 🟢 Concluído | 🟡 Em desenvolvimento | 🔴 Pendente

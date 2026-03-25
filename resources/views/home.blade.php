@@ -64,7 +64,7 @@
                 Parceiros
             </span>
             <h2 class="text-4xl font-extrabold text-gray-900 dark:text-white mb-4">Canais apoiadores</h2>
-            <p class="text-gray-500 mb-12 max-w-lg mx-auto">Canais parceiros que apoiam o projeto Retrô Community.</p>
+            <p class="text-gray-500 mb-12 max-w-lg mx-auto">Canais parceiros que apoiam o projeto Hall dos Conquistadores.</p>
 
             @if($channels->isNotEmpty())
                 <div class="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">

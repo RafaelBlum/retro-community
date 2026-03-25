@@ -54,7 +54,7 @@
              style="clip-path: polygon(0% 100%, 25% 40%, 45% 75%, 65% 35%, 85% 70%, 100% 100%);"></div>
 
         <div class="z-30 mb-[-24px] bg-[#1e293b] rounded-xl px-4 py-2 border-2 border-indigo-500 shadow-2xl flex items-center justify-center up">
-            <img src="{{ asset('images/brandname/horizontal-retrocommunity.png') }}" class="h-8 w-auto object-contain">
+            <img src="{{ asset('images/brandname/horizontal-hall-dos-conquistadores.png') }}" class="h-8 w-auto object-contain">
         </div>
     </div>
 

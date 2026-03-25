@@ -13,10 +13,10 @@
                             <p class="font-bold text-base text-secondary tracking-wide uppercase">Canais Parceiros</p>
                             <h1 class="font-bold font-heading leading-tighter tracking-tighter mb-4 md:text-6xl text-5xl">
                                 Streamers parceiros da <br>
-                                <span class="highlight text-accent">Retrô Community</span></h1>
+                                <span class="highlight text-accent">Hall dos Conquistadores</span></h1>
                             <div class="mx-auto max-w-3xl">
                                 <p class="text-muted text-xl mb-6">
-                                    Bem-vindo à <a href="{{route('app.home')}}" class="text-purple-600 hover:underline">Retrô Community</a>,
+                                    Bem-vindo à <a href="{{route('app.home')}}" class="text-purple-600 hover:underline">Hall dos Conquistadores</a>,
                                     sua comunidade dedicada aos clássicos dos games retrô! A nostalgia dos anos 80 e 90, uma época de ouro que foi incrível para muitas pessoas.
                                     Explore nosso blog repleto de artigos atualizados sobre lives, gameplays, eventos entre outros conteúdos magnificos.
                                 </p>

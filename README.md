@@ -1,10 +1,10 @@
 <div align="center">
 
-![Logo Retrô Community (dark)](public/images/brandname/horizontal-retrocommunity.png#gh-dark-mode-only)
+![Logo Hall dos Conquistadores (dark)](public/images/brandname/Hall-dos-conquistadores.png#gh-dark-mode-only)
 
 </div>
 
-<h3 align="center">✨ Plataforma Retro Community ✨</h3>
+<h3 align="center">✨ Plataforma Hall dos Conquistadores ✨</h3>
 <p align="center"><strong>Mais do que uma rede de canais, é um ponto de encontro para apaixonados por jogos, cultura retrô e streaming independente.</strong></p>
 
 <p align="center">
@@ -24,7 +24,7 @@
 
 ## 📘 Contextualização e Objetivo
 
-O Retro Community é uma plataforma inovadora criada para potencializar a presença digital de criadores de conteúdo do YouTube, oferecendo um espaço que vai muito além da plataforma de vídeos e sempre zelando pela segurança, escalabilidade e fácil gerenciamento.
+O Hall dos Conquistadores é uma plataforma inovadora criada para potencializar a presença digital de criadores de conteúdo do YouTube, oferecendo um espaço que vai muito além da plataforma de vídeos e sempre zelando pela segurança, escalabilidade e fácil gerenciamento.
 
 Seu objetivo é conectar canais, inscritos e comunidades em um ambiente interativo, imersivo e totalmente voltado à experiência retrô — com recursos que integram dados do YouTube e funcionalidades exclusivas dentro da própria plataforma.
 
@@ -73,7 +73,7 @@ Seu objetivo é conectar canais, inscritos e comunidades em um ambiente interati
 
 ## 🧩 Especificação de Requisitos do Sistema
 
-A seguir estão definidos os requisitos que orientam o desenvolvimento da plataforma **Retro Community**, separando **Requisitos Funcionais (RF)** e **Requisitos Não Funcionais (RNF)**.
+A seguir estão definidos os requisitos que orientam o desenvolvimento da plataforma **Hall dos Conquistadores**, separando **Requisitos Funcionais (RF)** e **Requisitos Não Funcionais (RNF)**.
 
 Para analise e desenvolvimento dos requisitos, terá a **[documentação ágil](/requirements.md)** de desenvolvimento, o que garantem que o sistema atenda às necessidades do projeto, mantenha alta qualidade técnica e ofereça uma experiência estável, segura e imersiva.
 

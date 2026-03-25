@@ -1,7 +1,7 @@
 ---
 name: profile-channel
 description: >
-  Página de perfil público do canal no Retro Community.
+  Página de perfil público do canal no Hall dos Conquistadores.
   Gerencia o frontend do perfil do canal com layout moderno dark/light mode,
   hero section com gradiente, botão de seguir canal (Livewire),
   seção de roleta de sorteios (placeholder), card do dono do canal,
@@ -15,7 +15,7 @@ description: >
 
 ## Contexto do Projeto
 
-O **Retro Community** é uma plataforma para canais do YouTube de conteúdo retrô.
+O **Hall dos Conquistadores** é uma plataforma para canais do YouTube de conteúdo retrô.
 Cada canal cadastrado tem um perfil público acessível via `/{slug}`.
 
 O perfil do canal é a página principal onde:

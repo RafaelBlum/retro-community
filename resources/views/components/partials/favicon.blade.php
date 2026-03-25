@@ -1,8 +1,8 @@
-<link rel="apple-touch-icon" sizes="80x83" href="/images/brandname/favicon-retrocommunity.png">
-<link rel="icon" type="image/png" sizes="80x83" href="/images/brandname/favicon-retrocommunity.png">
+<link rel="apple-touch-icon" sizes="80x83" href="/images/brandname/favicon-hall-dos-conquistadores.png">
+<link rel="icon" type="image/png" sizes="80x83" href="/images/brandname/favicon-hall-dos-conquistadores.png">
 <link rel="manifest" href="/manifest.json">
 <meta name="msapplication-TileColor" content="#ffffff">
-<meta name="msapplication-TileImage" content="/images/brandname/favicon-retrocommunity.png">
+<meta name="msapplication-TileImage" content="/images/brandname/favicon-hall-dos-conquistadores.png">
 <meta name="theme-color" content="#ffffff">
 <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -16,7 +16,7 @@
 <meta name="author" content="Rafael Blum">
 
 {{--Social media share--}}
-<meta property="og:title" content="Retrô Community - Blog community">
-<meta property="og:site_name" content="Retrô Community">
+<meta property="og:title" content="Hall dos Conquistadores - Blog community">
+<meta property="og:site_name" content="Hall dos Conquistadores">
 <meta property="og:url" content="https://retrocommunity.com.br">
 <meta property="og:description" content="Aqui você descobrirá todas as informações sobre canais retrô e muito mais. Nosso objetivo é fortalecer e ampliar a visibilidade do incrível trabalho da comunidade retrô.">

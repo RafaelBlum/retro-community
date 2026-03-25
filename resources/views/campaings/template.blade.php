@@ -17,12 +17,12 @@
                 </div>
             </div>
             <div class="flex flex-col items-center text-center">
-                <img src="{{asset('images/brandname/horizontal-retrocommunity.png')}}" alt=""
+                <img src="{{asset('images/brandname/horizontal-hall-dos-conquistadores.png')}}" alt=""
                      class="" />
                 <h3 class="text-4xl font-bold tracking-tight">Games e informações</h3>
                 <p class="mt-6 text-lg leading-8">
                     Com uma comunidade unida, você encontrará uma vasta coleção de <em class="text-blue-400 bold">informações sobre jogos clássicos</em>, <em class="text-blue-400 bold">lives da galera no YouTube</em>, análises detalhadas
-                    e até histórias curiosas e guias de gameplay. Além disso, o <em class="text-blue-400 bold">Retrô Community</em> mantém você atualizado
+                    e até histórias curiosas e guias de gameplay. Além disso, o <em class="text-blue-400 bold">Hall dos Conquistadores</em> mantém você atualizado
                     sobre campanhas, lançamentos, eventos e tendências.
                 </p>
 
@@ -695,7 +695,7 @@
         <div class="absolute inset-0 -z-10 bg-[radial-gradient(45rem_50rem_at_top,theme(colors.indigo.100),white)] opacity-20"></div>
         <div class="absolute inset-y-0 right-1/2 -z-10 mr-16 w-[200%] origin-bottom-left skew-x-[-30deg] bg-gray-50 shadow-xl shadow-indigo-600/10 ring-1 ring-indigo-50 sm:mr-28 lg:mr-0 xl:mr-16 xl:origin-center"></div>
         <div class="mx-auto max-w-2xl lg:max-w-4xl">
-            <img class="mx-auto h-12" src="/images/brandname/horizontal-retrocommunity.png" alt="">
+            <img class="mx-auto h-12" src="/images/brandname/horizontal-hall-dos-conquistadores.png" alt="">
             <figure class="mt-10">
                 <blockquote class="text-center text-xl font-semibold leading-8 text-gray-900 sm:text-2xl sm:leading-9">
                     <p>“Lorem ipsum dolor sit amet consectetur adipisicing elit. Nemo expedita voluptas culpa sapiente alias molestiae. Numquam corrupti in laborum sed rerum et corporis.”</p>

@@ -27,14 +27,14 @@
             </div>
 
             <div class="hero-content">
-                <img src="{{asset('images/brandname/horizontal-retrocommunity.png')}}" alt="Retrô Community" class="hero-logo w-72 md:w-96 mb-6" />
+                <img src="{{asset('images/brandname/horizontal-hall-dos-conquistadores.png')}}" alt="Hall dos Conquistadores" class="hero-logo w-72 md:w-96 mb-6" />
                 <h1 class="hero-title font-pixel">Games e Informações</h1>
                 <p class="hero-subtitle">
                     Com uma comunidade unida, você encontrará uma vasta coleção de
                     <span class="text-violet-400 font-semibold">informações sobre jogos clássicos</span>,
                     <span class="text-violet-400 font-semibold">lives da galera no YouTube</span>,
                     análises detalhadas, histórias curiosas e guias de gameplay.
-                    O <span class="text-violet-400 font-semibold">Retrô Community</span> mantém você atualizado
+                    O <span class="text-violet-400 font-semibold">Hall dos Conquistadores</span> mantém você atualizado
                     sobre campanhas, lançamentos, eventos e tendências.
                 </p>
                 <div class="hero-cta">

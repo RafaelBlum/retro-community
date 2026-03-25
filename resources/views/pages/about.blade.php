@@ -13,10 +13,10 @@
                             <p class="font-bold text-base text-secondary tracking-wide uppercase">Sobre nós</p>
                             <h1 class="font-bold font-heading leading-tighter tracking-tighter mb-4 md:text-6xl text-5xl">
                                 Eleve sua presença online na<br>
-                                <span class="highlight text-accent">Retrô Community</span></h1>
+                                <span class="highlight text-accent">Hall dos Conquistadores</span></h1>
                             <div class="mx-auto max-w-3xl">
                                 <p class="text-muted text-xl mb-6">
-                                    Bem-vindo à <a href="{{route('app.home')}}" class="text-purple-600 hover:underline">Retrô Community</a>,
+                                    Bem-vindo à <a href="{{route('app.home')}}" class="text-purple-600 hover:underline">Hall dos Conquistadores</a>,
                                     sua comunidade dedicada aos clássicos dos games retrô! A nostalgia dos anos 80 e 90, uma época de ouro que foi incrível para muitas pessoas. Explore nosso blog repleto de
                                     artigos atualizados sobre lives, gameplays, eventos entre outros conteúdos magnificos.
                                 </p>
@@ -33,13 +33,13 @@
 
                         <div class="mx-auto max-w-5xl md:pb-16 pb-10 mt-16 text-center up text-gray-900">
                             <p class="mb-8 font-light lg:text-xl">
-                                Na <a href="{{route('app.home')}}" class="text-purple-600 hover:underline">Retrô Community</a>, celebramos não apenas os jogos que marcaram época, mas também fortalecemos a comunidade através do apoio a nossos parceiros do YouTube. Trabalhamos com criadores apaixonados que compartilham histórias, dicas valiosas e momentos inesquecíveis em vídeos envolventes. Aqui, o bate-papo é tão importante quanto a jogatina, proporcionando uma plataforma onde os fãs de games retrô podem se reunir para discutir seus títulos favoritos, bate-papo, criar amizades, descobrir novos clássicos e viver momentos de felicidade e nosltagia como quando eramos criança jogando entre amigos na sala de casa ou locadoras.
+                                Na <a href="{{route('app.home')}}" class="text-purple-600 hover:underline">Hall dos Conquistadores</a>, celebramos não apenas os jogos que marcaram época, mas também fortalecemos a comunidade através do apoio a nossos parceiros do YouTube. Trabalhamos com criadores apaixonados que compartilham histórias, dicas valiosas e momentos inesquecíveis em vídeos envolventes. Aqui, o bate-papo é tão importante quanto a jogatina, proporcionando uma plataforma onde os fãs de games retrô podem se reunir para discutir seus títulos favoritos, bate-papo, criar amizades, descobrir novos clássicos e viver momentos de felicidade e nosltagia como quando eramos criança jogando entre amigos na sala de casa ou locadoras.
                             </p>
                             <p class="mb-8 font-light lg:text-xl">
                                 Nosso blog oferece atualizações regulares sobre eventos de gaming, análises de gameplays icônicos e previews de novos lançamentos imperdíveis. Além disso, exploramos a história dos videogames e as tendências atuais da indústria em artigos informativos e cativantes.
                             </p>
                             <p class="mb-8 font-light lg:text-xl">
-                                Prepare-se para uma viagem no tempo através dos mundos pixelizados que capturaram nossa imaginação, enquanto celebramos a magia duradoura dos games retrô. Junte-se à <a href="{{route('app.home')}}" class="text-purple-600 hover:underline">Retrô Community</a>, onde o passado e o presente se encontram em uma comunidade apaixonada por videogames clássicos.
+                                Prepare-se para uma viagem no tempo através dos mundos pixelizados que capturaram nossa imaginação, enquanto celebramos a magia duradoura dos games retrô. Junte-se à <a href="{{route('app.home')}}" class="text-purple-600 hover:underline">Hall dos Conquistadores</a>, onde o passado e o presente se encontram em uma comunidade apaixonada por videogames clássicos.
                             </p>
                         </div>
                     </div>
@@ -76,7 +76,7 @@
             <div class="py-8 px-4 mx-auto max-w-screen-xl text-center lg:py-16 lg:px-6 up">
                 <div class="mx-auto mb-8 max-w-screen-sm lg:mb-16">
                     <h2 class="mb-4 text-4xl tracking-tight font-extrabold text-gray-900">Canais apoiadores</h2>
-                    <p class="font-light text-gray-500 sm:text-xl">Alguns canais parceiros que estão apoiando o projeto Retrô Community.</p>
+                    <p class="font-light text-gray-500 sm:text-xl">Alguns canais parceiros que estão apoiando o projeto Hall dos Conquistadores.</p>
                 </div>
 
                 <div class="grid gap-8 lg:gap-16 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
