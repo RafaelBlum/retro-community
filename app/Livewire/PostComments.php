@@ -83,12 +83,14 @@ class PostComments extends Component
 
     public function render()
     {
+        $totalComments = Comment::where('post_id', $this->post->id)->count();
+
         $comments = Comment::where('post_id', $this->post->id)
             ->whereNull('parent_id')
             ->with(['user', 'user.channel', 'replies.user', 'replies.user.channel'])
             ->latest()
             ->paginate(10);
 
-        return view('livewire.post-comments', compact('comments'));
+        return view('livewire.post-comments', compact('comments', 'totalComments'));
     }
 }

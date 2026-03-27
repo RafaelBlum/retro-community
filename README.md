@@ -27,7 +27,7 @@
 O Hall dos Conquistadores é uma plataforma inovadora criada para potencializar a presença digital de criadores de conteúdo do YouTube, oferecendo um espaço que vai muito além da plataforma de vídeos e sempre zelando pela segurança, escalabilidade e fácil gerenciamento.
 
 Seu objetivo é conectar canais, inscritos e comunidades em um ambiente interativo, imersivo e totalmente voltado à experiência retrô — com recursos que integram dados do YouTube e funcionalidades exclusivas dentro da própria plataforma.
-
+ 
 ## 🌟 **Proposta** dos principais Recursos
 
 - Páginas destacando conteúdos principais, como: **postagens, canais, campanhas, página sobre a plataforma e perfil de cada criador de conteúdo**.

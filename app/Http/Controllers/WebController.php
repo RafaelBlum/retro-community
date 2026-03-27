@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use Exception;
 use App\Models\Campaign;
 use App\Models\Channel;
@@ -12,15 +13,6 @@ use Illuminate\Support\Facades\Auth;
 class WebController extends Controller
 {
 
-    public function templateTest()
-    {
-        $channels = Channel::all();
-
-        $campings = Campaign::where('camping', true)->get();
-
-        $grid = $channels->count();
-        return view('campaings.template', compact('channels', 'campings', 'grid'));
-    }
 
     public function landing()
     {
@@ -29,8 +21,18 @@ class WebController extends Controller
             $grid = $channels->count();
 
             return view('landing', compact('channels', 'grid'));
+        } catch (Exception $exception) {
+            report($exception);
+            return redirect()->back();
         }
-        catch (Exception $exception) {
+    }
+
+    public function gameIntruderUsers()
+    {
+        try {
+            $users = User::all(['id', 'name']);
+            return view('landingGame', compact('users'));
+        } catch (Exception $exception) {
             report($exception);
             return redirect()->back();
         }
@@ -47,13 +49,13 @@ class WebController extends Controller
 
             $suggestedChannels = Channel::withCount('followers')
                 ->whereDoesntHave('followers', function ($query) {
-                $query->where('user_id', \auth()->id());
-            })
+                    $query->where('user_id', \auth()->id());
+                })
                 ->limit(5)
                 ->get();
 
             $section = false;
-            $channels = Channel::withCount('followers')->limit(4)->get();
+            $channels = Channel::withCount('followers')->inRandomOrder()->limit(4)->get();
             $grid = $channels->count();
 
             $posts = Post::where('status', 'published')
@@ -71,8 +73,7 @@ class WebController extends Controller
                 'followedChannels',
                 'suggestedChannels'
             ));
-        }
-        catch (Exception $exception) {
+        } catch (Exception $exception) {
             report($exception);
             return redirect()->back();
         }

@@ -60,7 +60,7 @@
                     </div>
 
                     {{-- Like Button --}}
-                    <div class="mt-10 pt-8 border-t border-gray-200 dark:border-slate-700">
+                    <div class="mt-10">
                         <livewire:post-like :post="$post" />
                     </div>
 
