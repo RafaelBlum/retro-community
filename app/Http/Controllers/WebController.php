@@ -31,7 +31,7 @@ class WebController extends Controller
     {
         try {
             $users = User::all(['id', 'name']);
-            return view('landingGame', compact('users'));
+            return view('game', compact('users'));
         } catch (Exception $exception) {
             report($exception);
             return redirect()->back();
