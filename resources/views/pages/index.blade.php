@@ -1,4 +1,4 @@
-<x-layout>
+<x-layouts.app>
 
     <x-partials.navbar />
 
@@ -63,7 +63,8 @@
             </div>
 
             @if($posts->count() != 0)
-                <div class="grid gap-8 sm:grid-cols-2 {{ $posts->count() < 3 ? 'lg:grid-cols-2 justify-items-center max-w-2xl mx-auto' : 'lg:grid-cols-3' }}">
+                <div
+                    class="grid gap-8 sm:grid-cols-2 {{ $posts->count() < 3 ? 'lg:grid-cols-2 justify-items-center max-w-2xl mx-auto' : 'lg:grid-cols-3' }}">
                     @foreach($posts as $post)
                         <x-post-card :post="$post" />
                     @endforeach
@@ -92,4 +93,4 @@
     {{-- FOOTER --}}
     <x-partials.footer />
 
-</x-layout>
+</x-layouts.app>

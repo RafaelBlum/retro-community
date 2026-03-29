@@ -1,4 +1,4 @@
-<x-layout>
+<x-layouts.app>
     <x-partials.navbar />
 
     {{-- HERO SECTION - CHANNEL PROFILE --}}
@@ -318,4 +318,4 @@
     </section>
 
     <x-partials.footer />
-</x-layout>
+</x-layouts.app>

@@ -1,4 +1,4 @@
-<x-layout>
+<x-layouts.app>
 
     <x-partials.navbar />
 
@@ -179,4 +179,4 @@
     {{-- FOOTER --}}
     <x-partials.footer />
 
-</x-layout>
+</x-layouts.app>
