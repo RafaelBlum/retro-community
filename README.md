@@ -1,6 +1,6 @@
 <div align="center" id="logo" width="150">
 
-![Logo Hall dos Conquistadores (dark)](public/images/brandname/Hall-dos-conquistadores.png#gh-dark-mode-only)
+![Logo Hall dos Conquistadores (dark)](public/images/brandname/Hall-dos-conquistadores-md.png#gh-dark-mode-only)
 
 </div>
 
