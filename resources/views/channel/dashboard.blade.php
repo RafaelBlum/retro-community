@@ -26,7 +26,7 @@
                 <div class="text-center lg:text-left">
                     <span
                         class="inline-block px-4 py-1 mb-4 text-sm font-medium rounded-full bg-white/10 text-white/90 border border-white/20">
-                        Dashboard do Canal
+                        Dashboard do Canal xx
                     </span>
                     <h1
                         class="text-4xl lg:text-5xl font-extrabold leading-tight mb-4 bg-gradient-to-r from-white via-violet-200 to-violet-300 dark:from-white dark:via-purple-200 dark:to-purple-400 bg-clip-text text-transparent">

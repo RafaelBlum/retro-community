@@ -9,13 +9,13 @@ use Illuminate\Http\Request;
 
 class ChannelController extends Controller
 {
-    public function index($slug)
+    public function show($slug)
     {
         try {
             $channel = Channel::withCount('followers')->where('slug', $slug)->firstOrFail();
             $posts = Post::where('user_id', '=', $channel->id)->get();
 
-            return view('channel.home', compact('channel', 'posts'));
+            return view('channel.show', compact('channel', 'posts'));
         } catch (Exception $exception) {
             if (env('APP_DEBUG')) {
                 return redirect()->back();
@@ -24,10 +24,10 @@ class ChannelController extends Controller
         }
     }
 
-    public function channels()
+    public function index()
     {
         $channels = Channel::all();
-        return view('channel.channels', compact('channels'));
+        return view('channel.index', compact('channels'));
     }
 
     public function dashboard($slug)
