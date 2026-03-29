@@ -1,4 +1,4 @@
-<div align="center">
+<div align="center" id="logo" width="300">
 
 ![Logo Hall dos Conquistadores (dark)](public/images/brandname/Hall-dos-conquistadores.png#gh-dark-mode-only)
 
