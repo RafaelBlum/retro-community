@@ -71,7 +71,39 @@ body {
 }
 
 .hero-logo {
-    animation: fadeInDown 1s ease-out forwards;
+    animation: fadeInDown 1s ease-out forwards, logo-glow 3s ease-in-out 1s infinite;
+    position: relative;
+    z-index: 2;
+}
+
+/* ============================================
+   LOGO PULSE EFFECT (Background color pulse)
+ ============================================ */
+
+.logo-pulse {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.hero-logo {
+    position: relative;
+    z-index: 2;
+    image-rendering: pixelated;
+    animation: logo-glow 3s ease-in-out infinite;
+}
+
+@keyframes logo-glow {
+    0%, 100% {
+        filter: drop-shadow(0 0 15px rgba(139, 92, 246, 0.4)) 
+                drop-shadow(0 0 30px rgba(139, 92, 246, 0.2));
+    }
+    50% {
+        filter: drop-shadow(0 0 30px rgba(167, 139, 250, 0.6)) 
+                drop-shadow(0 0 60px rgba(139, 92, 246, 0.4))
+                drop-shadow(0 0 90px rgba(99, 40, 180, 0.2));
+    }
 }
 
 .hero-title {

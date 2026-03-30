@@ -9,6 +9,9 @@ use Illuminate\Foundation\Auth\EmailVerificationRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
+// AUTENTICAÇÃO (BREEZE)
+require __DIR__ . '/auth.php';
+
 // PÁGINAS PÚBLICAS
 Route::get('/', [WebController::class, 'landing'])->name('app.landing');
 Route::get('/home', [WebController::class, 'home'])->name('app.home');
@@ -33,8 +36,7 @@ Route::get('/posts/{slug}', [PostController::class, 'post'])->name('posts.post')
 Route::get('/category/{slug}', [CategoryController::class, 'postsForCategory'])->name('posts.category');
 
 
-// AUTENTICAÇÃO (BREEZE)
-require __DIR__ . '/auth.php';
+
 
 Route::middleware('auth')->group(function () {
 

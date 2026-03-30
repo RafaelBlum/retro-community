@@ -26,8 +26,10 @@
         </div>
 
         <div class="hero-content">
-            <img src="{{asset('images/brandname/Hall-dos-conquistadores-md.png')}}" alt="Hall dos Conquistadores"
-                class="hero-logo w-72 md:w-96 mb-6" />
+            <div class="logo-pulse">
+                <img src="{{asset('images/brandname/Hall-dos-conquistadores-md.png')}}" alt="Hall dos Conquistadores"
+                    class="hero-logo w-72 md:w-96 mb-6" />
+            </div>
             <h1 class="hero-title font-pixel">Games e desafios</h1>
             <p class="hero-subtitle">
                 O <span class="text-violet-400 font-semibold">Hall dos Conquistadores</span> é uma plataforma inovadora
