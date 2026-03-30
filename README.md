@@ -24,9 +24,9 @@
 
 ## 📘 Contextualização e Objetivo
 
-O Hall dos Conquistadores é uma plataforma inovadora criada para potencializar a presença digital de criadores de conteúdo do YouTube, oferecendo um espaço que vai muito além da plataforma de vídeos e sempre zelando pela segurança, escalabilidade e fácil gerenciamento.
+O Hall dos Conquistadores é uma plataforma inovadora projetada para elevar a presença digital de criadores de conteúdo e entusiastas de RetroAchievements. Unimos a paixão pelos desafios clássicos à dinâmica do YouTube, oferecendo um ecossistema que prioriza a segurança, a escalabilidade e o respeito mútuo.
 
-Seu objetivo é conectar canais, inscritos e comunidades em um ambiente interativo, imersivo e totalmente voltado à experiência retrô — com recursos que integram dados do YouTube e funcionalidades exclusivas dentro da própria plataforma.
+Nosso objetivo é fomentar desafios coletivos e a busca pela "masterização", transformando as experiências individuais — de glórias e persistência — em uma jornada comunitária. Aqui, conectamos os inscritos aos seus canais favoritos em um ambiente imersivo, interativo e totalmente dedicado à cultura dos jogos retro.
  
 ## 🌟 **Proposta** dos principais Recursos
 
