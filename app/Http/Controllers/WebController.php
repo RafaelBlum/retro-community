@@ -17,10 +17,7 @@ class WebController extends Controller
     public function landing()
     {
         try {
-            $channels = Channel::withCount('followers')->limit(4)->get();
-            $grid = $channels->count();
-
-            return view('landing', compact('channels', 'grid'));
+            return view('landing');
         } catch (Exception $exception) {
             report($exception);
             return redirect()->back();
