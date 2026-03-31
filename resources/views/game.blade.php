@@ -3,8 +3,9 @@
 
 <head>
     <meta charset="UTF-8">
+    @include('components.partials.favicon')
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Intruder Users</title>
+    <title>{{config('app.name')}}</title>
     @vite(['resources/css/app.css', 'resources/js/app.js', 'resources/css/game.css'])
     @livewireStyles
 </head>

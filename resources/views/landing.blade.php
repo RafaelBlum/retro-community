@@ -2,9 +2,12 @@
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}" style="scroll-behavior: smooth;">
 
 <head>
+    <meta charset="UTF-8">
     @include('components.partials.favicon')
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{{config('app.name')}}</title>
     @vite(['resources/css/landing.css', 'resources/js/app.js'])
+    @livewireStyles
 </head>
 
 <body class="antialiased bg-[#0a0a1a] text-white" style="overflow-x: hidden;">
@@ -15,20 +18,20 @@
         <div class="particles">
             @for($i = 0; $i < 30; $i++)
                 <div class="particle" style="
-                    left: {{ rand(0, 100) }}%;
-                    width: {{ rand(2, 6) }}px;
-                    height: {{ rand(2, 6) }}px;
-                    animation-duration: {{ rand(5, 15) }}s;
-                    animation-delay: {{ rand(0, 10) }}s;
-                    background: rgba({{ rand(100, 200) }}, {{ rand(50, 120) }}, {{ rand(200, 255) }}, 0.5);
-                "></div>
+                                    left: {{ rand(0, 100) }}%;
+                                    width: {{ rand(2, 6) }}px;
+                                    height: {{ rand(2, 6) }}px;
+                                    animation-duration: {{ rand(5, 15) }}s;
+                                    animation-delay: {{ rand(0, 10) }}s;
+                                    background: rgba({{ rand(100, 200) }}, {{ rand(50, 120) }}, {{ rand(200, 255) }}, 0.5);
+                                "></div>
             @endfor
         </div>
 
         <div class="hero-content">
             <div class="logo-pulse">
-                <img src="{{asset('images/brandname/Hall-dos-conquistadores-md.png')}}" alt="Hall dos Conquistadores"
-                    class="hero-logo w-72 md:w-96 mb-6" />
+                <img src="{{asset('images/brandname/Hall-dos-conquistadores.png')}}" alt="Hall dos Conquistadores"
+                    class="hero-logo w-72 md:w-72 mb-6" />
             </div>
             <h1 class="hero-title font-pixel">Games e desafios</h1>
             <p class="hero-subtitle">
@@ -197,8 +200,10 @@
 
     <footer class="site-footer">
         <span>Laravel v{{ Illuminate\Foundation\Application::VERSION }} (PHP v{{ PHP_VERSION }})</span>
+        <span>Desenvolvido por <a href="https://github.com/RafaelBlum">Rafael Blum</a></span>
+        <span> - Hall dos Conquistadores {{ date('Y') }}</span>
     </footer>
-
+    @livewireScripts
 </body>
 
 </html>
