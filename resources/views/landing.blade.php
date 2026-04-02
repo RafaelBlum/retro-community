@@ -6,7 +6,7 @@
     @include('components.partials.favicon')
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{{config('app.name')}}</title>
-    @vite(['resources/css/landing.css', 'resources/js/app.js'])
+    @vite(['resources/css/landing.css'])
     @livewireStyles
 </head>
 
@@ -17,14 +17,10 @@
 
         <div class="particles">
             @for($i = 0; $i < 30; $i++)
-                <div class="particle" style="
-                                    left: {{ rand(0, 100) }}%;
-                                    width: {{ rand(2, 6) }}px;
-                                    height: {{ rand(2, 6) }}px;
-                                    animation-duration: {{ rand(5, 15) }}s;
-                                    animation-delay: {{ rand(0, 10) }}s;
-                                    background: rgba({{ rand(100, 200) }}, {{ rand(50, 120) }}, {{ rand(200, 255) }}, 0.5);
-                                "></div>
+                <div class="particle" style="left: {{ rand(0, 100) }}%; width: {{ rand(2, 6) }}px; 
+                    height: {{ rand(2, 6) }}px; animation-duration: {{ rand(5, 15) }}s; animation-delay: {{ rand(0, 10) }}s;
+                    background: rgba({{ rand(100, 200) }}, {{ rand(50, 120) }}, {{ rand(200, 255) }}, 0.5); ">
+                </div>
             @endfor
         </div>
 
@@ -60,143 +56,7 @@
         </div>
     </section>
 
-    <section id="about" class="channels-section">
-        <div class="stars-bg"></div>
-        <div class="nebula-glow"></div>
-
-        {{-- Retro Spaceship 1 --}}
-        <div class="retro-ship ship-1">
-            <div class="ship-body">
-                <div class="ship-row">
-                    <div class="px c1"></div>
-                    <div class="px c2"></div>
-                    <div class="px c2"></div>
-                    <div class="px c1"></div>
-                </div>
-                <div class="ship-row">
-                    <div class="px c3"></div>
-                    <div class="px c4"></div>
-                    <div class="px c4"></div>
-                    <div class="px c4"></div>
-                    <div class="px c3"></div>
-                </div>
-                <div class="ship-row">
-                    <div class="px c5"></div>
-                    <div class="px c4"></div>
-                    <div class="px c4"></div>
-                    <div class="px c4"></div>
-                    <div class="px c4"></div>
-                    <div class="px c4"></div>
-                    <div class="px c5"></div>
-                </div>
-                <div class="ship-row">
-                    <div class="px c3"></div>
-                    <div class="px c4"></div>
-                    <div class="px c4"></div>
-                    <div class="px c4"></div>
-                    <div class="px c3"></div>
-                </div>
-                <div class="ship-row">
-                    <div class="px c1"></div>
-                    <div class="px c2"></div>
-                    <div class="px c2"></div>
-                    <div class="px c1"></div>
-                </div>
-            </div>
-            <div class="ship-engine">
-                <div class="flame flame-1"></div>
-                <div class="flame flame-2"></div>
-                <div class="flame flame-3"></div>
-            </div>
-        </div>
-
-        {{-- Retro Spaceship 2 --}}
-        <div class="retro-ship ship-2">
-            <div class="ship-body">
-                <div class="ship-row">
-                    <div class="px c1"></div>
-                    <div class="px c2"></div>
-                    <div class="px c2"></div>
-                    <div class="px c1"></div>
-                </div>
-                <div class="ship-row">
-                    <div class="px c3"></div>
-                    <div class="px c4"></div>
-                    <div class="px c4"></div>
-                    <div class="px c4"></div>
-                    <div class="px c3"></div>
-                </div>
-                <div class="ship-row">
-                    <div class="px c5"></div>
-                    <div class="px c4"></div>
-                    <div class="px c4"></div>
-                    <div class="px c4"></div>
-                    <div class="px c4"></div>
-                    <div class="px c4"></div>
-                    <div class="px c5"></div>
-                </div>
-                <div class="ship-row">
-                    <div class="px c3"></div>
-                    <div class="px c4"></div>
-                    <div class="px c4"></div>
-                    <div class="px c4"></div>
-                    <div class="px c3"></div>
-                </div>
-                <div class="ship-row">
-                    <div class="px c1"></div>
-                    <div class="px c2"></div>
-                    <div class="px c2"></div>
-                    <div class="px c1"></div>
-                </div>
-            </div>
-            <div class="ship-engine">
-                <div class="flame flame-1"></div>
-                <div class="flame flame-2"></div>
-                <div class="flame flame-3"></div>
-            </div>
-        </div>
-
-        {{-- Projectiles from ships toward button --}}
-        <div class="projectile p1"></div>
-        <div class="projectile p2"></div>
-        <div class="projectile p3"></div>
-        <div class="projectile p4"></div>
-        <div class="projectile p5"></div>
-        <div class="projectile p6"></div>
-
-        <div class="about-content">
-            <div class="about-icon">
-                <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none"
-                    stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M12 2L2 7l10 5 10-5-10-5z" />
-                    <path d="M2 17l10 5 10-5" />
-                    <path d="M2 12l10 5 10-5" />
-                </svg>
-            </div>
-            <h2 class="font-pixel">Objetivo da Comunidade</h2>
-            <p class="about-subtitle">Faça parte dessa comunidade</p>
-
-            <p id="text-sm" class="text-xs text-gray-400 leading-relaxed max-w-2xl mx-auto">
-                Nosso objetivo é fomentar desafios coletivos e a busca pela "masterização", transformando as
-                experiências individuais — de glórias e persistência — em uma jornada comunitária.
-                Aqui, conectamos os inscritos aos seus canais favoritos em um ambiente imersivo,
-                interativo e totalmente dedicado à cultura dos jogos retro.
-            </p>
-
-            <a href="{{ route('app.game') }}" class="game-btn">
-                <span class="game-btn-pulse"></span>
-                <span class="impact-flash"></span>
-                <span class="game-btn-icon">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
-                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <polygon points="5 3 19 12 5 21 5 3" />
-                    </svg>
-                </span>
-                Jogar agora
-            </a>
-        </div>
-
-    </section>
+    <x-game.game-ship />
 
     <footer class="site-footer">
         <span>Laravel v{{ Illuminate\Foundation\Application::VERSION }} (PHP v{{ PHP_VERSION }})</span>

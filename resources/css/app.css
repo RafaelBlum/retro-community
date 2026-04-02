@@ -1,5 +1,4 @@
 @import 'tailwindcss';
-@import './retro-login.css';
 @source "../views";
 @source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
 @source '../../storage/framework/views/*.php';
@@ -65,9 +64,26 @@
 }
 
 @keyframes shake {
-    0%, 100% { transform: rotate(0deg); }
-    10%, 30%, 50%, 70%, 90% { transform: rotate(-6deg); }
-    20%, 40%, 60%, 80% { transform: rotate(6deg); }
+
+    0%,
+    100% {
+        transform: rotate(0deg);
+    }
+
+    10%,
+    30%,
+    50%,
+    70%,
+    90% {
+        transform: rotate(-6deg);
+    }
+
+    20%,
+    40%,
+    60%,
+    80% {
+        transform: rotate(6deg);
+    }
 }
 
 .animate-shake {
@@ -78,6 +94,7 @@
     from {
         transform: rotate(0deg);
     }
+
     to {
         transform: rotate(360deg);
     }

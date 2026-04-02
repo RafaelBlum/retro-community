@@ -8,7 +8,6 @@ export default defineConfig({
             input: [
                 'resources/css/app.css',
                 'resources/js/app.js',
-                'resources/css/retro-login.css',
                 'resources/js/retro-animation.js',
                 'resources/css/landing.css',
                 'resources/css/game.css',

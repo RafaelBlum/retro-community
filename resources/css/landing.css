@@ -40,13 +40,11 @@ body {
 .hero-overlay {
     position: absolute;
     inset: 0;
-    background: linear-gradient(
-        135deg,
-        rgba(0, 0, 0, 0.85) 0%,
-        rgba(20, 10, 60, 0.8) 40%,
-        rgba(99, 40, 180, 0.5) 70%,
-        rgba(0, 0, 0, 0.75) 100%
-    );
+    background: linear-gradient(135deg,
+            rgba(0, 0, 0, 0.85) 0%,
+            rgba(20, 10, 60, 0.8) 40%,
+            rgba(99, 40, 180, 0.5) 70%,
+            rgba(0, 0, 0, 0.75) 100%);
     z-index: 1;
 }
 
@@ -95,14 +93,14 @@ body {
 }
 
 @keyframes logo-glow {
-    0%, 100% {
-        filter: drop-shadow(0 0 15px rgba(139, 92, 246, 0.4)) 
-                drop-shadow(0 0 30px rgba(139, 92, 246, 0.2));
+
+    0%,
+    100% {
+        filter: drop-shadow(0 0 15px rgba(139, 92, 246, 0.4)) drop-shadow(0 0 30px rgba(139, 92, 246, 0.2));
     }
+
     50% {
-        filter: drop-shadow(0 0 30px rgba(167, 139, 250, 0.6)) 
-                drop-shadow(0 0 60px rgba(139, 92, 246, 0.4))
-                drop-shadow(0 0 90px rgba(99, 40, 180, 0.2));
+        filter: drop-shadow(0 0 30px rgba(167, 139, 250, 0.6)) drop-shadow(0 0 60px rgba(139, 92, 246, 0.4)) drop-shadow(0 0 90px rgba(99, 40, 180, 0.2));
     }
 }
 
@@ -236,6 +234,7 @@ body {
         opacity: 1;
         transform: translateY(0);
     }
+
     100% {
         opacity: 0;
         transform: translateY(10px);
@@ -246,7 +245,7 @@ body {
    ABOUT SECTION (Space background)
 ============================================ */
 
-.channels-section {
+.game-section {
     position: relative;
     z-index: 2;
     background: linear-gradient(180deg, #0a0a1a 0%, #0d0b20 30%, #12102a 50%, #0d0b20 70%, #0a0a1a 100%);
@@ -334,11 +333,25 @@ body {
     height: 4px;
 }
 
-.c1 { background: #6d28d9; }
-.c2 { background: #7c3aed; }
-.c3 { background: #8b5cf6; }
-.c4 { background: #a78bfa; }
-.c5 { background: #c4b5fd; }
+.c1 {
+    background: #6d28d9;
+}
+
+.c2 {
+    background: #7c3aed;
+}
+
+.c3 {
+    background: #8b5cf6;
+}
+
+.c4 {
+    background: #a78bfa;
+}
+
+.c5 {
+    background: #c4b5fd;
+}
 
 .ship-engine {
     display: flex;
@@ -378,6 +391,7 @@ body {
         left: -5%;
         transform: rotate(-35deg);
     }
+
     100% {
         top: -20%;
         left: 105%;
@@ -392,6 +406,7 @@ body {
         left: auto;
         transform: rotate(-25deg) scaleX(-1);
     }
+
     100% {
         top: -15%;
         right: 110%;
@@ -405,6 +420,7 @@ body {
         opacity: 1;
         transform: scaleY(1);
     }
+
     100% {
         opacity: 0.6;
         transform: scaleY(0.8);
@@ -439,12 +455,16 @@ body {
 }
 
 /* Projectile colors */
-.p1, .p3, .p5 {
+.p1,
+.p3,
+.p5 {
     background: #c4b5fd;
     box-shadow: 0 0 6px #a78bfa, 0 0 12px rgba(139, 92, 246, 0.5);
 }
 
-.p2, .p4, .p6 {
+.p2,
+.p4,
+.p6 {
     background: #fde047;
     box-shadow: 0 0 6px #facc15, 0 0 12px rgba(250, 204, 21, 0.5);
 }
@@ -482,12 +502,15 @@ body {
         left: 75%;
         opacity: 0;
     }
+
     5% {
         opacity: 1;
     }
+
     80% {
         opacity: 1;
     }
+
     100% {
         top: 68%;
         left: 50%;
@@ -501,12 +524,15 @@ body {
         left: 65%;
         opacity: 0;
     }
+
     5% {
         opacity: 1;
     }
+
     80% {
         opacity: 1;
     }
+
     100% {
         top: 68%;
         left: 48%;
@@ -520,12 +546,15 @@ body {
         left: 80%;
         opacity: 0;
     }
+
     5% {
         opacity: 1;
     }
+
     80% {
         opacity: 1;
     }
+
     100% {
         top: 68%;
         left: 52%;
@@ -540,12 +569,15 @@ body {
         left: 15%;
         opacity: 0;
     }
+
     5% {
         opacity: 1;
     }
+
     80% {
         opacity: 1;
     }
+
     100% {
         top: 68%;
         left: 49%;
@@ -559,12 +591,15 @@ body {
         left: 25%;
         opacity: 0;
     }
+
     5% {
         opacity: 1;
     }
+
     80% {
         opacity: 1;
     }
+
     100% {
         top: 68%;
         left: 51%;
@@ -578,12 +613,15 @@ body {
         left: 20%;
         opacity: 0;
     }
+
     5% {
         opacity: 1;
     }
+
     80% {
         opacity: 1;
     }
+
     100% {
         top: 68%;
         left: 50%;
@@ -606,26 +644,33 @@ body {
 }
 
 @keyframes impact-burst {
-    0%, 75% {
+
+    0%,
+    75% {
         opacity: 0;
         transform: scale(0.8);
     }
+
     80% {
         opacity: 0.8;
         transform: scale(1.1);
     }
+
     85% {
         opacity: 0.4;
         transform: scale(1.2);
     }
+
     90% {
         opacity: 0.6;
         transform: scale(1.05);
     }
+
     95% {
         opacity: 0.2;
         transform: scale(1.15);
     }
+
     100% {
         opacity: 0;
         transform: scale(0.8);
@@ -650,15 +695,20 @@ body {
 }
 
 @keyframes sparks {
-    0%, 78% {
+
+    0%,
+    78% {
         opacity: 0;
     }
+
     82% {
         opacity: 1;
     }
+
     90% {
         opacity: 0.5;
     }
+
     100% {
         opacity: 0;
     }
@@ -670,21 +720,28 @@ body {
 }
 
 @keyframes btn-shake {
-    0%, 78% {
+
+    0%,
+    78% {
         transform: translateX(0);
     }
+
     80% {
         transform: translateX(-1px);
     }
+
     82% {
         transform: translateX(1px);
     }
+
     84% {
         transform: translateX(-1px);
     }
+
     86% {
         transform: translateX(0);
     }
+
     100% {
         transform: translateX(0);
     }
@@ -876,6 +933,7 @@ body {
     0% {
         box-shadow: 0 0 20px rgba(34, 197, 94, 0.2);
     }
+
     100% {
         box-shadow: 0 0 30px rgba(34, 197, 94, 0.35);
     }
@@ -886,6 +944,7 @@ body {
         transform: scale(1);
         opacity: 0.5;
     }
+
     100% {
         transform: scale(1.08);
         opacity: 0;
@@ -938,6 +997,7 @@ body {
         opacity: 0;
         transform: translateY(-30px);
     }
+
     to {
         opacity: 1;
         transform: translateY(0);
@@ -949,6 +1009,7 @@ body {
         opacity: 0;
         transform: translateY(30px);
     }
+
     to {
         opacity: 1;
         transform: translateY(0);
@@ -959,6 +1020,7 @@ body {
     0% {
         opacity: 0.6;
     }
+
     100% {
         opacity: 1;
     }
@@ -968,6 +1030,7 @@ body {
     0% {
         opacity: 0.5;
     }
+
     100% {
         opacity: 0.8;
     }
@@ -978,12 +1041,15 @@ body {
         transform: translateY(100vh) scale(0);
         opacity: 0;
     }
+
     10% {
         opacity: 1;
     }
+
     90% {
         opacity: 1;
     }
+
     100% {
         transform: translateY(-10vh) scale(1);
         opacity: 0;
