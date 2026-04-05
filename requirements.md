@@ -5,9 +5,47 @@
 
 > **Legenda de Status:** 🟢 Concluído | 🟡 Em desenvolvimento | 🔴 Pendente
 
+
+## 🧩 RF017 — Painel Administrativo (Filament PHP) 🟡 Em desenvolvimento
+
+
+
+| 🟡 | **RF017** | **Painel Administrativo (Filament PHP)**     | O sistema deve possuir uma área administrativa para controle completo de usuários, posts, campanhas, enquetes, permissões e configurações.           |
+
+#### Arquivos Criados:
+- app/Filament/Widgets/StatsOverviewWidget.php - Cards de estatísticas (usuários, canais, postagens, campanhas)
+
+#### Arquivo Modificado:
+- app/Providers/Filament/AdminPanelProvider.php - Substituídos os widgets padrão pelos novos widgets
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 ---
 
-## 🧩 RF002 — Cadastro de Seguidores
+## 🧩 RF002 — Cadastro de Seguidores 🟢 Concluído
 
 | Código    | Nome                       | Descrição                                                                                               | Prioridade | Status                | Critérios de Aceitação                                              |
 | :-------- | :------------------------- | :------------------------------------------------------------------------------------------------------ | :--------: | :-------------------: | :------------------------------------------------------------------ |

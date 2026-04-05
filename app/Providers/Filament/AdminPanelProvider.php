@@ -4,8 +4,6 @@ namespace App\Providers\Filament;
 
 use Filament\Facades\Filament;
 use Filament\Pages\Dashboard;
-use Filament\Widgets\AccountWidget;
-use Filament\Widgets\FilamentInfoWidget;
 use App\Filament\Pages\Auth\EditProfile;
 use App\Filament\Pages\Profile;
 use App\Livewire\ContactForm;
@@ -77,8 +75,7 @@ class AdminPanelProvider extends PanelProvider
             ])
             ->discoverWidgets(in: app_path('Filament/Widgets'), for: 'App\\Filament\\Widgets')
             ->widgets([
-                AccountWidget::class,
-                FilamentInfoWidget::class,
+                \App\Filament\Widgets\StatsOverviewWidget::class,
             ])
             ->middleware([
                 EncryptCookies::class,
