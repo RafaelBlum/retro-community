@@ -34,12 +34,8 @@
                     </div>
                 </div>
                 <div class="relative flex justify-center">
-                    <div
-                        class="absolute w-[450px] h-[450px] bg-violet-400/30 dark:bg-purple-500/30 rounded-full blur-3xl">
-                    </div>
-                    <img src="{{ asset('images/hero-3.png') }}" alt="hero" class="up relative w-[400px] h-auto z-10">
                     <img src="{{ asset('images/brandname/Hall-dos-conquistadores.png') }}" alt="hero"
-                        class="vertical-loop-animation absolute inset-0 w-[300px] h-auto mx-auto z-20">
+                        class="vertical-loop-animation relative w-[300px] h-auto mx-auto z-20">
                 </div>
             </div>
         </div>
