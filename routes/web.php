@@ -19,6 +19,7 @@ Route::get('/sobre', [WebController::class, 'about'])->name('app.about');
 Route::get('/politicas', [WebController::class, 'policy'])->name('app.policy');
 Route::get('/suporte', [WebController::class, 'support'])->name('app.support');
 Route::get('/game', [WebController::class, 'gameIntruderUsers'])->name('app.game');
+Route::get('/game2', [WebController::class, 'gameIntruderUsersV2'])->name('app.game2');
 
 // PÁGINAS CAMPANHAS
 Route::get('/campanhas', [CampaingController::class, 'index'])->name('app.campaings');

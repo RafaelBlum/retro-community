@@ -132,6 +132,11 @@
             </span>
             Jogar agora
         </a>
+
+        <a href="{{ route('app.game2') }}" class="v2-btn block p-10 px-4 py-1.5 rounded-full text-xs font-semibold
+                   bg-pink-500/10 border border-pink-500/30 text-pink-400 hover:bg-pink-500/20 transition">
+            ✦ User Invaders v2 — Boss Wave Edition
+        </a>
     </div>
 
 </section>

@@ -35,6 +35,18 @@ class WebController extends Controller
         }
     }
 
+    public function gameIntruderUsersV2()
+    {
+        try {
+            $users = User::all(['id', 'name']);
+            $authUser = auth()->user();
+            return view('game2', compact('users', 'authUser'));
+        } catch (Exception $exception) {
+            report($exception);
+            return redirect()->back();
+        }
+    }
+
     public function home()
     {
         try {
