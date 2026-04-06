@@ -14,6 +14,7 @@ require __DIR__ . '/auth.php';
 
 // PÁGINAS PÚBLICAS
 Route::get('/', [WebController::class, 'landing'])->name('app.landing');
+Route::get('/landing2', [WebController::class, 'landing2'])->name('app.landing2');
 Route::get('/home', [WebController::class, 'home'])->name('app.home');
 Route::get('/sobre', [WebController::class, 'about'])->name('app.about');
 Route::get('/politicas', [WebController::class, 'policy'])->name('app.policy');
