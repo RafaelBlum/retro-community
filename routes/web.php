@@ -25,6 +25,11 @@ Route::get('/game2', [WebController::class, 'gameIntruderUsersV2'])->name('app.g
 // PÁGINAS CAMPANHAS
 Route::get('/campanhas', [CampaingController::class, 'index'])->name('app.campaings');
 
+// POSTS E CATEGORIAS
+Route::get('/posts', [PostController::class, 'index'])->name('posts.index');
+Route::get('/posts/{slug}', [PostController::class, 'post'])->name('posts.post');
+Route::get('/category/{slug}', [CategoryController::class, 'postsForCategory'])->name('posts.category');
+
 // PÁGINAS CANAIS
 Route::get('/canais', [ChannelController::class, 'index'])->name('app.channels');
 Route::get('/{slug}', [ChannelController::class, 'show'])->name('my.channel');
@@ -32,10 +37,7 @@ Route::get('/{slug}', [ChannelController::class, 'show'])->name('my.channel');
 // DASHBOARD DO CANAL (LOGADO)
 Route::get('/canal/{slug}/dashboard', [ChannelController::class, 'dashboard'])->name('my.channel.dashboard');
 
-// POSTS E CATEGORIAS
-Route::get('/posts', [PostController::class, 'index'])->name('posts.index');
-Route::get('/posts/{slug}', [PostController::class, 'post'])->name('posts.post');
-Route::get('/category/{slug}', [CategoryController::class, 'postsForCategory'])->name('posts.category');
+
 
 
 
